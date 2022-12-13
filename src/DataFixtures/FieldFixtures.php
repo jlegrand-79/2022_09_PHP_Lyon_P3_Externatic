@@ -12,11 +12,11 @@ class FieldFixtures extends Fixture
     {
         $fields = ['Développement', 'Data'];
 
-        foreach ($fields as $fieldName) {
-            $field = new Field();
-            $field->setName($fieldName);
-            $manager->persist($field);
-            $this->addReference($fieldName, $field);
+        foreach ($fields as $field) {
+            $newField = new Field();
+            $newField->setName($field);
+            $manager->persist($newField);
+            $this->addReference($field, $newField);
         }
         $manager->flush();
     }

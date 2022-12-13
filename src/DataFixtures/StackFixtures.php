@@ -18,15 +18,15 @@ class StackFixtures extends Fixture
                 ['Python', 'Data', 'Développement']
             ];
 
-            foreach ($stacks as $key) {
-                $stack = new Stack();
-                $stack->setName($key[0]);
-                $stack->addField($this->getReference($key[1]));
-                if (isset($key[2])) {
-                    $stack->addField($this->getReference($key[2]));
+            foreach ($stacks as $stack) {
+                $newStack = new Stack();
+                $newStack->setName($stack[0]);
+                $newStack->addField($this->getReference($stack[1]));
+                if (isset($stack[2])) {
+                    $newStack->addField($this->getReference($stack[2]));
                 }
-                $manager->persist($stack);
-                $this->addReference($key[0] . "_" . $key[1], $stack);
+                $manager->persist($newStack);
+                $this->addReference($stack[0] . "_" . $stack[1], $newStack);
             }
             $manager->flush();
     }
