@@ -149,4 +149,9 @@ class Recruiter
 
         return $this;
     }
+
+    public function getFullName(): string
+    {
+        return $this->firstname . ' ' . $this->lastname;
+    }
 }

@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\OfferRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -33,6 +35,18 @@ class Offer
     #[ORM\ManyToOne(inversedBy: 'offers')]
     #[ORM\JoinColumn(nullable: false)]
     private ?Recruiter $recruiter = null;
+
+    #[ORM\ManyToMany(targetEntity: Stack::class, inversedBy: 'offers')]
+    private Collection $stack;
+
+    #[ORM\ManyToOne(inversedBy: 'offers')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?WorkField $workField = null;
+
+    public function __construct()
+    {
+        $this->stack = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -107,6 +121,42 @@ class Offer
     public function setRecruiter(?Recruiter $recruiter): self
     {
         $this->recruiter = $recruiter;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Stack>
+     */
+    public function getStack(): Collection
+    {
+        return $this->stack;
+    }
+
+    public function addStack(Stack $stack): self
+    {
+        if (!$this->stack->contains($stack)) {
+            $this->stack->add($stack);
+        }
+
+        return $this;
+    }
+
+    public function removeStack(Stack $stack): self
+    {
+        $this->stack->removeElement($stack);
+
+        return $this;
+    }
+
+    public function getWorkField(): ?WorkField
+    {
+        return $this->workField;
+    }
+
+    public function setWorkField(?WorkField $workField): self
+    {
+        $this->workField = $workField;
 
         return $this;
     }
