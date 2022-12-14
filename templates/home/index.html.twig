@@ -1,15 +1,85 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Home{% endblock %}
+{% block title %}Home
+{% endblock %}
 
 {% block body %}
-    <div class="pink-stripe">
-        <h1>
-            Let's start coding&nbsp;&#129304;
-        </h1>
-    </div>
-    <div class="white-stripe">
-        <img src="{{ asset('build/images/LOGO_WILD_CODE_SCHOOL.png') }}"
-             alt="">
-    </div>
+	<div class="homeImage d-flex justify-content-center align-items-center  float-xxl-start float-xxl-none">
+		<img src="{{ asset('build/images/HomeImage.png') }}" class="home" alt="">
+		<h1 class="mainTitle d-flex justify-content-center position-absolute text-white mb-5">
+			Cherchez votre nouvel emploi
+		</h1>
+	</div>
+
+	<div class="d-flex justify-content-center border-primary mt-5">
+		<div class="offerAnnonce mt-1">
+			<h4 class="mt-2 ms-2">Développeur fullstack PHP / JS H/F @ formation santé (Rennes)</h4>
+		</div>
+		<div>
+			<div class="ajout d-flex justify-content-center align-items-center mt-1">
+				<h1>+</h1>
+			</div>
+		</div>
+	</div>
+	<div class=" d-flex justify-content-center mt-2">
+		<div class="offerAnnonce mt-1">
+			<h4 class="mt-2 ms-2">Développeur fullstack PHP / JS H/F @ formation santé (Rennes)</h4>
+		</div>
+		<div>
+			<div class="ajout d-flex justify-content-center align-items-center mt-1">
+				<h1>+</h1>
+			</div>
+		</div>
+	</div>
+	<div class="d-flex justify-content-center mt-2">
+		<div class="offerAnnonce mt-1">
+			<h4 class="mt-2 ms-2">Développeur fullstack PHP / JS H/F @ formation santé (Rennes)</h4>
+		</div>
+		<div>
+			<div class="ajout d-flex justify-content-center align-items-center mt-1">
+				<h1>+</h1>
+			</div>
+		</div>
+	</div>
+	<div class="d-flex justify-content-center mt-2">
+		<div class="offerAnnonce mt-1">
+			<h4 class="mt-2 ms-2">Développeur fullstack PHP / JS H/F @ formation santé (Rennes)</h4>
+		</div>
+		<div>
+			<div class="ajout d-flex justify-content-center align-items-center mt-1">
+				<h1>+</h1>
+			</div>
+		</div>
+	</div>
+	<div class="d-flex justify-content-center mt-2">
+		<div class="offerAnnonce mt-1">
+			<h4 class="mt-2 ms-2">Développeur fullstack PHP / JS H/F @ formation santé (Rennes)</h4>
+		</div>
+		<div>
+			<div class="ajout d-flex justify-content-center align-items-center mt-1">
+				<h1>+</h1>
+			</div>
+		</div>
+	</div>
+	<div class="d-flex justify-content-center mt-2">
+		<div class="offerAnnonce mt-1">
+			<h4 class="mt-2 ms-2">Développeur fullstack PHP / JS H/F @ formation santé (Rennes)</h4>
+		</div>
+		<div>
+			<div class="ajout d-flex justify-content-center align-items-center mt-1">
+				<h1>+</h1>
+			</div>
+		</div>
+	</div>
+	<div class="title">
+		<div class="inscription d-flex justify-content-center text-center-sm text-center-md mt-5">
+			<h1>
+				Vous souhaitez postuler
+				<span class="offerTitle text-center-md">à une offre?</span>
+			</h1>
+		</div>
+		<div class="btn-inscription d-flex justify-content-center m-3">
+			<a href="#" class="btn">Inscrivez-vous</a>
+		</div>
+	</div>
 {% endblock %}
