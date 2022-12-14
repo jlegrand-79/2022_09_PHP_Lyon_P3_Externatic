@@ -8,7 +8,6 @@ use Doctrine\Persistence\ObjectManager;
 
 class ContractTypeFixtures extends Fixture
 {
-
     public function load(ObjectManager $manager): void
     {
         $contractTypes = [
@@ -28,4 +27,3 @@ class ContractTypeFixtures extends Fixture
         $manager->flush();
     }
 }
-    

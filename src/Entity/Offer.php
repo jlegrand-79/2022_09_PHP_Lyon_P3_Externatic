@@ -24,11 +24,11 @@ class Offer
     private ?string $address = null;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
-    private ?\DateTimeInterface $publication_date = null;
+    private ?\DateTimeInterface $publicationDate = null;
 
     #[ORM\ManyToOne(inversedBy: 'offers')]
     #[ORM\JoinColumn(nullable: false)]
-    private ?ContractType $contract_type = null;
+    private ?ContractType $contractType = null;
 
     #[ORM\ManyToOne(inversedBy: 'offers')]
     #[ORM\JoinColumn(nullable: false)]
@@ -65,12 +65,12 @@ class Offer
 
     public function getPublicationDate(): ?\DateTimeInterface
     {
-        return $this->publication_date;
+        return $this->publicationDate;
     }
 
-    public function setPublicationDate(\DateTimeInterface $publication_date): self
+    public function setPublicationDate(\DateTimeInterface $publicationDate): self
     {
-        $this->publication_date = $publication_date;
+        $this->publicationDate = $publicationDate;
 
         return $this;
     }
@@ -89,12 +89,12 @@ class Offer
 
     public function getContractType(): ?ContractType
     {
-        return $this->contract_type;
+        return $this->contractType;
     }
 
-    public function setContractType(?ContractType $contract_type): self
+    public function setContractType(?ContractType $contractType): self
     {
-        $this->contract_type = $contract_type;
+        $this->contractType = $contractType;
 
         return $this;
     }

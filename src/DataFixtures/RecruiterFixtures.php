@@ -46,17 +46,16 @@ class RecruiterFixtures extends Fixture implements DependentFixtureInterface
             ],
         ];
 
-        foreach ($recruiters as $key => $value) {
-
-            $recruiter = new Recruiter();
-            $recruiter->setFirstname($recruiters[$key]['firstname']);
-            $recruiter->setLastname($recruiters[$key]['lastname']);
-            $recruiter->setPhone($recruiters[$key]['phone']);
-            $recruiter->setAddress($recruiters[$key]['address']);
-            $recruiter->setPartner($this->getReference($recruiters[$key]['partner']));
-            $recruiter->setUser($this->getReference($recruiters[$key]['user']));
-            $manager->persist($recruiter);
-            $this->addReference('recruiter_' . $key, $recruiter);
+        foreach ($recruiters as $key => $recruiter) {
+            $newRecruiter = new Recruiter();
+            $newRecruiter->setFirstname($recruiter['firstname']);
+            $newRecruiter->setLastname($recruiter['lastname']);
+            $newRecruiter->setPhone($recruiter['phone']);
+            $newRecruiter->setAddress($recruiter['address']);
+            $newRecruiter->setPartner($this->getReference($recruiter['partner']));
+            $newRecruiter->setUser($this->getReference($recruiter['user']));
+            $manager->persist($newRecruiter);
+            $this->addReference('recruiter_' . $key, $newRecruiter);
         }
         $manager->flush();
     }

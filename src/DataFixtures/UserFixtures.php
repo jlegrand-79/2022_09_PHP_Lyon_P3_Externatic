@@ -34,14 +34,13 @@ class UserFixtures extends Fixture implements DependentFixtureInterface
             ],
         ];
 
-        foreach ($users as $key => $value) {
-
-            $user = new User();
-            $user->setEmail($users[$key]['email']);
-            $user->setPassword($users[$key]['password']);
-            $user->setRole($this->getReference($users[$key]['role']));
-            $manager->persist($user);
-            $this->addReference('user_' . $key, $user);
+        foreach ($users as $key => $user) {
+            $newUser = new User();
+            $newUser->setEmail($user['email']);
+            $newUser->setPassword($user['password']);
+            $newUser->setRole($this->getReference($user['role']));
+            $manager->persist($newUser);
+            $this->addReference('user_' . $key, $newUser);
         }
         $manager->flush();
     }
