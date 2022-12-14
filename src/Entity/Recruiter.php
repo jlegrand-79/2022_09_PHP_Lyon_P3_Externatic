@@ -35,11 +35,6 @@ class Recruiter
     #[ORM\JoinColumn(nullable: false)]
     private ?User $user = null;
 
-    public function __construct()
-    {
-        $this->offers = new ArrayCollection();
-    }
-
     public function getId(): ?int
     {
         return $this->id;
@@ -116,13 +111,4 @@ class Recruiter
 
         return $this;
     }
-
-    /**
-     * @return Collection<int, Offer>
-     */
-    public function getOffers(): Collection
-    {
-        return $this->offers;
-    }
-
 }
