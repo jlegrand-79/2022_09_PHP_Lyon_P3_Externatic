@@ -2,13 +2,13 @@
 
 namespace App\Entity;
 
-use App\Repository\FieldRepository;
+use App\Repository\WorkFieldRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity(repositoryClass: FieldRepository::class)]
-class Field
+#[ORM\Entity(repositoryClass: WorkFieldRepository::class)]
+class WorkField
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -18,7 +18,7 @@ class Field
     #[ORM\Column(length: 255)]
     private ?string $name = null;
 
-    #[ORM\ManyToMany(targetEntity: Stack::class, mappedBy: 'field')]
+    #[ORM\ManyToMany(targetEntity: Stack::class, mappedBy: 'workField')]
     private Collection $stacks;
 
     public function __construct()
@@ -55,7 +55,7 @@ class Field
     {
         if (!$this->stacks->contains($stack)) {
             $this->stacks->add($stack);
-            $stack->addField($this);
+            $stack->addWorkField($this);
         }
 
         return $this;
@@ -64,7 +64,7 @@ class Field
     public function removeStack(Stack $stack): self
     {
         if ($this->stacks->removeElement($stack)) {
-            $stack->removeField($this);
+            $stack->removeWorkField($this);
         }
 
         return $this;

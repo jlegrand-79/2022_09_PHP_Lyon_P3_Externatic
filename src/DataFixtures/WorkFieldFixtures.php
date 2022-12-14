@@ -2,21 +2,21 @@
 
 namespace App\DataFixtures;
 
-use App\Entity\Field;
+use App\Entity\WorkField;
 use Doctrine\Persistence\ObjectManager;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 
-class FieldFixtures extends Fixture
+class WorkFieldFixtures extends Fixture
 {
     public function load(ObjectManager $manager): void
     {
         $fields = ['Développement', 'Data'];
 
         foreach ($fields as $field) {
-            $newField = new Field();
-            $newField->setName($field);
-            $manager->persist($newField);
-            $this->addReference($field, $newField);
+            $workField = new WorkField();
+            $workField->setName($field);
+            $manager->persist($workField);
+            $this->addReference($field, $workField);
         }
         $manager->flush();
     }

@@ -2,10 +2,11 @@
 
 namespace App\Entity;
 
-use App\Repository\StackRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
+use App\Entity\WorkField;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\StackRepository;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\ArrayCollection;
 
 #[ORM\Entity(repositoryClass: StackRepository::class)]
 class Stack
@@ -18,12 +19,12 @@ class Stack
     #[ORM\Column(length: 255)]
     private ?string $name = null;
 
-    #[ORM\ManyToMany(targetEntity: Field::class, inversedBy: 'stacks')]
-    private Collection $field;
+    #[ORM\ManyToMany(targetEntity: WorkField::class, inversedBy: 'stacks')]
+    private Collection $workField;
 
     public function __construct()
     {
-        $this->field = new ArrayCollection();
+        $this->workField = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -44,25 +45,25 @@ class Stack
     }
 
     /**
-     * @return Collection<int, Field>
+     * @return Collection<int, WorkField>
      */
-    public function getField(): Collection
+    public function getWorkField(): Collection
     {
-        return $this->field;
+        return $this->workField;
     }
 
-    public function addField(Field $field): self
+    public function addWorkField(WorkField $workField): self
     {
-        if (!$this->field->contains($field)) {
-            $this->field->add($field);
+        if (!$this->workField->contains($workField)) {
+            $this->workField->add($workField);
         }
 
         return $this;
     }
 
-    public function removeField(Field $field): self
+    public function removeWorkField(WorkField $workField): self
     {
-        $this->field->removeElement($field);
+        $this->workField->removeElement($workField);
 
         return $this;
     }

@@ -2,26 +2,26 @@
 
 namespace App\Repository;
 
-use App\Entity\Field;
+use App\Entity\WorkField;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
- * @extends ServiceEntityRepository<Field>
+ * @extends ServiceEntityRepository<WorkField>
  *
- * @method Field|null find($id, $lockMode = null, $lockVersion = null)
- * @method Field|null findOneBy(array $criteria, array $orderBy = null)
- * @method Field[]    findAll()
- * @method Field[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method WorkField|null find($id, $lockMode = null, $lockVersion = null)
+ * @method WorkField|null findOneBy(array $criteria, array $orderBy = null)
+ * @method WorkField[]    findAll()
+ * @method WorkField[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class FieldRepository extends ServiceEntityRepository
+class WorkFieldRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, Field::class);
+        parent::__construct($registry, WorkField::class);
     }
 
-    public function save(Field $entity, bool $flush = false): void
+    public function save(WorkField $entity, bool $flush = false): void
     {
         $this->getEntityManager()->persist($entity);
 
@@ -30,7 +30,7 @@ class FieldRepository extends ServiceEntityRepository
         }
     }
 
-    public function remove(Field $entity, bool $flush = false): void
+    public function remove(WorkField $entity, bool $flush = false): void
     {
         $this->getEntityManager()->remove($entity);
 
@@ -40,7 +40,7 @@ class FieldRepository extends ServiceEntityRepository
     }
 
 //    /**
-//     * @return Field[] Returns an array of Field objects
+//     * @return WorkField[] Returns an array of WorkField objects
 //     */
 //    public function findByExampleField($value): array
 //    {
@@ -54,7 +54,7 @@ class FieldRepository extends ServiceEntityRepository
 //        ;
 //    }
 
-//    public function findOneBySomeField($value): ?Field
+//    public function findOneBySomeField($value): ?WorkField
 //    {
 //        return $this->createQueryBuilder('f')
 //            ->andWhere('f.exampleField = :val')
