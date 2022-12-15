@@ -1,0 +1,76 @@
+// customize some Bootstrap variables
+$black: #000000;
+$mainPink: #CA2262;
+$light: #fff;
+
+$theme-colors: (
+    "black": $black,
+    "mainPink" : $mainPink,
+);
+
+.card-infos {
+    background-color: #EFEDED;
+    border-radius: 10px;
+    border: 0;
+    margin-top: 20px;
+    margin-bottom: 0px;
+    font: normal normal 600 20px/29px Jost;
+}
+
+.search-offers {
+    background-color: #EFEDED;
+    color: $black;
+    border: 0px;
+    font: normal normal 600 20px/29px Jost;
+}
+
+.search-offers:focus {
+    background-color: #EFEDED;
+    outline: none !important;
+    box-shadow: none;
+    border: 0px;
+}
+
+.search-logo {
+    background-color: #EFEDED;
+    border: 0px;
+}
+
+.logo-infos {
+    margin-right: 10px;
+    width: 32px;
+    height: 32px;
+    fill: $mainPink;
+}
+
+.logo-search {
+    width: 20px;
+    height: 20px;
+}
+
+.logo-infos-more {
+    width: 40px;
+    height: 40px;
+}
+
+.logo-offer-more {
+    fill: white;
+    width: 40px;
+    height: 40px;
+}
+
+.logo-admin {
+    fill: white;
+    width: 40px;
+    height: 40px;
+    padding: 8px;
+}
+
+.pink-circle {
+    background-color: $mainPink;
+    width: 40px;
+    height: 40px;
+    border-radius: 50px;
+    margin-top: 25px;
+    margin-left: 5px;
+}
