@@ -11,3 +11,5 @@ import './styles/_menu.scss';
 import './styles/_list-admin.scss';
 // start the Stimulus application
 import './bootstrap';
+
+import './js/form.js'
