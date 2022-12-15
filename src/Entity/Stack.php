@@ -22,9 +22,13 @@ class Stack
     #[ORM\ManyToMany(targetEntity: WorkField::class, inversedBy: 'stacks')]
     private Collection $workField;
 
+    #[ORM\ManyToMany(targetEntity: Offer::class, mappedBy: 'stack')]
+    private Collection $offers;
+
     public function __construct()
     {
         $this->workField = new ArrayCollection();
+        $this->offers = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -64,6 +68,33 @@ class Stack
     public function removeWorkField(WorkField $workField): self
     {
         $this->workField->removeElement($workField);
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Offer>
+     */
+    public function getOffers(): Collection
+    {
+        return $this->offers;
+    }
+
+    public function addOffer(Offer $offer): self
+    {
+        if (!$this->offers->contains($offer)) {
+            $this->offers->add($offer);
+            $offer->addStack($this);
+        }
+
+        return $this;
+    }
+
+    public function removeOffer(Offer $offer): self
+    {
+        if ($this->offers->removeElement($offer)) {
+            $offer->removeStack($this);
+        }
 
         return $this;
     }

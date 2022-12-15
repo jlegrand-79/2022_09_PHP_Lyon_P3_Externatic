@@ -21,9 +21,13 @@ class WorkField
     #[ORM\ManyToMany(targetEntity: Stack::class, mappedBy: 'workField')]
     private Collection $stacks;
 
+    #[ORM\OneToMany(mappedBy: 'workField', targetEntity: Offer::class)]
+    private Collection $offers;
+
     public function __construct()
     {
         $this->stacks = new ArrayCollection();
+        $this->offers = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -65,6 +69,36 @@ class WorkField
     {
         if ($this->stacks->removeElement($stack)) {
             $stack->removeWorkField($this);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Offer>
+     */
+    public function getOffers(): Collection
+    {
+        return $this->offers;
+    }
+
+    public function addOffer(Offer $offer): self
+    {
+        if (!$this->offers->contains($offer)) {
+            $this->offers->add($offer);
+            $offer->setWorkField($this);
+        }
+
+        return $this;
+    }
+
+    public function removeOffer(Offer $offer): self
+    {
+        if ($this->offers->removeElement($offer)) {
+            // set the owning side to null (unless already changed)
+            if ($offer->getWorkField() === $this) {
+                $offer->setWorkField(null);
+            }
         }
 
         return $this;
