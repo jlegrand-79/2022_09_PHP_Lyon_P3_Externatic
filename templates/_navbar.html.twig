@@ -1,11 +1,95 @@
-<nav class="navbar bg-light shadow-sm fixe-top">
+{#<nav class="navbar navbar-expand-md bg-light shadow-sm fixe-top">
 	<div class="container-fluid d-flex justify-content-around align-items-center me-5">
-		<a class="d-flex align-items-center mt-2 h5 text-dark text-decoration-none" href="#">Publier une offre
-		</a>
+		<div class="d-none d-md-block">
+			<a class="d-flex align-items-center mt-2 h5 text-dark text-decoration-none" href="#">Publier une offre
+			</a>
+		</div>
 		<a class="navbar-brand">
 			<img src="{{ asset('build/images/Logo-Externatic.png') }}" class="logo d-flex align-items-center me-5" alt="">
 		</a>
-		<a>
-			<img src="{{ asset('build/images/noun-profile.png') }}" class="logoAvatar d-flex me-5" alt=""></a>
+		<div class="d-none d-md-block">
+			<a>
+				<img src="{{ asset('build/images/noun-profile.png') }}" class="logoAvatar d-flex me-5" alt=""></a>
+		</div>
 	</div>
-</nav>
+	<div class="d-flex justify-content-center">
+		<a class="navbar-brand" href="#">Navbar</a>
+		<button class="navbar-toggler d-md-none" type="button" data-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon "></span>
+		</button>
+		<div class="collapse navbar-collapse d-none d-lg-block" id="navbarNav">
+			<ul class="navbar-nav">
+				<li class="nav-item">
+					<a class="nav-link active d-md-none" aria-current="page" href="#">Rechercher une offre</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link d-md-none" href="#">Mon profil</a>
+				</li>
+			</ul>
+		</div>
+	</div>
+</nav>#}
+
+
+<nav class="navbar navbar-expand-lg bg-light">
+	<div class="container-fluid d-flex flex-reverse-row">
+		<div class="container-fluid d-flex justify-content-around align-items-center me-5">
+			<div class="d-none d-md-block">
+				<a class="d-flex align-items-center mt-2 h5 text-dark text-decoration-none" href="#">Publier une offre
+				</a>
+			</div>
+			<a class="navbar-brand">
+				<img src="{{ asset('build/images/Logo-Externatic.png') }}" class="logo d-flex align-items-center ms-5" alt="">
+			</a>
+			<div class="d-none d-md-block">
+				<a>
+					<img src="{{ asset('build/images/noun-profile.png') }}" class="logoAvatar d-flex me-5" alt=""></a>
+			</div>
+		</div>
+
+		<button class="navbar-toggler d-md-none" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse" id="navbarNav">
+			<ul class="navbar-nav d-md-none">
+				<li class="nav-item">
+					<a class="nav-link active" aria-current="page" href="#">Home</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="#">Rechercher une offre
+					</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="#">Mon profil</a>
+				</li>
+			</ul>
+
+		</div>
+	</div>
+</div></nav>{#nav class="navbar navbar-expand-lg bg-light">
+											<div class="container-fluid d-flex justify-content-center">
+												<li class="nav-item d-flex justify-content-center">
+													<a class="nav-link active" aria-current="page" href="#">Rechercher une offre</a>
+												</li>
+												<a class="navbar-brand">
+													<img src="{{ asset('build/images/Logo-Externatic.png') }}" class="logo d-flex me-5" alt="">
+												</a>
+												<button class="navbar-toggler d-md-none" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+													<span class="navbar-toggler-icon"></span>
+												</button>
+												<div class="collapse navbar-collapse d-none d-lg-block" id="navbarNav">
+													<ul class="navbar-nav">
+														<li class="nav-item">
+															<a class="nav-link active d-md-none" aria-current="page" href="#">Rechercher une offre</a>
+														</li>
+														<li class="nav-item">
+															<a>
+																<img src="{{ asset('build/images/noun-profile.png') }}" class="logoAvatar d-flex justify-content-end me-5" alt=""></a>
+														</li>
+														<li class="nav-item">
+															<a class="nav-link d-md-none" href="#">Mon profil</a>
+														</li>
+													</ul>
+												</div>
+											</div>
+										</nav>#}
