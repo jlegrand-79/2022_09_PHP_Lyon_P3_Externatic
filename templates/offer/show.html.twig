@@ -4,35 +4,13 @@
 {% endblock %}
 
 {% block body %}
-	<h1>Offer</h1>
+	<h1>Lead technique Fullstack JAVA / VueJS H/F</h1>
 
-	<table class="table">
-		<tbody>
-			<tr>
-				<th>Id</th>
-				<td>{{ offer.id }}</td>
-			</tr>
-			<tr>
-				<th>Title</th>
-				<td>{{ offer.title }}</td>
-			</tr>
-			<tr>
-				<th>Description</th>
-				<td>{{ offer.description }}</td>
-			</tr>
-			<tr>
-				<th>Address</th>
-				<td>{{ offer.address }}</td>
-			</tr>
-			<tr>
-				<th>PublicationDate</th>
-				<td>{{ offer.publicationDate ? offer.publicationDate|date('Y-m-d H:i:s') : '' }}</td>
-			</tr>
-		</tbody>
-	</table>
+	<p class="offer-text-details">CDI / Nantes / offre publiée le 05/12/2022</p>
+
+	<h2 class="offer-h2">Offre</h2>
 
 	<div class="d-flex flex-row">
-		<a href="{{ path('app_offer_index') }}">back to list</a>
 
 		<div class="pink-circle">
 			<a href="{{ path('app_offer_edit', {'id': offer.id}) }}">
