@@ -47,7 +47,7 @@ selectedWorkField.addEventListener('change', (event) => {
                 let checkbox = document.createElement('input');
                 checkbox.type = 'checkbox';
                 checkbox.id = stack.id;
-                checkbox.name = 'offer[stack]';
+                checkbox.name = 'offer[stack][]';
                 checkbox.value = stack.id;
 
                 let label = document.createElement('label')

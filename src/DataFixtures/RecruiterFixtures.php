@@ -18,7 +18,7 @@ class RecruiterFixtures extends Fixture implements DependentFixtureInterface
                 'lastname' => 'Wayne',
                 'phone' => '555-0100',
                 'address' => 'Gotham City',
-                'partner' => 'partner_0',
+                'partner' => 'partner_1',
             ],
             [
                 'user' => 'user_1',
@@ -26,7 +26,7 @@ class RecruiterFixtures extends Fixture implements DependentFixtureInterface
                 'lastname' => 'Fox',
                 'phone' => '555-0101',
                 'address' => 'Gotham City',
-                'partner' => 'partner_0',
+                'partner' => 'partner_1',
             ],
             [
                 'user' => 'user_2',
@@ -34,7 +34,7 @@ class RecruiterFixtures extends Fixture implements DependentFixtureInterface
                 'lastname' => 'Stark',
                 'phone' => '555-0200',
                 'address' => 'New York City, New York',
-                'partner' => 'partner_1',
+                'partner' => 'partner_0',
             ],
             [
                 'user' => 'user_3',
@@ -42,7 +42,7 @@ class RecruiterFixtures extends Fixture implements DependentFixtureInterface
                 'lastname' => 'Potts',
                 'phone' => '555-0201',
                 'address' => 'Los Angeles, California',
-                'partner' => 'partner_1',
+                'partner' => 'partner_0',
             ],
         ];
 
