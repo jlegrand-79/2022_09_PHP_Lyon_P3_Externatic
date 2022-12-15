@@ -11,66 +11,30 @@
 		</h1>
 	</div>
 
-	<div class="d-flex justify-content-center border-primary mt-5">
-		<div class="offerAnnonce mt-1">
-			<h4 class="mt-2 ms-2">Développeur fullstack PHP / JS H/F @ formation santé (Rennes)</h4>
-		</div>
-		<div>
-			<div class="ajout d-flex justify-content-center align-items-center mt-1">
-				<h1>+</h1>
+	{% for offer in offers %}
+		<div class="row justify-content-center">
+			<div class="col-9 col-lg-8 col-xxl-7">
+				<a href="{{ path('app_offer_show', {'id': offer.id}) }}" class="offer-link">
+					<div class="offer card d-flex flex-row justify-content-between">
+						<div class="col-11">
+							<div class="offer-body card-body">
+								<p class="offer-text">Développeur fullstack PHP / JS H/F @ formation santé (Rennes)</p>
+							</div>
+						</div>
+						<div class="offer-more col-1 d-flex justify-content-center align-items-center">
+							<div>
+
+								<svg xmlns="http://www.w3.org/2000/svg" class="logo-offer-more bi bi-plus" viewbox="0 0 16 16">
+									<path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"></path>
+								</svg>
+							</div>
+						</div>
+					</div>
+				</a>
 			</div>
 		</div>
-	</div>
-	<div class=" d-flex justify-content-center mt-2">
-		<div class="offerAnnonce mt-1">
-			<h4 class="mt-2 ms-2">Développeur fullstack PHP / JS H/F @ formation santé (Rennes)</h4>
-		</div>
-		<div>
-			<div class="ajout d-flex justify-content-center align-items-center mt-1">
-				<h1>+</h1>
-			</div>
-		</div>
-	</div>
-	<div class="d-flex justify-content-center mt-2">
-		<div class="offerAnnonce mt-1">
-			<h4 class="mt-2 ms-2">Développeur fullstack PHP / JS H/F @ formation santé (Rennes)</h4>
-		</div>
-		<div>
-			<div class="ajout d-flex justify-content-center align-items-center mt-1">
-				<h1>+</h1>
-			</div>
-		</div>
-	</div>
-	<div class="d-flex justify-content-center mt-2">
-		<div class="offerAnnonce mt-1">
-			<h4 class="mt-2 ms-2">Développeur fullstack PHP / JS H/F @ formation santé (Rennes)</h4>
-		</div>
-		<div>
-			<div class="ajout d-flex justify-content-center align-items-center mt-1">
-				<h1>+</h1>
-			</div>
-		</div>
-	</div>
-	<div class="d-flex justify-content-center mt-2">
-		<div class="offerAnnonce mt-1">
-			<h4 class="mt-2 ms-2">Développeur fullstack PHP / JS H/F @ formation santé (Rennes)</h4>
-		</div>
-		<div>
-			<div class="ajout d-flex justify-content-center align-items-center mt-1">
-				<h1>+</h1>
-			</div>
-		</div>
-	</div>
-	<div class="d-flex justify-content-center mt-2">
-		<div class="offerAnnonce mt-1">
-			<h4 class="mt-2 ms-2">Développeur fullstack PHP / JS H/F @ formation santé (Rennes)</h4>
-		</div>
-		<div>
-			<div class="ajout d-flex justify-content-center align-items-center mt-1">
-				<h1>+</h1>
-			</div>
-		</div>
-	</div>
+	{% endfor %}
+
 	<div class="title">
 		<div class="inscription d-flex justify-content-center mt-5 text-sm-center">
 			<h2>
