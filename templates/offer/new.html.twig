@@ -4,9 +4,11 @@
 {% endblock %}
 
 {% block body %}
-	<h1>Créer une offre</h1>
+	<main class="mainSection">
+		<div class="mainForm">
+			<h1>Créer une offre</h1>
 
-	{{ include('offer/_form.html.twig') }}
-
-	<a href="{{ path('app_offer_index') }}">back to list</a>
+			{{ include('offer/_form.html.twig') }}
+		</div>
+	</main>
 {% endblock %}

@@ -1,11 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Varela+Round&display=swap');
-$mainPink: #CA2262;
-$light: #FFFFFF;
 
-$themes-colors: (
-    "light": $light,
-    "mainPink": $mainPink,
-);
+* {
+    box-sizing: border-box;
+}
 
 .navbar-brand .logo {
 

@@ -40,6 +40,10 @@ selectedWorkField.addEventListener('change', (event) => {
                 stacksOfWorkField.removeChild(stacksOfWorkField.lastChild);
             }
             for (let stack of stacks) {
+
+                let div = document.createElement('div')
+                stacksOfWorkField.appendChild(div);
+
                 let checkbox = document.createElement('input');
                 checkbox.type = 'checkbox';
                 checkbox.id = stack.id;
@@ -53,6 +57,8 @@ selectedWorkField.addEventListener('change', (event) => {
                 stacksOfWorkField.appendChild(checkbox);
                 stacksOfWorkField.appendChild(label);
             }
+
+            stacksOfWorkField.className = "dflex flex-column"
         })
 })
 
