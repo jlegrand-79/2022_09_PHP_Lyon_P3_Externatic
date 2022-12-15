@@ -18,4 +18,8 @@ $themes-colors: (
     height: 50px;
 }
 
+.navbar-toggler {
+    margin-top: -50px;
+}
+
 @import "~bootstrap/scss/bootstrap"

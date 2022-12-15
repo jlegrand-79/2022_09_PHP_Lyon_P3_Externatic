@@ -45,7 +45,6 @@ class Offer
     private ?Contract $contract = null;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
-    #[Assert\DateTime]
     private ?\DateTimeInterface $publicationDate = null;
 
     #[ORM\ManyToOne(inversedBy: 'offers')]
@@ -54,9 +53,8 @@ class Offer
     private ?Recruiter $recruiter = null;
 
     #[ORM\ManyToMany(targetEntity: Stack::class, inversedBy: 'offers')]
-    // Valider qu'au moins une stack est renseignée dans le contrôlleur, et idéalement par le biais d'un service
+    // Valider dans le contrôlleur qu'au moins une stack est renseignée, et idéalement par le biais d'un service
     #[Assert\Type(Collection::class)]
-
     private Collection $stack;
 
     #[ORM\ManyToOne(inversedBy: 'offers')]

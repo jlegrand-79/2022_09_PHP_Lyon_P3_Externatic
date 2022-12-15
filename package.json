@@ -24,5 +24,7 @@
         "watch": "encore dev --watch",
         "build": "encore production --progress"
     },
-    "dependencies": {}
+    "dependencies": {
+        "ckeditor4": "4.13.0"
+    }
 }
