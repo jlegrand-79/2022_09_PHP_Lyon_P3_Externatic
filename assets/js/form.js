@@ -1,6 +1,7 @@
 let selectedPartner = document.querySelector('#offer_partner')
 selectedPartner.firstChild.disabled = true
 let recruitersOfPartner = document.querySelector('#offer_recruiter')
+recruitersOfPartner.firstChild.disabled = true
 
 selectedPartner.addEventListener('change', (event) => {
     fetch(window.location.protocol + "//" + window.location.host + '/api/partner_details/' + event.target.value)
