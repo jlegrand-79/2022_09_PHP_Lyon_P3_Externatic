@@ -14,6 +14,7 @@ use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use FOS\CKEditorBundle\Form\Type\CKEditorType;
 
 class OfferType extends AbstractType
 {
@@ -95,7 +96,7 @@ class OfferType extends AbstractType
                 'expanded' => true,
             ])
 
-            ->add('description');
+            ->add('description', CKEditorType::class);
     }
 
     public function configureOptions(OptionsResolver $resolver): void
