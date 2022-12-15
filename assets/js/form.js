@@ -50,8 +50,11 @@ selectedWorkField.addEventListener('change', (event) => {
                 label.htmlFor = stack.id;
                 label.appendChild(document.createTextNode(stack.name));
 
+                let br = document.createElement('br')
+
                 stacksOfWorkField.appendChild(checkbox);
                 stacksOfWorkField.appendChild(label);
+                stacksOfWorkField.appendChild(br);
             }
         })
 })

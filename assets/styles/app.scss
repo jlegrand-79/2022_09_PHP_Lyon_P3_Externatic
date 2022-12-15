@@ -1,3 +1,88 @@
 //start coding by removing this file and adding yours ;)
-@import "wcs";
+$black: #000000;
+$mainPink: #CA2262;
+$light: #fff;
+
+$theme-colors: (
+    "black": $black,
+    "light" : $light,
+    "mainPink" : $mainPink,
+);
+
+@import url('https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+@import "menu";
 @import "~bootstrap/scss/bootstrap";
+
+
+label {
+    color: #000;
+    font: 600 20px Jost;
+}
+
+legend {
+    color: #000;
+    font: 600 20px Jost;
+}
+
+input {
+    color: #000;
+    font: 400 16px Jost;
+    border-radius: 0px !important;
+    border-color: #000 !important;
+
+    &:focus {
+        border-color: $mainPink !important;
+        box-shadow: none !important;
+    }
+
+    border-width: 2px !important;
+    background-color: #EFEDED !important;
+}
+
+select {
+    color: #000;
+    font: 400 16px Jost;
+    border-radius: 0px !important;
+    border-color: #000 !important;
+    border-width: 2px !important;
+    background-color: #EFEDED !important;
+
+    &:focus {
+        border-color: $mainPink !important;
+        box-shadow: none !important;
+    }
+}
+
+h1 {
+    color: $mainPink;
+    font: 900 48px Jost;
+    text-align: center;
+    margin-top: 30px;
+}
+
+.mainForm {
+    width: 90%;
+    max-width: 800px;
+}
+
+.mainSection {
+    display: flex;
+    justify-content: center;
+}
+
+button {
+
+    padding: 10px;
+    font: 600 20px Jost;
+    color: $light;
+    text-align: center;
+    margin-top: 20px;
+    background-color: $black;
+
+    &:hover {
+        background-color: $mainPink;
+    }
+
+    min-width: 200px;
+}
