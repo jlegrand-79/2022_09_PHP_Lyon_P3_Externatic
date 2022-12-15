@@ -1,5 +1,24 @@
 # Project 3 - Starter Kit - Symfony
 
+
+## Pull Guide
+
+1. Pull the dev branch
+2. Run `composer install` (NEVER run composer update)
+3. Run `yarn install`
+4. Create your branch from Dev
+
+
+## PR Guide
+
+1. Run `git add .`
+2. Run `git commit -m "Your commit message here"`
+3. Pray for grumpy to be cool
+4. Run `git push` if Grump is OK
+5. Create the pull Request From your branch to `dev`
+6. Verify that everything is OK in Github and create the PR
+
+
 ## Presentation
 
 This starter kit is here to easily start a repository for Wild Code School students.

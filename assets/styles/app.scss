@@ -7,16 +7,56 @@
 @import "offer-show";
 
 // customize some Bootstrap variables
+//start coding by removing this file and adding yours ;)
 $black: #000000;
 $mainPink: #CA2262;
 $light: #fff;
 
 $theme-colors: (
     "black": $black,
+    "light" : $light,
     "mainPink" : $mainPink,
 );
 
-/* H1, H2, H3 */
+label {
+    color: #000;
+    font: 600 20px Jost;
+}
+
+legend {
+    color: #000;
+    font: 600 20px Jost;
+}
+
+input {
+    color: #000;
+    font: 400 16px Jost;
+    border-radius: 0px !important;
+    border-color: #000 !important;
+
+    &:focus {
+        border-color: $mainPink !important;
+        box-shadow: none !important;
+    }
+
+    border-width: 2px !important;
+    background-color: #EFEDED !important;
+}
+
+select {
+    color: #000;
+    font: 400 16px Jost;
+    border-radius: 0px !important;
+    border-color: #000 !important;
+    border-width: 2px !important;
+    background-color: #EFEDED !important;
+
+    &:focus {
+        border-color: $mainPink !important;
+        box-shadow: none !important;
+    }
+}
+
 h1 {
     color: $mainPink;
     font: 900 48px Jost;
@@ -29,4 +69,33 @@ h2 {
     font: 900 40px Jost;
     text-align: center;
     margin-top: 40px;
+}
+
+.mainForm {
+    width: 90%;
+    max-width: 800px;
+}
+
+.mainSection {
+    display: flex;
+    justify-content: center;
+}
+
+button {
+
+    padding: 10px;
+    font: 600 20px Jost;
+    color: $light;
+    text-align: center;
+    margin-top: 40px;
+}
+
+.mainForm {
+    width: 90%;
+    max-width: 800px;
+}
+
+.mainSection {
+    display: flex;
+    justify-content: center;
 }
