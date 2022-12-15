@@ -49,3 +49,12 @@ h2 {
     margin: 0px;
     font: normal normal 600 20px/29px Jost;
 }
+
+.offer-link {
+    text-decoration: none;
+    color: $black;
+}
+
+.offer-link:hover {
+    color: $black;
+}
