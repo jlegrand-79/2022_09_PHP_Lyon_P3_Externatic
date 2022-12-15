@@ -10,6 +10,8 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
+use function PHPUnit\Framework\isEmpty;
+
 #[Route('/offer')]
 class OfferController extends AbstractController
 {
@@ -29,8 +31,16 @@ class OfferController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $stacks = $offer->getStack();
+            if (count($stacks) <= 0) {
+                $noStacks = 'Veuillez renseigner au moins une stack.';
+                return $this->renderForm('offer/new.html.twig', [
+                    'offer' => $offer,
+                    'form' => $form,
+                    'no_stacks' => $noStacks,
+                ]);
+            }
             $offerRepository->save($offer, true);
-
             return $this->redirectToRoute('app_offer_index', [], Response::HTTP_SEE_OTHER);
         }
 
