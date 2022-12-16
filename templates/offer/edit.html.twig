@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Offer
+{% endblock %}
+
+{% block body %}
+	<main class="mainSection">
+
+		<div class="mainForm">
+			<h1>Editer l'offre</h1>
+			{{ include('episode/_form.html.twig', {'button_label': 'Editer mon offre'}) }}
+			<a href="{{ path('episode_index') }}">back to list</a>
+			{{ include('episode/_delete_form.html.twig') }}
+		</div>
+
+	</main>
+{% endblock %}
