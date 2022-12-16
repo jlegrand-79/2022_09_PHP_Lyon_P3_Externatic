@@ -85,7 +85,14 @@ button {
     font: 600 20px Jost;
     color: $light;
     text-align: center;
-    margin-top: 40px;
+    margin-top: 20px;
+    background-color: $black;
+
+    &:hover {
+        background-color: $mainPink;
+    }
+
+    min-width: 200px;
 }
 
 .mainForm {
