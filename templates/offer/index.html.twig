@@ -5,11 +5,11 @@
 
 {% block body %}
 
-	<main class="container mb-5">
+	<main class="container mb-4">
 
 		<h1>Jean-Michel Admin</h1>
 
-		<h2>Vos informations</h2>
+		<h2 class="text-center">Vos informations</h2>
 
 		<div class="row justify-content-center">
 			<div class="col-11 col-md-9 col-lg-7 col-xl-6 col-xxl-6">
@@ -50,7 +50,7 @@
 			</div>
 		</div>
 
-		<h2>Les offres publiées</h2>
+		<h2 class="text-center">Les offres publiées</h2>
 
 		<div class="row justify-content-center">
 			<div class="col-11 col-md-10 col-lg-9 col-xxl-8">
@@ -76,7 +76,9 @@
 						<div class="offer card d-flex flex-row justify-content-between">
 							<div class="col-11">
 								<div class="offer-body card-body">
-									<p class="offer-text">Développeur fullstack PHP / JS H/F @ formation santé (Rennes)</p>
+									<p class="offer-text">
+										{{ offer.title }}
+									</p>
 								</div>
 							</div>
 							<div class="offer-more col-1 d-flex justify-content-center align-items-center">
@@ -101,14 +103,7 @@
 						</a>
 					</div>
 
-					<div class="pink-circle">
-						<a href="#">
-							<svg xmlns="http://www.w3.org/2000/svg" class="logo-admin bi bi-trash" viewbox="0 0 16 16">
-								<path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"></path>
-								<path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"></path>
-							</svg>
-						</a>
-					</div>
+					{{ include('offer/_delete_form.html.twig') }}
 				</div>
 			</div>
 		{% endfor %}

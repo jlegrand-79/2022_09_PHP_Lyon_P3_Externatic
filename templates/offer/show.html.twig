@@ -4,45 +4,38 @@
 {% endblock %}
 
 {% block body %}
-	<h1>Offer</h1>
+	<main class="container">
+		<h1>{{ offer.title }}</h1>
 
-	<table class="table">
-		<tbody>
-			<tr>
-				<th>Id</th>
-				<td>{{ offer.id }}</td>
-			</tr>
-			<tr>
-				<th>Title</th>
-				<td>{{ offer.title }}</td>
-			</tr>
-			<tr>
-				<th>Description</th>
-				<td>{{ offer.description }}</td>
-			</tr>
-			<tr>
-				<th>Address</th>
-				<td>{{ offer.address }}</td>
-			</tr>
-			<tr>
-				<th>PublicationDate</th>
-				<td>{{ offer.publicationDate ? offer.publicationDate|date('Y-m-d H:i:s') : '' }}</td>
-			</tr>
-		</tbody>
-	</table>
+		<p class="offer-text-details">
+			{{ offer.contract.type }}
+			/
+			{{ offer.address }}
+			/ offre publiée le
+			{{ offer.publicationDate|date("d/m/Y") }}</p>
 
-	<div class="d-flex flex-row">
-		<a href="{{ path('app_offer_index') }}">back to list</a>
+		{{ offer.description|raw }}
 
-		<div class="pink-circle">
-			<a href="{{ path('app_offer_edit', {'id': offer.id}) }}">
-				<svg xmlns="http://www.w3.org/2000/svg" class="logo-admin bi bi-vector-pen" viewbox="0 0 16 16">
-					<path fill-rule="evenodd" d="M10.646.646a.5.5 0 0 1 .708 0l4 4a.5.5 0 0 1 0 .708l-1.902 1.902-.829 3.313a1.5 1.5 0 0 1-1.024 1.073L1.254 14.746 4.358 4.4A1.5 1.5 0 0 1 5.43 3.377l3.313-.828L10.646.646zm-1.8 2.908-3.173.793a.5.5 0 0 0-.358.342l-2.57 8.565 8.567-2.57a.5.5 0 0 0 .34-.357l.794-3.174-3.6-3.6z"></path>
-					<path fill-rule="evenodd" d="M2.832 13.228 8 9a1 1 0 1 0-1-1l-4.228 5.168-.026.086.086-.026z"></path>
-				</svg>
-			</a>
+		<div class="d-flex flex-row">
+
+			<div class="pink-circle">
+				<a href="{{ path('app_offer_index') }}">
+					<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="logo-admin bi bi-arrow-return-left" viewbox="0 0 16 16">
+						<path fill-rule="evenodd" d="M14.5 1.5a.5.5 0 0 1 .5.5v4.8a2.5 2.5 0 0 1-2.5 2.5H2.707l3.347 3.346a.5.5 0 0 1-.708.708l-4.2-4.2a.5.5 0 0 1 0-.708l4-4a.5.5 0 1 1 .708.708L2.707 8.3H12.5A1.5 1.5 0 0 0 14 6.8V2a.5.5 0 0 1 .5-.5z"></path>
+					</svg>
+				</a>
+			</div>
+
+			<div class="pink-circle">
+				<a href="{{ path('app_offer_edit', {'id': offer.id}) }}">
+					<svg xmlns="http://www.w3.org/2000/svg" class="logo-admin bi bi-vector-pen" viewbox="0 0 16 16">
+						<path fill-rule="evenodd" d="M10.646.646a.5.5 0 0 1 .708 0l4 4a.5.5 0 0 1 0 .708l-1.902 1.902-.829 3.313a1.5 1.5 0 0 1-1.024 1.073L1.254 14.746 4.358 4.4A1.5 1.5 0 0 1 5.43 3.377l3.313-.828L10.646.646zm-1.8 2.908-3.173.793a.5.5 0 0 0-.358.342l-2.57 8.565 8.567-2.57a.5.5 0 0 0 .34-.357l.794-3.174-3.6-3.6z"></path>
+						<path fill-rule="evenodd" d="M2.832 13.228 8 9a1 1 0 1 0-1-1l-4.228 5.168-.026.086.086-.026z"></path>
+					</svg>
+				</a>
+			</div>
+
+			{{ include('offer/_delete_form.html.twig') }}
 		</div>
-
-		{{ include('offer/_delete_form.html.twig') }}
-	</div>
+	</main>
 {% endblock %}
