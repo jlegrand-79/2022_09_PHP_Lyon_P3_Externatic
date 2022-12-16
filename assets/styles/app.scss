@@ -4,6 +4,7 @@
 
 @import "menu";
 @import "list-admin";
+@import "offer-show";
 @import "home";
 
 // customize some Bootstrap variables
@@ -34,7 +35,7 @@ input {
     border-color: #000 !important;
 
     &:focus {
-        border-color: $mainPink  !important;
+        border-color: $mainPink !important;
         box-shadow: none !important;
     }
 
@@ -51,7 +52,7 @@ select {
     background-color: #EFEDED !important;
 
     &:focus {
-        border-color: $mainPink  !important;
+        border-color: $mainPink !important;
         box-shadow: none !important;
     }
 }
@@ -64,7 +65,9 @@ h1 {
 }
 
 h2 {
-    text-align: center;
+    color: $mainPink;
+    font: 900 40px Jost;
+    margin-top: 40px;
 }
 
 .mainForm {
@@ -77,11 +80,7 @@ h2 {
     justify-content: center;
 }
 
-.offer:hover {
-    border: 2px solid $mainPink;
-    background-color: $mainPink;
-
-
+button {
     padding: 10px;
     font: 600 20px Jost;
     color: $light;
@@ -94,4 +93,14 @@ h2 {
     }
 
     min-width: 200px;
+}
+
+.mainForm {
+    width: 90%;
+    max-width: 800px;
+}
+
+.mainSection {
+    display: flex;
+    justify-content: center;
 }
