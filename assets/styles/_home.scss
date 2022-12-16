@@ -1,0 +1,34 @@
+.home {
+    width: 100%;
+    height: auto;
+    min-height: 300px;
+}
+
+.inscription {
+    font-weight: bold;
+    font: 55px;
+    font-family: Jost;
+}
+
+.search {
+    border: solid black 2px;
+    background-color: $light;
+}
+
+.offerTitle {
+    color: $mainPink;
+}
+
+.btn-inscription .btn {
+    width: 250px;
+    color: $light;
+    background-color: $black;
+    font: 600 20px Jost;
+    color: $light;
+    text-align: center;
+    margin-top: 20px;
+
+    &:hover {
+        background-color: $mainPink;
+    }
+}

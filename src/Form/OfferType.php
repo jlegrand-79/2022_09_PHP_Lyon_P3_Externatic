@@ -13,7 +13,6 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
-use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use FOS\CKEditorBundle\Form\Type\CKEditorType;
 
 class OfferType extends AbstractType
@@ -96,7 +95,17 @@ class OfferType extends AbstractType
                 'expanded' => true,
             ])
 
-            ->add('description', CKEditorType::class);
+            ->add('description', CKEditorType::class, [
+                'required' => true,
+                'attr' => [
+                    'class' => 'form-control',
+                    'placeholder' => 'Ex : Rejoignez une équipe à la pointe de l\'innovation...',
+                ],
+                'label' => 'Détail de l\'offre',
+                'label_attr' => [
+                    'class' => 'form-label'
+                ],
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver): void

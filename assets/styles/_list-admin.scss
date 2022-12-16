@@ -1,3 +1,5 @@
+$mainPink: #CA2262;
+
 .card-infos {
     background-color: #EFEDED;
     border-radius: 10px;
@@ -63,4 +65,36 @@
     border-radius: 50px;
     margin-top: 25px;
     margin-left: 5px;
+}
+
+/* OFFER */
+.offer {
+    border: 2px solid $black;
+    border-radius: 0px;
+    margin-top: 25px;
+    background-color: $black;
+}
+
+.offer:hover {
+    border: 2px solid $mainPink;
+    background-color: $mainPink;
+}
+
+.offer-body {
+    padding: 10px;
+    background-color: white;
+}
+
+.offer-text {
+    margin: 0px;
+    font: normal normal 600 20px/29px Jost;
+}
+
+.offer-link {
+    text-decoration: none;
+    color: $black;
+}
+
+.offer-link:hover {
+    color: $black;
 }

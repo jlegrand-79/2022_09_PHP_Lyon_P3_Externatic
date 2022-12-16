@@ -11,9 +11,11 @@
 import './styles/app.scss';
 import './styles/_menu.scss';
 // start the Stimulus application
+
 import './bootstrap';
 
-import './js/form.js'
+import './js/form.js';
+
 
 require('bootstrap');
 
