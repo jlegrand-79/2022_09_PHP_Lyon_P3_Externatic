@@ -5,11 +5,11 @@
 
 {% block body %}
 
-	<main class="container mb-5">
+	<main class="container mb-4">
 
 		<h1>Jean-Michel Admin</h1>
 
-		<h2>Vos informations</h2>
+		<h2 class="text-center">Vos informations</h2>
 
 		<div class="row justify-content-center">
 			<div class="col-11 col-md-9 col-lg-7 col-xl-6 col-xxl-6">
@@ -50,7 +50,7 @@
 			</div>
 		</div>
 
-		<h2>Les offres publiées</h2>
+		<h2 class="text-center">Les offres publiées</h2>
 
 		<div class="row justify-content-center">
 			<div class="col-11 col-md-10 col-lg-9 col-xxl-8">
@@ -76,7 +76,9 @@
 						<div class="offer card d-flex flex-row justify-content-between">
 							<div class="col-11">
 								<div class="offer-body card-body">
-									<p class="offer-text">Développeur fullstack PHP / JS H/F @ formation santé (Rennes)</p>
+									<p class="offer-text">
+										{{ offer.title }}
+									</p>
 								</div>
 							</div>
 							<div class="offer-more col-1 d-flex justify-content-center align-items-center">

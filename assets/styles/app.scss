@@ -57,6 +57,10 @@ select {
     }
 }
 
+.form-check-input:checked[type=checkbox] {
+    fill: red !important;
+}
+
 h1 {
     color: $mainPink;
     font: 900 48px Jost;
@@ -67,7 +71,6 @@ h1 {
 h2 {
     color: $mainPink;
     font: 900 40px Jost;
-    text-align: center;
     margin-top: 40px;
 }
 
