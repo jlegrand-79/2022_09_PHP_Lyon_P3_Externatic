@@ -1,4 +1,12 @@
-//start coding by removing this file and adding yours ;)
+@import "~bootstrap/scss/bootstrap";
+
+@import url('https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+@import "menu";
+@import "list-admin";
+@import "home";
+
+// customize some Bootstrap variables
 $black: #000000;
 $mainPink: #CA2262;
 $light: #fff;
@@ -8,13 +16,6 @@ $theme-colors: (
     "light" : $light,
     "mainPink" : $mainPink,
 );
-
-@import url('https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
-
-@import "menu";
-@import "list-admin";
-@import "~bootstrap/scss/bootstrap";
-
 
 label {
     color: #000;
@@ -33,7 +34,7 @@ input {
     border-color: #000 !important;
 
     &:focus {
-        border-color: $mainPink !important;
+        border-color: $mainPink  !important;
         box-shadow: none !important;
     }
 
@@ -50,7 +51,7 @@ select {
     background-color: #EFEDED !important;
 
     &:focus {
-        border-color: $mainPink !important;
+        border-color: $mainPink  !important;
         box-shadow: none !important;
     }
 }
@@ -60,6 +61,10 @@ h1 {
     font: 900 48px Jost;
     text-align: center;
     margin-top: 30px;
+}
+
+h2 {
+    text-align: center;
 }
 
 .mainForm {
@@ -72,7 +77,10 @@ h1 {
     justify-content: center;
 }
 
-button {
+.offer:hover {
+    border: 2px solid $mainPink;
+    background-color: $mainPink;
+
 
     padding: 10px;
     font: 600 20px Jost;
