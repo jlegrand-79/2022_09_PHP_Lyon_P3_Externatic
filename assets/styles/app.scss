@@ -5,9 +5,9 @@
 @import "menu";
 @import "list-admin";
 @import "offer-show";
+@import "home";
 
 // customize some Bootstrap variables
-//start coding by removing this file and adding yours ;)
 $black: #000000;
 $mainPink: #CA2262;
 $light: #fff;
@@ -55,10 +55,6 @@ select {
         border-color: $mainPink !important;
         box-shadow: none !important;
     }
-}
-
-.form-check-input:checked[type=checkbox] {
-    fill: red !important;
 }
 
 h1 {
