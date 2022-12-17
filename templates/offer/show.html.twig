@@ -13,8 +13,11 @@
 			{{ offer.address }}
 			/ offre publiée le
 			{{ offer.publicationDate|date("d/m/Y") }}</p>
+			<p class="offer-text-details">{{offer.recruiter.partner.name}} / offre gérée par {{offer.recruiter.fullname}}
 
+		<div class="mt-5">
 		{{ offer.description|raw }}
+		</div>
 
 		<div class="d-flex flex-row">
 
