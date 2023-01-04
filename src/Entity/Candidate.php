@@ -6,13 +6,18 @@ use Assert\Regex;
 use Assert\Length;
 use App\Entity\User;
 use Assert\NotBlank;
+use DateTimeInterface;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Vich\UploaderBundle\Entity\File;
 use App\Repository\CandidateRepository;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Validator\Constraints as Assert;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 #[ORM\Entity(repositoryClass: CandidateRepository::class)]
+#[Vich\Uploadable]
 class Candidate
 {
     #[ORM\Id]
@@ -24,7 +29,7 @@ class Candidate
     #[Assert\NotBlank(message: 'Le genre ne peut pas être vide.')]
     #[Assert\Length(
         max: 255,
-        maxMessage: 'Le genre saisi \"{{ value }}\" est trop long, 
+        maxMessage: 'Le genre saisi {{ value }} est trop long, 
         il ne devrait pas dépasser {{ limit }} caractères',
     )]
     private ?string $gender = null;
@@ -33,7 +38,7 @@ class Candidate
     #[Assert\NotBlank(message: 'Le prénom ne peut pas être vide.')]
     #[Assert\Length(
         max: 255,
-        maxMessage: 'Le prénom saisi \"{{ value }}\" est trop long, 
+        maxMessage: 'Le prénom saisi {{ value }} est trop long, 
         il ne devrait pas dépasser {{ limit }} caractères',
     )]
     private ?string $firstname = null;
@@ -42,7 +47,7 @@ class Candidate
     #[Assert\NotBlank(message: 'Le nom ne peut pas être vide.')]
     #[Assert\Length(
         max: 255,
-        maxMessage: 'Le nom saisi \"{{ value }}\" est trop long, 
+        maxMessage: 'Le nom saisi {{ value }} est trop long, 
         il ne devrait pas dépasser {{ limit }} caractères',
     )]
     private ?string $lastname = null;
@@ -52,26 +57,30 @@ class Candidate
     #[Assert\Regex(
         pattern: '/\d{10,15}/',
         match: true,
-        message: 'Le téléphone saisi \"{{ value }}\" est incorrect, 
-        il devrait contenir 10 à 15 chiffres',
+        message: 'Le numéro de téléphone saisi {{ value }} est incorrect, 
+        il devrait contenir entre 10 à 15 chiffres',
     )]
     private ?string $phone = null;
 
     #[ORM\Column(length: 255, nullable: true)]
-    #[Assert\Length(
-        max: 255,
-        maxMessage: 'Le chemin de l\'image est trop long, 
-        il ne devrait pas dépasser {{ limit }} caractères',
-    )]
     private ?string $picture = null;
 
-    #[ORM\Column(length: 255, nullable: true)]
-    #[Assert\Length(
-        max: 255,
-        maxMessage: 'Le chemin du document est trop long, 
-        il ne devrait pas dépasser {{ limit }} caractères',
+    #[Vich\UploadableField(mapping: 'candidate_picture', fileNameProperty: 'picture')]
+    #[Assert\File(
+        maxSize: '1M',
+        mimeTypes: ['application/pdf'],
     )]
+    private ?File $pictureFile = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
     private ?string $curriculumVitae = null;
+
+    #[Vich\UploadableField(mapping: 'candidate_cv', fileNameProperty: 'curriculumVitae')]
+    #[Assert\File(
+        maxSize: '1M',
+        mimeTypes: ['image/jpeg', 'image/png', 'image/webp'],
+    )]
+    private ?File $cvFile = null;
 
     #[ORM\Column(length: 255)]
     #[Assert\NotBlank(message: 'L\'adresse ne peut pas être vide.')]
@@ -94,7 +103,7 @@ class Candidate
     #[Assert\Regex(
         pattern: '/\d{5}/',
         match: true,
-        message: 'Le code postal saisi \"{{ value }}\" est incorrect, 
+        message: 'Le code postal saisi {{ value }} est incorrect, 
         il devrait contenir 5 chiffres',
     )]
     private ?string $postalCode = null;
@@ -116,9 +125,18 @@ class Candidate
     #[Assert\Type(Collection::class)]
     private Collection $stacks;
 
+    #[ORM\Column(type: Types::DATETIME_MUTABLE)]
+    #[Assert\Type("\DateTimeInterface")]
+    private ?\DateTimeInterface $birthday = null;
+
+    #[ORM\ManyToMany(targetEntity: Contract::class, inversedBy: 'candidates')]
+    #[Assert\Type(Collection::class)]
+    private Collection $contractSearched;
+
     public function __construct()
     {
         $this->stacks = new ArrayCollection();
+        $this->contractSearched = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -279,6 +297,64 @@ class Candidate
     {
         $this->stacks->removeElement($stack);
 
+        return $this;
+    }
+
+    public function getBirthday(): ?\DateTimeInterface
+    {
+        return $this->birthday;
+    }
+
+    public function setBirthday(\DateTimeInterface $birthday): self
+    {
+        $this->birthday = $birthday;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Contract>
+     */
+    public function getContractSearched(): Collection
+    {
+        return $this->contractSearched;
+    }
+
+    public function addContractSearched(Contract $contractSearched): self
+    {
+        if (!$this->contractSearched->contains($contractSearched)) {
+            $this->contractSearched->add($contractSearched);
+        }
+
+        return $this;
+    }
+
+    public function removeContractSearched(Contract $contractSearched): self
+    {
+        $this->contractSearched->removeElement($contractSearched);
+
+        return $this;
+    }
+
+    public function getPictureFile(): ?File
+    {
+        return $this->pictureFile;
+    }
+
+    public function setPictureFile(File $pictureFile = null): Candidate
+    {
+        $this->pictureFile = $pictureFile;
+        return $this;
+    }
+
+    public function getCvFile(): ?File
+    {
+        return $this->cvFile;
+    }
+
+    public function setCvFile(File $cvFile = null): Candidate
+    {
+        $this->cvFile = $cvFile;
         return $this;
     }
 }

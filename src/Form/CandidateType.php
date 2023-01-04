@@ -5,6 +5,7 @@ namespace App\Form;
 use App\Entity\Stack;
 use App\Entity\Candidate;
 use Symfony\Component\Form\AbstractType;
+use Vich\UploaderBundle\Form\Type\VichFileType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -17,6 +18,16 @@ class CandidateType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
+            ->add('pictureFile', VichFileType::class, [
+                'required'      => false,
+                'allow_delete'  => true,
+                'download_uri' => false,
+                'label' => 'Avatar',
+                'label_attr' => [
+                    'class' => 'form-label'
+                ],
+            ])
+
             ->add('gender', ChoiceType::class, [
                 'required' => true,
                 'choices'  => [
@@ -66,9 +77,6 @@ class CandidateType extends AbstractType
                     'class' => 'form-label'
                 ],
             ])
-
-            ->add('picture')
-            ->add('curriculumVitae')
 
             ->add('address', TextType::class, [
                 'required' => true,
@@ -125,6 +133,16 @@ class CandidateType extends AbstractType
                 'label' => 'Technologies utilisées',
                 'multiple' => true,
                 'expanded' => true,
+            ])
+
+            ->add('cvFile', VichFileType::class, [
+                'required'      => false,
+                'allow_delete'  => true,
+                'download_uri' => true,
+                'label' => 'Téléverser son CV',
+                'label_attr' => [
+                    'class' => 'form-label'
+                ],
             ]);
     }
 
