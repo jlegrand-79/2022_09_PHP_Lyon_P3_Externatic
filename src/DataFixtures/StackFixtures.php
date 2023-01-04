@@ -12,31 +12,31 @@ class StackFixtures extends Fixture implements DependentFixtureInterface
 {
     public function load(ObjectManager $manager): void
     {
-            $stacks = [
-                ['PHP', 'Développement'],
-                ['Javascript', 'Développement'],
-                ['Java', 'Développement'],
-                ['mySQL', 'Développement', 'Data'],
-                ['Python', 'Data', 'Développement']
-            ];
+        $stacks = [
+            ['PHP', 'Développement'],
+            ['Javascript', 'Développement'],
+            ['Java', 'Développement'],
+            ['mySQL', 'Développement', 'Data'],
+            ['Python', 'Data', 'Développement']
+        ];
 
-            foreach ($stacks as $stack) {
-                $newStack = new Stack();
-                $newStack->setName($stack[0]);
-                $newStack->addWorkField($this->getReference($stack[1]));
-                if (isset($stack[2])) {
-                    $newStack->addWorkField($this->getReference($stack[2]));
-                }
-                $manager->persist($newStack);
-                $this->addReference($stack[0] . "_" . $stack[1], $newStack);
+        foreach ($stacks as $stack) {
+            $newStack = new Stack();
+            $newStack->setName($stack[0]);
+            $newStack->addWorkField($this->getReference($stack[1]));
+            if (isset($stack[2])) {
+                $newStack->addWorkField($this->getReference($stack[2]));
             }
-            $manager->flush();
+            $manager->persist($newStack);
+            $this->addReference($stack[0] . "_" . $stack[1], $newStack);
+        }
+        $manager->flush();
     }
 
     public function getDependencies()
     {
         return [
-          WorkFieldFixtures::class,
+            WorkFieldFixtures::class,
         ];
     }
 }
