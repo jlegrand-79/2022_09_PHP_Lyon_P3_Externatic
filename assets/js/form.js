@@ -5,8 +5,7 @@ let recruitersOfPartner = document.querySelector('#offer_recruiter')
 recruitersOfPartner.firstChild.disabled = true
 let recruiterValue = recruitersOfPartner.value
 
-function clearPartnerField(select)
-{
+function clearPartnerField(select) {
     select.options.length = 0
     let option = document.createElement("option");
     option.value = ""
@@ -38,14 +37,15 @@ if (selectedPartner.value == true) {
         .then(response => response.json())
         .then(recruiters => {
             clearPartnerField(recruitersOfPartner)
-            
+
             for (let recruiter of recruiters) {
                 let option = document.createElement("option");
                 option.value = recruiter.id;
                 option.text = recruiter.fullname;
                 recruitersOfPartner.add(option)
                 recruitersOfPartner.value = recruiterValue
-            }})
+            }
+        })
 } else {
     clearPartnerField(recruitersOfPartner)
 }
@@ -63,7 +63,7 @@ let allStacks = stacksOfWorkField.querySelectorAll('input')
 let stacksValue = []
 
 for (let i = 0; i < allStacks.length; i++) {
-    if (allStacks[i].checked == true){    
+    if (allStacks[i].checked == true) {
         stacksValue.push(allStacks[i].value)
     }
 }
@@ -130,9 +130,8 @@ if (selectedWorkField.value == 2) {
                 div.appendChild(label);
                 stacksOfWorkField.appendChild(div);
 
-                for(let stackValue of stacksValue) {
-                    if(stack.id == stackValue)
-                    {
+                for (let stackValue of stacksValue) {
+                    if (stack.id == stackValue) {
                         checkbox.checked = true
                     }
                 }
@@ -144,8 +143,3 @@ if (selectedWorkField.value == 2) {
 // Technologies field
 let technologies = document.querySelector('legend')
 technologies.className = 'form-label'
-
-
-
-
-
