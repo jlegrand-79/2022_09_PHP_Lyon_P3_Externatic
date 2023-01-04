@@ -18,9 +18,11 @@ class CandidateController extends AbstractController
     {
         $candidate = new Candidate();
         $form = $this->createForm(CandidateType::class, $candidate);
+
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $candidate->setUser($this->container->get('security.token_storage')->getToken()->getUser());
             $candidateRepository->save($candidate, true);
 
             return $this->redirectToRoute('app_candidate_index', [], Response::HTTP_SEE_OTHER);

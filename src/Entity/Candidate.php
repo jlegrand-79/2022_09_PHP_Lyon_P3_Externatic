@@ -9,7 +9,7 @@ use Assert\NotBlank;
 use DateTimeInterface;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
-use Vich\UploaderBundle\Entity\File;
+use Symfony\Component\HttpFoundation\File\File;
 use App\Repository\CandidateRepository;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -68,7 +68,7 @@ class Candidate
     #[Vich\UploadableField(mapping: 'candidate_picture', fileNameProperty: 'picture')]
     #[Assert\File(
         maxSize: '1M',
-        mimeTypes: ['application/pdf'],
+        mimeTypes: ['image/jpeg', 'image/png', 'image/webp'],
     )]
     private ?File $pictureFile = null;
 
@@ -78,7 +78,7 @@ class Candidate
     #[Vich\UploadableField(mapping: 'candidate_cv', fileNameProperty: 'curriculumVitae')]
     #[Assert\File(
         maxSize: '1M',
-        mimeTypes: ['image/jpeg', 'image/png', 'image/webp'],
+        mimeTypes: ['application/pdf'],
     )]
     private ?File $cvFile = null;
 
