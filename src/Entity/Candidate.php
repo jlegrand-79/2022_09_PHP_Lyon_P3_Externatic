@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\CandidateRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: CandidateRepository::class)]
@@ -52,9 +53,16 @@ class Candidate
     #[ORM\ManyToMany(targetEntity: Stack::class, inversedBy: 'candidates')]
     private Collection $stacks;
 
+    #[ORM\Column(type: Types::DATETIME_MUTABLE)]
+    private ?\DateTimeInterface $birthday = null;
+
+    #[ORM\ManyToMany(targetEntity: Contract::class, inversedBy: 'candidates')]
+    private Collection $contractSearched;
+
     public function __construct()
     {
         $this->stacks = new ArrayCollection();
+        $this->contractSearched = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -214,6 +222,42 @@ class Candidate
     public function removeStack(Stack $stack): self
     {
         $this->stacks->removeElement($stack);
+
+        return $this;
+    }
+
+    public function getBirthday(): ?\DateTimeInterface
+    {
+        return $this->birthday;
+    }
+
+    public function setBirthday(\DateTimeInterface $birthday): self
+    {
+        $this->birthday = $birthday;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Contract>
+     */
+    public function getContractSearched(): Collection
+    {
+        return $this->contractSearched;
+    }
+
+    public function addContractSearched(Contract $contractSearched): self
+    {
+        if (!$this->contractSearched->contains($contractSearched)) {
+            $this->contractSearched->add($contractSearched);
+        }
+
+        return $this;
+    }
+
+    public function removeContractSearched(Contract $contractSearched): self
+    {
+        $this->contractSearched->removeElement($contractSearched);
 
         return $this;
     }
