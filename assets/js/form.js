@@ -153,3 +153,12 @@ let technologies = document.querySelector('legend')
 if (technologies) {
     technologies.className = 'form-label'
 }
+
+// Candidate form
+let gender = document.querySelector('#candidate_gender')
+let birthday = document.querySelector('.input-group').children
+
+if (gender && birthday) {
+    gender.firstChild.disabled = true
+    birthday.firstChild.disabled = true
+}
