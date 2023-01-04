@@ -61,7 +61,6 @@ select {
 h1 {
     color: $mainPink;
     font: 900 48px Jost;
-    text-align: center;
     margin-top: 30px;
 }
 
@@ -104,4 +103,10 @@ button {
 .mainSection {
     display: flex;
     justify-content: center;
+}
+
+
+.form-check-input[type='checkbox']:checked {
+    background-color: $mainPink !important;
+    border-color: $mainPink !important;
 }
