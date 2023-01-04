@@ -2,10 +2,15 @@
 
 namespace App\Entity;
 
-use App\Repository\CandidateRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
+use Assert\Regex;
+use Assert\Length;
+use App\Entity\User;
+use Assert\NotBlank;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\CandidateRepository;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: CandidateRepository::class)]
 class Candidate
@@ -16,40 +21,99 @@ class Candidate
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank(message: 'Le genre ne peut pas être vide.')]
+    #[Assert\Length(
+        max: 255,
+        maxMessage: 'Le genre saisi \"{{ value }}\" est trop long, 
+        il ne devrait pas dépasser {{ limit }} caractères',
+    )]
     private ?string $gender = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank(message: 'Le prénom ne peut pas être vide.')]
+    #[Assert\Length(
+        max: 255,
+        maxMessage: 'Le prénom saisi \"{{ value }}\" est trop long, 
+        il ne devrait pas dépasser {{ limit }} caractères',
+    )]
     private ?string $firstname = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank(message: 'Le nom ne peut pas être vide.')]
+    #[Assert\Length(
+        max: 255,
+        maxMessage: 'Le nom saisi \"{{ value }}\" est trop long, 
+        il ne devrait pas dépasser {{ limit }} caractères',
+    )]
     private ?string $lastname = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank(message: 'Le numéro de téléphone ne peut pas être vide.')]
+    #[Assert\Regex(
+        pattern: '/\d{10,15}/',
+        match: true,
+        message: 'Le téléphone saisi \"{{ value }}\" est incorrect, 
+        il devrait contenir 10 à 15 chiffres',
+    )]
     private ?string $phone = null;
 
     #[ORM\Column(length: 255, nullable: true)]
+    #[Assert\Length(
+        max: 255,
+        maxMessage: 'Le chemin de l\'image est trop long, 
+        il ne devrait pas dépasser {{ limit }} caractères',
+    )]
     private ?string $picture = null;
 
     #[ORM\Column(length: 255, nullable: true)]
+    #[Assert\Length(
+        max: 255,
+        maxMessage: 'Le chemin du document est trop long, 
+        il ne devrait pas dépasser {{ limit }} caractères',
+    )]
     private ?string $curriculumVitae = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank(message: 'L\'adresse ne peut pas être vide.')]
+    #[Assert\Length(
+        max: 38,
+        maxMessage: 'L\'adresse saisie est trop longue, 
+        elle ne devrait pas dépasser {{ limit }} caractères',
+    )]
     private ?string $address = null;
 
     #[ORM\Column(length: 255, nullable: true)]
+    #[Assert\Length(
+        max: 38,
+        maxMessage: 'L\'adresse saisie est trop longue, 
+        elle ne devrait pas dépasser {{ limit }} caractères',
+    )]
     private ?string $addressComplement = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\Regex(
+        pattern: '/\d{5}/',
+        match: true,
+        message: 'Le code postal saisi \"{{ value }}\" est incorrect, 
+        il devrait contenir 5 chiffres',
+    )]
     private ?string $postalCode = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\Length(
+        max: 38,
+        maxMessage: 'La ville saisie est trop longue, 
+        elle ne devrait pas dépasser {{ limit }} caractères',
+    )]
     private ?string $city = null;
 
     #[ORM\OneToOne(inversedBy: 'information', cascade: ['persist', 'remove'])]
     #[ORM\JoinColumn(nullable: false)]
+    #[Assert\Type(User::class)]
     private ?User $user = null;
 
     #[ORM\ManyToMany(targetEntity: Stack::class, inversedBy: 'candidates')]
+    #[Assert\Type(Collection::class)]
     private Collection $stacks;
 
     public function __construct()
@@ -122,12 +186,12 @@ class Candidate
         return $this;
     }
 
-    public function getCv(): ?string
+    public function getCurriculumVitae(): ?string
     {
         return $this->curriculumVitae;
     }
 
-    public function setCv(?string $curriculumVitae): self
+    public function setCurriculumVitae(?string $curriculumVitae): self
     {
         $this->curriculumVitae = $curriculumVitae;
 
