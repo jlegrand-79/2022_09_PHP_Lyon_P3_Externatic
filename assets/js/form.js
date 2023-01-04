@@ -156,9 +156,13 @@ if (technologies) {
 
 // Candidate form
 let gender = document.querySelector('#candidate_gender')
-let birthday = document.querySelector('.input-group').children
+let birthday1 = document.querySelector('#candidate_birthday_day')
+let birthday2 = document.querySelector('#candidate_birthday_month')
+let birthday3 = document.querySelector('#candidate_birthday_year')
 
-if (gender && birthday) {
+if (gender && birthday1 && birthday2 && birthday3) {
     gender.firstChild.disabled = true
-    birthday.firstChild.disabled = true
+    birthday1.firstChild.disabled = true
+    birthday2.firstChild.disabled = true
+    birthday3.firstChild.disabled = true
 }
