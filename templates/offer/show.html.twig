@@ -13,11 +13,8 @@
 			{{ offer.address }}
 			/ offre publiée le
 			{{ offer.publicationDate|date("d/m/Y") }}</p>
-
 		{{ offer.description|raw }}
-
 		<div class="d-flex flex-row">
-
 			<div class="pink-circle">
 				<a href="{{ path('app_offer_index') }}">
 					<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="logo-admin bi bi-arrow-return-left" viewbox="0 0 16 16">
@@ -25,7 +22,6 @@
 					</svg>
 				</a>
 			</div>
-
 			<div class="pink-circle">
 				<a href="{{ path('app_offer_edit', {'id': offer.id}) }}">
 					<svg xmlns="http://www.w3.org/2000/svg" class="logo-admin bi bi-vector-pen" viewbox="0 0 16 16">
@@ -34,7 +30,6 @@
 					</svg>
 				</a>
 			</div>
-
 			{{ include('offer/_delete_form.html.twig') }}
 		</div>
 	</main>
