@@ -71,7 +71,7 @@ class OfferType extends AbstractType
                 'required' => true,
                 'attr' => [
                     'class' => 'form-control',
-                    'placeholder' => 'Ex : 1 rue Racine 44000 Nantes',
+                    'placeholder' => 'Ex : 1 rue Racine',
                 ],
                 'label' => 'Adresse',
                 'label_attr' => [

@@ -5,19 +5,28 @@ namespace App\Controller;
 use App\Entity\Offer;
 use App\Form\OfferType;
 use App\Repository\OfferRepository;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 #[Route('/offer')]
 class OfferController extends AbstractController
 {
     #[Route('/', name: 'app_offer_index', methods: ['GET'])]
+    #[IsGranted('ROLE_USER')]
     public function index(OfferRepository $offerRepository): Response
     {
+        if (in_array('ROLE_CANDIDATE', $this->getUser()->getRoles())) {
+            return $this->redirectToRoute('app_candidate_show', [], Response::HTTP_SEE_OTHER);
+        }
+        if (in_array('ROLE_RECRUITER', $this->getUser()->getRoles())) {
+            return $this->redirectToRoute('app_home', [], Response::HTTP_SEE_OTHER);
+        }
+
         return $this->render('offer/index.html.twig', [
-            'offers' => $offerRepository->findAll(),
+            'offers' => $offerRepository->findBy(array(), array('id' => 'DESC')),
         ]);
     }
 
@@ -25,11 +34,12 @@ class OfferController extends AbstractController
     public function list(OfferRepository $offerRepository): Response
     {
         return $this->render('offer/list.html.twig', [
-            'offers' => $offerRepository->findAll(),
+            'offers' => $offerRepository->findBy(array(), array('id' => 'DESC')),
         ]);
     }
 
     #[Route('/new', name: 'app_offer_new', methods: ['GET', 'POST'])]
+    #[IsGranted('ROLE_ADMIN')]
     public function new(Request $request, OfferRepository $offerRepository): Response
     {
         $offer = new Offer();
@@ -65,6 +75,7 @@ class OfferController extends AbstractController
     }
 
     #[Route('/{id}/edit', name: 'app_offer_edit', methods: ['GET', 'POST'])]
+    #[IsGranted('ROLE_ADMIN')]
     public function edit(Request $request, Offer $offer, OfferRepository $offerRepository): Response
     {
         $form = $this->createForm(OfferType::class, $offer);
@@ -83,6 +94,7 @@ class OfferController extends AbstractController
     }
 
     #[Route('/{id}', name: 'app_offer_delete', methods: ['POST'])]
+    #[IsGranted('ROLE_ADMIN')]
     public function delete(Request $request, Offer $offer, OfferRepository $offerRepository): Response
     {
         if ($this->isCsrfTokenValid('delete' . $offer->getId(), $request->request->get('_token'))) {

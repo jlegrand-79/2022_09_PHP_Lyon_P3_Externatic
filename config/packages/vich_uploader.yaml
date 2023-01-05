@@ -6,11 +6,11 @@ vich_uploader:
 
     mappings:
         candidate_cv:
-            uri_prefix: /images/candidate/curriculumVitae
+            uri_prefix: /uploads/candidate/curriculumVitae
             upload_destination: '%upload_directory_cv%'
             namer: Vich\UploaderBundle\Naming\SmartUniqueNamer
         
         candidate_picture:
-            uri_prefix: /images/candidate/picture
+            uri_prefix: /uploads/candidate/picture
             upload_destination: '%upload_directory_picture%'
             namer: Vich\UploaderBundle\Naming\SmartUniqueNamer

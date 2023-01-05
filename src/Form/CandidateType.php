@@ -33,10 +33,10 @@ class CandidateType extends AbstractType
             ->add('gender', ChoiceType::class, [
                 'required' => true,
                 'choices'  => [
-                    'Homme' => 'man',
-                    'Femme' => 'woman',
-                    'Autre' => 'other',
-                    'Ne se prononce pas' => 'none',
+                    'Homme' => 'Homme',
+                    'Femme' => 'Femme',
+                    'Autre' => 'Autre',
+                    'Ne se prononce pas' => 'Ne se prononce pas',
                 ],
                 'label' => 'Genre',
                 'label_attr' => [
