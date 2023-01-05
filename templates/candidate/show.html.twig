@@ -1,13 +1,12 @@
 {% extends 'base.html.twig' %}
-
 {% block title %}Profile
 {% endblock %}
-
 {% block body %}
 	<main class="container">
-		<div class="d-flex justify-content-center align-items-center gx-5">
-			<div>photo</div>
+		<div class="d-flex justify-content-center align-items-center">
 			<div>
+				<img class="candidate-picture rounded-circle" src="{{ asset('build/images/candidate/picture/' ~ candidate.picture) }}" alt="{{ candidate.firstname }} {{ candidate.lastname }}"></div>
+			<div class="px-5">
 				<h1 class="text-center">
 					{% if candidate.gender is not null %}
 						{% if candidate.gender == "Femme" %}
@@ -17,7 +16,8 @@
 						M.
 					{% endif %}
 				{% endif %}
-				{{ candidate.firstname }}
+				<span class="candidate-firstname">
+					{{ candidate.firstname }}</span>
 				{{ candidate.lastname }}</h1>
 		</div>
 	</div>
@@ -84,7 +84,7 @@
 								<path d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2zM9.5 3A1.5 1.5 0 0 0 11 4.5h2v9.255S12 12 8 12s-5 1.755-5 1.755V2a1 1 0 0 1 1-1h5.5v2z"/>
 							</svg>
 							<p class="d-flex align-items-center">
-								<a class="candidate-link" target="_blank" href="{{ candidate.cv }}">Ouvrir mon CV</a>
+								<a class="candidate-link" target="_blank" href="{{ asset('build/images/candidate/curriculumVitae/' ~ candidate.cv) }}">Ouvrir mon CV</a>
 							</p>
 						</div>
 						<div class="d-flex flex-row mb-1">
@@ -112,9 +112,9 @@
 								{% if candidate.contractSearched is empty %}
 									aucun type de contrat recherché
 								{% else %}
-									<ul class="candidate-list">
+									<ul class="candidate-list mb-0">
 										{% for contract in candidate.contractSearched %}
-											<li>{{ contract.name }}</li>
+											<li>{{ contract.type }}</li>
 										{% endfor %}
 									</ul>
 								{% endif %}
