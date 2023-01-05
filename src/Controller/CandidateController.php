@@ -13,6 +13,7 @@ class CandidateController extends AbstractController
     #[Route('/{id}', name: 'app_candidate_show', methods: ['GET'])]
     public function show(Candidate $candidate): Response
     {
+        $candidate = 'Jonas Jallet';
         return $this->render('candidate/show.html.twig', [
             'user' => $candidate,
         ]);
