@@ -2,6 +2,7 @@
 $black: #000000;
 $mainPink: #CA2262;
 $light: #fff;
+$grey: #EFEDED;
 
 @import "~bootstrap/scss/bootstrap";
 
@@ -14,11 +15,11 @@ $light: #fff;
 @import "footer";
 
 
-
 $theme-colors: (
     "black": $black,
     "light" : $light,
     "mainPink" : $mainPink,
+    "grey" : $grey,
 );
 
 label {
@@ -31,7 +32,8 @@ legend {
     font: 600 20px Jost;
 }
 
-input {
+input,
+.inputLoginForm {
     color: #000;
     font: 400 16px Jost;
     border-radius: 0px !important;
@@ -44,6 +46,7 @@ input {
 
     border-width: 2px !important;
     background-color: #EFEDED !important;
+
 }
 
 select {
@@ -89,9 +92,11 @@ button {
     text-align: center;
     margin-top: 20px;
     background-color: $black;
+    border: none;
 
     &:hover {
         background-color: $mainPink;
+        border: none;
     }
 }
 
@@ -103,6 +108,15 @@ button {
 .mainSection {
     display: flex;
     justify-content: center;
+
+    a {
+        color: $mainPink;
+
+        &:hover {
+            color: $mainPink;
+            cursor: pointer;
+        }
+    }
 }
 
 /* FORMULAIRE */
@@ -124,4 +138,18 @@ button {
 .buttonSearchOffer {
     margin-top: 29px;
     height: 40px;
+    font: 600 18px Jost;
+    background-color: $black;
+
+    &:hover {
+        background-color: $mainPink;
+    }
+}
+
+.loginForm {
+    width: 30%;
+    max-width: 450px;
+    background-color: white;
+    padding: 30px;
+    border: 1px solid black;
 }

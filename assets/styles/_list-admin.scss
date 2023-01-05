@@ -15,7 +15,7 @@ $light: #fff;
     background-color: #EFEDED;
     color: $black;
     border: 0px;
-    font: normal normal 600 20px/29px Jost;
+    font: normal normal 700 20px/29px Jost;
 }
 
 .search-offers:focus {
@@ -48,9 +48,10 @@ $light: #fff;
 }
 
 .logo-offer-more {
-    fill: $light;
     width: 40px;
     height: 40px;
+    stroke: $light;
+    stroke-width: 1;
 }
 
 .logo-admin {
@@ -99,6 +100,14 @@ $light: #fff;
 
 .offer-link:hover {
     color: $black;
+}
+
+.offerListing {
+    max-width: 1000px;
+}
+
+.offerJobTitle {
+    width: 95%;
 }
 
 .link-admin {

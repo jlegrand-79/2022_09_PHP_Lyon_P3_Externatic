@@ -17,7 +17,7 @@ class OfferController extends AbstractController
     public function index(OfferRepository $offerRepository): Response
     {
         return $this->render('offer/index.html.twig', [
-            'offers' => $offerRepository->findAll(),
+            'offers' => $offerRepository->findBy(array(), array('id' => 'DESC')),
         ]);
     }
 
@@ -25,7 +25,7 @@ class OfferController extends AbstractController
     public function list(OfferRepository $offerRepository): Response
     {
         return $this->render('offer/list.html.twig', [
-            'offers' => $offerRepository->findAll(),
+            'offers' => $offerRepository->findBy(array(), array('id' => 'DESC')),
         ]);
     }
 
