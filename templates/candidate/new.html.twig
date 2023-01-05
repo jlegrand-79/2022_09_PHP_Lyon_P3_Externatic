@@ -7,10 +7,6 @@
 	<main class="mainSection mb-5">
 		<div class="mainForm">
 			<h1 class="text-center">Mes informations</h1>
-			{% if no_stacks is defined %}
-				<p>{{ no_stacks }}</p>
-			{% endif %}
-
 			{{ include('candidate/_form.html.twig') }}
 		</div>
 	</main>
