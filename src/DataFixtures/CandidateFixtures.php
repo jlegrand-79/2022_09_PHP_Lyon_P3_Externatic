@@ -94,7 +94,7 @@ class CandidateFixtures extends Fixture implements DependentFixtureInterface
                 $newCandidate->setPicture($candidate['picture']);
             }
             if (!empty($candidate['curriculum_vitae'])) {
-                $newCandidate->setCv($candidate['curriculum_vitae']);
+                $newCandidate->setCurriculumVitae($candidate['curriculum_vitae']);
             }
             $newCandidate->setUser($this->getReference($candidate['user']));
             $newCandidate->addStack($this->getReference($candidate['stacks']));
