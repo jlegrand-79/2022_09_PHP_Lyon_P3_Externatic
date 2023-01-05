@@ -126,6 +126,7 @@ class Candidate
     private Collection $stacks;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
+    #[Assert\NotBlank(message: 'La date d\'anniversaire ne peut pas être vide.')]
     #[Assert\Type("\DateTimeInterface")]
     private ?\DateTimeInterface $birthday = null;
 

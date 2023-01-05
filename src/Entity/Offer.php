@@ -8,7 +8,6 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Form\FormTypeInterface;
 use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: OfferRepository::class)]
@@ -22,8 +21,9 @@ class Offer
     #[ORM\Column(type: 'string', length: 255)]
     #[Assert\NotBlank(message: 'Le titre de l\'offre ne peut pas être vide')]
     #[Assert\Length(
-        max: 255,
-        maxMessage: 'Le titre saisie \"{{ value }}\" est trop long, il ne devrait pas dépasser {{ limit }} caractères',
+        max: 100,
+        maxMessage: 'Le titre saisi est trop long, 
+        il ne devrait pas dépasser {{ limit }} caractères',
     )]
     private ?string $title = null;
 
@@ -33,8 +33,8 @@ class Offer
     #[ORM\Column(type: 'string', length: 255)]
     #[Assert\NotBlank(message: 'L\'adresse de l\'offre ne peut pas être vide')]
     #[Assert\Length(
-        max: 255,
-        maxMessage: 'L\'adresse saisie \"{{ value }}\" est trop longue, 
+        max: 38,
+        maxMessage: 'L\'adresse saisie est trop longue, 
         elle ne devrait pas dépasser {{ limit }} caractères',
     )]
     private ?string $address = null;
@@ -53,7 +53,6 @@ class Offer
     private ?Recruiter $recruiter = null;
 
     #[ORM\ManyToMany(targetEntity: Stack::class, inversedBy: 'offers')]
-    // Valider dans le contrôlleur qu'au moins une stack est renseignée, et idéalement par le biais d'un service
     #[Assert\Type(Collection::class)]
     private Collection $stack;
 
@@ -61,6 +60,37 @@ class Offer
     #[ORM\JoinColumn(nullable: false)]
     #[Assert\Type(WorkField::class)]
     private ?WorkField $workField = null;
+
+    #[ORM\Column(type: 'string', length: 255)]
+    #[Assert\NotBlank(message: 'Le code postal ne peut pas être vide')]
+    #[Assert\Regex(
+        pattern: '/\d{5}/',
+        match: true,
+        message: 'Le code postal doit contenir 5 chiffres',
+    )]
+    #[Assert\Length(
+        max: 5,
+        maxMessage: 'Le code postal saisi est trop long, 
+        il ne devrait pas dépasser {{ limit }} caractères',
+    )]
+    private ?string $postalCode = null;
+
+    #[ORM\Column(type: 'string', length: 255)]
+    #[Assert\NotBlank(message: 'Le nom de la ville ne peut pas être vide')]
+    #[Assert\Length(
+        max: 38,
+        maxMessage: 'Le nom de la ville saisi est trop long, 
+        il ne devrait pas dépasser {{ limit }} caractères',
+    )]
+    private ?string $city = null;
+
+    #[ORM\Column(type: 'string', length: 255, nullable: true)]
+    #[Assert\Length(
+        max: 38,
+        maxMessage: 'Le complément d\'adresse saisi est trop long, 
+        il ne devrait pas dépasser {{ limit }} caractères',
+    )]
+    private ?string $addressComplement = null;
 
     public function __construct()
     {
@@ -177,6 +207,42 @@ class Offer
     public function setWorkField(?WorkField $workField): self
     {
         $this->workField = $workField;
+
+        return $this;
+    }
+
+    public function getPostalCode(): ?string
+    {
+        return $this->postalCode;
+    }
+
+    public function setPostalCode(string $postalCode): self
+    {
+        $this->postalCode = $postalCode;
+
+        return $this;
+    }
+
+    public function getCity(): ?string
+    {
+        return $this->city;
+    }
+
+    public function setCity(string $city): self
+    {
+        $this->city = $city;
+
+        return $this;
+    }
+
+    public function getAddressComplement(): ?string
+    {
+        return $this->addressComplement;
+    }
+
+    public function setAddressComplement(string $addressComplement): self
+    {
+        $this->addressComplement = $addressComplement;
 
         return $this;
     }
