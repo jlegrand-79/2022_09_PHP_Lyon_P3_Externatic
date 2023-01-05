@@ -49,10 +49,9 @@ class CandidateController extends AbstractController
             }
 
             $candidateRepository->save($candidate, true);
-            $candidateConnected = $candidateRepository->findOneBy(['user' => $userConnected->getId()]);
 
             return $this->redirectToRoute('app_candidate_show', [
-                'id' => $candidateConnected->getId()
+                'userId' => $userConnected->getId()
                 ], Response::HTTP_SEE_OTHER);
         }
 

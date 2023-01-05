@@ -15,16 +15,9 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class OfferController extends AbstractController
 {
     #[Route('/', name: 'app_offer_index', methods: ['GET'])]
-    #[IsGranted('ROLE_USER')]
+    #[IsGranted('ROLE_ADMIN')]
     public function index(OfferRepository $offerRepository): Response
     {
-        if (in_array('ROLE_CANDIDATE', $this->getUser()->getRoles())) {
-            return $this->redirectToRoute('app_candidate_show', [], Response::HTTP_SEE_OTHER);
-        }
-        if (in_array('ROLE_RECRUITER', $this->getUser()->getRoles())) {
-            return $this->redirectToRoute('app_home', [], Response::HTTP_SEE_OTHER);
-        }
-
         return $this->render('offer/index.html.twig', [
             'offers' => $offerRepository->findBy(array(), array('id' => 'DESC')),
         ]);
