@@ -27,7 +27,8 @@ class CandidateFixtures extends Fixture implements DependentFixtureInterface
                 'postal_code' => '49000',
                 'city' => 'Angers',
                 'picture' => 'thomasphoto.jpeg',
-                'curriculum_vitae' => 'thomascv.pdf',
+                'stacks' => 'PHP',
+                'contract_searched' => 'contract_CDI',
             ],
             [
                 'user' => 'user_6',
@@ -42,6 +43,8 @@ class CandidateFixtures extends Fixture implements DependentFixtureInterface
                 'city' => 'Tours',
                 'picture' => 'marciaphoto.jpeg',
                 'curriculum_vitae' => 'marciacv.pdf',
+                'stacks' => 'Javascript',
+                'contract_searched' => 'contract_CDD',
             ],
             [
                 'user' => 'user_7',
@@ -54,8 +57,9 @@ class CandidateFixtures extends Fixture implements DependentFixtureInterface
                 'address_complement' => '',
                 'postal_code' => '59000',
                 'city' => 'Lyon',
-                'picture' => 'antoinephoto.jpeg',
                 'curriculum_vitae' => 'antoinecv.pdf',
+                'stacks' => 'mySQL',
+                'contract_searched' => 'contract_CDI',
             ],
             [
                 'user' => 'user_8',
@@ -70,6 +74,8 @@ class CandidateFixtures extends Fixture implements DependentFixtureInterface
                 'city' => 'Chezpo',
                 'picture' => 'chachaphoto.jpeg',
                 'curriculum_vitae' => 'chachacv.pdf',
+                'stacks' => 'Java',
+                'contract_searched' => 'contract_CDD',
             ],
         ];
 
@@ -84,9 +90,15 @@ class CandidateFixtures extends Fixture implements DependentFixtureInterface
             $newCandidate->setAddressComplement($candidate['address_complement']);
             $newCandidate->setPostalCode($candidate['postal_code']);
             $newCandidate->setCity($candidate['city']);
-            $newCandidate->setPicture($candidate['picture']);
-            $newCandidate->setCv($candidate['curriculum_vitae']);
+            if (!empty($candidate['picture'])) {
+                $newCandidate->setPicture($candidate['picture']);
+            }
+            if (!empty($candidate['curriculum_vitae'])) {
+                $newCandidate->setCv($candidate['curriculum_vitae']);
+            }
             $newCandidate->setUser($this->getReference($candidate['user']));
+            $newCandidate->addStack($this->getReference($candidate['stacks']));
+            $newCandidate->addContractSearched($this->getReference($candidate['contract_searched']));
             $manager->persist($newCandidate);
             $this->addReference('candidate_' . $key, $newCandidate);
         }
