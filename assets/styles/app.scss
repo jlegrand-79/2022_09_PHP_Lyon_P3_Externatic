@@ -110,3 +110,18 @@ button {
     background-color: $mainPink !important;
     border-color: $mainPink !important;
 }
+
+.searchOffer {
+    width: 220px !important;
+}
+
+.formSearchOffer {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.buttonSearchOffer {
+    margin-top: 29px;
+    height: 40px;
+}

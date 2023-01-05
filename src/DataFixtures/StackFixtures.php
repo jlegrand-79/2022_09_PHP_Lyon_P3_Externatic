@@ -28,7 +28,7 @@ class StackFixtures extends Fixture implements DependentFixtureInterface
                 $newStack->addWorkField($this->getReference($stack[2]));
             }
             $manager->persist($newStack);
-            $this->addReference($stack[0] . "_" . $stack[1], $newStack);
+            $this->addReference($stack[0], $newStack);
         }
         $manager->flush();
     }

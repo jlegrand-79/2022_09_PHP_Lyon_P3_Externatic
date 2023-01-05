@@ -7,19 +7,16 @@
 
 	<main class="container mb-4">
 
-		<h1 class="text-center">Espace Admin</h1>
-
-		<div class="all-links">
-			<a href="{{ path('app_offer_new') }}" class="link-admin" role="button" aria-pressed="true">Publier une offre</a>
-		</div>
-
-		<h2 class="text-center">Les offres publiées</h2>
+		<h1 class="text-center">Toutes nos offres</h1>
 
 		<div class="row justify-content-center">
 			<div class="col-11 col-md-10 col-lg-9 col-xxl-8">
 				<div class="input-group">
 					<input type="text" list="datalistOptions" class="form-control search-offers" placeholder="Rechercher une offre par nom, entreprise...">
-
+					<datalist id="datalistOptions">
+						<option value="aaaaaaTest"></option>
+						<option value="bbbbbTest"></option>
+					</datalist>
 					<span class="input-group-text search-logo" id="basic-addon1">
 						<svg xmlns="http://www.w3.org/2000/svg" class="logo-search bi bi-search" viewbox="0 0 16 16">
 							<path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"></path>
@@ -29,18 +26,33 @@
 			</div>
 		</div>
 
+		<form class="d-none d-lg-block">
+			<div class="form-row formSearchOffer">
+				<div class="form-group col-md-6 searchOffer">
+					<label for="inputEmail4">Mots-clés</label>
+					<input type="text" class="form-control" placeholder="Développeur PHP">
+				</div>
+				<div class="form-group col-md-6 searchOffer">
+					<label for="inputPassword4">Lieu</label>
+					<input type="text" class="form-control" placeholder="Rennes">
+				</div>
+				<div class="form-group col-md-6 searchOffer">
+					<label for="inputPassword4">Distance</label>
+					<input type="text" class="form-control" placeholder="5km">
+				</div>
+				<button type="submit" class="btn bg-black text-white rounded-0 buttonSearchOffer">Rechercher</button>
+			</div>
+		</form>
+
 		{% for offer in offers %}
 			<div class="row justify-content-center">
-				<div class="col-9 col-lg-8 col-xxl-7">
+				<div class="col-11 col-md-10 col-lg-9 col-xxl-8">
 					<a href="{{ path('app_offer_show', {'id': offer.id}) }}" class="offer-link">
-						<div class="card offer d-flex flex-row justify-content-between">
+						<div class="offer card d-flex flex-row justify-content-between">
 							<div class="col-11">
 								<div class="offer-body card-body">
 									<p class="offer-text">
 										{{ offer.title }}
-										-
-										{{offer.recruiter.partner.name}}
-										({{offer.city}})
 									</p>
 								</div>
 							</div>
@@ -54,19 +66,6 @@
 							</div>
 						</div>
 					</a>
-				</div>
-
-				<div class="col-2 col-md-1 d-flex flex-row align-items-center p-0">
-					<div class="pink-circle">
-						<a href="{{ path('app_offer_edit', {'id': offer.id}) }}">
-							<svg xmlns="http://www.w3.org/2000/svg" class="logo-admin bi bi-vector-pen" viewbox="0 0 16 16">
-								<path fill-rule="evenodd" d="M10.646.646a.5.5 0 0 1 .708 0l4 4a.5.5 0 0 1 0 .708l-1.902 1.902-.829 3.313a1.5 1.5 0 0 1-1.024 1.073L1.254 14.746 4.358 4.4A1.5 1.5 0 0 1 5.43 3.377l3.313-.828L10.646.646zm-1.8 2.908-3.173.793a.5.5 0 0 0-.358.342l-2.57 8.565 8.567-2.57a.5.5 0 0 0 .34-.357l.794-3.174-3.6-3.6z"></path>
-								<path fill-rule="evenodd" d="M2.832 13.228 8 9a1 1 0 1 0-1-1l-4.228 5.168-.026.086.086-.026z"></path>
-							</svg>
-						</a>
-					</div>
-
-					{{ include('offer/_delete_form.html.twig') }}
 				</div>
 			</div>
 		{% endfor %}

@@ -38,6 +38,9 @@ class Recruiter
     #[ORM\OneToMany(mappedBy: 'recruiter', targetEntity: Offer::class)]
     private Collection $offers;
 
+    #[ORM\Column(length: 255)]
+    private ?string $position = null;
+
     public function __construct()
     {
         $this->offers = new ArrayCollection();
@@ -153,5 +156,17 @@ class Recruiter
     public function getFullName(): string
     {
         return $this->firstname . ' ' . $this->lastname;
+    }
+
+    public function getPosition(): ?string
+    {
+        return $this->position;
+    }
+
+    public function setPosition(string $position): self
+    {
+        $this->position = $position;
+
+        return $this;
     }
 }
