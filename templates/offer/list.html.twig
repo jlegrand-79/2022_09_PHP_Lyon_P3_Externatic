@@ -26,7 +26,7 @@
 			</div>
 		</div>
 
-		<form class="d-none d-lg-block">
+		<form class="d-none d-lg-block mt-3 mb-4">
 			<div class="form-row formSearchOffer">
 				<div class="form-group col-md-6 searchOffer">
 					<label for="inputEmail4">Mots-clés</label>
@@ -40,7 +40,7 @@
 					<label for="inputPassword4">Distance</label>
 					<input type="text" class="form-control" placeholder="5km">
 				</div>
-				<button type="submit" class="btn bg-black text-white rounded-0 buttonSearchOffer">Rechercher</button>
+				<button type="submit" class="btn text-white rounded-0 buttonSearchOffer">Rechercher</button>
 			</div>
 		</form>
 
@@ -53,6 +53,9 @@
 								<div class="offer-body card-body">
 									<p class="offer-text">
 										{{ offer.title }}
+										-
+										{{offer.contract.type}}
+										({{offer.city}})
 									</p>
 								</div>
 							</div>
