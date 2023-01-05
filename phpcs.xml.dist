@@ -24,4 +24,5 @@ Dear Wilder using Windows, it seems you miss something in readme during project 
     <exclude-pattern>public/index.php</exclude-pattern>
     <exclude-pattern>src/kernel.php</exclude-pattern>
     <exclude-pattern>migrations</exclude-pattern>
+    <exclude-pattern>src/DataFixtures/OfferFixtures.php</exclude-pattern>
 </ruleset>
