@@ -1,0 +1,14 @@
+.candidate-link {
+    text-decoration: none;
+    color: $black;
+}
+
+.candidate-link:hover {
+    text-decoration: underline;
+    color: $black;
+}
+
+ul.candidate-list {
+    list-style-type: none;
+    padding: 0;
+}

@@ -5,7 +5,134 @@
 
 {% block body %}
 	<main class="container">
-		<h1 class="text-center">{{ candidate }}</h1>
-
-	</main>
-{% endblock %}
+		<div class="d-flex justify-content-center align-items-center gx-5">
+			<div>photo</div>
+			<div>
+				<h1 class="text-center">
+					{% if candidate.gender is not null %}
+						{% if candidate.gender == "Femme" %}
+							M<sup>me</sup>
+						</abbr>
+					{% elseif candidate.gender == "Homme" %}
+						M.
+					{% endif %}
+				{% endif %}
+				{{ candidate.firstname }}
+				{{ candidate.lastname }}</h1>
+		</div>
+	</div>
+	<h2 class="text-center">Mes informations personnelles</h2>
+	<div class="row justify-content-center">
+		<div class="col-11 col-md-9 col-lg-7 col-xl-6 col-xxl-6">
+			<div class="card-infos card d-flex flex-row">
+				<div class="col-11">
+					<div class="card-body">
+						<div class="d-flex flex-row mb-1">
+							<svg xmlns="http://www.w3.org/2000/svg" class="logo-infos" viewbox="0 0 16 16">
+								<path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4Zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1H2Zm13 2.383-4.708 2.825L15 11.105V5.383Zm-.034 6.876-5.64-3.471L8 9.583l-1.326-.795-5.64 3.47A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.741ZM1 11.105l4.708-2.897L1 5.383v5.722Z"></path>
+							</svg>
+							<p class="d-flex align-items-center">{{ candidate.user.email }}</p>
+						</div>
+						<div class="d-flex flex-row mb-1">
+							<svg xmlns="http://www.w3.org/2000/svg" class="logo-infos" viewbox="0 0 16 16">
+								<path d="M3.654 1.328a.678.678 0 0 0-1.015-.063L1.605 2.3c-.483.484-.661 1.169-.45 1.77a17.568 17.568 0 0 0 4.168 6.608 17.569 17.569 0 0 0 6.608 4.168c.601.211 1.286.033 1.77-.45l1.034-1.034a.678.678 0 0 0-.063-1.015l-2.307-1.794a.678.678 0 0 0-.58-.122l-2.19.547a1.745 1.745 0 0 1-1.657-.459L5.482 8.062a1.745 1.745 0 0 1-.46-1.657l.548-2.19a.678.678 0 0 0-.122-.58L3.654 1.328zM1.884.511a1.745 1.745 0 0 1 2.612.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.678.678 0 0 0 .178.643l2.457 2.457a.678.678 0 0 0 .644.178l2.189-.547a1.745 1.745 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.634 18.634 0 0 1-7.01-4.42 18.634 18.634 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877L1.885.511z"></path>
+							</svg>
+							<p class="d-flex align-items-center">{{ candidate.phone }}</p>
+						</div>
+						<div class="d-flex flex-row mb-1">
+							<svg xmlns="http://www.w3.org/2000/svg" class="logo-infos" viewbox="0 0 16 16">
+								<path d="M12.166 8.94c-.524 1.062-1.234 2.12-1.96 3.07A31.493 31.493 0 0 1 8 14.58a31.481 31.481 0 0 1-2.206-2.57c-.726-.95-1.436-2.008-1.96-3.07C3.304 7.867 3 6.862 3 6a5 5 0 0 1 10 0c0 .862-.305 1.867-.834 2.94zM8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10z"></path>
+								<path d="M8 8a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm0 1a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"></path>
+							</svg>
+							<p class="d-flex align-items-center">
+								{{ candidate.address }}
+								{{ candidate.addressComplement }}
+								<br/>
+								{{ candidate.postalCode }}
+								{{ candidate.city }}
+							</p>
+						</div>
+						<div class="d-flex flex-row">
+							<svg xmlns="http://www.w3.org/2000/svg" class="bi bi-balloon logo-infos" viewbox="0 0 16 16">
+								<path fill-rule="evenodd" d="M8 9.984C10.403 9.506 12 7.48 12 5a4 4 0 0 0-8 0c0 2.48 1.597 4.506 4 4.984ZM13 5c0 2.837-1.789 5.227-4.52 5.901l.244.487a.25.25 0 1 1-.448.224l-.008-.017c.008.11.02.202.037.29.054.27.161.488.419 1.003.288.578.235 1.15.076 1.629-.157.469-.422.867-.588 1.115l-.004.007a.25.25 0 1 1-.416-.278c.168-.252.4-.6.533-1.003.133-.396.163-.824-.049-1.246l-.013-.028c-.24-.48-.38-.758-.448-1.102a3.177 3.177 0 0 1-.052-.45l-.04.08a.25.25 0 1 1-.447-.224l.244-.487C4.789 10.227 3 7.837 3 5a5 5 0 0 1 10 0Zm-6.938-.495a2.003 2.003 0 0 1 1.443-1.443C7.773 2.994 8 2.776 8 2.5c0-.276-.226-.504-.498-.459a3.003 3.003 0 0 0-2.46 2.461c-.046.272.182.498.458.498s.494-.227.562-.495Z"/>
+							</svg>
+							<p class="d-flex align-items-center mb-0">{{ candidate.birthday | date("m/d/Y") }}</p>
+						</div>
+					</div>
+				</div>
+				<div class="col-1 d-flex align-items-center">
+					<div>
+						<a href="#">
+							<svg xmlns="http://www.w3.org/2000/svg" class="logo-infos-more bi bi-chevron-compact-right" viewbox="0 0 16 16">
+								<path fill-rule="evenodd" d="M6.776 1.553a.5.5 0 0 1 .671.223l3 6a.5.5 0 0 1 0 .448l-3 6a.5.5 0 1 1-.894-.448L9.44 8 6.553 2.224a.5.5 0 0 1 .223-.671z"></path>
+							</svg>
+						</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<h2 class="text-center">Mon profil candidat</h2>
+	<div class="row justify-content-center">
+		<div class="col-11 col-md-9 col-lg-7 col-xl-6 col-xxl-6">
+			<div class="card-infos card d-flex flex-row">
+				<div class="col-11">
+					<div class="card-body">
+						<div class="d-flex flex-row mb-1">
+							<svg xmlns="http://www.w3.org/2000/svg" class="bi bi-file-earmark-person logo-infos" viewbox="0 0 16 16">
+								<path d="M11 8a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
+								<path d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2zM9.5 3A1.5 1.5 0 0 0 11 4.5h2v9.255S12 12 8 12s-5 1.755-5 1.755V2a1 1 0 0 1 1-1h5.5v2z"/>
+							</svg>
+							<p class="d-flex align-items-center">
+								<a class="candidate-link" target="_blank" href="{{ candidate.cv }}">Ouvrir mon CV</a>
+							</p>
+						</div>
+						<div class="d-flex flex-row mb-1">
+							<svg xmlns="http://www.w3.org/2000/svg" class="bi bi-gear logo-infos" viewbox="0 0 16 16">
+								<path d="M8 4.754a3.246 3.246 0 1 0 0 6.492 3.246 3.246 0 0 0 0-6.492zM5.754 8a2.246 2.246 0 1 1 4.492 0 2.246 2.246 0 0 1-4.492 0z"/>
+								<path d="M9.796 1.343c-.527-1.79-3.065-1.79-3.592 0l-.094.319a.873.873 0 0 1-1.255.52l-.292-.16c-1.64-.892-3.433.902-2.54 2.541l.159.292a.873.873 0 0 1-.52 1.255l-.319.094c-1.79.527-1.79 3.065 0 3.592l.319.094a.873.873 0 0 1 .52 1.255l-.16.292c-.892 1.64.901 3.434 2.541 2.54l.292-.159a.873.873 0 0 1 1.255.52l.094.319c.527 1.79 3.065 1.79 3.592 0l.094-.319a.873.873 0 0 1 1.255-.52l.292.16c1.64.893 3.434-.902 2.54-2.541l-.159-.292a.873.873 0 0 1 .52-1.255l.319-.094c1.79-.527 1.79-3.065 0-3.592l-.319-.094a.873.873 0 0 1-.52-1.255l.16-.292c.893-1.64-.902-3.433-2.541-2.54l-.292.159a.873.873 0 0 1-1.255-.52l-.094-.319zm-2.633.283c.246-.835 1.428-.835 1.674 0l.094.319a1.873 1.873 0 0 0 2.693 1.115l.291-.16c.764-.415 1.6.42 1.184 1.185l-.159.292a1.873 1.873 0 0 0 1.116 2.692l.318.094c.835.246.835 1.428 0 1.674l-.319.094a1.873 1.873 0 0 0-1.115 2.693l.16.291c.415.764-.42 1.6-1.185 1.184l-.291-.159a1.873 1.873 0 0 0-2.693 1.116l-.094.318c-.246.835-1.428.835-1.674 0l-.094-.319a1.873 1.873 0 0 0-2.692-1.115l-.292.16c-.764.415-1.6-.42-1.184-1.185l.159-.291A1.873 1.873 0 0 0 1.945 8.93l-.319-.094c-.835-.246-.835-1.428 0-1.674l.319-.094A1.873 1.873 0 0 0 3.06 4.377l-.16-.292c-.415-.764.42-1.6 1.185-1.184l.292.159a1.873 1.873 0 0 0 2.692-1.115l.094-.319z"/>
+							</svg>
+							<p class="d-flex align-items-center">
+								{% if candidate.stacks is empty %}
+									aucune stack renseignée
+								{% else %}
+									<ul class="candidate-list">
+										{% for stack in candidate.stacks %}
+											<li>{{ stack.name }}</li>
+										{% endfor %}
+									</ul>
+								{% endif %}
+							</p>
+						</div>
+						<div class="d-flex flex-row">
+							<svg xmlns="http://www.w3.org/2000/svg" class="bi bi-search logo-infos" viewbox="0 0 16 16">
+								<path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+							</svg>
+							<p class="d-flex align-items-center mb-0">
+								{% if candidate.contractSearched is empty %}
+									aucun type de contrat recherché
+								{% else %}
+									<ul class="candidate-list">
+										{% for contract in candidate.contractSearched %}
+											<li>{{ contract.name }}</li>
+										{% endfor %}
+									</ul>
+								{% endif %}
+							</p>
+						</div>
+					</div>
+				</div>
+				<div class="col-1 d-flex align-items-center">
+					<div>
+						<a href="#">
+							<svg xmlns="http://www.w3.org/2000/svg" class="logo-infos-more bi bi-chevron-compact-right" viewbox="0 0 16 16">
+								<path fill-rule="evenodd" d="M6.776 1.553a.5.5 0 0 1 .671.223l3 6a.5.5 0 0 1 0 .448l-3 6a.5.5 0 1 1-.894-.448L9.44 8 6.553 2.224a.5.5 0 0 1 .223-.671z"></path>
+							</svg>
+						</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<h2 class="text-center"></h2>
+</main>{% endblock %}
