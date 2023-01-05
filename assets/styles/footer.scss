@@ -8,8 +8,11 @@ $themes-colors: (
 );
 
 .footer {
+    margin-top: 50px;
+    padding: 20px;
     background-color: $mainPink;
     width: 100%;
+    text-align: left;
 
     img {
         width: 50px;
@@ -19,6 +22,20 @@ $themes-colors: (
 
 .card-footer {
     background-color: $mainPink;
+}
+
+.titleFooter {
+    font-weight: bold;
+    font-family: Jost;
+}
+
+.textFooter {
+    font-weight: 500;
+    font-family: Jost;
+}
+
+.footerExternatic {
+    max-width: 300px;
 }
 
 @import "~bootstrap/scss/bootstrap"
