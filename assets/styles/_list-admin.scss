@@ -65,7 +65,7 @@ $light: #fff;
     width: 40px;
     height: 40px;
     border-radius: 50px;
-    margin-top: 25px;
+    margin-top: 15px;
     margin-left: 5px;
 }
 
@@ -73,7 +73,7 @@ $light: #fff;
 .offer {
     border: 2px solid $black;
     border-radius: 0px;
-    margin-top: 25px;
+    margin-top: 15px;
     background-color: $black;
 }
 
@@ -99,4 +99,24 @@ $light: #fff;
 
 .offer-link:hover {
     color: $black;
+}
+
+.link-admin {
+    padding: 10px;
+    font: 600 20px Jost;
+    color: $light;
+    text-align: center;
+    margin-top: 20px;
+    background-color: $black;
+    text-decoration: none;
+
+    &:hover {
+        background-color: $mainPink;
+        color: $light;
+    }
+}
+
+.all-links {
+    display: flex;
+    justify-content: center;
 }
