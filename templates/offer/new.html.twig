@@ -6,11 +6,7 @@
 {% block body %}
 	<main class="mainSection mb-5">
 		<div class="mainForm">
-			<h1 class="text-center">Publier une offre</h1>
-			{% if no_stacks is defined %}
-				<p>{{ no_stacks }}</p>
-			{% endif %}
-
+			<h1>Publier une offre</h1>
 			{{ include('offer/_form.html.twig') }}
 		</div>
 	</main>

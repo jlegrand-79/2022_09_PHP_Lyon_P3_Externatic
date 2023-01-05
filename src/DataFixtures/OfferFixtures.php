@@ -19,6 +19,9 @@ class OfferFixtures extends Fixture implements DependentFixtureInterface
                 'title' => 'Développeur PHP',
                 'description' => "Une super offre d'embauche",
                 'address' => '1 rue des rivières',
+                'address_complement' => '1er étage',
+                'postal_code' => '01000',
+                'city' => 'Bourg-en-Bresse',
             ],
             [
                 'contract' => 'contract_CDD',
@@ -27,6 +30,9 @@ class OfferFixtures extends Fixture implements DependentFixtureInterface
                 'title' => 'Développeur Java',
                 'description' => "Une super offre d'embauche",
                 'address' => '1 rue des rivières',
+                'address_complement' => '2ème étage',
+                'postal_code' => '69000',
+                'city' => 'Lyon',
             ],
             [
                 'contract' => 'contract_CDD',
@@ -35,6 +41,9 @@ class OfferFixtures extends Fixture implements DependentFixtureInterface
                 'title' => 'Développeur Pyhton',
                 'description' => "Une super offre d'embauche",
                 'address' => '1 rue des rivières',
+                'address_complement' => '3ème étage',
+                'postal_code' => '44000',
+                'city' => 'Nantes',
             ],
             [
                 'contract' => 'contract_CDI',
@@ -43,6 +52,9 @@ class OfferFixtures extends Fixture implements DependentFixtureInterface
                 'title' => 'Développeur Ruby',
                 'description' => "Une super offre d'embauche",
                 'address' => '1 rue des rivières',
+                'address_complement' => '4ème étage',
+                'postal_code' => '63000',
+                'city' => 'Clermont-Ferrand',
             ],
             [
                 'contract' => 'contract_CDI',
@@ -51,6 +63,9 @@ class OfferFixtures extends Fixture implements DependentFixtureInterface
                 'title' => 'Développeur Javascript',
                 'description' => "Une super offre d'embauche",
                 'address' => '1 rue des rivières',
+                'address_complement' => '5ème étage',
+                'postal_code' => '59000',
+                'city' => 'Lille',
             ],
         ];
 
@@ -59,6 +74,9 @@ class OfferFixtures extends Fixture implements DependentFixtureInterface
             $newOffer->setTitle($offer['title']);
             $newOffer->setDescription($offer['description']);
             $newOffer->setAddress($offer['address']);
+            $newOffer->setAddressComplement($offer['address_complement']);
+            $newOffer->setPostalCode($offer['postal_code']);
+            $newOffer->setCity($offer['city']);
             $newOffer->setRecruiter($this->getReference($offer['recruiter']));
             $newOffer->setContract($this->getReference($offer['contract']));
             $newOffer->setWorkField($this->getReference($offer['workfield']));
