@@ -14,10 +14,11 @@ use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use FOS\CKEditorBundle\Form\Type\CKEditorType;
+use Symfony\Component\Form\Form;
 
 class OfferType extends AbstractType
 {
-    public function buildForm(FormBuilderInterface $builder, array $options): void
+    private function addPartnerField(FormBuilderInterface $builder): void
     {
         $builder
             ->add('partner', EntityType::class, [
@@ -30,8 +31,12 @@ class OfferType extends AbstractType
                 'multiple' => false,
                 'expanded' => false,
                 'placeholder' => 'Ex : Externatic',
-            ])
+            ]);
+    }
 
+    private function addRecruiterField(FormBuilderInterface $builder): void
+    {
+        $builder
             ->add('recruiter', EntityType::class, [
                 'required' => true,
                 'class' => Recruiter::class,
@@ -40,8 +45,12 @@ class OfferType extends AbstractType
                 'label' => 'Recruteur',
                 'multiple' => false,
                 'expanded' => false,
-            ])
+            ]);
+    }
 
+    private function addTitleField(FormBuilderInterface $builder): void
+    {
+        $builder
             ->add('title', TextType::class, [
                 'required' => true,
                 'attr' => [
@@ -52,8 +61,12 @@ class OfferType extends AbstractType
                 'label_attr' => [
                     'class' => 'form-label'
                 ],
-            ])
+            ]);
+    }
 
+    private function addAddressField(FormBuilderInterface $builder): void
+    {
+        $builder
             ->add('address', TextType::class, [
                 'required' => true,
                 'attr' => [
@@ -64,8 +77,60 @@ class OfferType extends AbstractType
                 'label_attr' => [
                     'class' => 'form-label'
                 ],
-            ])
+            ]);
+    }
 
+    private function addAddressComplementField(FormBuilderInterface $builder): void
+    {
+        $builder
+            ->add('addressComplement', TextType::class, [
+                'required' => false,
+                'attr' => [
+                    'class' => 'form-control',
+                    'placeholder' => 'Ex : 2ème étage - Appt 130',
+                ],
+                'label' => 'Complément d\'adresse',
+                'label_attr' => [
+                    'class' => 'form-label'
+                ],
+            ]);
+    }
+
+    private function addPostalCodeField(FormBuilderInterface $builder): void
+    {
+        $builder
+            ->add('postalCode', TextType::class, [
+                'required' => true,
+                'attr' => [
+                    'class' => 'form-control',
+                    'placeholder' => 'Ex : 01000',
+                ],
+                'label' => 'Code postal',
+                'label_attr' => [
+                    'class' => 'form-label'
+                ],
+            ]);
+    }
+
+    private function addCityField(FormBuilderInterface $builder): void
+    {
+        $builder
+            ->add('city', TextType::class, [
+                'required' => true,
+                'attr' => [
+                    'class' => 'form-control',
+                    'placeholder' => 'Ex : Bourg-en-Bresse',
+                ],
+                'label' => 'Ville',
+                'label_attr' => [
+                    'class' => 'form-label'
+                ],
+            ]);
+    }
+
+    private function addContractField(FormBuilderInterface $builder): void
+    {
+        $builder
             ->add('contract', EntityType::class, [
                 'required' => true,
                 'placeholder' => 'Ex : CDI',
@@ -74,9 +139,13 @@ class OfferType extends AbstractType
                 'label' => 'Type de contrat',
                 'multiple' => false,
                 'expanded' => false,
-            ])
+            ]);
+    }
 
-            ->add('work_field', EntityType::class, [
+    private function addWorkFieldField(FormBuilderInterface $builder): void
+    {
+        $builder
+            ->add('workField', EntityType::class, [
                 'required' => true,
                 'placeholder' => 'Ex : Développement',
                 'label' => 'Domaine de compétences',
@@ -84,8 +153,12 @@ class OfferType extends AbstractType
                 'choice_label' => 'name',
                 'multiple' => false,
                 'expanded' => false,
-            ])
+            ]);
+    }
 
+    private function addStackField(FormBuilderInterface $builder): void
+    {
+        $builder
             ->add('stack', EntityType::class, [
                 'required' => true,
                 'class' => Stack::class,
@@ -93,8 +166,12 @@ class OfferType extends AbstractType
                 'label' => 'Technologies utilisées',
                 'multiple' => true,
                 'expanded' => true,
-            ])
+            ]);
+    }
 
+    private function addDescriptionField(FormBuilderInterface $builder): void
+    {
+        $builder
             ->add('description', CKEditorType::class, [
                 'required' => true,
                 'attr' => [
@@ -106,6 +183,21 @@ class OfferType extends AbstractType
                     'class' => 'form-label'
                 ],
             ]);
+    }
+
+    public function buildForm(FormBuilderInterface $builder, array $options): void
+    {
+        $this->addPartnerField($builder);
+        $this->addRecruiterField($builder);
+        $this->addTitleField($builder);
+        $this->addAddressField($builder);
+        $this->addAddressComplementField($builder);
+        $this->addPostalCodeField($builder);
+        $this->addCityField($builder);
+        $this->addContractField($builder);
+        $this->addWorkFieldField($builder);
+        $this->addStackField($builder);
+        $this->addDescriptionField($builder);
     }
 
     public function configureOptions(OptionsResolver $resolver): void

@@ -1,12 +1,8 @@
 // Recruiter Field
 let selectedPartner = document.querySelector('#offer_partner')
-selectedPartner.firstChild.disabled = true
 let recruitersOfPartner = document.querySelector('#offer_recruiter')
-recruitersOfPartner.firstChild.disabled = true
-let recruiterValue = recruitersOfPartner.value
 
-function clearPartnerField(select)
-{
+function clearPartnerField(select) {
     select.options.length = 0
     let option = document.createElement("option");
     option.value = ""
@@ -16,136 +12,157 @@ function clearPartnerField(select)
     select.add(option)
 }
 
-// on change
-selectedPartner.addEventListener('change', (event) => {
-    fetch(window.location.protocol + "//" + window.location.host + '/api/partner_details/' + event.target.value)
-        .then(response => response.json())
-        .then(recruiters => {
-            clearPartnerField(recruitersOfPartner)
+if (selectedPartner && recruitersOfPartner) {
+    selectedPartner.firstChild.disabled = true
+    recruitersOfPartner.firstChild.disabled = true
+    let recruiterValue = recruitersOfPartner.value
 
-            for (let recruiter of recruiters) {
-                let option = document.createElement("option");
-                option.value = recruiter.id;
-                option.text = recruiter.fullname;
-                recruitersOfPartner.add(option)
-            }
-        })
-})
+    // on change
+    selectedPartner.addEventListener('change', (event) => {
+        fetch(window.location.protocol + "//" + window.location.host + '/api/partner_details/' + event.target.value)
+            .then(response => response.json())
+            .then(recruiters => {
+                clearPartnerField(recruitersOfPartner)
 
-// for edit
-if (selectedPartner.value == true) {
-    fetch(window.location.protocol + "//" + window.location.host + '/api/partner_details/' + selectedPartner.value)
-        .then(response => response.json())
-        .then(recruiters => {
-            clearPartnerField(recruitersOfPartner)
-            
-            for (let recruiter of recruiters) {
-                let option = document.createElement("option");
-                option.value = recruiter.id;
-                option.text = recruiter.fullname;
-                recruitersOfPartner.add(option)
-                recruitersOfPartner.value = recruiterValue
-            }})
-} else {
-    clearPartnerField(recruitersOfPartner)
+                for (let recruiter of recruiters) {
+                    let option = document.createElement("option");
+                    option.value = recruiter.id;
+                    option.text = recruiter.fullname;
+                    recruitersOfPartner.add(option)
+                }
+            })
+    })
+
+    // for edit
+    if (selectedPartner.value == true) {
+        fetch(window.location.protocol + "//" + window.location.host + '/api/partner_details/' + selectedPartner.value)
+            .then(response => response.json())
+            .then(recruiters => {
+                clearPartnerField(recruitersOfPartner)
+
+                for (let recruiter of recruiters) {
+                    let option = document.createElement("option");
+                    option.value = recruiter.id;
+                    option.text = recruiter.fullname;
+                    recruitersOfPartner.add(option)
+                    recruitersOfPartner.value = recruiterValue
+                }
+            })
+    } else {
+        clearPartnerField(recruitersOfPartner)
+    }
 }
 
 // Contract field
 let contractType = document.querySelector('#offer_contract')
-contractType.firstChild.disabled = true
+if (contractType) {
+    contractType.firstChild.disabled = true
+}
 
 // Stacks field
 let selectedWorkField = document.querySelector('#offer_work_field')
-selectedWorkField.firstChild.disabled = true
 let stacksOfWorkField = document.querySelector('#offer_stack')
-stacksOfWorkField.className = "d-flex flex-row flex-wrap justify-content-evenly"
-let allStacks = stacksOfWorkField.querySelectorAll('input')
-let stacksValue = []
 
-for (let i = 0; i < allStacks.length; i++) {
-    if (allStacks[i].checked == true){    
-        stacksValue.push(allStacks[i].value)
+if (selectedWorkField && stacksOfWorkField) {
+    selectedWorkField.firstChild.disabled = true
+    stacksOfWorkField.className = "d-flex flex-row flex-wrap justify-content-evenly"
+    let allStacks = stacksOfWorkField.querySelectorAll('input')
+    let stacksValue = []
+
+    for (let i = 0; i < allStacks.length; i++) {
+        if (allStacks[i].checked == true) {
+            stacksValue.push(allStacks[i].value)
+        }
     }
-}
 
-// on change
-selectedWorkField.addEventListener('change', (event) => {
-    fetch(window.location.protocol + "//" + window.location.host + '/api/work_field_details/' + event.target.value)
-        .then(response => response.json())
-        .then(stacks => {
-            while (stacksOfWorkField.firstChild) {
-                stacksOfWorkField.removeChild(stacksOfWorkField.lastChild);
-            }
-            for (let stack of stacks) {
-
-                let div = document.createElement('div')
-                div.className = 'form-check'
-
-                let checkbox = document.createElement('input');
-                checkbox.type = 'checkbox';
-                checkbox.id = stack.id;
-                checkbox.name = 'offer[stack][]';
-                checkbox.value = stack.id;
-                checkbox.className = 'form-check-input'
-
-                let label = document.createElement('label')
-                label.htmlFor = stack.id;
-                label.className = 'form-check-label'
-                label.appendChild(document.createTextNode(stack.name));
-
-                div.appendChild(checkbox);
-                div.appendChild(label);
-                stacksOfWorkField.appendChild(div);
-
-            }
-        })
-})
-
-// for edit
-if (selectedWorkField.value == 2) {
-    fetch(window.location.protocol + "//" + window.location.host + '/api/work_field_details/' + selectedWorkField.value)
-        .then(response => response.json())
-        .then(stacks => {
-            while (stacksOfWorkField.firstChild) {
-                stacksOfWorkField.removeChild(stacksOfWorkField.lastChild);
-            }
-            for (let stack of stacks) {
-
-                let div = document.createElement('div')
-                div.className = 'form-check'
-
-                let checkbox = document.createElement('input');
-                checkbox.type = 'checkbox';
-                checkbox.id = stack.id;
-                checkbox.name = 'offer[stack][]';
-                checkbox.value = stack.id;
-                checkbox.className = 'form-check-input'
-
-                let label = document.createElement('label')
-                label.htmlFor = stack.id;
-                label.className = 'form-check-label'
-                label.appendChild(document.createTextNode(stack.name));
-
-                div.appendChild(checkbox);
-                div.appendChild(label);
-                stacksOfWorkField.appendChild(div);
-
-                for(let stackValue of stacksValue) {
-                    if(stack.id == stackValue)
-                    {
-                        checkbox.checked = true
-                    }
+    // on change
+    selectedWorkField.addEventListener('change', (event) => {
+        fetch(window.location.protocol + "//" + window.location.host + '/api/work_field_details/' + event.target.value)
+            .then(response => response.json())
+            .then(stacks => {
+                while (stacksOfWorkField.firstChild) {
+                    stacksOfWorkField.removeChild(stacksOfWorkField.lastChild);
                 }
+                for (let stack of stacks) {
 
-            }
-        })
+                    let div = document.createElement('div')
+                    div.className = 'form-check'
+
+                    let checkbox = document.createElement('input');
+                    checkbox.type = 'checkbox';
+                    checkbox.id = stack.id;
+                    checkbox.name = 'offer[stack][]';
+                    checkbox.value = stack.id;
+                    checkbox.className = 'form-check-input'
+
+                    let label = document.createElement('label')
+                    label.htmlFor = stack.id;
+                    label.className = 'form-check-label'
+                    label.appendChild(document.createTextNode(stack.name));
+
+                    div.appendChild(checkbox);
+                    div.appendChild(label);
+                    stacksOfWorkField.appendChild(div);
+
+                }
+            })
+    })
+
+    // for edit
+    if (selectedWorkField.value == 2) {
+        fetch(window.location.protocol + "//" + window.location.host + '/api/work_field_details/' + selectedWorkField.value)
+            .then(response => response.json())
+            .then(stacks => {
+                while (stacksOfWorkField.firstChild) {
+                    stacksOfWorkField.removeChild(stacksOfWorkField.lastChild);
+                }
+                for (let stack of stacks) {
+
+                    let div = document.createElement('div')
+                    div.className = 'form-check'
+
+                    let checkbox = document.createElement('input');
+                    checkbox.type = 'checkbox';
+                    checkbox.id = stack.id;
+                    checkbox.name = 'offer[stack][]';
+                    checkbox.value = stack.id;
+                    checkbox.className = 'form-check-input'
+
+                    let label = document.createElement('label')
+                    label.htmlFor = stack.id;
+                    label.className = 'form-check-label'
+                    label.appendChild(document.createTextNode(stack.name));
+
+                    div.appendChild(checkbox);
+                    div.appendChild(label);
+                    stacksOfWorkField.appendChild(div);
+
+                    for (let stackValue of stacksValue) {
+                        if (stack.id == stackValue) {
+                            checkbox.checked = true
+                        }
+                    }
+
+                }
+            })
+    }
 }
 
 // Technologies field
 let technologies = document.querySelector('legend')
-technologies.className = 'form-label'
+if (technologies) {
+    technologies.className = 'form-label'
+}
 
+// Candidate form
+let gender = document.querySelector('#candidate_gender')
+let birthday1 = document.querySelector('#candidate_birthday_day')
+let birthday2 = document.querySelector('#candidate_birthday_month')
+let birthday3 = document.querySelector('#candidate_birthday_year')
 
-
-
-
+if (gender && birthday1 && birthday2 && birthday3) {
+    gender.firstChild.disabled = true
+    birthday1.firstChild.disabled = true
+    birthday2.firstChild.disabled = true
+    birthday3.firstChild.disabled = true
+}

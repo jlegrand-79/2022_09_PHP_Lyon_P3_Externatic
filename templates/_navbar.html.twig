@@ -2,33 +2,32 @@
 	<div class="container-fluid d-flex flex-reverse-row">
 		<div class="container-fluid d-flex justify-content-around align-items-center me-5">
 			<div class="d-none d-md-block">
-				<a class="d-flex align-items-center mt-2 h5 text-dark text-decoration-none" href="{{ path('app_offer_new') }}">Publier une offre
-				</a>
+				<a class="d-flex align-items-center mt-2 h5 text-dark text-decoration-none" href="{{ path('app_offer_new') }}">Rechercher une offre</a>
 			</div>
 			<a class="navbar-brand" href="{{ path('app_home') }}">
-				<img src="{{ asset('build/images/Logo-Externatic.png') }}" class="logo d-flex align-items-center ms-5" alt="">
+				<img src="{{ asset('build/images/Logo-Externatic.png') }}" class="logo d-flex align-items-center" alt="">
 			</a>
-			<div class="d-none d-md-block">
-				<a>
-					<img src="{{ asset('build/images/noun-profile.png') }}" class="logoAvatar d-flex me-5" alt=""></a>
+			<div class="avatar d-none d-sm-block">
+				<img src="{{ asset('build/images/noun-profile.png') }}" class="avatar d-flex w-50 h-50 me-2" alt="">
 			</div>
+			<button class="navbar-toggler d-sm-none mb-3 ms-2" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
 		</div>
-		<button class="navbar-toggler d-md-none" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-			<span class="navbar-toggler-icon"></span>
-		</button>
-		<div class="collapse navbar-collapse" id="navbarNav">
-			<ul class="navbar-nav d-md-none">
+		<div class="navbar-collapse collapse" id="navbarNav">
+			<ul class="navbar-nav d-sm-none">
 				<li class="nav-item">
 					<a class="nav-link active" aria-current="page" href="#">Home</a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link" href="#">Rechercher une offre
-					</a>
+					<a class="nav-link" href="#">Rechercher une offre</a>
 				</li>
 				<li class="nav-item">
 					<a class="nav-link" href="#">Mon profil</a>
 				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="#">Déconnexion</a>
+				</li>
 			</ul>
 		</div>
-	</div>
-</nav>
+	</nav>
