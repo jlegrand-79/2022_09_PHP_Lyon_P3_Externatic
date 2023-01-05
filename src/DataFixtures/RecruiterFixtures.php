@@ -13,7 +13,7 @@ class RecruiterFixtures extends Fixture implements DependentFixtureInterface
     {
         $recruiters = [
             [
-                'user' => 'user_0',
+                'user' => 'user_1',
                 'firstname' => 'Bruce',
                 'lastname' => 'Wayne',
                 'phone' => '555-0100',
@@ -21,7 +21,7 @@ class RecruiterFixtures extends Fixture implements DependentFixtureInterface
                 'partner' => 'partner_1',
             ],
             [
-                'user' => 'user_1',
+                'user' => 'user_2',
                 'firstname' => 'Lucius',
                 'lastname' => 'Fox',
                 'phone' => '555-0101',
@@ -29,7 +29,7 @@ class RecruiterFixtures extends Fixture implements DependentFixtureInterface
                 'partner' => 'partner_1',
             ],
             [
-                'user' => 'user_2',
+                'user' => 'user_3',
                 'firstname' => 'Tony',
                 'lastname' => 'Stark',
                 'phone' => '555-0200',
@@ -37,7 +37,7 @@ class RecruiterFixtures extends Fixture implements DependentFixtureInterface
                 'partner' => 'partner_0',
             ],
             [
-                'user' => 'user_3',
+                'user' => 'user_4',
                 'firstname' => 'Virginia',
                 'lastname' => 'Potts',
                 'phone' => '555-0201',
