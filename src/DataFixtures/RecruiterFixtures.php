@@ -16,33 +16,37 @@ class RecruiterFixtures extends Fixture implements DependentFixtureInterface
                 'user' => 'user_1',
                 'firstname' => 'Bruce',
                 'lastname' => 'Wayne',
-                'phone' => '555-0100',
+                'phone' => '0470948372',
                 'address' => 'Gotham City',
                 'partner' => 'partner_1',
+                'position' => 'Batman'
             ],
             [
                 'user' => 'user_2',
                 'firstname' => 'Lucius',
                 'lastname' => 'Fox',
-                'phone' => '555-0101',
+                'phone' => '0470384958',
                 'address' => 'Gotham City',
                 'partner' => 'partner_1',
+                'position' => 'CEO'
             ],
             [
                 'user' => 'user_3',
                 'firstname' => 'Tony',
                 'lastname' => 'Stark',
-                'phone' => '555-0200',
+                'phone' => '0378392038',
                 'address' => 'New York City, New York',
                 'partner' => 'partner_0',
+                'position' => 'Iron Man'
             ],
             [
                 'user' => 'user_4',
                 'firstname' => 'Virginia',
                 'lastname' => 'Potts',
-                'phone' => '555-0201',
+                'phone' => '0326473859',
                 'address' => 'Los Angeles, California',
                 'partner' => 'partner_0',
+                'position' => 'CEO'
             ],
         ];
 
@@ -54,6 +58,7 @@ class RecruiterFixtures extends Fixture implements DependentFixtureInterface
             $newRecruiter->setAddress($recruiter['address']);
             $newRecruiter->setPartner($this->getReference($recruiter['partner']));
             $newRecruiter->setUser($this->getReference($recruiter['user']));
+            $newRecruiter->setPosition($recruiter['position']);
             $manager->persist($newRecruiter);
             $this->addReference('recruiter_' . $key, $newRecruiter);
         }
