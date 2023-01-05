@@ -15,7 +15,7 @@ $light: #fff;
     background-color: #EFEDED;
     color: $black;
     border: 0px;
-    font: normal normal 600 20px/29px Jost;
+    font: normal normal 700 20px/29px Jost;
 }
 
 .search-offers:focus {
@@ -48,9 +48,10 @@ $light: #fff;
 }
 
 .logo-offer-more {
-    fill: $light;
     width: 40px;
     height: 40px;
+    stroke: $light;
+    stroke-width: 1;
 }
 
 .logo-admin {
@@ -65,7 +66,7 @@ $light: #fff;
     width: 40px;
     height: 40px;
     border-radius: 50px;
-    margin-top: 25px;
+    margin-top: 15px;
     margin-left: 5px;
 }
 
@@ -73,7 +74,7 @@ $light: #fff;
 .offer {
     border: 2px solid $black;
     border-radius: 0px;
-    margin-top: 25px;
+    margin-top: 15px;
     background-color: $black;
 }
 
@@ -99,4 +100,32 @@ $light: #fff;
 
 .offer-link:hover {
     color: $black;
+}
+
+.offerListing {
+    max-width: 1000px;
+}
+
+.offerJobTitle {
+    width: 95%;
+}
+
+.link-admin {
+    padding: 10px;
+    font: 600 20px Jost;
+    color: $light;
+    text-align: center;
+    margin-top: 20px;
+    background-color: $black;
+    text-decoration: none;
+
+    &:hover {
+        background-color: $mainPink;
+        color: $light;
+    }
+}
+
+.all-links {
+    display: flex;
+    justify-content: center;
 }

@@ -2,6 +2,7 @@
 $black: #000000;
 $mainPink: #CA2262;
 $light: #fff;
+$grey: #EFEDED;
 
 @import "~bootstrap/scss/bootstrap";
 
@@ -13,11 +14,11 @@ $light: #fff;
 @import "footer";
 
 
-
 $theme-colors: (
     "black": $black,
     "light" : $light,
     "mainPink" : $mainPink,
+    "grey" : $grey,
 );
 
 label {
@@ -172,4 +173,10 @@ button {
 .buttonSearchOffer {
     margin-top: 29px;
     height: 40px;
+    font: 600 18px Jost;
+    background-color: $black;
+
+    &:hover {
+        background-color: $mainPink;
+    }
 }

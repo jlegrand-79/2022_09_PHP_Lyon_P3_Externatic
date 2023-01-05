@@ -60,7 +60,7 @@ if (contractType) {
 }
 
 // Stacks field
-let selectedWorkField = document.querySelector('#offer_work_field')
+let selectedWorkField = document.querySelector('#offer_workField')
 let stacksOfWorkField = document.querySelector('#offer_stack')
 
 if (selectedWorkField && stacksOfWorkField) {

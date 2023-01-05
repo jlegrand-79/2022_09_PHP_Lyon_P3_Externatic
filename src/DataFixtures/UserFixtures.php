@@ -22,47 +22,47 @@ class UserFixtures extends Fixture
         $users = [
             [
                 'email' => 'admin@externatic.com',
-                'password' => 'password',
+                'password' => 'admin123',
                 'role' => 'ROLE_ADMIN',
             ],
             [
                 'email' => 'bruce@wayne-entreprises.com',
-                'password' => 'password',
+                'password' => 'brubru123',
                 'role' => 'ROLE_RECRUITER',
             ],
             [
                 'email' => 'lucius@wayne-entreprises.com',
-                'password' => 'password',
+                'password' => 'lucluc123',
                 'role' => 'ROLE_RECRUITER',
             ],
             [
                 'email' => 'tony@stark-industries.com',
-                'password' => 'password',
+                'password' => 'tonton123',
                 'role' => 'ROLE_RECRUITER',
             ],
             [
                 'email' => 'virginia@stark-industries.com',
-                'password' => 'password',
+                'password' => 'virvir123',
                 'role' => 'ROLE_RECRUITER',
             ],
             [
                 'email' => 'thomas.besson@mail.com',
-                'password' => 'password',
+                'password' => 'thotho123',
                 'role' => 'ROLE_CANDIDATE',
             ],
             [
                 'email' => 'marcia.baila@mail.com',
-                'password' => 'password',
+                'password' => 'marmar123',
                 'role' => 'ROLE_CANDIDATE',
             ],
             [
                 'email' => 'antoine.dupont@mail.com',
-                'password' => 'password',
+                'password' => 'toitoi123',
                 'role' => 'ROLE_CANDIDATE',
             ],
             [
                 'email' => 'chacha.da.rugna@mail.com',
-                'password' => 'password',
+                'password' => 'chacha123',
                 'role' => 'ROLE_CANDIDATE',
             ],
         ];
