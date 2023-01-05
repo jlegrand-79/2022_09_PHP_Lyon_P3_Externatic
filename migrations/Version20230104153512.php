@@ -10,7 +10,7 @@ use Doctrine\Migrations\AbstractMigration;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-final class Version20230103154812 extends AbstractMigration
+final class Version20230104153512 extends AbstractMigration
 {
     public function getDescription(): string
     {
@@ -20,10 +20,11 @@ final class Version20230103154812 extends AbstractMigration
     public function up(Schema $schema): void
     {
         // this up() migration is auto-generated, please modify it to your needs
-        $this->addSql('CREATE TABLE candidate (id INT AUTO_INCREMENT NOT NULL, user_id INT NOT NULL, gender VARCHAR(255) NOT NULL, firstname VARCHAR(255) NOT NULL, lastname VARCHAR(255) NOT NULL, phone VARCHAR(255) NOT NULL, picture VARCHAR(255) DEFAULT NULL, curriculum_vitae VARCHAR(255) DEFAULT NULL, address VARCHAR(255) NOT NULL, address_complement VARCHAR(255) DEFAULT NULL, postal_code VARCHAR(255) NOT NULL, city VARCHAR(255) NOT NULL, UNIQUE INDEX UNIQ_C8B28E44A76ED395 (user_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
+        $this->addSql('CREATE TABLE candidate (id INT AUTO_INCREMENT NOT NULL, user_id INT NOT NULL, gender VARCHAR(255) NOT NULL, firstname VARCHAR(255) NOT NULL, lastname VARCHAR(255) NOT NULL, phone VARCHAR(255) NOT NULL, picture VARCHAR(255) DEFAULT NULL, curriculum_vitae VARCHAR(255) DEFAULT NULL, address VARCHAR(255) NOT NULL, address_complement VARCHAR(255) DEFAULT NULL, postal_code VARCHAR(255) NOT NULL, city VARCHAR(255) NOT NULL, birthday DATETIME NOT NULL, UNIQUE INDEX UNIQ_C8B28E44A76ED395 (user_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE candidate_stack (candidate_id INT NOT NULL, stack_id INT NOT NULL, INDEX IDX_7948909691BD8781 (candidate_id), INDEX IDX_7948909637C70060 (stack_id), PRIMARY KEY(candidate_id, stack_id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
+        $this->addSql('CREATE TABLE candidate_contract (candidate_id INT NOT NULL, contract_id INT NOT NULL, INDEX IDX_48D16A8A91BD8781 (candidate_id), INDEX IDX_48D16A8A2576E0FD (contract_id), PRIMARY KEY(candidate_id, contract_id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE contract (id INT AUTO_INCREMENT NOT NULL, type VARCHAR(255) NOT NULL, PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
-        $this->addSql('CREATE TABLE offer (id INT AUTO_INCREMENT NOT NULL, contract_id INT NOT NULL, recruiter_id INT NOT NULL, work_field_id INT NOT NULL, title VARCHAR(255) NOT NULL, description LONGTEXT DEFAULT NULL, address VARCHAR(255) NOT NULL, publication_date DATETIME NOT NULL, INDEX IDX_29D6873E2576E0FD (contract_id), INDEX IDX_29D6873E156BE243 (recruiter_id), INDEX IDX_29D6873E91828DEC (work_field_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
+        $this->addSql('CREATE TABLE offer (id INT AUTO_INCREMENT NOT NULL, contract_id INT NOT NULL, recruiter_id INT NOT NULL, work_field_id INT NOT NULL, title VARCHAR(255) NOT NULL, description LONGTEXT DEFAULT NULL, address VARCHAR(255) NOT NULL, publication_date DATETIME NOT NULL, postal_code VARCHAR(255) NOT NULL, city VARCHAR(255) NOT NULL, address_complement VARCHAR(255) DEFAULT NULL, INDEX IDX_29D6873E2576E0FD (contract_id), INDEX IDX_29D6873E156BE243 (recruiter_id), INDEX IDX_29D6873E91828DEC (work_field_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE offer_stack (offer_id INT NOT NULL, stack_id INT NOT NULL, INDEX IDX_C285068353C674EE (offer_id), INDEX IDX_C285068337C70060 (stack_id), PRIMARY KEY(offer_id, stack_id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE partner (id INT AUTO_INCREMENT NOT NULL, logo VARCHAR(255) NOT NULL, name VARCHAR(255) NOT NULL, description VARCHAR(1000) NOT NULL, url VARCHAR(255) NOT NULL, picture VARCHAR(255) NOT NULL, address VARCHAR(255) NOT NULL, PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE recruiter (id INT AUTO_INCREMENT NOT NULL, partner_id INT NOT NULL, user_id INT NOT NULL, firstname VARCHAR(255) NOT NULL, lastname VARCHAR(255) NOT NULL, phone VARCHAR(255) NOT NULL, address VARCHAR(255) NOT NULL, INDEX IDX_DE8633D89393F8FE (partner_id), UNIQUE INDEX UNIQ_DE8633D8A76ED395 (user_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
@@ -35,6 +36,8 @@ final class Version20230103154812 extends AbstractMigration
         $this->addSql('ALTER TABLE candidate ADD CONSTRAINT FK_C8B28E44A76ED395 FOREIGN KEY (user_id) REFERENCES user (id)');
         $this->addSql('ALTER TABLE candidate_stack ADD CONSTRAINT FK_7948909691BD8781 FOREIGN KEY (candidate_id) REFERENCES candidate (id) ON DELETE CASCADE');
         $this->addSql('ALTER TABLE candidate_stack ADD CONSTRAINT FK_7948909637C70060 FOREIGN KEY (stack_id) REFERENCES stack (id) ON DELETE CASCADE');
+        $this->addSql('ALTER TABLE candidate_contract ADD CONSTRAINT FK_48D16A8A91BD8781 FOREIGN KEY (candidate_id) REFERENCES candidate (id) ON DELETE CASCADE');
+        $this->addSql('ALTER TABLE candidate_contract ADD CONSTRAINT FK_48D16A8A2576E0FD FOREIGN KEY (contract_id) REFERENCES contract (id) ON DELETE CASCADE');
         $this->addSql('ALTER TABLE offer ADD CONSTRAINT FK_29D6873E2576E0FD FOREIGN KEY (contract_id) REFERENCES contract (id)');
         $this->addSql('ALTER TABLE offer ADD CONSTRAINT FK_29D6873E156BE243 FOREIGN KEY (recruiter_id) REFERENCES recruiter (id)');
         $this->addSql('ALTER TABLE offer ADD CONSTRAINT FK_29D6873E91828DEC FOREIGN KEY (work_field_id) REFERENCES work_field (id)');
@@ -52,6 +55,8 @@ final class Version20230103154812 extends AbstractMigration
         $this->addSql('ALTER TABLE candidate DROP FOREIGN KEY FK_C8B28E44A76ED395');
         $this->addSql('ALTER TABLE candidate_stack DROP FOREIGN KEY FK_7948909691BD8781');
         $this->addSql('ALTER TABLE candidate_stack DROP FOREIGN KEY FK_7948909637C70060');
+        $this->addSql('ALTER TABLE candidate_contract DROP FOREIGN KEY FK_48D16A8A91BD8781');
+        $this->addSql('ALTER TABLE candidate_contract DROP FOREIGN KEY FK_48D16A8A2576E0FD');
         $this->addSql('ALTER TABLE offer DROP FOREIGN KEY FK_29D6873E2576E0FD');
         $this->addSql('ALTER TABLE offer DROP FOREIGN KEY FK_29D6873E156BE243');
         $this->addSql('ALTER TABLE offer DROP FOREIGN KEY FK_29D6873E91828DEC');
@@ -63,6 +68,7 @@ final class Version20230103154812 extends AbstractMigration
         $this->addSql('ALTER TABLE stack_work_field DROP FOREIGN KEY FK_16DC9C5B91828DEC');
         $this->addSql('DROP TABLE candidate');
         $this->addSql('DROP TABLE candidate_stack');
+        $this->addSql('DROP TABLE candidate_contract');
         $this->addSql('DROP TABLE contract');
         $this->addSql('DROP TABLE offer');
         $this->addSql('DROP TABLE offer_stack');

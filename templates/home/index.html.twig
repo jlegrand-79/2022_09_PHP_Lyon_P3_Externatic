@@ -2,15 +2,13 @@
 
 {% block title %}Externatic
 {% endblock %}
-
 {% block body %}
-	<div class="homeImage d-flex justify-content-center align-items-center  float-xxl-start float-xxl-none">
+	<div class="homeImage d-flex justify-content-center align-items-center float-xxl-start float-xxl-none">
 		<img src="{{ asset('build/images/HomeImage.png') }}" class="home" alt="">
 		<h1 class="mainTitle d-flex justify-content-center position-absolute text-white text-center mb-5">
 			Cherchez votre nouvel emploi
 		</h1>
 	</div>
-
 	{% for offer in offers %}
 		<div class="row justify-content-center">
 			<div class="col-9 col-lg-8 col-xxl-7">
@@ -21,7 +19,7 @@
 								<p class="offer-text">{{ offer.title }}</p>
 							</div>
 						</div>
-						<div class="offer-more col-1 d-flex justify-content-center align-items-center">
+						<div class="homeoffermore col-1 d-flex justify-content-center align-items-center">
 							<div>
 
 								<svg xmlns="http://www.w3.org/2000/svg" class="logo-offer-more bi bi-plus" viewbox="0 0 16 16">
@@ -36,8 +34,8 @@
 	{% endfor %}
 
 	<div class="title">
-		<div class="inscription d-flex justify-content-center mt-5 text-sm-center">
-			<h2>
+		<div class="inscription d-flex justify-content-center mt-5 text-center">
+			<h2 class="homeH2 ">
 				Vous souhaitez postuler
 				<span class="offerTitle text-center-md">à une offre?</span>
 			</h2>
