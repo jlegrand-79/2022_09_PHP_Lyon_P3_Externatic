@@ -1,0 +1,75 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Offer index
+{% endblock %}
+
+{% block body %}
+
+	<main class="container mb-4">
+
+		<h1 class="text-center">Toutes nos offres</h1>
+
+		<div class="row justify-content-center">
+			<div class="col-11 col-md-10 col-lg-9 col-xxl-8">
+				<div class="input-group">
+					<input type="text" list="datalistOptions" class="form-control search-offers" placeholder="Rechercher une offre par nom, entreprise...">
+					<datalist id="datalistOptions">
+						<option value="aaaaaaTest"></option>
+						<option value="bbbbbTest"></option>
+					</datalist>
+					<span class="input-group-text search-logo" id="basic-addon1">
+						<svg xmlns="http://www.w3.org/2000/svg" class="logo-search bi bi-search" viewbox="0 0 16 16">
+							<path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"></path>
+						</svg>
+					</span>
+				</div>
+			</div>
+		</div>
+
+		<form class="d-none d-lg-block">
+			<div class="form-row formSearchOffer">
+				<div class="form-group col-md-6 searchOffer">
+					<label for="inputEmail4">Mots-clés</label>
+					<input type="text" class="form-control" placeholder="Développeur PHP">
+				</div>
+				<div class="form-group col-md-6 searchOffer">
+					<label for="inputPassword4">Lieu</label>
+					<input type="text" class="form-control" placeholder="Rennes">
+				</div>
+				<div class="form-group col-md-6 searchOffer">
+					<label for="inputPassword4">Distance</label>
+					<input type="text" class="form-control" placeholder="5km">
+				</div>
+				<button type="submit" class="btn bg-black text-white rounded-0 buttonSearchOffer">Rechercher</button>
+			</div>
+		</form>
+
+		{% for offer in offers %}
+			<div class="row justify-content-center">
+				<div class="col-11 col-md-10 col-lg-9 col-xxl-8">
+					<a href="{{ path('app_offer_show', {'id': offer.id}) }}" class="offer-link">
+						<div class="offer card d-flex flex-row justify-content-between">
+							<div class="col-11">
+								<div class="offer-body card-body">
+									<p class="offer-text">
+										{{ offer.title }}
+									</p>
+								</div>
+							</div>
+							<div class="offer-more col-1 d-flex justify-content-center align-items-center">
+								<div>
+
+									<svg xmlns="http://www.w3.org/2000/svg" class="logo-offer-more bi bi-plus" viewbox="0 0 16 16">
+										<path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"></path>
+									</svg>
+								</div>
+							</div>
+						</div>
+					</a>
+				</div>
+			</div>
+		{% endfor %}
+
+	</main>
+
+{% endblock %}
