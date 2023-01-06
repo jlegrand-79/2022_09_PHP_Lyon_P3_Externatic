@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mes informations
+{% endblock %}
+
+{% block body %}
+	<main class="mainSection mb-5">
+		<div class="mainForm">
+			<h1 class="text-center">Mes informations</h1>
+			{{ include('candidate/_form.html.twig') }}
+		</div>
+	</main>
+
+{% endblock %}

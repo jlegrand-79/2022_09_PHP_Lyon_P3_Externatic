@@ -1,0 +1,26 @@
+.candidate-link {
+    text-decoration: none;
+    color: $black;
+}
+
+.candidate-link:hover {
+    text-decoration: underline;
+    color: $black;
+}
+
+ul.candidate-list {
+    list-style-type: none;
+    padding: 0;
+}
+
+.candidate-picture {
+    height: 100px;
+    width: 100px;
+    object-fit: cover;
+}
+
+.candidate-firstname {
+    color: $black;
+    font: 900 48px Jost;
+    margin-top: 30px;
+}

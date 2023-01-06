@@ -1,0 +1,33 @@
+{{ form_start(form, {'attr': {'class': 'd-flex flex-column'}}) }}
+
+{{ form_row(form.pictureFile)}}
+{{ form_row(form.gender)}}
+{{ form_row(form.firstname)}}
+{{ form_row(form.lastname)}}
+{{ form_row(form.birthday)}}
+{{ form_row(form.phone)}}
+{{ form_row(form.address)}}
+{{ form_row(form.addressComplement)}}
+{{ form_row(form.postalCode)}}
+{{ form_row(form.city)}}
+{{ form_row(form.contractSearched, {'attr': {'class': 'd-flex flex-row flex-wrap justify-content-evenly'}})}}
+{% if noContractSearched is defined %}
+	<div class="invalid-feedback d-block">{{ noContractSearched }}</div>
+{% endif %}
+{{ form_row(form.stacks, {'attr': {'class': 'd-flex flex-row flex-wrap justify-content-evenly'}})}}
+{% if noStacks is defined %}
+	<div class="invalid-feedback d-block">{{ noStacks }}</div>
+{% endif %}
+
+{{ form_label(form.cvFile)}}
+<label for="candidate_cvFile_file" class="drop-container">
+	<img src="{{ asset('build/images/upload.png') }}" id='uploadLogo'>
+	<div class="text-black">Téléverser votre CV</div>
+	{{ form_widget(form.cvFile)}}
+</label>
+
+
+{{ form_widget(form) }}
+
+<button>{{ button_label|default('Enregistrer') }}</button>
+{{ form_end(form) }}

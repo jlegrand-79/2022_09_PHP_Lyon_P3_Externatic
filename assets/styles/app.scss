@@ -1,2 +1,204 @@
-//start coding by removing this file and adding yours ;)
-@import "wcs";
+// customize some Bootstrap variables
+$black: #000000;
+$mainPink: #CA2262;
+$light: #fff;
+$grey: #EFEDED;
+
+@import "~bootstrap/scss/bootstrap";
+
+@import url('https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+@import "menu";
+@import "offer-show";
+@import "candidate-show";
+@import "home";
+@import "footer";
+
+
+$theme-colors: (
+    "black": $black,
+    "light" : $light,
+    "mainPink" : $mainPink,
+    "grey" : $grey,
+);
+
+label {
+    color: #000;
+    font: 600 20px Jost;
+}
+
+legend {
+    color: #000;
+    font: 600 20px Jost;
+}
+
+input,
+.inputLoginForm {
+    color: #000;
+    font: 400 16px Jost;
+    border-radius: 0px !important;
+    border-color: #000 !important;
+
+    &:focus {
+        border-color: $mainPink !important;
+        box-shadow: none !important;
+    }
+
+    border-width: 2px !important;
+    background-color: #EFEDED !important;
+
+}
+
+select {
+    color: #000;
+    font: 400 16px Jost;
+    border-radius: 0px !important;
+    border-color: #000 !important;
+    border-width: 2px !important;
+    background-color: #EFEDED !important;
+
+    &:focus {
+        border-color: $mainPink !important;
+        box-shadow: none !important;
+    }
+}
+
+h1 {
+    color: $mainPink;
+    font: 900 48px Jost;
+    margin-top: 30px;
+}
+
+h2 {
+    color: $mainPink;
+    font: 900 40px Jost;
+    margin-top: 40px;
+}
+
+/* FORMULAIRE */
+button {
+    padding: 10px;
+    font: 600 20px Jost;
+    color: $light;
+    align-self: center;
+    text-align: center;
+    margin-top: 20px;
+    background-color: $black;
+    border: none;
+
+    &:hover {
+        background-color: $mainPink;
+        border: none;
+    }
+}
+
+.mainForm {
+    width: 90%;
+    max-width: 800px;
+}
+
+.mainSection {
+    display: flex;
+    justify-content: center;
+
+    a {
+        color: $mainPink;
+
+        &:hover {
+            color: $mainPink;
+            cursor: pointer;
+        }
+    }
+}
+
+.form-check-input[type='checkbox']:checked {
+    background-color: $mainPink !important;
+    border-color: $mainPink !important;
+}
+
+#candidate_birthday_day {
+    margin-right: 0.5rem;
+}
+
+#candidate_birthday_year {
+    margin-left: 0.5rem;
+}
+
+.drop-container {
+    position: relative;
+    display: flex;
+    gap: 10px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 200px;
+    padding: 20px;
+    border-radius: 10px;
+    border: 2px dashed #555;
+    color: #444;
+    background-color: #EFEDED;
+    cursor: pointer;
+    transition: background .2s ease-in-out, border .2s ease-in-out;
+}
+
+.drop-container:hover {
+    background: #eee;
+    border-color: #111;
+}
+
+.drop-container:hover .drop-title {
+    color: #222;
+}
+
+.drop-title {
+    color: #444;
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+    transition: color .2s ease-in-out;
+}
+
+#uploadLogo {
+    width: 80px;
+}
+
+#candidate_cvFile_file {
+    border: none;
+    width: 90%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    flex-wrap: wrap;
+
+    &::file-selector-button {
+        display: none;
+    }
+}
+
+.searchOffer {
+    width: 220px !important;
+}
+
+.formSearchOffer {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.buttonSearchOffer {
+    margin-top: 29px;
+    height: 40px;
+    font: 600 18px Jost;
+    background-color: $black;
+
+    &:hover {
+        background-color: $mainPink;
+    }
+}
+
+.loginForm {
+    width: 30%;
+    max-width: 450px;
+    background-color: white;
+    padding: 30px;
+    border: 1px solid black;
+}

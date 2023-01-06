@@ -1,0 +1,41 @@
+@import url('https://fonts.googleapis.com/css2?family=Varela+Round&display=swap');
+$mainPink: #CA2262;
+$light: #FFFFFF;
+
+$themes-colors: (
+    "light": $light,
+    "mainPink": $mainPink,
+);
+
+.footer {
+    margin-top: 50px;
+    padding: 20px;
+    background-color: $mainPink;
+    width: 100%;
+    text-align: left;
+
+    img {
+        width: 50px;
+        height: 50px
+    }
+}
+
+.card-footer {
+    background-color: $mainPink;
+}
+
+.titleFooter {
+    font-weight: bold;
+    font-family: Jost;
+}
+
+.textFooter {
+    font-weight: 500;
+    font-family: Jost;
+}
+
+.footerExternatic {
+    max-width: 300px;
+}
+
+@import "~bootstrap/scss/bootstrap"

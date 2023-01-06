@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nouvelle offre
+{% endblock %}
+
+{% block body %}
+	<main class="mainSection mb-5">
+		<div class="mainForm">
+			<h1>Publier une offre</h1>
+			{{ include('offer/_form.html.twig') }}
+		</div>
+	</main>
+{% endblock %}

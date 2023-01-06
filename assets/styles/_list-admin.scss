@@ -1,0 +1,131 @@
+$black: #000000;
+$mainPink: #CA2262;
+$light: #fff;
+
+.card-infos {
+    background-color: #EFEDED;
+    border-radius: 10px;
+    border: 0;
+    margin-top: 20px;
+    margin-bottom: 0px;
+    font: normal normal 600 20px/29px Jost;
+}
+
+.search-offers {
+    background-color: #EFEDED;
+    color: $black;
+    border: 0px;
+    font: normal normal 700 20px/29px Jost;
+}
+
+.search-offers:focus {
+    background-color: #EFEDED;
+    outline: none !important;
+    box-shadow: none;
+    border: 0px;
+}
+
+.search-logo {
+    background-color: #EFEDED;
+    border: 0px;
+}
+
+.logo-infos {
+    margin-right: 10px;
+    width: 32px;
+    height: 32px;
+    fill: $mainPink;
+}
+
+.logo-search {
+    width: 20px;
+    height: 20px;
+}
+
+.logo-infos-more {
+    width: 40px;
+    height: 40px;
+}
+
+.logo-offer-more {
+    width: 40px;
+    height: 40px;
+    stroke: $light;
+    stroke-width: 1;
+}
+
+.logo-admin {
+    fill: $light;
+    width: 40px;
+    height: 40px;
+    padding: 8px;
+}
+
+.pink-circle {
+    background-color: $mainPink;
+    width: 40px;
+    height: 40px;
+    border-radius: 50px;
+    margin-top: 15px;
+    margin-left: 5px;
+}
+
+/* OFFER */
+.offer {
+    border: 2px solid $black;
+    border-radius: 0px;
+    margin-top: 15px;
+    background-color: $black;
+}
+
+.offer:hover {
+    border: 2px solid $mainPink;
+    background-color: $mainPink;
+}
+
+.offer-body {
+    padding: 10px;
+    background-color: white;
+}
+
+.offer-text {
+    margin: 0px;
+    font: normal normal 600 20px/29px Jost;
+}
+
+.offer-link {
+    text-decoration: none;
+    color: $black;
+}
+
+.offer-link:hover {
+    color: $black;
+}
+
+.offerListing {
+    max-width: 1000px;
+}
+
+.offerJobTitle {
+    width: 95%;
+}
+
+.link-admin {
+    padding: 10px;
+    font: 600 20px Jost;
+    color: $light;
+    text-align: center;
+    margin-top: 20px;
+    background-color: $black;
+    text-decoration: none;
+
+    &:hover {
+        background-color: $mainPink;
+        color: $light;
+    }
+}
+
+.all-links {
+    display: flex;
+    justify-content: center;
+}

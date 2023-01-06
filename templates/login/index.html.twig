@@ -1,0 +1,42 @@
+{# templates/login/index.html.twig #}
+{% extends 'base.html.twig' %}
+
+{% block title %}
+	Se connecter
+{% endblock %}
+
+{% block body %}
+	<main class="mainSection" style="background-image: url('{{ asset('build/images/Groupe105.png') }}')">
+		<div class="w-100 my-5">
+			<div class="loginForm m-auto">
+				<h2 class="text-black mt-0 mb-4 text-center">Se connecter</h1>
+				{% if error %}
+					<div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+				{% endif %}
+
+				<form action="{{ path('app_login') }}" method="post" class="d-flex flex-column">
+					<label for="username">Votre mail</label>
+					<input class='inputLoginForm p-1' type="text" id="username" name="_username" value="{{ last_username }}" placeholder="bruce.banner@gmail.com">
+
+					<label class="pt-2" for="password">Votre mot de passe</label>
+					<input class='inputLoginForm p-1' type="password" id="password" name="_password">
+
+					<input type="hidden" name="/" value="/home">
+					<input class='inputLoginForm p-1' type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+					<input type="hidden" name="_target_path" value="/login/redirect">
+					<button>{{ button_label|default('Je me connecte') }}</button>
+				</form>
+
+				<p class="mb-0 mt-5 fw-bold text-center">Vous n'avez pas encore de compte ?</p>
+				<p class="text-center">
+					<a href="#">Créer son compte</a>
+				</p>
+				<p class="mb-0 fw-bold text-center">Vous avez oublié votre mot de passe ?</p>
+
+				<p class="mb-0 text-center">
+					<a href=" #">Mot de passe oublié</p>
+				</p>
+			</a>
+		</p>
+	</div>
+</div></main>{% endblock %}

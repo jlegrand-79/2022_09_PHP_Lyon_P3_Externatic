@@ -1,0 +1,27 @@
+.nav {
+    background-color: #EFEDED;
+}
+
+.navbar-brand .logo {
+    width: 280px;
+    height: 50px;
+    margin-right: 80px;
+}
+
+.logoMobile {
+    width: 280px;
+    height: 50px;
+}
+
+.avatar {
+    width: 65px;
+}
+
+.textMenu {
+    color: #000;
+    font: 800 20px Jost;
+}
+
+.navbar-toggler:focus {
+    box-shadow: none !important;
+}

@@ -1,0 +1,47 @@
+<nav class="navbar navbar-expand-lg nav">
+	<div class="container-fluid d-flex flex-reverse-row">
+		<div class="container-fluid d-flex justify-content-around align-items-center me-5">
+			<div class="d-none d-md-block">
+				<a class="d-flex align-items-center mt-2 h5 text-dark text-decoration-none textMenu" href="{{ path('app_offer_list') }}">Rechercher une offre</a>
+			</div>
+			<a class="navbar-brand d-none d-md-block" href="{{ path('app_home') }}">
+				<img src="{{ asset('build/images/Logo-Externatic.png') }}" class="logo d-flex align-items-center" alt="">
+			</a>
+			<a class="navbar-brand d-md-none" href="{{ path('app_home') }}">
+				<img src="{{ asset('build/images/Logo-Externatic.png') }}" class="logoMobile d-flex align-items-center" alt="">
+			</a>
+
+			{% if app.user %}
+				<a href="{{ path('app_logout') }}">
+					<div class="avatar d-none d-sm-block">
+						<img src="{{ asset('build/images/logout1.png') }}" class="avatar d-flex w-50 h-50 me-2" alt="">
+					</div>
+				</a>
+			{% else %}
+				<a href="{{ path('app_login') }}">
+					<div class="avatar d-none d-sm-block">
+						<img src="{{ asset('build/images/noun-profile.png') }}" class="avatar d-flex w-50 h-50 me-2" alt="">
+					</div>
+				</a>
+			{% endif %}
+			<button class="navbar-toggler d-sm-none mb-3 ms-2" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+		</div>
+		<div class="navbar-collapse collapse" id="navbarNav">
+			<ul class="navbar-nav d-sm-none">
+				<li class="nav-item textMenu">
+					<a class="nav-link active" aria-current="page" href="#">Accueil</a>
+				</li>
+				<li class="nav-item textMenu">
+					<a class="nav-link" href="{{ path('app_offer_list') }}">Rechercher une offre</a>
+				</li>
+				<li class="nav-item textMenu">
+					<a class="nav-link" href="#">Mon profil</a>
+				</li>
+				<li class="nav-item textMenu">
+					<a class="nav-link" href="#">Déconnexion</a>
+				</li>
+			</ul>
+		</div>
+	</nav>
