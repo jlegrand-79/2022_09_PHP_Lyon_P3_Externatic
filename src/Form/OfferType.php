@@ -163,7 +163,7 @@ class OfferType extends AbstractType
                 'required' => true,
                 'class' => Stack::class,
                 'choice_label' => 'name',
-                'label' => 'Technologies utilisées',
+                'label' => 'Technologie(s) utilisée(s)',
                 'multiple' => true,
                 'expanded' => true,
             ]);

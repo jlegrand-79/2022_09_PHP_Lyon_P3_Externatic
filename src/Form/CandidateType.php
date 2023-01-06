@@ -155,7 +155,7 @@ class CandidateType extends AbstractType
                 'placeholder' => 'Ex : CDI',
                 'class' => Contract::class,
                 'choice_label' => 'type',
-                'label' => 'Type de contrat recherché',
+                'label' => 'Type(s) de contrat recherché',
                 'label_attr' => [
                     'class' => 'fs-5'
                 ],
@@ -167,7 +167,7 @@ class CandidateType extends AbstractType
                 'required' => true,
                 'class' => Stack::class,
                 'choice_label' => 'name',
-                'label' => 'Technologies utilisées',
+                'label' => 'Technologie(s) utilisée(s)',
                 'label_attr' => [
                     'class' => 'fs-5'
                 ],
