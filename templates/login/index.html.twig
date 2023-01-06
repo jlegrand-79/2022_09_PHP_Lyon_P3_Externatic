@@ -23,7 +23,7 @@
 
 					<input type="hidden" name="/" value="/home">
 					<input class='inputLoginForm p-1' type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
-					<input type="hidden" name="_target_path" value="/offer/">
+					<input type="hidden" name="_target_path" value="/login/redirect">
 					<button>{{ button_label|default('Je me connecte') }}</button>
 				</form>
 
