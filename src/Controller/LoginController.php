@@ -29,14 +29,11 @@ class LoginController extends AbstractController
             return $this->redirectToRoute('app_offer_index', [], Response::HTTP_SEE_OTHER);
         }
         if (in_array('ROLE_CANDIDATE', $this->getUser()->getRoles())) {
-            $userConnected = $this->container->get('security.token_storage')->getToken()->getUser();
-            return $this->redirectToRoute('app_candidate_show', [
-                'userId' => $userConnected->getId()
-            ], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_candidate_new', [], Response::HTTP_SEE_OTHER);
         }
         if (in_array('ROLE_RECRUITER', $this->getUser()->getRoles())) {
             return $this->redirectToRoute('app_home', [], Response::HTTP_SEE_OTHER);
         }
-        return $this->redirectToRoute('app_login', [], Response::HTTP_SEE_OTHER);
+        return $this->redirectToRoute('app_home', [], Response::HTTP_SEE_OTHER);
     }
 }
