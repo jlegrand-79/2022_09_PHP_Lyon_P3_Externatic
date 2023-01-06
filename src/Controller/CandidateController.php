@@ -6,6 +6,7 @@ use App\Entity\Candidate;
 use App\Form\CandidateType;
 use App\Repository\UserRepository;
 use App\Repository\CandidateRepository;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -53,12 +54,20 @@ class CandidateController extends AbstractController
 
             return $this->redirectToRoute('app_candidate_show', [
                 'id' => $candidateConnected->getId()
-                ], Response::HTTP_SEE_OTHER);
+            ], Response::HTTP_SEE_OTHER);
         }
 
         return $this->renderForm('candidate/new.html.twig', [
             'candidate' => $candidate,
             'form' => $form,
+        ]);
+    }
+
+    #[Route('/{id}', name: 'app_candidate_show', methods: ['GET'])]
+    public function show(Candidate $candidate): Response
+    {
+        return $this->render('candidate/show.html.twig', [
+            'candidate' => $candidate,
         ]);
     }
 }
