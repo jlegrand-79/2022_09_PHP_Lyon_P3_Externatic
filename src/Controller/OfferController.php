@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Offer;
+use App\Controller\SearchOfferType;
 use App\Form\OfferType;
 use App\Repository\OfferRepository;
 use Symfony\Component\HttpFoundation\Request;
@@ -14,20 +15,36 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 #[Route('/offer')]
 class OfferController extends AbstractController
 {
-    #[Route('/', name: 'app_offer_index', methods: ['GET'])]
+    #[Route('/', name: 'app_offer_index', methods: ['GET', 'POST'])]
     #[IsGranted('ROLE_ADMIN')]
-    public function index(OfferRepository $offerRepository): Response
+    public function index(Request $request, OfferRepository $offerRepository): Response
     {
+        if ($request->isMethod('POST')) {
+            $search = $request->get('search');
+
+            $offers = $offerRepository->findLikeName($search);
+        } else {
+            $offers = $offerRepository->findAll();
+        }
+
         return $this->render('offer/index.html.twig', [
-            'offers' => $offerRepository->findBy(array(), array('id' => 'DESC')),
+            'offers' => $offers,
         ]);
     }
 
-    #[Route('/list', name: 'app_offer_list', methods: ['GET'])]
-    public function list(OfferRepository $offerRepository): Response
+    #[Route('/list', name: 'app_offer_list', methods: ['GET', 'POST'])]
+    public function list(Request $request, OfferRepository $offerRepository): Response
     {
+        if ($request->isMethod('POST')) {
+            $search = $request->get('search');
+
+            $offers = $offerRepository->findLikeName($search);
+        } else {
+            $offers = $offerRepository->findAll();
+        }
+
         return $this->render('offer/list.html.twig', [
-            'offers' => $offerRepository->findBy(array(), array('id' => 'DESC')),
+            'offers' => $offers,
         ]);
     }
 
