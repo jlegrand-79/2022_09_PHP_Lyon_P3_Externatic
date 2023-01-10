@@ -39,28 +39,47 @@ class OfferRepository extends ServiceEntityRepository
         }
     }
 
-//    /**
-//     * @return Offer[] Returns an array of Offer objects
-//     */
-//    public function findByExampleField($value): array
-//    {
-//        return $this->createQueryBuilder('o')
-//            ->andWhere('o.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->orderBy('o.id', 'ASC')
-//            ->setMaxResults(10)
-//            ->getQuery()
-//            ->getResult()
-//        ;
-//    }
+    public function findLikeName(string $name): array
+    {
+        $queryBuilder = $this->createQueryBuilder('o')
+            ->where('o.title LIKE :name')
+            ->setParameter('name', '%' . $name . '%')
+            ->orderBy('o.title', 'ASC')
+            ->getQuery();
+        return $queryBuilder->getResult();
+    }
 
-//    public function findOneBySomeField($value): ?Offer
-//    {
-//        return $this->createQueryBuilder('o')
-//            ->andWhere('o.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->getQuery()
-//            ->getOneOrNullResult()
-//        ;
-//    }
+    // public function search(string $search)
+    // {
+    //     return $this->createQueryBuilder('o')
+    //         ->where('o.title LIKE :search')
+    //         ->setParameter('search', '%' . $search . '%')
+    //         ->getQuery()
+    //         ->getResult();
+    // }
+
+    //    /**
+    //     * @return Offer[] Returns an array of Offer objects
+    //     */
+    //    public function findByExampleField($value): array
+    //    {
+    //        return $this->createQueryBuilder('o')
+    //            ->andWhere('o.exampleField = :val')
+    //            ->setParameter('val', $value)
+    //            ->orderBy('o.id', 'ASC')
+    //            ->setMaxResults(10)
+    //            ->getQuery()
+    //            ->getResult()
+    //        ;
+    //    }
+
+    //    public function findOneBySomeField($value): ?Offer
+    //    {
+    //        return $this->createQueryBuilder('o')
+    //            ->andWhere('o.exampleField = :val')
+    //            ->setParameter('val', $value)
+    //            ->getQuery()
+    //            ->getOneOrNullResult()
+    //        ;
+    //    }
 }
