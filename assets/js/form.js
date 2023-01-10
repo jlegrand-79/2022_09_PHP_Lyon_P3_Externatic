@@ -15,7 +15,6 @@ function clearPartnerField(select) {
 if (selectedPartner && recruitersOfPartner) {
     selectedPartner.firstChild.disabled = true
     recruitersOfPartner.firstChild.disabled = true
-    let recruiterValue = recruitersOfPartner.value
 
     // on change
     selectedPartner.addEventListener('change', (event) => {
@@ -34,7 +33,8 @@ if (selectedPartner && recruitersOfPartner) {
     })
 
     // for edit
-    if (selectedPartner.value == true) {
+    if (selectedPartner.value) {
+        let recruiterValue = recruitersOfPartner.value
         fetch(window.location.protocol + "//" + window.location.host + '/api/partner_details/' + selectedPartner.value)
             .then(response => response.json())
             .then(recruiters => {
@@ -109,7 +109,7 @@ if (selectedWorkField && stacksOfWorkField) {
     })
 
     // for edit
-    if (selectedWorkField.value == 2) {
+    if (selectedWorkField.value) {
         fetch(window.location.protocol + "//" + window.location.host + '/api/work_field_details/' + selectedWorkField.value)
             .then(response => response.json())
             .then(stacks => {
@@ -136,7 +136,6 @@ if (selectedWorkField && stacksOfWorkField) {
                     div.appendChild(checkbox);
                     div.appendChild(label);
                     stacksOfWorkField.appendChild(div);
-
                     for (let stackValue of stacksValue) {
                         if (stack.id == stackValue) {
                             checkbox.checked = true
