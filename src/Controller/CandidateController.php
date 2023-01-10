@@ -25,7 +25,6 @@ class CandidateController extends AbstractController
         $userConnected = $this->container->get('security.token_storage')->getToken()->getUser();
         if ($userConnected->getInformation() != null) {
             return $this->redirectToRoute('app_candidate_show', [
-                'id' => $userConnected->getInformation()->getId()
             ], Response::HTTP_SEE_OTHER);
         }
 
@@ -73,8 +72,7 @@ class CandidateController extends AbstractController
     {
         $userConnected = $this->container->get('security.token_storage')->getToken()->getUser();
         $userCandidateId = $userConnected->getInformation()->getId();
-        $candidate = $candidateRepository->findOneBy(['id' => $userCandidateId]);    
-
+        $candidate = $candidateRepository->findOneBy(['id' => $userCandidateId]);
         return $this->render('candidate/show.html.twig', [
             'candidate' => $candidate,
         ]);
