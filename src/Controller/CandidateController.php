@@ -25,7 +25,6 @@ class CandidateController extends AbstractController
         $userConnected = $this->container->get('security.token_storage')->getToken()->getUser();
         if ($userConnected->getInformation() != null) {
             return $this->redirectToRoute('app_candidate_show', [
-                'id' => $userConnected->getInformation()->getId()
             ], Response::HTTP_SEE_OTHER);
         }
 
@@ -56,10 +55,8 @@ class CandidateController extends AbstractController
             }
 
             $candidateRepository->save($candidate, true);
-            $candidateConnected = $candidateRepository->findOneBy(['user' => $userConnected->getId()]);
 
             return $this->redirectToRoute('app_candidate_show', [
-                'id' => $candidateConnected->getId()
             ], Response::HTTP_SEE_OTHER);
         }
 
@@ -69,14 +66,13 @@ class CandidateController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'app_candidate_show', methods: ['GET'])]
+    #[Route('/mypage', name: 'app_candidate_show', methods: ['GET'])]
     #[IsGranted('ROLE_CANDIDATE')]
-    public function show(Candidate $candidate, int $id): Response
+    public function show(CandidateRepository $candidateRepository): Response
     {
         $userConnected = $this->container->get('security.token_storage')->getToken()->getUser();
-        if ($userConnected->getInformation()->getId() != $id) {
-            return $this->redirectToRoute('app_login', [], Response::HTTP_SEE_OTHER);
-        }
+        $userCandidateId = $userConnected->getInformation()->getId();
+        $candidate = $candidateRepository->findOneBy(['id' => $userCandidateId]);
         return $this->render('candidate/show.html.twig', [
             'candidate' => $candidate,
         ]);
