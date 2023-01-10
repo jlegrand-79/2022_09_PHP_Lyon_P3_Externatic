@@ -1,0 +1,35 @@
+{# templates/registration/register.html.twig #}
+{% extends 'base.html.twig' %}
+
+{% block title %}S'inscrire
+{% endblock %}
+
+{% block body %}
+	<main class="mainSection" style="background-image: url('{{ asset('build/images/Groupe105.png') }}')">
+		<div class="w-100 my-5">
+			<div class="loginForm m-auto">
+				<h2 class="text-black mt-0 mb-4 text-center">S'inscrire</h2>
+				{{ form_start(registrationForm, {'attr': {'class': 'd-flex flex-column'}}) }}
+				{{ form_row(registrationForm.email, {'attr': {'class': 'p-1'}}) }}
+				{{ form_row(registrationForm.plainPassword, {'attr': {'class': 'p-1'}}) }}
+				{{ form_row(registrationForm.plainPassword2, {'attr': {'class': 'p-1'}}) }}
+				{% if errors is defined %}
+					<div class="invalid-feedback d-block">Veuillez modifier votre mot de passe :</div>
+					<ul class="list-unstyled">
+						{% for error in errors %}
+							<li class="invalid-feedback d-block">
+								{{ error }}
+							</li>
+						{% endfor %}
+					</ul>
+				{% endif %}
+				<button type="submit">Je m'inscris</button>
+				{{ form_end(registrationForm) }}
+				<p class="mb-0 mt-5 fw-bold text-center">Vous avez déjà un compte ?</p>
+				<p class="text-center">
+					<a href="/login">Se connecter</a>
+				</p>
+			</div>
+		</div>
+	</main>
+{% endblock %}
