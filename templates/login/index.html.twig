@@ -6,30 +6,36 @@
 {% endblock %}
 
 {% block body %}
-	<main class="mainSection" style="background-image: url('{{ asset('build/images/Groupe105.png') }}')">
+	<main class="mainSection d-flex flex-column" style="background-image: url('{{ asset('build/images/Groupe105.png') }}')">
+		{% for user, messages in app.flashes %}
+			{% for message in messages %}
+				<div class="alert alert-{{ user }} text-center rounded-0">
+					{{ message }}
+				</div>
+			{% endfor %}
+		{% endfor %}
 		<div class="w-100 my-5">
 			<div class="loginForm m-auto">
-				<h2 class="text-black mt-0 mb-4 text-center">Se connecter</h1>
+				<h2 class="text-black mt-0 mb-4 text-center">Se connecter</h2>
 				{% if error %}
 					<div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
 				{% endif %}
 
 				<form action="{{ path('app_login') }}" method="post" class="d-flex flex-column">
-					<label for="username">Votre mail</label>
-					<input class='inputLoginForm p-1' type="text" id="username" name="_username" value="{{ last_username }}" placeholder="bruce.banner@gmail.com">
+					<label for="username">Mail</label>
+					<input class='inputLoginForm p-1 mb-3' type="text" id="username" name="_username" value="{{ last_username }}" placeholder="bruce.banner@gmail.com">
 
-					<label class="pt-2" for="password">Votre mot de passe</label>
-					<input class='inputLoginForm p-1' type="password" id="password" name="_password">
+					<label class="pt-2" for="password">Mot de passe</label>
+					<input class='inputLoginForm p-1 mb-3' type="password" id="password" name="_password">
 
-					<input type="hidden" name="/" value="/home">
-					<input class='inputLoginForm p-1' type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+					<input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
 					<input type="hidden" name="_target_path" value="/login/redirect">
 					<button>{{ button_label|default('Je me connecte') }}</button>
 				</form>
 
 				<p class="mb-0 mt-5 fw-bold text-center">Vous n'avez pas encore de compte ?</p>
 				<p class="text-center">
-					<a href="#">Créer son compte</a>
+					<a href="{{ path('app_register') }}">S'inscrire</a>
 				</p>
 				<p class="mb-0 fw-bold text-center">Vous avez oublié votre mot de passe ?</p>
 
