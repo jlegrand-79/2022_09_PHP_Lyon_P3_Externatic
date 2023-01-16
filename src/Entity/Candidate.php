@@ -134,10 +134,14 @@ class Candidate
     #[Assert\Type(Collection::class)]
     private Collection $contractSearched;
 
+    #[ORM\OneToMany(mappedBy: 'candidate', targetEntity: Candidacy::class)]
+    private Collection $candidacies;
+
     public function __construct()
     {
         $this->stacks = new ArrayCollection();
         $this->contractSearched = new ArrayCollection();
+        $this->candidacies = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -356,6 +360,24 @@ class Candidate
     public function setCvFile(File $cvFile = null): Candidate
     {
         $this->cvFile = $cvFile;
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Candidacy>
+     */
+    public function getCandidacies(): Collection
+    {
+        return $this->candidacies;
+    }
+
+    public function addCandidacy(Candidacy $candidacy): self
+    {
+        if (!$this->candidacies->contains($candidacy)) {
+            $this->candidacies->add($candidacy);
+            $candidacy->setCandidate($this);
+        }
+
         return $this;
     }
 }
