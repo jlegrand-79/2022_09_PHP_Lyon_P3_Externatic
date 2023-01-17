@@ -92,9 +92,13 @@ class Offer
     )]
     private ?string $addressComplement = null;
 
+    #[ORM\OneToMany(mappedBy: 'offer', targetEntity: Candidacy::class)]
+    private Collection $candidacies;
+
     public function __construct()
     {
         $this->stack = new ArrayCollection();
+        $this->candidacies = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -243,6 +247,24 @@ class Offer
     public function setAddressComplement(string $addressComplement): self
     {
         $this->addressComplement = $addressComplement;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Candidacy>
+     */
+    public function getCandidacies(): Collection
+    {
+        return $this->candidacies;
+    }
+
+    public function addCandidacy(Candidacy $candidacy): self
+    {
+        if (!$this->candidacies->contains($candidacy)) {
+            $this->candidacies->add($candidacy);
+            $candidacy->setOffer($this);
+        }
 
         return $this;
     }
