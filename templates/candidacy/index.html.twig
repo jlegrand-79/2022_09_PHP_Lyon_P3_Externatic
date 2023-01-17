@@ -29,21 +29,24 @@
 
 		{% if search == true %}
 			<div class="text-center fw-bold">
-				<a class="deleteSearch" href="{{ path('app_candidacy_index') }}">Afficher toutes les offres</a>
+				<a class="deleteSearch" href="{{ path('app_candidacy_index') }}">Afficher toutes les candidatures</a>
 			</div>
 		{% endif %}
 
 		<table class="table candidacyTable mt-2">
 			<colgroup>
-				<col span="1" style="width: 50%;">
+				<col span="1" style="width: 40%;">
 				<col span="1" style="width: 25%;">
 				<col span="1" style="width: 25%;">
+				<col span="1" style="width: 10%;">
+
 			</colgroup>
 			<thead>
 				<tr>
 					<th>Titre de l'offre</th>
 					<th>Nom du candidat</th>
 					<th>Date de candidature</th>
+					<th>Statut</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -52,12 +55,15 @@
 						<td>
 							<a href="{{ path('app_offer_show', {'id': candidacy.offer.id}) }}">{{ candidacy.offer.title }}</a>
 						</td>
-						<td>{{ candidacy.candidate.fullname}}</td>
+						<td>
+							<a href="#">{{ candidacy.candidate.fullname}}</a>
+						</td>
 						<td>{{ candidacy.candidacyDate ? candidacy.candidacyDate|date('Y/m/d') : '' }}</td>
+						<td>{{candidacy.status.status}}</td>
 					</tr>
 				{% else %}
 					<tr>
-						<td colspan="3">no records found</td>
+						<td colspan="4">Pas de candidatures trouvées</td>
 					</tr>
 				{% endfor %}
 			</tbody>
