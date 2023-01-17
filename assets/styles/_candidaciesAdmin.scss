@@ -1,0 +1,44 @@
+.candidacyTable {
+    color: black;
+    width: 75%;
+    margin: auto;
+    font-weight: bold;
+
+    thead {
+        vertical-align: middle;
+        font-style: italic;
+        color: $light;
+        background-color: $mainPink;
+    }
+
+    td,
+    th {
+        border: 1px solid black;
+        padding: 15px;
+    }
+
+    a {
+        color: black;
+        text-decoration-thickness: 1px;
+
+        &:hover {
+            color: black;
+            cursor: pointer;
+        }
+    }
+
+    tbody tr:nth-child(even) {
+        background-color: lighten($mainPink, 50%);
+    }
+}
+
+.deleteSearch {
+    color: black;
+    text-decoration-thickness: 1px;
+
+    &:hover {
+        color: black;
+        cursor: pointer;
+    }
+
+}

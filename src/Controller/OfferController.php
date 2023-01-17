@@ -21,7 +21,6 @@ class OfferController extends AbstractController
     {
         if ($request->isMethod('POST')) {
             $search = $request->get('search');
-
             $offers = $offerRepository->findLikeName($search);
         } else {
             $offers = $offerRepository->findAll();
