@@ -1,0 +1,65 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Offer index
+{% endblock %}
+
+{% block body %}
+
+	<main class="container mb-4">
+
+		<h1 class="text-center">Espace Admin</h1>
+
+		<div class="all-links">
+			<a href="{{ path('app_offer_new') }}" class="link-admin" role="button" aria-pressed="true">Publier une offre</a>
+		</div>
+
+		<h2 class="text-center">Les candidatures</h2>
+
+		<form action="{{ path('app_offer_index') }}" method="post" class="d-none d-lg-block mt-3 mb-4">
+			<div class="form-row formSearchOffer">
+				<div class="form-group col-md-6 searchOffer">
+					<label for="inputSearch">Titre de l'offre</label>
+					<input type="text" name="search" class="form-control" placeholder="Développeur">
+				</div>
+				<div class="form-group col-md-6 searchOffer">
+					<label for="inputLocation">Nom du candidat</label>
+					<input type="text" class="form-control" placeholder="Besson">
+				</div>
+				<div class="form-group col-md-6 searchOffer">
+					<label for="inputLocationRadius">Date de candidature</label>
+					<input type="date" class="form-control" placeholder="2023-01-05">
+				</div>
+				<button type="submit" class="btn text-white rounded-0 buttonSearchOffer">Rechercher</button>
+			</div>
+		</form>
+	</div>
+
+	<table>
+		<thead>
+			<tr>
+				<th>Titre de l'offre</th>
+				<th>Candidat</th>
+				<th>Date de candidature</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for candidacies in candidacy %}
+				<div class="row justify-content-center">
+					<div class="col-9 col-lg-8 col-xxl-7">
+						<tr>
+							<th>
+								<a href="{{ path('app_offer_show', {'id':candidacy.offer.id}) }}">{{ candidacy.offer.title }}</a>
+							</th>
+							<th>
+								<a href="{{ path('app_candidate_show', {'id':candidacy.candidate.id}) }}">{{ candidacy.candidate.fullname }}</a>
+							</th>
+							<th>
+								<p>{{candidacy.date}}</p>
+							</th>
+						</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+		</tbody>
+	</main>
+{% endblock %}
