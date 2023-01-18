@@ -12,13 +12,13 @@
 			</a>
 
 			{% if app.user %}
-				<a href="{{ path('app_logout') }}">
+				<a title="Déconnexion" href="{{ path('app_logout') }}">
 					<div class="avatar d-none d-sm-block">
 						<img src="{{ asset('build/images/logout1.png') }}" class="avatar d-flex w-50 h-50 me-2" alt="">
 					</div>
 				</a>
 			{% else %}
-				<a href="{{ path('app_login') }}">
+				<a title="Connexion" href="{{ path('app_login') }}">
 					<div class="avatar d-none d-sm-block">
 						<img src="{{ asset('build/images/noun-profile.png') }}" class="avatar d-flex w-50 h-50 me-2" alt="">
 					</div>

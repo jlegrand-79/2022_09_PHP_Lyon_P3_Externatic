@@ -13,6 +13,8 @@ $grey: #EFEDED;
 @import "candidate-show";
 @import "home";
 @import "footer";
+@import "navbarAdmin";
+@import "candidaciesAdmin";
 
 
 $theme-colors: (
@@ -202,4 +204,13 @@ button {
     background-color: white;
     padding: 30px;
     border: 1px solid black;
+}
+
+#deleteButton {
+    background-color: transparent;
+    border: none;
+
+    &:hover {
+        background-color: transparent;
+    }
 }
