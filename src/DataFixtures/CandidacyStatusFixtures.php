@@ -10,7 +10,7 @@ class CandidacyStatusFixtures extends Fixture
 {
     public function load(ObjectManager $manager): void
     {
-        $statuses = ['New', 'Forwarded', 'Declined'];
+        $statuses = ['Nouvelle', 'Transmise', 'Traitée'];
 
         foreach ($statuses as $status) {
             $newStatus = new CandidacyStatus();

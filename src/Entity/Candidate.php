@@ -185,6 +185,11 @@ class Candidate
         return $this;
     }
 
+    public function getFullName(): string
+    {
+        return $this->firstname . ' ' . $this->lastname;
+    }
+
     public function getPhone(): ?string
     {
         return $this->phone;
