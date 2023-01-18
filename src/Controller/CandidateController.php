@@ -16,11 +16,13 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 #[Route('/candidate')]
 class CandidateController extends AbstractController
 {
-
     #[Route('/', name: 'app_candidate_index', methods: ['GET', 'POST'])]
     #[IsGranted('ROLE_ADMIN')]
-    public function index(Request $request, CandidateRepository $candidateRepository, UserRepository $userRepository): Response
-    {
+    public function index(
+        Request $request,
+        CandidateRepository $candidateRepository,
+        UserRepository $userRepository
+    ): Response {
         return $this->render('candidate/index.html.twig', [
             'candidates' => $candidateRepository->findAll(), 'users' => $userRepository->findAll(),
 
@@ -56,7 +58,6 @@ class CandidateController extends AbstractController
                     'noStacks' => $noStacks,
                 ]);
             }
-
             $contractSearched = $candidate->getContractSearched();
             if (count($contractSearched) <= 0) {
                 $noContractSearched = 'Veuillez renseigner au moins une stack.';
@@ -66,7 +67,6 @@ class CandidateController extends AbstractController
                     'noContractSearched' => $noContractSearched,
                 ]);
             }
-
             $candidateRepository->save($candidate, true);
 
             return $this->redirectToRoute('app_candidate_show', [
