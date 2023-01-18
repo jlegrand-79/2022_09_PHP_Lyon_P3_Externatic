@@ -205,3 +205,12 @@ button {
     padding: 30px;
     border: 1px solid black;
 }
+
+#deleteButton {
+    background-color: transparent;
+    border: none;
+
+    &:hover {
+        background-color: transparent;
+    }
+}
