@@ -1,11 +1,29 @@
 .nav {
     background-color: #EFEDED;
+    color: black;
+
+    a {
+        color: black;
+        text-decoration: none;
+        font: 500 20px Jost;
+
+        &:hover {
+            color: black;
+            cursor: pointer;
+            text-decoration: none;
+        }
+    }
+}
+
+.navDiv {
+    flex: 1;
+    display: flex;
+    justify-content: center;
 }
 
 .navbar-brand .logo {
     width: 280px;
     height: 50px;
-    margin-right: 80px;
 }
 
 .logoMobile {
