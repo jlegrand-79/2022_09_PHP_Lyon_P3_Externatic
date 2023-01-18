@@ -2,9 +2,10 @@
 
 namespace App\Repository;
 
+use DateTime;
 use App\Entity\Candidacy;
-use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
+use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 
 /**
  * @extends ServiceEntityRepository<Candidacy>
@@ -37,6 +38,35 @@ class CandidacyRepository extends ServiceEntityRepository
         if ($flush) {
             $this->getEntityManager()->flush();
         }
+    }
+
+    public function searchCandidacies(string $title, string $name, string $date): array
+    {
+        $queryBuilder = $this->createQueryBuilder('c');
+        if (!empty($title)) {
+            $queryBuilder
+            ->join('c.offer', 'o')
+            ->andWhere('o.title LIKE :title')
+            ->setParameter('title', '%' . $title . '%');
+        }
+
+        if (!empty($name)) {
+            $queryBuilder
+            ->join('c.candidate', 'ca')
+            ->andWhere('ca.lastname LIKE :name')
+            ->setParameter('name', '%' . $name . '%');
+        }
+
+        if (!empty($date)) {
+            $queryBuilder
+            ->andWhere('c.candidacyDate = :date')
+            ->setParameter('date', $date);
+        }
+
+        $queryBuilder
+        ->orderBy('c.id', 'DESC');
+
+        return $queryBuilder->getQuery()->getResult();
     }
 
 //    /**

@@ -65,15 +65,14 @@ class OfferRepository extends ServiceEntityRepository
         return $queryBuilder->getResult();
     }
 
-    // public function findLikeDepartment(string $name): array
-    // {
-    //     $queryBuilder = $this->createQueryBuilder('o')
-    //         ->where('o.city LIKE :name')
-    //         ->setParameter('name', '%' . $name . '%')
-    //         ->orderBy('o.city', 'ASC')
-    //         ->getQuery();
-    //     return $queryBuilder->getResult();
-    // }
+    public function randomOffer(): array
+    {
+        $queryBuilder = $this->createQueryBuilder('o')
+            ->setMaxResults(6)
+            ->orderBy('RAND()')
+            ->getQuery();
+        return $queryBuilder->getResult();
+    }
 
     // public function search(string $search)
     // {

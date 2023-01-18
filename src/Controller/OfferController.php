@@ -36,17 +36,13 @@ class OfferController extends AbstractController
                 $offers[] = $offer;
             };
         } else {
-            $offers = $offerRepository->findAll();
+            $offers = $offerRepository->findBy(array(), array('id' => 'DESC'));
         }
 
         return $this->render('offer/index.html.twig', [
             'offers' => $offers,
         ]);
     }
-
-    // $selectedValueArray = explode("(", $select);
-    // $city = trim($selectedValueArray[0]);
-    // $codePostal = trim(str_replace(")", "", $selectedValueArray[1]));
 
     #[Route('/list', name: 'app_offer_list', methods: ['GET', 'POST'])]
     public function list(Request $request, OfferRepository $offerRepository): Response
@@ -55,12 +51,23 @@ class OfferController extends AbstractController
             $search = $request->get('search');
             $select = $request->get('city');
 
-            $offers = $offerRepository->findLikeNameAndCity($search, $select);
+            $trimSelect = substr_replace($select, "", -5);
+            $trimCode = substr($select, -3, 2);
+
+            $offers = [];
+            $offersbyCity = $offerRepository->findLikeNameAndCity($search, $trimSelect);
+            $offersbyDepartment = $offerRepository->findLikeDepartment($search, $trimSelect, $trimCode);
+            foreach ($offersbyCity as $offer) {
+                $offers[] = $offer;
+            };
+            foreach ($offersbyDepartment as $offer) {
+                $offers[] = $offer;
+            };
         } else {
-            $offers = $offerRepository->findAll();
+            $offers = $offerRepository->findBy(array(), array('id' => 'DESC'));
         }
 
-        return $this->render('offer/index.html.twig', [
+        return $this->render('offer/list.html.twig', [
             'offers' => $offers,
         ]);
     }

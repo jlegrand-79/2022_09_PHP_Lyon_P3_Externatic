@@ -5,23 +5,53 @@
 
 {% block body %}
 	<main class="container">
-		<h1 class="text-center">{{ offer.title }}</h1>
-		<p class="offer-text-details">
-			{{ offer.contract.type }}
-			/
-			{{ offer.city }}
-			/ offre publiée le
-			{{ offer.publicationDate|date("d/m/Y") }}</p>
-		<p class="offer-text-details">{{offer.recruiter.partner.name}}
-			/ offre gérée par
-			{{offer.recruiter.fullname}}</p>
+		<div class="d-flex flex-column align-items-center">
+			<h1 class="text-center">{{ offer.title }}</h1>
+			<p class="offer-text-details">
+				{{ offer.contract.type }}
+				/
+				{{ offer.city }}
+				/ offre publiée le
+				{{ offer.publicationDate|date("d/m/Y") }}</p>
+			<p class="offer-text-details mb-1">{{offer.recruiter.partner.name}}
+				/ offre gérée par
+				{{offer.recruiter.fullname}}</p>
+			{% if is_granted("ROLE_ADMIN")%}
+				<div class="m-auto">
+					<div class="d-flex flex-row">
+						<div class="pink-circle">
+							<a href="{{ path('app_offer_index') }}">
+								<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="logo-admin bi bi-arrow-return-left" viewbox="0 0 16 16">
+									<path fill-rule="evenodd" d="M14.5 1.5a.5.5 0 0 1 .5.5v4.8a2.5 2.5 0 0 1-2.5 2.5H2.707l3.347 3.346a.5.5 0 0 1-.708.708l-4.2-4.2a.5.5 0 0 1 0-.708l4-4a.5.5 0 1 1 .708.708L2.707 8.3H12.5A1.5 1.5 0 0 0 14 6.8V2a.5.5 0 0 1 .5-.5z"></path>
+								</svg>
+							</a>
+						</div>
+						<div class="pink-circle">
+							<a href="{{ path('app_offer_edit', {'id': offer.id}) }}">
+								<svg xmlns="http://www.w3.org/2000/svg" class="logo-admin bi bi-vector-pen" viewbox="0 0 16 16">
+									<path fill-rule="evenodd" d="M10.646.646a.5.5 0 0 1 .708 0l4 4a.5.5 0 0 1 0 .708l-1.902 1.902-.829 3.313a1.5 1.5 0 0 1-1.024 1.073L1.254 14.746 4.358 4.4A1.5 1.5 0 0 1 5.43 3.377l3.313-.828L10.646.646zm-1.8 2.908-3.173.793a.5.5 0 0 0-.358.342l-2.57 8.565 8.567-2.57a.5.5 0 0 0 .34-.357l.794-3.174-3.6-3.6z"></path>
+									<path fill-rule="evenodd" d="M2.832 13.228 8 9a1 1 0 1 0-1-1l-4.228 5.168-.026.086.086-.026z"></path>
+								</svg>
+							</a>
+						</div>
+						<div>
+							{{ include('offer/_delete_form.html.twig') }}
+						</div>
+					</div>
+				</div>
+			{% endif %}
+		</div>
 
 		<h2 class="mt-4 text-black">L'offre</h2>
+
 		<div>
 			{{ offer.description|raw }}
 		</div>
 
-		<h2 class="text-black mt-3 ">Votre contact pour ce job</h2>
+		<h2 class="text-black mt-3 ">
+			{% if is_granted("ROLE_ADMIN")%}Le{% else %}Votre
+			{% endif %}
+			contact pour ce job</h2>
 		<div class="mb-4 d-flex flex-column">
 			<img id="recruiterLogo" src="{{ asset('build/images/recruteurLoop.png') }}">
 			<h5 class="fw-bold mt-2">{{ offer.recruiter.fullname }}</h5>
@@ -33,23 +63,38 @@
 		</div>
 
 		{% if is_granted("ROLE_ADMIN")%}
-			<div class="d-flex flex-row">
-				<div class="pink-circle">
-					<a href="{{ path('app_offer_index') }}">
-						<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="logo-admin bi bi-arrow-return-left" viewbox="0 0 16 16">
-							<path fill-rule="evenodd" d="M14.5 1.5a.5.5 0 0 1 .5.5v4.8a2.5 2.5 0 0 1-2.5 2.5H2.707l3.347 3.346a.5.5 0 0 1-.708.708l-4.2-4.2a.5.5 0 0 1 0-.708l4-4a.5.5 0 1 1 .708.708L2.707 8.3H12.5A1.5 1.5 0 0 0 14 6.8V2a.5.5 0 0 1 .5-.5z"></path>
-						</svg>
-					</a>
-				</div>
-				<div class="pink-circle">
-					<a href="{{ path('app_offer_edit', {'id': offer.id}) }}">
-						<svg xmlns="http://www.w3.org/2000/svg" class="logo-admin bi bi-vector-pen" viewbox="0 0 16 16">
-							<path fill-rule="evenodd" d="M10.646.646a.5.5 0 0 1 .708 0l4 4a.5.5 0 0 1 0 .708l-1.902 1.902-.829 3.313a1.5 1.5 0 0 1-1.024 1.073L1.254 14.746 4.358 4.4A1.5 1.5 0 0 1 5.43 3.377l3.313-.828L10.646.646zm-1.8 2.908-3.173.793a.5.5 0 0 0-.358.342l-2.57 8.565 8.567-2.57a.5.5 0 0 0 .34-.357l.794-3.174-3.6-3.6z"></path>
-							<path fill-rule="evenodd" d="M2.832 13.228 8 9a1 1 0 1 0-1-1l-4.228 5.168-.026.086.086-.026z"></path>
-						</svg>
-					</a>
-				</div>
-				{{ include('offer/_delete_form.html.twig') }}</div>
+			<h2 class="mt-4 text-black">Les candidatures</h2>
+
+			<table class="table candidacyTable mt-3">
+				<colgroup>
+					<col span="1" style="width: 33%;">
+					<col span="1" style="width: 33%;">
+					<col span="1" style="width: 33%;">
+
+				</colgroup>
+				<thead>
+					<tr>
+						<th>Nom du candidat</th>
+						<th>Date de candidature</th>
+						<th>Statut</th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for candidacy in offer.candidacies %}
+						<tr>
+							<td>
+								<a href="#">{{ candidacy.candidate.fullname}}</a>
+							</td>
+							<td>{{ candidacy.candidacyDate ? candidacy.candidacyDate|date('Y/m/d') : '' }}</td>
+							<td>{{candidacy.status.status}}</td>
+						</tr>
+					{% else %}
+						<tr>
+							<td colspan="4">Pas de candidatures trouvées</td>
+						</tr>
+					{% endfor %}
+				</tbody>
+			</table>
 		{% endif %}
 	</main>
 {% endblock %}
