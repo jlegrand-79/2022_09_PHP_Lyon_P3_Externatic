@@ -57,18 +57,18 @@
 	</div>
 
 	<div class="btn-inscription d-flex justify-content-center m-1">
-		<a href="/offer/list" class="btn rounded-0">Voir toutes nos offres</a>
+		<a href="{{ path('app_offer_list') }}" class="btn rounded-0">Voir toutes nos offres</a>
 	</div>
 
 	<div class="title">
 		<div class="inscription d-flex justify-content-center mt-3 text-center">
 			<h2 class="homeH2 ">
 				Vous souhaitez postuler
-				<span class="offerTitle text-center-md">à une offre?</span>
+				<span class="offerTitle text-center-md">à une offre ?</span>
 			</h2>
 		</div>
 		<div class="btn-inscription d-flex justify-content-center m-1 mb-5">
-			<a href="#" class="btn rounded-0">Inscrivez-vous</a>
+			<a href="{{ path('app_register') }}" class="btn rounded-0">Inscrivez-vous</a>
 		</div>
 	</div>
 {% endblock %}
