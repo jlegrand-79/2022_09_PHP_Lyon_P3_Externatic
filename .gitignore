@@ -7,8 +7,7 @@ db-data
 /.env.local.php
 /.env.*.local
 /config/secrets/prod/prod.decrypt.private.php
-/public/bundles/fosckeditor/
-!/public/bundles/fosckeditor/config.js
+/public/bundles/                   
 /var/
 /vendor/
 ###< symfony/framework-bundle ###
