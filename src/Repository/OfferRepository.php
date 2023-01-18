@@ -49,6 +49,15 @@ class OfferRepository extends ServiceEntityRepository
         return $queryBuilder->getResult();
     }
 
+    public function randomOffer(): array
+    {
+        $queryBuilder = $this->createQueryBuilder('o')
+            ->setMaxResults(6)
+            ->orderBy('RAND()')
+            ->getQuery();
+        return $queryBuilder->getResult();
+    }
+
     // public function search(string $search)
     // {
     //     return $this->createQueryBuilder('o')
