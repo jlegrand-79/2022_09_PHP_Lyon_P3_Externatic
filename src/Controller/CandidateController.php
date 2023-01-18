@@ -11,10 +11,23 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 
 #[Route('/candidate')]
 class CandidateController extends AbstractController
 {
+
+    #[Route('/', name: 'app_candidate_index', methods: ['GET', 'POST'])]
+    #[IsGranted('ROLE_ADMIN')]
+    public function index(Request $request, CandidateRepository $candidateRepository, UserRepository $userRepository): Response
+    {
+        return $this->render('candidate/index.html.twig', [
+            'candidates' => $candidateRepository->findAll(), 'users' => $userRepository->findAll(),
+
+        ]);
+    }
+
+
     #[Route('/new', name: 'app_candidate_new', methods: ['GET', 'POST'])]
     #[IsGranted('ROLE_CANDIDATE')]
     public function new(
@@ -73,6 +86,15 @@ class CandidateController extends AbstractController
         $userConnected = $this->container->get('security.token_storage')->getToken()->getUser();
         $userCandidateId = $userConnected->getInformation()->getId();
         $candidate = $candidateRepository->findOneBy(['id' => $userCandidateId]);
+        return $this->render('candidate/show.html.twig', [
+            'candidate' => $candidate,
+        ]);
+    }
+
+    #[Route('/{id}', name: 'app_candidate_admin_show', methods: ['GET'])]
+    #[IsGranted('ROLE_ADMIN')]
+    public function showAdmin(Candidate $candidate): Response
+    {
         return $this->render('candidate/show.html.twig', [
             'candidate' => $candidate,
         ]);

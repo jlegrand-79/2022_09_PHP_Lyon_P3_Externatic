@@ -1,0 +1,71 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Offer index
+{% endblock %}
+
+{% block body %}
+
+<main class="container mb-4">
+
+	<h1 class="text-center">Espace Admin</h1>
+
+	<div class="all-links">
+		<a href="{{ path('app_candidate_new') }}" class="link-admin" role="button" aria-pressed="true">Ajouter un candidat</a>
+	</div>
+
+	<h2 class="text-center">Les candidats</h2>
+
+	<form action="{{ path('app_offer_index') }}" method="post" class="d-none d-lg-block mt-3 mb-4">
+		<div class="form-row formSearchOffer">
+			<div class="form-group col-md-6 searchOffer">
+				<label for="inputSearch">Mots-clés</label>
+				<input type="text" name="search" class="form-control" placeholder="Développeur">
+			</div>
+			<div class="form-group col-md-6 searchOffer">
+				<label for="inputLocation">Lieu</label>
+				<input type="text" class="form-control" placeholder="Rennes">
+			</div>
+			<button type="submit" class="btn text-white rounded-0 buttonSearchOffer">Rechercher</button>
+		</div>
+	</form>
+</div>
+
+{% for user in users %}
+
+	<div class="row justify-content-center">
+		<div
+			class="col-9 col-lg-8 col-xxl-7">
+			{#<a href="{{ path('app_candidate_admin_show', {'id': candidate.id}) }}" class="offer-link">#}
+			<div class="card offer d-flex flex-row justify-content-between">
+				<div class="col-11">
+					<div class="offer-body card-body">
+						<p class="offer-text">
+							{{ user.email }}
+						</p>
+					</div>
+				</div>
+				<div class="offer-more col-1 d-flex justify-content-center align-items-center">
+					<div>
+
+						<svg xmlns="http://www.w3.org/2000/svg" class="logo-offer-more bi bi-plus" viewbox="0 0 16 16">
+							<path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"></path>
+						</svg>
+					</div>
+				</div>
+			</div>
+		</a>
+	</div>
+
+	<div class="col-2 col-md-1 d-flex flex-row align-items-center p-0">
+		<div class="pink-circle">
+			<a href="">
+				<svg xmlns="http://www.w3.org/2000/svg" class="logo-admin bi bi-vector-pen" viewbox="0 0 16 16">
+					<path fill-rule="evenodd" d="M10.646.646a.5.5 0 0 1 .708 0l4 4a.5.5 0 0 1 0 .708l-1.902 1.902-.829 3.313a1.5 1.5 0 0 1-1.024 1.073L1.254 14.746 4.358 4.4A1.5 1.5 0 0 1 5.43 3.377l3.313-.828L10.646.646zm-1.8 2.908-3.173.793a.5.5 0 0 0-.358.342l-2.57 8.565 8.567-2.57a.5.5 0 0 0 .34-.357l.794-3.174-3.6-3.6z"></path>
+					<path fill-rule="evenodd" d="M2.832 13.228 8 9a1 1 0 1 0-1-1l-4.228 5.168-.026.086.086-.026z"></path>
+				</svg>
+			</a>
+		</div>
+
+
+	</div>
+</div>{% endfor %}</main>{% endblock %}
