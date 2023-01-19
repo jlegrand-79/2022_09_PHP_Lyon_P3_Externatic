@@ -127,7 +127,7 @@ class OfferController extends AbstractController
         if ($this->isCsrfTokenValid('delete' . $offer->getId(), $request->request->get('_token'))) {
             if ($offer->getCandidacies()->isEmpty()) {
                 $offerRepository->remove($offer, true);
-                $this->addFlash('success', "L'offre a bien été supprimée.");
+                $this->addFlash('success', "L'offre sélectionnée a bien été supprimée.");
             } else {
                 $this->addFlash(
                     'danger',
