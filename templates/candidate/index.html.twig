@@ -10,7 +10,7 @@
 		<h1 class="text-center">Espace Admin</h1>
 
 		<div class="all-links">
-			<a href="{{ path('app_candidate_new') }}" class="link-admin" role="button" aria-pressed="true">Ajouter un candidat</a>
+			<a href="{{ path('app_register') }}" class="link-admin" role="button" aria-pressed="true">Ajouter un candidat</a>
 		</div>
 
 		<h2 class="text-center">Les candidats</h2>
@@ -33,62 +33,66 @@
 		<div class="row justify-content-center">
 
 			{% for user in users %}
-				<div
-					class="col-9 col-lg-8 col-xxl-7">
-					{#<a href="{{ path('app_candidate_admin_show', {'id': candidate.id}) }}" class="offer-link">#}
-					<div class="card offer d-flex flex-row justify-content-between">
-						<div class="col-11">
-							<div class="offer-body card-body">
+				<div class="col-9 col-lg-8 col-xxl-7">
+					{% if user.information.firstname is defined %}
+						<a href="{{ path('app_candidate_admin_show', {'id': user.information.id }) }}" class="offer-link">
+						{% else %}
+							<a href="{{ path('app_candidate_index') }}" class="offer-link">
+							{% endif %}
+							<div class="card offer d-flex flex-row justify-content-between">
+								<div class="col-11">
+									<div class="offer-body card-body">
+										{% if user.information.firstname is defined %}
+											<p class="offer-text">
+												{{ user.email }}
+												-
+												{{ user.information.firstname}}
+												{{ user.information.lastname}}
+											</p>
+										{% else %}
+											<p class="offer-text">
+												{{ user.email }}
+											</p>
+										{% endif %}
+									</div>
+								</div>
+								<div class="offer-more col-1 d-flex justify-content-center align-items-center">
+									<div>
 
-								{% if user.information.firstname is defined %}
-									<p class="offer-text">
-										{{ user.information.firstname}}
-										{{ user.information.lastname}}
-									</p>
-								{% else %}
-									<p class="offer-text">
-										{{ user.email }}
-									</p>
-								{% endif %}
+										<svg xmlns="http://www.w3.org/2000/svg" class="logo-offer-more bi bi-plus" viewbox="0 0 16 16">
+											<path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"></path>
+										</svg>
+									</div>
+								</div>
+							</div>
+						</a>
+					</div>
+
+					{% if user.information.firstname is defined %}
+						<div class="col-2 col-md-1 d-flex flex-row align-items-center p-0">
+							<div class="pink-circle">
+								<a href="{{ path('app_candidate_edit', {'id': user.information.id }) }}">
+									<svg xmlns="http://www.w3.org/2000/svg" class="logo-admin bi bi-vector-pen" viewbox="0 0 16 16">
+										<path fill-rule="evenodd" d="M10.646.646a.5.5 0 0 1 .708 0l4 4a.5.5 0 0 1 0 .708l-1.902 1.902-.829 3.313a1.5 1.5 0 0 1-1.024 1.073L1.254 14.746 4.358 4.4A1.5 1.5 0 0 1 5.43 3.377l3.313-.828L10.646.646zm-1.8 2.908-3.173.793a.5.5 0 0 0-.358.342l-2.57 8.565 8.567-2.57a.5.5 0 0 0 .34-.357l.794-3.174-3.6-3.6z"></path>
+										<path fill-rule="evenodd" d="M2.832 13.228 8 9a1 1 0 1 0-1-1l-4.228 5.168-.026.086.086-.026z"></path>
+									</svg>
+								</a>
 							</div>
 						</div>
-						<div class="offer-more col-1 d-flex justify-content-center align-items-center">
-							<div>
-
-								<svg xmlns="http://www.w3.org/2000/svg" class="logo-offer-more bi bi-plus" viewbox="0 0 16 16">
-									<path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"></path>
-								</svg>
+					{% else %}
+						<div class="col-2 col-md-1 d-flex flex-row align-items-center p-0">
+							<div class="pink-circle">
+								<a href="{{ path('app_candidate_admin_new', {'id': user.id }) }}">
+									<svg xmlns="http://www.w3.org/2000/svg" class="logo-admin bi bi-file-earmark-plus" viewbox="0 0 16 16">
+										<path d="M8 6.5a.5.5 0 0 1 .5.5v1.5H10a.5.5 0 0 1 0 1H8.5V11a.5.5 0 0 1-1 0V9.5H6a.5.5 0 0 1 0-1h1.5V7a.5.5 0 0 1 .5-.5z"/>
+										<path d="M14 4.5V14a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h5.5L14 4.5zm-3 0A1.5 1.5 0 0 1 9.5 3V1H4a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V4.5h-2z"/>
+									</svg>
+								</a>
 							</div>
 						</div>
-					</div>
-					{# </a> #}
-				</div>
 
-				{% if user.information.firstname is defined %}
-					<div class="col-2 col-md-1 d-flex flex-row align-items-center p-0">
-						<div class="pink-circle">
-							<a href="">
-								<svg xmlns="http://www.w3.org/2000/svg" class="logo-admin bi bi-vector-pen" viewbox="0 0 16 16">
-									<path fill-rule="evenodd" d="M10.646.646a.5.5 0 0 1 .708 0l4 4a.5.5 0 0 1 0 .708l-1.902 1.902-.829 3.313a1.5 1.5 0 0 1-1.024 1.073L1.254 14.746 4.358 4.4A1.5 1.5 0 0 1 5.43 3.377l3.313-.828L10.646.646zm-1.8 2.908-3.173.793a.5.5 0 0 0-.358.342l-2.57 8.565 8.567-2.57a.5.5 0 0 0 .34-.357l.794-3.174-3.6-3.6z"></path>
-									<path fill-rule="evenodd" d="M2.832 13.228 8 9a1 1 0 1 0-1-1l-4.228 5.168-.026.086.086-.026z"></path>
-								</svg>
-							</a>
-						</div>
-					</div>
-				{% else %}
-					<div class="col-2 col-md-1 d-flex flex-row align-items-center p-0">
-						<div class="pink-circle">
-							<a href="">
-								<svg xmlns="http://www.w3.org/2000/svg" class="logo-admin bi bi-file-earmark-plus" viewbox="0 0 16 16">
-									<path d="M8 6.5a.5.5 0 0 1 .5.5v1.5H10a.5.5 0 0 1 0 1H8.5V11a.5.5 0 0 1-1 0V9.5H6a.5.5 0 0 1 0-1h1.5V7a.5.5 0 0 1 .5-.5z"/>
-									<path d="M14 4.5V14a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h5.5L14 4.5zm-3 0A1.5 1.5 0 0 1 9.5 3V1H4a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V4.5h-2z"/>
-								</svg>
-							</a>
-						</div>
-					</div>
-
-				{% endif %}
-			{% endfor %}
-		</div>
-	</main>
-{% endblock %}
+					{% endif %}
+				{% endfor %}
+			</div>
+		</main>
+	{% endblock %}
