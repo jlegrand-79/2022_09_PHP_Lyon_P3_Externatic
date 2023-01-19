@@ -185,7 +185,7 @@ button {
 }
 
 .searchOffer {
-    width: 350px !important;
+    width: 43% !important;
 }
 
 .searchOfferMobile {
@@ -225,4 +225,12 @@ button {
     &:hover {
         background-color: transparent;
     }
+}
+
+.NoOffer {
+    color: $mainPink;
+    font: 900 40px Jost;
+    margin-top: 50px;
+    margin-bottom: 80px;
+    text-align: center;
 }
