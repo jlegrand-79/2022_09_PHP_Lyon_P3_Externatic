@@ -140,7 +140,7 @@ class CandidateController extends AbstractController
         $form->handleRequest($request);
 
         $candidateRepository->save($candidate, true);
-        $this->addFlash('success', "Veuillez valider ce formulaire pour confirmer la suppression de votre CV.");
+        $this->addFlash('success', "Votre CV a bien été supprimé.");
 
         return $this->redirectToRoute(
             'app_candidate_update',
@@ -169,7 +169,7 @@ class CandidateController extends AbstractController
         $form->handleRequest($request);
 
         $candidateRepository->save($candidate, true);
-        $this->addFlash('success', "Veuillez valider ce formulaire pour confirmer la suppression de votre photo.");
+        $this->addFlash('success', "Votre photo a bien été supprimée.");
 
         return $this->redirectToRoute(
             'app_candidate_update',
