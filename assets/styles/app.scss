@@ -30,6 +30,10 @@ $theme-colors: (
 
 
 
+body {
+    color: black;
+}
+
 label {
     color: #000;
     font: 600 20px Jost;
@@ -210,7 +214,7 @@ button {
 
 .loginForm {
     width: 30%;
-    min-width: 240px;
+    min-width: 320px;
     max-width: 450px;
     background-color: white;
     padding: 30px;
