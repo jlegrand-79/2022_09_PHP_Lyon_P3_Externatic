@@ -61,6 +61,15 @@ $light: #fff;
     padding: 8px;
 }
 
+.grey-circle {
+    background-color: #3f3f3f;
+    width: 40px;
+    height: 40px;
+    border-radius: 50px;
+    margin-top: 15px;
+    margin-left: 5px;
+}
+
 .pink-circle {
     background-color: $mainPink;
     width: 40px;
