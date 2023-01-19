@@ -16,47 +16,29 @@
 		<h2 class="text-center">Les offres publiées</h2>
 
 
-		{# FORM DESKTOP #}
-		<div class="row justify-content-center" id="display">
-			<div class="col-11 col-md-10 col-lg-9 col-xxl-8">
-				<form action="{{ path('app_offer_index') }}" method="post" class="d-none d-lg-block mt-3 mb-4" id="form">
-					<div class="form-row formSearchOffer">
-						<div class="form-group col-md-6 searchOffer">
-							<label for="inputSearch">Mots-clés</label>
-							<input type="text" name="search" class="form-control" placeholder="Ex : Développeur">
-						</div>
-						<div class="form-group col-md-6 searchOffer">
-							<label for="city">Votre ville :</label>
-							<input type="text" id="city" name="city" list="cities" class="form-control" placeholder="Ex : Rennes (35)">
-							<datalist id="cities"></datalist>
-						</div>
-						<button type="submit" id="submit-button" value="Search" class="btn text-white rounded-0 buttonSearchOffer">Rechercher</button>
-					</div>
-				</form>
-			</div>
-		</div>
+		<div class="row justify-content-center mb-4">
+			<div class="col-11 col-md-10 col-lg-9 col-xxl-8 row justify-content-center pe-0">
 
-
-		{# FORM MOBILE #}
-		<div class="row justify-content-center" id="display">
-			<div class="col-11 col-md-10 col-lg-9 col-xxl-8">
-				<form action="{{ path('app_offer_index') }}" method="post" class="d-lg-none mt-3 mb-4" id="form">
+				<form action="{{ path('app_offer_index') }}" method="post" id="form">
 					<div class="form-row formSearchMobile">
-						<div class="form-group">
-							<label for="inputSearch">Mots-clés</label>
-							<input type="text" name="search" class="form-control" placeholder="Ex : Développeur">
+						<div class="row">
+							<div class="form-group col-md-5 p-0">
+								<label for="inputSearch">Mots-clés</label>
+								<input type="text" name="search" class="form-control" placeholder="Ex : Développeur">
+							</div>
+							<div class="form-group col-md-5 p-0">
+								<label for="city">Votre ville :</label>
+								<input type="text" id="city" name="city" list="cities" class="form-control" placeholder="Ex : Rennes (35)">
+								<datalist id="cities"></datalist>
+							</div>
+							<div class="form-group col-md-2 p-0">
+								<button type="submit" id="submit-button" value="Search" class="btn text-white rounded-0 buttonSearchOffer">Rechercher</button>
+							</div>
 						</div>
-						<div class="form-group">
-							<label for="city">Votre ville :</label>
-							<input type="text" id="city" name="city" list="cities" class="form-control" placeholder="Ex : Rennes (35)">
-							<datalist id="cities"></datalist>
-						</div>
-						<button type="submit" id="submit-button" value="Search" class="btn text-white rounded-0 buttonSearchOffer">Rechercher</button>
 					</div>
 				</form>
 			</div>
 		</div>
-
 
 		{% for offer in offers %}
 			<div class="row justify-content-center">
