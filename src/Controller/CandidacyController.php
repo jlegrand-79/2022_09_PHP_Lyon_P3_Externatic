@@ -7,7 +7,6 @@ use App\Entity\Offer;
 use App\Entity\Candidacy;
 use App\Form\CandidacyType;
 use App\Entity\Status;
-use Doctrine\ORM\Mapping\Entity;
 use App\Repository\OfferRepository;
 use App\Repository\CandidacyRepository;
 use App\Repository\StatusRepository;
