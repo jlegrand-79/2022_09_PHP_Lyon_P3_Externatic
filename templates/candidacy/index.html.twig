@@ -58,7 +58,7 @@
 						<td>
 							<a href="#">{{ candidacy.candidate.fullname}}</a>
 						</td>
-						<td>{{ candidacy.candidacyDate ? candidacy.candidacyDate|date('Y/m/d') : '' }}</td>
+						<td>{{ candidacy.candidacyDate ? candidacy.candidacyDate|date('d/m/Y') : '' }}</td>
 						<td>{{candidacy.status.status}}</td>
 					</tr>
 				{% else %}
