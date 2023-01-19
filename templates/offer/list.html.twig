@@ -8,22 +8,18 @@
 	<main class="container mb-4">
 
 		<h1 class="text-center">Toutes nos offres</h1>
-
-		<form action="{{ path('app_offer_list') }}" method="post" class="d-none d-lg-block mt-3 mb-4">
+		<form action="{{ path('app_offer_list') }}" method="post" class="d-none d-lg-block mt-3 mb-4" id="form">
 			<div class="form-row formSearchOffer">
 				<div class="form-group col-md-6 searchOffer">
 					<label for="inputSearch">Mots-clés</label>
 					<input type="text" name="search" class="form-control" placeholder="Développeur">
 				</div>
 				<div class="form-group col-md-6 searchOffer">
-					<label for="inputLocation">Lieu</label>
-					<input type="text" class="form-control" placeholder="Rennes">
+					<label for="city">Votre ville :</label>
+					<input type="text" id="city" name="city" list="cities" class="form-control" placeholder="Rennes">
+					<datalist id="cities"></datalist>
 				</div>
-				<div class="form-group col-md-6 searchOffer">
-					<label for="inputLocationRadius">Distance</label>
-					<input type="text" class="form-control" placeholder="5km">
-				</div>
-				<button type="submit" class="btn text-white rounded-0 buttonSearchOffer">Rechercher</button>
+				<button type="submit" id="submit-button" value="Search" class="btn text-white rounded-0 buttonSearchOffer">Rechercher</button>
 			</div>
 		</form>
 
