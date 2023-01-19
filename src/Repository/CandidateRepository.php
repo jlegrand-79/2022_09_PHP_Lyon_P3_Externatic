@@ -63,22 +63,4 @@ class CandidateRepository extends ServiceEntityRepository
     //            ->getOneOrNullResult()
     //        ;
     //    }
-
-    public function findLikeRole($value): array
-{
-    $queryBuilder = $this->createQueryBuilder('u')
-        ->where('u.roles LIKE :roles')
-        ->setParameter('roles','ROLE_CANDIDATE')
-        ->orderBy('u.id', 'DESC')
-        ->getQuery();
-
-    return $queryBuilder->getResult();
-}
-
-
-// $qb->select('roles .r')
-//    ->from('User', 'u')
-//    ->where('u.roles')
-//    ->orderBy('u.name', 'ASC')
-//    ->setParameter('email', '%' . $email . '%')
 }
