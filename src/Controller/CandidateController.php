@@ -112,6 +112,7 @@ class CandidateController extends AbstractController
             }
             $candidate->setUpdatedAt(new DateTime());
             $candidateRepository->save($candidate, true);
+            $this->addFlash('success', "Votre profil a bien été mis à jour.");
 
             return $this->redirectToRoute('app_candidate_show', [], Response::HTTP_SEE_OTHER);
         }
