@@ -165,3 +165,22 @@ if (gender && birthday1 && birthday2 && birthday3) {
     birthday2.firstChild.disabled = true
     birthday3.firstChild.disabled = true
 }
+
+// Candidate Update cvFile
+var replaceFileLink = document.querySelector('.replace-file-link');
+var storedCv = document.querySelector('#storedCv');
+var cvUploader = document.querySelector('#cvUploader');
+replaceFileLink.addEventListener('click', function () {
+    cvUploader.style.display = 'flex';
+    storedCv.style.display = 'none';
+});
+
+
+// Candidate Update pictureFile
+var replacePictureLink = document.querySelector('.replace-picture-link');
+var storedPicture = document.querySelector('#storedPicture');
+var pictureUploader = document.querySelector('#pictureUploader');
+replacePictureLink.addEventListener('click', function () {
+    pictureUploader.style.display = 'flex';
+    // storedPicture.style.display = 'none';
+});

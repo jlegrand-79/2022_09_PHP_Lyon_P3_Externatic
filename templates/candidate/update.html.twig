@@ -1,0 +1,84 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mes informations
+{% endblock %}
+
+{% block body %}
+	<main class="mainSection mb-5">
+		<div class="mainForm">
+			<h1 class="text-center">Mes informations</h1>
+			{{ form_start(form, {'attr': {'class': 'd-flex flex-column'}}) }}
+			{{ form_label(form.pictureFile)}}
+			<div>
+				{% if candidate.picture is empty %}
+					{{ form_widget(form.pictureFile, {'attr': {'class': 'mb-3'}}) }}
+				{% else %}
+					<table id="storedPicture" class="text-center">
+						<tr>
+							<td colspan="3"><img class="candidate-picture rounded-circle" src="{{ asset('uploads/candidate/picture/' ~ candidate.picture) }}" alt="{{ candidate.firstname }} {{ candidate.lastname }}"></td>
+						</tr>
+						<tr>
+							<td>
+								<a href="#">Supprimer</a>
+							</td>
+							<td>|</td>
+							<td>
+								<a class="replace-picture-link" href="javascript:void(0)">Remplacer</a>
+							</td>
+						</tr>
+					</table>
+					<div id="pictureUploader" style="display:none;">
+						{{ form_widget(form.pictureFile, {'attr': {'class': 'mb-3'}}) }}
+					</div>
+				{% endif %}
+			</div>
+			{{ form_row(form.gender)}}
+			{{ form_row(form.firstname)}}
+			{{ form_row(form.lastname)}}
+			{{ form_row(form.birthday)}}
+			{{ form_row(form.phone)}}
+			{{ form_row(form.address)}}
+			{{ form_row(form.addressComplement)}}
+			{{ form_row(form.postalCode)}}
+			{{ form_row(form.city)}}
+			{{ form_row(form.contractSearched, {'attr': {'class': 'd-flex flex-row flex-wrap justify-content-evenly'}})}}
+			{% if noContractSearched is defined %}
+				<div class="invalid-feedback d-block">{{ noContractSearched }}</div>
+			{% endif %}
+			{{ form_row(form.stacks, {'attr': {'class': 'd-flex flex-row flex-wrap justify-content-evenly'}})}}
+			{% if noStacks is defined %}
+				<div class="invalid-feedback d-block">{{ noStacks }}</div>
+			{% endif %}
+
+			{% if candidate.curriculumVitae %}
+				<div id="storedCv" style="display: block;">
+					<p>
+						<a href="{{ asset('uploads/candidate/curriculumVitae/' ~ candidate.curriculumVitae) }}">{{ candidate.curriculumVitae }}</a>
+					</p>
+					<p>
+						<a class="replace-file-link" href="javascript:void(0)">Remplacer mon CV</a>
+					</p>
+					<p>
+						<a href="{{ path('app_candidate_cv_delete') }}">Supprimer mon CV</a>
+					</p>
+				</div>
+				<label for="candidate_cvFile_file" class="drop-container" style="display: none;" id="cvUploader">
+					<img src="{{ asset('build/images/upload.png') }}" id='uploadLogo'>
+					<div class="text-black">Téléverser votre CV</div>
+					{{ form_widget(form.cvFile) }}
+				</label>
+			{% else %}
+				{{ form_label(form.cvFile) }}
+				<label for="candidate_cvFile_file" class="drop-container">
+					<img src="{{ asset('build/images/upload.png') }}" id='uploadLogo'>
+					<div class="text-black">Téléverser votre CV</div>
+					{{ form_widget(form.cvFile) }}
+				</label>
+			{% endif %}
+			<button>
+				{{ button_label | default('Mettre à jour') }}
+			</button>
+			{{ form_end(form) }}
+		</div>
+	</main>
+{% endblock %}
