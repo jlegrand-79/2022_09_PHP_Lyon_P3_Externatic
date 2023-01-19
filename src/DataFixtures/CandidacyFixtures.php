@@ -51,7 +51,7 @@ class CandidacyFixtures extends Fixture implements DependentFixtureInterface
         return [
             CandidateFixtures::class,
             OfferFixtures::class,
-            CandidacyStatusFixtures::class
+            StatusFixtures::class
         ];
     }
 }

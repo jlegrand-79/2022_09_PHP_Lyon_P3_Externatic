@@ -4,9 +4,9 @@
 {% endblock %}
 
 {% block body %}
-	<main class="container">
+	<main class="container px-4">
 		<div class="d-flex flex-column align-items-center">
-			<h1 class="text-center">{{ offer.title }}</h1>
+			<h1 class="text-center text-break">{{ offer.title }}</h1>
 			<p class="offer-text-details">
 				{{ offer.contract.type }}
 				/
@@ -39,6 +39,17 @@
 						</div>
 					</div>
 				</div>
+			{% else %}
+				{% if candidacy is defined %}
+					<p class="mt-3 fw-bold text-decoration-underline text-mainPink">Vous avez postulé à cette offre le
+						{{candidacy.candidacyDate|date('d/m/Y') }}
+					</p>
+				{% else %}
+					<div class="d-none d-sm-flex flex-column align-items-center">
+						<a href="{{ path('app_candidacy_new', {'id': offer.id}) }}" class="link-admin" role="button" aria-pressed="true">Postuler</a>
+					</div>
+				{% endif %}
+
 			{% endif %}
 		</div>
 
@@ -97,4 +108,7 @@
 			</table>
 		{% endif %}
 	</main>
+	<div class="d-flex d-sm-none flex-column align-items-center fixed-bottom mb-5 applyMobile">
+		<a href="{{ path('app_candidacy_new', {'id': offer.id}) }}" class="link-admin w-50" role="button" aria-pressed="true">Postuler</a>
+	</div>
 {% endblock %}

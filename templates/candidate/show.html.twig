@@ -2,16 +2,16 @@
 {% block title %}Profile
 {% endblock %}
 {% block body %}
-	<main class="container">
-		<div class="d-flex justify-content-center align-items-center">
+	<main class="container px-3">
+		<div class="d-flex justify-content-center align-items-center ps-2">
 			<div>
 				{% if candidate.picture is empty %}
-					<img class="candidate-picture rounded-circle" src="{{ asset('build/images/person.svg') }}" alt="{{ candidate.firstname }} {{ candidate.lastname }}">
+					<img class="candidate-picture rounded-circle mt-3" src="{{ asset('build/images/person.svg') }}" alt="{{ candidate.firstname }} {{ candidate.lastname }}">
 				{% else %}
-					<img class="candidate-picture rounded-circle" src="{{ asset('uploads/candidate/picture/' ~ candidate.picture) }}" alt="{{ candidate.firstname }} {{ candidate.lastname }}">
+					<img class="candidate-picture rounded-circle mt-3" src="{{ asset('uploads/candidate/picture/' ~ candidate.picture) }}" alt="{{ candidate.firstname }} {{ candidate.lastname }}">
 				{% endif %}
 			</div>
-			<div class="px-5">
+			<div class="ps-4 pe-4">
 				<h1 class="text-center">
 					{% if candidate.gender is not null %}
 						{% if candidate.gender == "Femme" %}
