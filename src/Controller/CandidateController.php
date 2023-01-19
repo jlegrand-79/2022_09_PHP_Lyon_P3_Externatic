@@ -24,7 +24,7 @@ class CandidateController extends AbstractController
         UserRepository $userRepository
     ): Response {
         return $this->render('candidate/index.html.twig', [
-            'candidates' => $candidateRepository->findAll(), 'users' => $userRepository->findAll(),
+            'candidates' => $candidateRepository->findAll(), 'users' => $userRepository->findLikeRole(),
 
         ]);
     }
