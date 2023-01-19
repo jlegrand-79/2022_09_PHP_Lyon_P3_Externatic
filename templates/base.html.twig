@@ -19,6 +19,9 @@
 	</head>
 	<body>
 		{% include '_navbar.html.twig' %}
+		{% if is_granted("ROLE_ADMIN")%}
+			{% include '_navbarAdmin.html.twig' %}
+		{% endif %}
 		{% block body %}{% endblock %}
 		{% include '_footer.html.twig' %}
 	</body>

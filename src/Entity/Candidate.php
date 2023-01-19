@@ -190,6 +190,11 @@ class Candidate implements \Serializable
         return $this;
     }
 
+    public function getFullName(): string
+    {
+        return $this->firstname . ' ' . $this->lastname;
+    }
+
     public function getPhone(): ?string
     {
         return $this->phone;

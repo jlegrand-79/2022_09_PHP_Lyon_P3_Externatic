@@ -95,6 +95,9 @@ class Offer
     #[ORM\OneToMany(mappedBy: 'offer', targetEntity: Candidacy::class)]
     private Collection $candidacies;
 
+    #[ORM\Column(nullable: true)]
+    private ?int $department = null;
+
     public function __construct()
     {
         $this->stack = new ArrayCollection();
@@ -265,6 +268,18 @@ class Offer
             $this->candidacies->add($candidacy);
             $candidacy->setOffer($this);
         }
+
+        return $this;
+    }
+
+    public function getDepartment(): ?int
+    {
+        return $this->department;
+    }
+
+    public function setDepartment(?int $department): self
+    {
+        $this->department = $department;
 
         return $this;
     }

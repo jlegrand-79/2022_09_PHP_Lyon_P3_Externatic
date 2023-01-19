@@ -13,6 +13,8 @@ $grey: #EFEDED;
 @import "candidate-show";
 @import "home";
 @import "footer";
+@import "navbarAdmin";
+@import "candidaciesAdmin";
 
 
 $theme-colors: (
@@ -21,6 +23,10 @@ $theme-colors: (
     "mainPink" : $mainPink,
     "grey" : $grey,
 );
+
+body {
+    color: black;
+}
 
 label {
     color: #000;
@@ -176,6 +182,10 @@ button {
 }
 
 .searchOffer {
+    width: 350px !important;
+}
+
+.searchOfferMobile {
     width: 220px !important;
 }
 
@@ -198,9 +208,18 @@ button {
 
 .loginForm {
     width: 30%;
-    min-width: 240px;
+    min-width: 320px;
     max-width: 450px;
     background-color: white;
     padding: 30px;
     border: 1px solid black;
+}
+
+#deleteButton {
+    background-color: transparent;
+    border: none;
+
+    &:hover {
+        background-color: transparent;
+    }
 }
