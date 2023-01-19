@@ -110,10 +110,6 @@ class CandidateController extends AbstractController
                     'noContractSearched' => $noContractSearched,
                 ]);
             }
-            $data = $form->getData();
-            // dd($data);
-            $pictureFile = $data->getPictureFile();
-            $candidate->setPictureFile($pictureFile);
             $candidate->setUpdatedAt(new DateTime());
             $candidateRepository->save($candidate, true);
 
@@ -143,7 +139,7 @@ class CandidateController extends AbstractController
         $form->handleRequest($request);
 
         $candidateRepository->save($candidate, true);
-        $this->addFlash('success', "Votre CV a bien été supprimé.");
+        $this->addFlash('success', "Veuillez valider ce formulaire pour confirmer la suppression de votre CV.");
 
         return $this->redirectToRoute(
             'app_candidate_update',
@@ -172,7 +168,7 @@ class CandidateController extends AbstractController
         $form->handleRequest($request);
 
         $candidateRepository->save($candidate, true);
-        $this->addFlash('success', "Votre photo a bien été supprimée.");
+        $this->addFlash('success', "Veuillez valider ce formulaire pour confirmer la suppression de votre photo.");
 
         return $this->redirectToRoute(
             'app_candidate_update',

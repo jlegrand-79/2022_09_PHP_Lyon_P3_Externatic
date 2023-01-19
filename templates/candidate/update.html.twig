@@ -11,17 +11,29 @@
 			{% if candidate.picture %}
 				{{ form_label(form.pictureFile)}}
 				<div id="storedPicture" style="display: block;">
-					<p>
-						<img class="candidate-picture rounded-circle" src="{{ asset('uploads/candidate/picture/' ~ candidate.picture) }}" alt="{{ candidate.firstname }} {{ candidate.lastname }}">
-					</p>
-					<p>
-						<a class="replace-picture-link" href="javascript:void(0)">Remplacer ma photo</a>
-					</p>
-					<p>
-						<a href="{{ path('app_candidate_picture_delete') }}">Supprimer ma photo</a>
-					</p>
+					<table class="text-center">
+						<tr>
+							<td colspan="3">
+								<img class="candidate-picture rounded-circle" src="{{ asset('uploads/candidate/picture/' ~ candidate.picture) }}" alt="{{ candidate.firstname }} {{ candidate.lastname }}">
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<a title="Supprimer" class="m-0" onclick="window.location.href='{{ path('app_candidate_picture_delete') }}';">Supprimer</a>
+							</td>
+							<td>|</td>
+							<td>
+								<a title="Remplacer" class="replace-picture-link m-0" onclick="javascript:void(0)">Remplacer</a>
+							</td>
+						</tr>
+					</table>
 				</div>
-				{{ form_widget(form.pictureFile, {'attr': {'class': 'mb-3', 'style': 'display: none;', 'id': 'blabla'}})}}
+				<div id="pictureUploader" style="display:none;">
+					<div>
+						<a title="Annuler" class="keep-picture-link m-0" onclick="javascript:void(0)">Conserver ma photo actuelle</a>
+					</div>
+					{{ form_widget(form.pictureFile, {'attr': {'class': 'mb-3'}})}}
+				</div>
 			{% else %}
 				{{ form_label(form.pictureFile)}}
 				{{ form_widget(form.pictureFile, {'attr': {'class': 'mb-3'}})}}
@@ -79,7 +91,7 @@
 					<div class="text-black">Téléverser votre CV</div>
 					{{ form_widget(form.cvFile) }}
 					<div>
-						<a class="keep-file-link mainSection" href="javascript:void(0)">Conserver mon CV actuel</a>
+						<a title="annuler" class="keep-file-link mainSection" href="javascript:void(0)">Conserver mon CV actuel</a>
 					</div>
 				</label>
 			{% else %}
