@@ -3,9 +3,11 @@
 namespace App\Controller;
 
 use App\Entity\Offer;
-use App\Controller\SearchOfferType;
 use App\Form\OfferType;
+use App\Service\SearchBar;
+use App\Controller\SearchOfferType;
 use App\Repository\OfferRepository;
+use App\Repository\CandidacyRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -17,24 +19,12 @@ class OfferController extends AbstractController
 {
     #[Route('/', name: 'app_offer_index', methods: ['GET', 'POST'])]
     #[IsGranted('ROLE_ADMIN')]
-    public function index(Request $request, OfferRepository $offerRepository): Response
+    public function index(Request $request, OfferRepository $offerRepository, SearchBar $searchBar): Response
     {
         if ($request->isMethod('POST')) {
             $search = $request->get('search');
             $select = $request->get('city');
-
-            $trimSelect = substr_replace($select, "", -5);
-            $trimCode = substr($select, -3, 2);
-
-            $offers = [];
-            $offersbyCity = $offerRepository->findLikeNameAndCity($search, $trimSelect);
-            $offersbyDepartment = $offerRepository->findLikeDepartment($search, $trimSelect, $trimCode);
-            foreach ($offersbyCity as $offer) {
-                $offers[] = $offer;
-            };
-            foreach ($offersbyDepartment as $offer) {
-                $offers[] = $offer;
-            };
+            $offers = $searchBar->searchOffer($search, $select);
         } else {
             $offers = $offerRepository->findBy(array(), array('id' => 'DESC'));
         }
@@ -45,24 +35,12 @@ class OfferController extends AbstractController
     }
 
     #[Route('/list', name: 'app_offer_list', methods: ['GET', 'POST'])]
-    public function list(Request $request, OfferRepository $offerRepository): Response
+    public function list(Request $request, OfferRepository $offerRepository, SearchBar $searchBar): Response
     {
         if ($request->isMethod('POST')) {
             $search = $request->get('search');
             $select = $request->get('city');
-
-            $trimSelect = substr_replace($select, "", -5);
-            $trimCode = substr($select, -3, 2);
-
-            $offers = [];
-            $offersbyCity = $offerRepository->findLikeNameAndCity($search, $trimSelect);
-            $offersbyDepartment = $offerRepository->findLikeDepartment($search, $trimSelect, $trimCode);
-            foreach ($offersbyCity as $offer) {
-                $offers[] = $offer;
-            };
-            foreach ($offersbyDepartment as $offer) {
-                $offers[] = $offer;
-            };
+            $offers = $searchBar->searchOffer($search, $select);
         } else {
             $offers = $offerRepository->findBy(array(), array('id' => 'DESC'));
         }
@@ -101,10 +79,25 @@ class OfferController extends AbstractController
     }
 
     #[Route('/{id}', name: 'app_offer_show', methods: ['GET'])]
-    public function show(Offer $offer): Response
+    public function show(int $id, OfferRepository $offerRepository, CandidacyRepository $candidacyRepository): Response
     {
+        $offer = $offerRepository->findOneById($id);
+
+        if ($this->container->get('security.token_storage')->getToken()) {
+            $user = $this->container->get('security.token_storage')->getToken()->getUser();
+            if ($user->getInformation()) {
+                $candidate = $user->getInformation();
+                $candidacy = $candidacyRepository->findOneBy(['candidate' => $candidate, 'offer' => $offer]);
+                if ($candidacy != false) {
+                    return $this->render('offer/show.html.twig', [
+                        'offer' => $offer,
+                        'candidacy' => $candidacy
+                    ]);
+                }
+            }
+        }
         return $this->render('offer/show.html.twig', [
-            'offer' => $offer,
+            'offer' => $offer
         ]);
     }
 
