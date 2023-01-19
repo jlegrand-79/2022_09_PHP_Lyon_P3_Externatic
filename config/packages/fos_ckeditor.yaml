@@ -9,3 +9,6 @@ fos_ck_editor:
         main_config:
             toolbar:
                 - { name: "styles", items: ['Bold', 'Italic', 'Underline', 'Strike', 'Blockquote', '-', 'Link', '-', 'RemoveFormat', '-', 'NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', '-', 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock', '-', 'Image', 'Table', '-', 'Styles', 'Format','Font','FontSize', '-', 'TextColor', 'BGColor', 'Source'] }
+            contentsCss : '/build/app.css'
+            fontSize_sizes : '10/10px;11/11px;12/12px;14/14px;16/16px;18/18px;20/20px;22/22px'
+            format_tags : 'p;h3;h4;h5;h6'

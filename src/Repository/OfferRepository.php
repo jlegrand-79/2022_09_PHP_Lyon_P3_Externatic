@@ -39,11 +39,27 @@ class OfferRepository extends ServiceEntityRepository
         }
     }
 
-    public function findLikeName(string $name): array
+    public function findLikeNameAndCity(string $name, string $city): array
     {
         $queryBuilder = $this->createQueryBuilder('o')
             ->where('o.title LIKE :name')
+            ->andWhere('o.city LIKE :city')
             ->setParameter('name', '%' . $name . '%')
+            ->setParameter('city', '%' . $city . '%')
+            ->orderBy('o.title', 'ASC')
+            ->getQuery();
+        return $queryBuilder->getResult();
+    }
+
+    public function findLikeDepartment(string $name, string $city, string $code): array
+    {
+        $queryBuilder = $this->createQueryBuilder('o')
+            ->where('o.title LIKE :name')
+            ->andwhere('o.department = :code')
+            ->andWhere('o.city != :city')
+            ->setParameter('name', '%' . $name . '%')
+            ->setParameter('city', $city)
+            ->setParameter('code', $code)
             ->orderBy('o.title', 'ASC')
             ->getQuery();
         return $queryBuilder->getResult();

@@ -21,9 +21,22 @@ class OfferController extends AbstractController
     {
         if ($request->isMethod('POST')) {
             $search = $request->get('search');
-            $offers = $offerRepository->findLikeName($search);
+            $select = $request->get('city');
+
+            $trimSelect = substr_replace($select, "", -5);
+            $trimCode = substr($select, -3, 2);
+
+            $offers = [];
+            $offersbyCity = $offerRepository->findLikeNameAndCity($search, $trimSelect);
+            $offersbyDepartment = $offerRepository->findLikeDepartment($search, $trimSelect, $trimCode);
+            foreach ($offersbyCity as $offer) {
+                $offers[] = $offer;
+            };
+            foreach ($offersbyDepartment as $offer) {
+                $offers[] = $offer;
+            };
         } else {
-            $offers = $offerRepository->findAll();
+            $offers = $offerRepository->findBy(array(), array('id' => 'DESC'));
         }
 
         return $this->render('offer/index.html.twig', [
@@ -36,10 +49,22 @@ class OfferController extends AbstractController
     {
         if ($request->isMethod('POST')) {
             $search = $request->get('search');
+            $select = $request->get('city');
 
-            $offers = $offerRepository->findLikeName($search);
+            $trimSelect = substr_replace($select, "", -5);
+            $trimCode = substr($select, -3, 2);
+
+            $offers = [];
+            $offersbyCity = $offerRepository->findLikeNameAndCity($search, $trimSelect);
+            $offersbyDepartment = $offerRepository->findLikeDepartment($search, $trimSelect, $trimCode);
+            foreach ($offersbyCity as $offer) {
+                $offers[] = $offer;
+            };
+            foreach ($offersbyDepartment as $offer) {
+                $offers[] = $offer;
+            };
         } else {
-            $offers = $offerRepository->findAll();
+            $offers = $offerRepository->findBy(array(), array('id' => 'DESC'));
         }
 
         return $this->render('offer/list.html.twig', [
