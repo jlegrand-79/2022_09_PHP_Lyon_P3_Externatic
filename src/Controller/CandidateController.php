@@ -110,6 +110,10 @@ class CandidateController extends AbstractController
                     'noContractSearched' => $noContractSearched,
                 ]);
             }
+            $data = $form->getData();
+            // dd($data);
+            $pictureFile = $data->getPictureFile();
+            $candidate->setPictureFile($pictureFile);
             $candidate->setUpdatedAt(new DateTime());
             $candidateRepository->save($candidate, true);
 
@@ -140,6 +144,35 @@ class CandidateController extends AbstractController
 
         $candidateRepository->save($candidate, true);
         $this->addFlash('success', "Votre CV a bien été supprimé.");
+
+        return $this->redirectToRoute(
+            'app_candidate_update',
+            [
+                'candidate' => $candidate,
+                'form' => $form,
+            ],
+            Response::HTTP_SEE_OTHER
+        );
+    }
+
+    #[Route('/picture/delete', name: 'app_candidate_picture_delete', methods: ['GET', 'POST'])]
+    #[IsGranted('ROLE_CANDIDATE')]
+    public function deletePicture(
+        Request $request,
+        CandidateRepository $candidateRepository,
+    ): Response {
+        $user = $this->container->get('security.token_storage')->getToken()->getUser();
+        $candidateId = $user->getInformation()->getId();
+
+        $candidate = $candidateRepository->findOneBy(['id' => $candidateId]);
+        $candidate->setUser($user);
+        $candidate->setPicture('');
+
+        $form = $this->createForm(CandidateType::class, $candidate);
+        $form->handleRequest($request);
+
+        $candidateRepository->save($candidate, true);
+        $this->addFlash('success', "Votre photo a bien été supprimée.");
 
         return $this->redirectToRoute(
             'app_candidate_update',

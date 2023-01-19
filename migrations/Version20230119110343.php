@@ -10,7 +10,7 @@ use Doctrine\Migrations\AbstractMigration;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-final class Version20230119104809 extends AbstractMigration
+final class Version20230119110343 extends AbstractMigration
 {
     public function getDescription(): string
     {
@@ -26,7 +26,7 @@ final class Version20230119104809 extends AbstractMigration
         $this->addSql('CREATE TABLE candidate_stack (candidate_id INT NOT NULL, stack_id INT NOT NULL, INDEX IDX_7948909691BD8781 (candidate_id), INDEX IDX_7948909637C70060 (stack_id), PRIMARY KEY(candidate_id, stack_id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE candidate_contract (candidate_id INT NOT NULL, contract_id INT NOT NULL, INDEX IDX_48D16A8A91BD8781 (candidate_id), INDEX IDX_48D16A8A2576E0FD (contract_id), PRIMARY KEY(candidate_id, contract_id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE contract (id INT AUTO_INCREMENT NOT NULL, type VARCHAR(255) NOT NULL, PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
-        $this->addSql('CREATE TABLE offer (id INT AUTO_INCREMENT NOT NULL, contract_id INT NOT NULL, recruiter_id INT NOT NULL, work_field_id INT NOT NULL, title VARCHAR(255) NOT NULL, description LONGTEXT DEFAULT NULL, address VARCHAR(255) NOT NULL, publication_date DATETIME NOT NULL, postal_code VARCHAR(255) NOT NULL, city VARCHAR(255) NOT NULL, address_complement VARCHAR(255) DEFAULT NULL, INDEX IDX_29D6873E2576E0FD (contract_id), INDEX IDX_29D6873E156BE243 (recruiter_id), INDEX IDX_29D6873E91828DEC (work_field_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
+        $this->addSql('CREATE TABLE offer (id INT AUTO_INCREMENT NOT NULL, contract_id INT NOT NULL, recruiter_id INT NOT NULL, work_field_id INT NOT NULL, title VARCHAR(255) NOT NULL, description LONGTEXT DEFAULT NULL, address VARCHAR(255) NOT NULL, publication_date DATETIME NOT NULL, postal_code VARCHAR(255) NOT NULL, city VARCHAR(255) NOT NULL, address_complement VARCHAR(255) DEFAULT NULL, department INT DEFAULT NULL, INDEX IDX_29D6873E2576E0FD (contract_id), INDEX IDX_29D6873E156BE243 (recruiter_id), INDEX IDX_29D6873E91828DEC (work_field_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE offer_stack (offer_id INT NOT NULL, stack_id INT NOT NULL, INDEX IDX_C285068353C674EE (offer_id), INDEX IDX_C285068337C70060 (stack_id), PRIMARY KEY(offer_id, stack_id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE partner (id INT AUTO_INCREMENT NOT NULL, logo VARCHAR(255) NOT NULL, name VARCHAR(255) NOT NULL, description VARCHAR(1000) NOT NULL, url VARCHAR(255) NOT NULL, picture VARCHAR(255) NOT NULL, address VARCHAR(255) NOT NULL, PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE recruiter (id INT AUTO_INCREMENT NOT NULL, partner_id INT NOT NULL, user_id INT NOT NULL, firstname VARCHAR(255) NOT NULL, lastname VARCHAR(255) NOT NULL, phone VARCHAR(255) NOT NULL, address VARCHAR(255) NOT NULL, position VARCHAR(255) NOT NULL, INDEX IDX_DE8633D89393F8FE (partner_id), UNIQUE INDEX UNIQ_DE8633D8A76ED395 (user_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');

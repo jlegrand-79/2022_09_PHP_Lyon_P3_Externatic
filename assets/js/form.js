@@ -168,18 +168,23 @@ if (gender && birthday1 && birthday2 && birthday3) {
 
 // Candidate Update cvFile
 var replaceFileLink = document.querySelector('.replace-file-link');
+var keepFileLink = document.querySelector('.keep-file-link');
 var storedCv = document.querySelector('#storedCv');
 var cvUploader = document.querySelector('#cvUploader');
 replaceFileLink.addEventListener('click', function () {
     cvUploader.style.display = 'flex';
     storedCv.style.display = 'none';
 });
+keepFileLink.addEventListener('click', function () {
+    cvUploader.style.display = 'none';
+    storedCv.style.display = 'block';
+});
 
 
 // Candidate Update pictureFile
 var replacePictureLink = document.querySelector('.replace-picture-link');
 var storedPicture = document.querySelector('#storedPicture');
-var pictureUploader = document.querySelector('#pictureUploader');
+var pictureUploader = document.querySelector('#candidate_pictureFile_file');
 replacePictureLink.addEventListener('click', function () {
     pictureUploader.style.display = 'flex';
     // storedPicture.style.display = 'none';

@@ -24,7 +24,7 @@ class CandidateType extends AbstractType
                 'required'      => false,
                 'allow_delete'  => false,
                 'download_uri' => false,
-                'label' => 'Photo',
+                'label' => 'Votre photo',
                 'label_attr' => [
                     'class' => 'fs-5'
                 ],
@@ -179,7 +179,7 @@ class CandidateType extends AbstractType
                 'required' => false,
                 'allow_delete'  => false,
                 'download_uri' => false,
-                'label' => 'Téléverser votre CV',
+                'label' => 'Votre CV',
                 'label_attr' => [
                     'class' => 'fs-5 label-file'
                 ],
