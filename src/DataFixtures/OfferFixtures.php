@@ -66,6 +66,7 @@ class OfferFixtures extends Fixture implements DependentFixtureInterface
                 'address_complement' => '1er étage',
                 'postal_code' => '01000',
                 'city' => 'Bourg-en-Bresse',
+                'department' => 01,
             ],
             [
                 'contract' => 'contract_CDD',
@@ -173,6 +174,7 @@ class OfferFixtures extends Fixture implements DependentFixtureInterface
                 'address_complement' => '2ème étage',
                 'postal_code' => '69000',
                 'city' => 'Lyon',
+                'department' => 69,
             ],
             [
                 'contract' => 'contract_CDD',
@@ -241,6 +243,7 @@ class OfferFixtures extends Fixture implements DependentFixtureInterface
                 'address_complement' => '3ème étage',
                 'postal_code' => '44000',
                 'city' => 'Nantes',
+                'department' => 44,
             ],
             [
                 'contract' => 'contract_CDI',
@@ -355,6 +358,7 @@ class OfferFixtures extends Fixture implements DependentFixtureInterface
                 'address_complement' => '4ème étage',
                 'postal_code' => '63000',
                 'city' => 'Clermont-Ferrand',
+                'department' => 63,
             ],
             [
                 'contract' => 'contract_CDI',
@@ -500,8 +504,9 @@ class OfferFixtures extends Fixture implements DependentFixtureInterface
                 ",
                 'address' => '1 rue des rivières',
                 'address_complement' => '5ème étage',
-                'postal_code' => '59000',
-                'city' => 'Lille',
+                'postal_code' => '44000',
+                'city' => 'Nantes',
+                'department' => 44,
             ],
             [
                 'contract' => 'contract_CDI',
@@ -596,6 +601,7 @@ class OfferFixtures extends Fixture implements DependentFixtureInterface
                 'address_complement' => '5ème étage',
                 'postal_code' => '59000',
                 'city' => 'Lille',
+                'department' => 59,
             ],
             [
                 'contract' => 'contract_CDI',
@@ -697,6 +703,7 @@ class OfferFixtures extends Fixture implements DependentFixtureInterface
                 'address_complement' => '5ème étage',
                 'postal_code' => '59000',
                 'city' => 'Lille',
+                'department' => 59,
             ],
             [
                 'contract' => 'contract_CDI',
@@ -744,7 +751,8 @@ class OfferFixtures extends Fixture implements DependentFixtureInterface
                 'address' => '1 rue des rivières',
                 'address_complement' => '5ème étage',
                 'postal_code' => '59000',
-                'city' => 'Lille',
+                'city' => 'Dunkerque',
+                'department' => '59',
             ],
         ];
 
@@ -759,6 +767,7 @@ class OfferFixtures extends Fixture implements DependentFixtureInterface
             $newOffer->setRecruiter($this->getReference($offer['recruiter']));
             $newOffer->setContract($this->getReference($offer['contract']));
             $newOffer->setWorkField($this->getReference($offer['workfield']));
+            $newOffer->setDepartment($offer['department']);
             foreach ($offer['stack'] as $stack) {
                 $newOffer->addStack($this->getReference($stack));
             }
