@@ -27,7 +27,7 @@ class Candidacy
 
     #[ORM\ManyToOne(inversedBy: 'candidacies')]
     #[ORM\JoinColumn(nullable: false)]
-    private ?CandidacyStatus $status = null;
+    private ?Status $status = null;
 
     public function getId(): ?int
     {
@@ -70,12 +70,12 @@ class Candidacy
         return $this;
     }
 
-    public function getStatus(): ?CandidacyStatus
+    public function getStatus(): ?Status
     {
         return $this->status;
     }
 
-    public function setStatus(?CandidacyStatus $status): self
+    public function setStatus(?Status $status): self
     {
         $this->status = $status;
 

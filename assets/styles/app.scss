@@ -3,6 +3,17 @@ $black: #000000;
 $mainPink: #CA2262;
 $light: #fff;
 $grey: #EFEDED;
+$danger: #DC3545;
+$success: #198754;
+
+$theme-colors: (
+    "black": $black,
+    "light" : $light,
+    "mainPink" : $mainPink,
+    "grey" : $grey,
+    "danger": $danger,
+    "success": $success
+);
 
 @import "~bootstrap/scss/bootstrap";
 
@@ -17,12 +28,7 @@ $grey: #EFEDED;
 @import "candidaciesAdmin";
 
 
-$theme-colors: (
-    "black": $black,
-    "light" : $light,
-    "mainPink" : $mainPink,
-    "grey" : $grey,
-);
+
 
 label {
     color: #000;
@@ -91,6 +97,7 @@ button {
     &:hover {
         background-color: $mainPink;
         border: none;
+        cursor: pointer;
     }
 }
 

@@ -39,6 +39,17 @@
 						</div>
 					</div>
 				</div>
+			{% else %}
+				{% if candidacy is defined %}
+					<p class="mt-3 fw-bold text-decoration-underline text-mainPink">Vous avez postulé à cette offre le
+						{{candidacy.candidacyDate|date('d/m/Y') }}
+					</p>
+				{% else %}
+					<div class="d-flex flex-column align-items-center">
+						<a href="{{ path('app_candidacy_new', {'id': offer.id}) }}" class="link-admin" role="button" aria-pressed="true">Postuler</a>
+					</div>
+				{% endif %}
+
 			{% endif %}
 		</div>
 

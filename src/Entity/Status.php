@@ -2,13 +2,13 @@
 
 namespace App\Entity;
 
-use App\Repository\CandidacyStatusRepository;
+use App\Repository\StatusRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity(repositoryClass: CandidacyStatusRepository::class)]
-class CandidacyStatus
+#[ORM\Entity(repositoryClass: StatusRepository::class)]
+class Status
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
