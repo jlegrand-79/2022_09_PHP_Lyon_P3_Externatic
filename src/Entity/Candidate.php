@@ -11,14 +11,16 @@ use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\File;
 use App\Repository\CandidateRepository;
+use DateTime;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Collections\ArrayCollection;
+use Serializable;
 use Symfony\Component\Validator\Constraints as Assert;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 #[ORM\Entity(repositoryClass: CandidateRepository::class)]
 #[Vich\Uploadable]
-class Candidate
+class Candidate implements \Serializable
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -137,6 +139,9 @@ class Candidate
     #[ORM\OneToMany(mappedBy: 'candidate', targetEntity: Candidacy::class)]
     private Collection $candidacies;
 
+    #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
+    private ?\DateTimeInterface $updatedAt = null;
+
     public function __construct()
     {
         $this->stacks = new ArrayCollection();
@@ -207,7 +212,7 @@ class Candidate
         return $this->picture;
     }
 
-    public function setPicture(string $picture): self
+    public function setPicture(?string $picture): self
     {
         $this->picture = $picture;
 
@@ -384,5 +389,59 @@ class Candidate
         }
 
         return $this;
+    }
+
+    public function getUpdatedAt(): ?\DateTimeInterface
+    {
+        return $this->updatedAt;
+    }
+
+    public function setUpdatedAt(?\DateTimeInterface $updatedAt): self
+    {
+        $this->updatedAt = $updatedAt;
+
+        return $this;
+    }
+
+    public function serialize()
+    {
+        return serialize(
+            [
+                'candidate_id' => $this->getId(),
+                'user' => $this->getUser(),
+                'gender' => $this->getGender(),
+                'firstname' => $this->getFirstname(),
+                'lastname' => $this->getLastname(),
+                'phone' => $this->getPhone(),
+                'picture' => $this->getPicture(),
+                'cv' => $this->getCurriculumVitae(),
+                'address' => $this->getAddress(),
+                'address_complement' => $this->getAddressComplement(),
+                'postal_code' => $this->getPostalCode(),
+                'city' => $this->getCity(),
+                'birthdate' => $this->getBirthday(),
+                'updated_at' => $this->getUpdatedAt(),
+            ]
+        );
+    }
+
+    public function unserialize($data)
+    {
+        $unserialized = unserialize($data);
+
+        $this
+            ->setUser($unserialized['user'])
+            ->setGender($unserialized['gender'])
+            ->setFirstname($unserialized['firstname'])
+            ->setLastname($unserialized['lastname'])
+            ->setPhone($unserialized['phone'])
+            ->setPicture($unserialized['picture'])
+            ->setCurriculumVitae($unserialized['cv'])
+            ->setAddress($unserialized['address'])
+            ->setAddressComplement($unserialized['address_complement'])
+            ->setPostalCode($unserialized['postal_code'])
+            ->setCity($unserialized['city'])
+            ->setBirthday($unserialized['birthdate'])
+            ->setUpdatedAt($unserialized['updated_at']);
     }
 }

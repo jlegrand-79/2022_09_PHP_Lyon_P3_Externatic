@@ -35,6 +35,11 @@ body {
 label {
     color: #000;
     font: 600 20px Jost;
+
+    a {
+        font-size: var(--bs-body-font-size);
+        font-weight: var(--bs-body-font-weight);
+    }
 }
 
 legend {
@@ -175,7 +180,8 @@ button {
 
 #candidate_cvFile_file {
     border: none;
-    width: 90%;
+    margin: auto;
+    width: 168px;
     overflow: hidden;
     text-overflow: ellipsis;
     flex-wrap: wrap;
