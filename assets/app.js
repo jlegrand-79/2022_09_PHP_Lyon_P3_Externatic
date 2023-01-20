@@ -14,9 +14,4 @@ require('bootstrap');
 import './bootstrap';
 import './js/form.js';
 import './js/search.js';
-
-
-
-
-
-
+import './js/file-updater.js';

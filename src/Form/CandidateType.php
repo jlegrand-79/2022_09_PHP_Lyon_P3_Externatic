@@ -22,7 +22,7 @@ class CandidateType extends AbstractType
         $builder
             ->add('pictureFile', VichFileType::class, [
                 'required'      => false,
-                'allow_delete'  => true,
+                'allow_delete'  => false,
                 'download_uri' => false,
                 'label' => 'Photo',
                 'label_attr' => [
@@ -87,64 +87,64 @@ class CandidateType extends AbstractType
     {
         $builder
             ->add('phone', TelType::class, [
-            'required' => true,
-            'attr' => [
-                'class' => 'form-control',
-                'placeholder' => 'Ex : 0285522633',
-            ],
-            'label' => 'Téléphone',
-            'label_attr' => [
-                'class' => 'form-label'
-            ],
-        ])
+                'required' => true,
+                'attr' => [
+                    'class' => 'form-control',
+                    'placeholder' => 'Ex : 0285522633',
+                ],
+                'label' => 'Téléphone',
+                'label_attr' => [
+                    'class' => 'form-label'
+                ],
+            ])
 
-        ->add('address', TextType::class, [
-            'required' => true,
-            'attr' => [
-                'class' => 'form-control',
-                'placeholder' => 'Ex : 1 rue de l\'institut Xavier',
-            ],
-            'label' => 'Adresse',
-            'label_attr' => [
-                'class' => 'form-label'
-            ],
-        ])
+            ->add('address', TextType::class, [
+                'required' => true,
+                'attr' => [
+                    'class' => 'form-control',
+                    'placeholder' => 'Ex : 1 rue de l\'institut Xavier',
+                ],
+                'label' => 'Adresse',
+                'label_attr' => [
+                    'class' => 'form-label'
+                ],
+            ])
 
-        ->add('addressComplement', TextType::class, [
-            'required' => false,
-            'attr' => [
-                'class' => 'form-control',
-                'placeholder' => 'Ex : Batiment principal',
-            ],
-            'label' => 'Complément d\'adresse',
-            'label_attr' => [
-                'class' => 'form-label'
-            ],
-        ])
+            ->add('addressComplement', TextType::class, [
+                'required' => false,
+                'attr' => [
+                    'class' => 'form-control',
+                    'placeholder' => 'Ex : Batiment principal',
+                ],
+                'label' => 'Complément d\'adresse',
+                'label_attr' => [
+                    'class' => 'form-label'
+                ],
+            ])
 
-        ->add('postalCode', TextType::class, [
-            'required' => true,
-            'attr' => [
-                'class' => 'form-control',
-                'placeholder' => 'Ex : 44000',
-            ],
-            'label' => 'Code postal',
-            'label_attr' => [
-                'class' => 'form-label'
-            ],
-        ])
+            ->add('postalCode', TextType::class, [
+                'required' => true,
+                'attr' => [
+                    'class' => 'form-control',
+                    'placeholder' => 'Ex : 44000',
+                ],
+                'label' => 'Code postal',
+                'label_attr' => [
+                    'class' => 'form-label'
+                ],
+            ])
 
-        ->add('city', TextType::class, [
-            'required' => true,
-            'attr' => [
-                'class' => 'form-control',
-                'placeholder' => 'Ex : Nantes',
-            ],
-            'label' => 'Ville',
-            'label_attr' => [
-                'class' => 'form-label'
-            ],
-        ]);
+            ->add('city', TextType::class, [
+                'required' => true,
+                'attr' => [
+                    'class' => 'form-control',
+                    'placeholder' => 'Ex : Nantes',
+                ],
+                'label' => 'Ville',
+                'label_attr' => [
+                    'class' => 'form-label'
+                ],
+            ]);
     }
 
     private function buildProfessionalInformation(FormBuilderInterface $builder): void
@@ -177,13 +177,16 @@ class CandidateType extends AbstractType
 
             ->add('cvFile', VichFileType::class, [
                 'required' => false,
-                'allow_delete'  => true,
-                'download_uri' => true,
-                'label' => 'Téléverser votre CV',
+                'allow_delete'  => false,
+                'download_uri' => false,
+                'label' => 'Curriculum Vitæ',
                 'label_attr' => [
                     'class' => 'fs-5 label-file'
                 ],
-                'attr' => ['id' => 'cv', 'class' => 'text-center'],
+                'attr' => [
+                    'id' => 'cv',
+                    'class' => 'text-center',
+                ],
             ]);
     }
 
