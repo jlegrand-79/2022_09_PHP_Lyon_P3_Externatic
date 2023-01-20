@@ -125,7 +125,15 @@ class OfferController extends AbstractController
     public function delete(Request $request, Offer $offer, OfferRepository $offerRepository): Response
     {
         if ($this->isCsrfTokenValid('delete' . $offer->getId(), $request->request->get('_token'))) {
-            $offerRepository->remove($offer, true);
+            if ($offer->getCandidacies()->isEmpty()) {
+                $offerRepository->remove($offer, true);
+                $this->addFlash('success', "L'offre sélectionnée a bien été supprimée.");
+            } else {
+                $this->addFlash(
+                    'danger',
+                    "Des candidatures sont en cours sur cette offre, elle ne peut pas être supprimée."
+                );
+            }
         }
 
         return $this->redirectToRoute('app_offer_index', [], Response::HTTP_SEE_OTHER);
