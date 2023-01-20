@@ -15,15 +15,11 @@
 
 		<h2 class="text-center">Les candidats</h2>
 
-		<form action="{{ path('app_offer_index') }}" method="post" class="d-none d-lg-block mt-3 mb-4">
+		<form action="{{ path('app_candidate_index') }}" method="post" class="d-none d-lg-block mt-3 mb-4">
 			<div class="form-row formSearchOffer">
 				<div class="form-group col-md-6 searchOffer">
-					<label for="inputSearch">Nom</label>
-					<input type="text" name="search" class="form-control" placeholder="Imbert">
-				</div>
-				<div class="form-group col-md-6 searchOffer">
-					<label for="inputLocation">Prénom</label>
-					<input type="text" class="form-control" placeholder="Jean-Michel">
+					<label for="email">Mail</label>
+					<input type="text" class="form-control" name="search" placeholder="jean.michel@mail.com">
 				</div>
 				<button type="submit" class="btn text-white rounded-0 buttonSearchOffer">Rechercher</button>
 			</div>
@@ -37,7 +33,7 @@
 					{% if user.information.firstname is defined %}
 						<a href="{{ path('app_candidate_admin_show', {'id': user.information.id }) }}" class="offer-link">
 						{% else %}
-							<a href="{{ path('app_candidate_index') }}" class="offer-link">
+							<a href="{{ path('app_candidate_admin_new', {'id': user.id }) }}" class="offer-link">
 							{% endif %}
 							<div class="card offer d-flex flex-row justify-content-between">
 								<div class="col-11">

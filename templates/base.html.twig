@@ -17,7 +17,7 @@
 			{{ encore_entry_script_tags('app') }}
 		{% endblock %}
 	</head>
-	<body>
+	<body {% block styleBody %} {% endblock %}>
 		{% include '_navbar.html.twig' %}
 		{% if is_granted("ROLE_ADMIN")%}
 			{% include '_navbarAdmin.html.twig' %}

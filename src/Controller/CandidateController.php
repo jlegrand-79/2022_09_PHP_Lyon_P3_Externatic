@@ -23,8 +23,23 @@ class CandidateController extends AbstractController
         CandidateRepository $candidateRepository,
         UserRepository $userRepository
     ): Response {
+
+        if ($request->isMethod('POST')) {
+            $search = $request->get('search');
+            $users = [];
+            $usersbyEmail = $userRepository->findLikeEmail($search);
+            foreach ($usersbyEmail as $user) {
+                if(in_array("ROLE_CANDIDATE", $user->getRoles())){
+                $users[] = $user;
+                }
+                
+            };
+        } else {
+            $users = $userRepository->findLikeRole(array(), array('id' => 'DESC'));
+        }
+
         return $this->render('candidate/index.html.twig', [
-            'candidates' => $candidateRepository->findAll(), 'users' => $userRepository->findLikeRole(),
+            'users' => $users,
 
         ]);
     }
