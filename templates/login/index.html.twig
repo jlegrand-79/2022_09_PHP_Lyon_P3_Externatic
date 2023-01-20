@@ -5,8 +5,11 @@
 	Se connecter
 {% endblock %}
 
+{% block styleBody %}class="background-login" style="background-image: url('{{ asset('build/images/Groupe105.png') }}')"
+{% endblock %}
+
 {% block body %}
-	<main class="mainSection d-flex flex-column" style="background-image: url('{{ asset('build/images/Groupe105.png') }}')">
+	<main class="mainSection d-flex flex-column">
 		{% for user, messages in app.flashes %}
 			{% for message in messages %}
 				<div class="alert alert-{{ user }} text-center rounded-0">
