@@ -3,28 +3,40 @@
 {% block title %}Externatic
 {% endblock %}
 {% block body %}
+
 	<div class="homeImage home justify-content-center align-items-center float-xxl-start float-xxl-none">
 		<h1 class="mainTitle d-flex justify-content-center text-white text-center mb-4 mt-0 pt-5">
 			Cherchez votre nouvel emploi
 		</h1>
-		<form class="d-none d-lg-block">
-			<div class="form-row formSearchOffer">
-				<div class="form-group col-md-6 searchOffer">
-					<label for="inputEmail4" class="text-white">Mots-clés</label>
-					<input type="text" class="form-control" placeholder="Développeur PHP">
-				</div>
-				<div class="form-group col-md-6 searchOffer">
-					<label for="inputPassword4" class="text-white">Lieu</label>
-					<input type="text" class="form-control" placeholder="Rennes">
-				</div>
-				<div class="form-group col-md-6 searchOffer">
-					<label for="inputPassword4" class="text-white">Distance</label>
-					<input type="text" class="form-control" placeholder="5km">
-				</div>
-				<button type="submit" class="btn text-white rounded-0 buttonSearchOffer">Rechercher</button>
+
+
+		<div class="row justify-content-center mb-4">
+			<div class="col-11 col-md-10 col-lg-9 col-xxl-8 row justify-content-center pe-0">
+
+				<form action="{{ path('app_offer_list') }}" method="post" id="form">
+					<div class="form-row formSearchMobile ms-4 mb-sm-0">
+						<div class="row">
+							<div class="form-group col-md-5 p-0">
+								<label for="inputSearch" class="text-white">Mots-clés</label>
+								<input type="text" name="search" class="form-control" placeholder="Ex : Développeur">
+							</div>
+							<div class="form-group col-md-5 p-0">
+								<label for="city" class="text-white">Votre ville :</label>
+								<input type="text" id="city" name="city" list="cities" class="form-control" placeholder="Ex : Rennes (35)">
+								<datalist id="cities"></datalist>
+							</div>
+							<div class="form-group col-md-2 p-0">
+								<button type="submit" id="submit-button" value="Search" class="btn text-white rounded-0 buttonSearchOffer mb-5">Rechercher</button>
+							</div>
+						</div>
+					</div>
+				</form>
 			</div>
-		</form>
+		</div>
+
+
 	</div>
+
 	<div class="offerContainer">
 		{% for offer in offers %}
 			<div class="row justify-content-center homeOffer ps-1">
@@ -57,18 +69,19 @@
 	</div>
 
 	<div class="btn-inscription d-flex justify-content-center m-1">
-		<a href="/offer/list" class="btn rounded-0">Voir toutes nos offres</a>
+		<a href="{{ path('app_offer_list') }}" class="btn rounded-0">Voir toutes nos offres</a>
 	</div>
 
 	<div class="title">
 		<div class="inscription d-flex justify-content-center mt-3 text-center">
 			<h2 class="homeH2 ">
 				Vous souhaitez postuler
-				<span class="offerTitle text-center-md">à une offre?</span>
+				<span class="offerTitle text-center-md">à une offre ?</span>
 			</h2>
 		</div>
 		<div class="btn-inscription d-flex justify-content-center m-1 mb-5">
-			<a href="#" class="btn rounded-0">Inscrivez-vous</a>
+			<a href="{{ path('app_register') }}" class="btn rounded-0">Inscrivez-vous</a>
 		</div>
 	</div>
+
 {% endblock %}

@@ -39,28 +39,72 @@ class OfferRepository extends ServiceEntityRepository
         }
     }
 
-//    /**
-//     * @return Offer[] Returns an array of Offer objects
-//     */
-//    public function findByExampleField($value): array
-//    {
-//        return $this->createQueryBuilder('o')
-//            ->andWhere('o.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->orderBy('o.id', 'ASC')
-//            ->setMaxResults(10)
-//            ->getQuery()
-//            ->getResult()
-//        ;
-//    }
+    public function findLikeNameAndCity(string $name, string $city): array
+    {
+        $queryBuilder = $this->createQueryBuilder('o')
+            ->where('o.title LIKE :name')
+            ->andWhere('o.city LIKE :city')
+            ->setParameter('name', '%' . $name . '%')
+            ->setParameter('city', '%' . $city . '%')
+            ->orderBy('o.title', 'ASC')
+            ->getQuery();
+        return $queryBuilder->getResult();
+    }
 
-//    public function findOneBySomeField($value): ?Offer
-//    {
-//        return $this->createQueryBuilder('o')
-//            ->andWhere('o.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->getQuery()
-//            ->getOneOrNullResult()
-//        ;
-//    }
+    public function findLikeDepartment(string $name, string $city, string $code): array
+    {
+        $queryBuilder = $this->createQueryBuilder('o')
+            ->where('o.title LIKE :name')
+            ->andwhere('o.department = :code')
+            ->andWhere('o.city != :city')
+            ->setParameter('name', '%' . $name . '%')
+            ->setParameter('city', $city)
+            ->setParameter('code', $code)
+            ->orderBy('o.title', 'ASC')
+            ->getQuery();
+        return $queryBuilder->getResult();
+    }
+
+    public function randomOffer(): array
+    {
+        $queryBuilder = $this->createQueryBuilder('o')
+            ->setMaxResults(6)
+            ->orderBy('RAND()')
+            ->getQuery();
+        return $queryBuilder->getResult();
+    }
+
+    // public function search(string $search)
+    // {
+    //     return $this->createQueryBuilder('o')
+    //         ->where('o.title LIKE :search')
+    //         ->setParameter('search', '%' . $search . '%')
+    //         ->getQuery()
+    //         ->getResult();
+    // }
+
+    //    /**
+    //     * @return Offer[] Returns an array of Offer objects
+    //     */
+    //    public function findByExampleField($value): array
+    //    {
+    //        return $this->createQueryBuilder('o')
+    //            ->andWhere('o.exampleField = :val')
+    //            ->setParameter('val', $value)
+    //            ->orderBy('o.id', 'ASC')
+    //            ->setMaxResults(10)
+    //            ->getQuery()
+    //            ->getResult()
+    //        ;
+    //    }
+
+    //    public function findOneBySomeField($value): ?Offer
+    //    {
+    //        return $this->createQueryBuilder('o')
+    //            ->andWhere('o.exampleField = :val')
+    //            ->setParameter('val', $value)
+    //            ->getQuery()
+    //            ->getOneOrNullResult()
+    //        ;
+    //    }
 }

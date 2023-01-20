@@ -3,6 +3,17 @@ $black: #000000;
 $mainPink: #CA2262;
 $light: #fff;
 $grey: #EFEDED;
+$danger: #DC3545;
+$success: #198754;
+
+$theme-colors: (
+    "black": $black,
+    "light" : $light,
+    "mainPink" : $mainPink,
+    "grey" : $grey,
+    "danger": $danger,
+    "success": $success
+);
 
 @import "~bootstrap/scss/bootstrap";
 
@@ -13,18 +24,22 @@ $grey: #EFEDED;
 @import "candidate-show";
 @import "home";
 @import "footer";
+@import "navbarAdmin";
+@import "candidaciesAdmin";
 
 
-$theme-colors: (
-    "black": $black,
-    "light" : $light,
-    "mainPink" : $mainPink,
-    "grey" : $grey,
-);
+body {
+    color: black;
+}
 
 label {
     color: #000;
     font: 600 20px Jost;
+
+    a {
+        font-size: var(--bs-body-font-size);
+        font-weight: var(--bs-body-font-weight);
+    }
 }
 
 legend {
@@ -89,6 +104,7 @@ button {
     &:hover {
         background-color: $mainPink;
         border: none;
+        cursor: pointer;
     }
 }
 
@@ -164,7 +180,8 @@ button {
 
 #candidate_cvFile_file {
     border: none;
-    width: 90%;
+    margin: auto;
+    width: 168px;
     overflow: hidden;
     text-overflow: ellipsis;
     flex-wrap: wrap;
@@ -175,6 +192,10 @@ button {
 }
 
 .searchOffer {
+    width: 43% !important;
+}
+
+.searchOfferMobile {
     width: 220px !important;
 }
 
@@ -197,8 +218,30 @@ button {
 
 .loginForm {
     width: 30%;
+    min-width: 320px;
     max-width: 450px;
     background-color: white;
     padding: 30px;
     border: 1px solid black;
+}
+
+#deleteButton {
+    background-color: transparent;
+    border: none;
+
+    &:hover {
+        background-color: transparent;
+    }
+}
+
+.background-login {
+    background-size: cover;
+}
+
+.NoOffer {
+    color: $mainPink;
+    font: 900 40px Jost;
+    margin-top: 50px;
+    margin-bottom: 80px;
+    text-align: center;
 }

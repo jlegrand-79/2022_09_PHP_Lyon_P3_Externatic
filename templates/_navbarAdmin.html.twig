@@ -1,0 +1,36 @@
+<nav class="nav navbar-admin">
+	<div class="container-fluid d-none d-sm-block">
+		<div class="justify-content-center" id="navbarNav">
+			<ul class="navbar-nav d-flex flex-row justify-content-center">
+				<li class="nav-item">
+					<a class="nav-link" aria-current="page" href="{{ path('app_offer_index') }}">Les offres</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="{{ path('app_candidate_index') }}">Les candidats</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="{{ path('app_candidacy_index') }}">Les candidatures</a>
+				</li>
+			</ul>
+		</div>
+	</div>
+
+
+	<div class="dropdown-center selectAdmin d-flex justify-content-center m-auto d-sm-none">
+		<button class="btn dropdown-toggle mt-0 text-light fw-bold" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+			Voir les catégories
+		</button>
+		<ul class="dropdown-menu">
+			<li class="nav-item">
+				<a class="nav-link" aria-current="page" href="{{ path('app_offer_index') }}">Les offres</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" href="{{ path('app_candidate_index') }}">Les candidats</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" href="{{ path('app_candidacy_index') }}">Les candidatures</a>
+			</li>
+		</ul>
+	</div>
+
+</nav>

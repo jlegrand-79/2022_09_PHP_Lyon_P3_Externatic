@@ -15,17 +15,28 @@
 
 		<h2 class="text-center">Les offres publiées</h2>
 
-		<div class="row justify-content-center">
-			<div class="col-11 col-md-10 col-lg-9 col-xxl-8">
-				<div class="input-group">
-					<input type="text" list="datalistOptions" class="form-control search-offers" placeholder="Rechercher une offre par nom, entreprise...">
 
-					<span class="input-group-text search-logo" id="basic-addon1">
-						<svg xmlns="http://www.w3.org/2000/svg" class="logo-search bi bi-search" viewbox="0 0 16 16">
-							<path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"></path>
-						</svg>
-					</span>
-				</div>
+		<div class="row justify-content-center mb-4">
+			<div class="col-11 col-md-10 col-lg-9 col-xxl-8 row justify-content-center pe-0">
+
+				<form action="{{ path('app_offer_index') }}" method="post" id="form">
+					<div class="form-row formSearchMobile">
+						<div class="row">
+							<div class="form-group col-md-5 p-0">
+								<label for="inputSearch">Mots-clés</label>
+								<input type="text" name="search" class="form-control" placeholder="Ex : Développeur">
+							</div>
+							<div class="form-group col-md-5 p-0">
+								<label for="city">Votre ville :</label>
+								<input type="text" id="city" name="city" list="cities" class="form-control" placeholder="Ex : Rennes (35)">
+								<datalist id="cities"></datalist>
+							</div>
+							<div class="form-group col-md-2 p-0">
+								<button type="submit" id="submit-button" value="Search" class="btn text-white rounded-0 buttonSearchOffer">Rechercher</button>
+							</div>
+						</div>
+					</div>
+				</form>
 			</div>
 		</div>
 
@@ -69,6 +80,9 @@
 					{{ include('offer/_delete_form.html.twig') }}
 				</div>
 			</div>
+		{% else %}
+
+			<h3 class="NoOffer">Pas d'offres disponibles pour cette recherche</h3>
 		{% endfor %}
 
 	</main>

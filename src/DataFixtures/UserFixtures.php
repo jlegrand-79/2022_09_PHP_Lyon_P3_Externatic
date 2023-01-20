@@ -22,52 +22,52 @@ class UserFixtures extends Fixture
         $users = [
             [
                 'email' => 'admin@externatic.com',
-                'password' => 'admin123',
+                'password' => 'Admin_123',
                 'role' => 'ROLE_ADMIN',
             ],
             [
                 'email' => 'bruce@wayne-entreprises.com',
-                'password' => 'brubru123',
+                'password' => 'Brubru_123',
                 'role' => 'ROLE_RECRUITER',
             ],
             [
                 'email' => 'lucius@wayne-entreprises.com',
-                'password' => 'lucluc123',
+                'password' => 'Lucluc_123',
                 'role' => 'ROLE_RECRUITER',
             ],
             [
                 'email' => 'tony@stark-industries.com',
-                'password' => 'tonton123',
+                'password' => 'Tonton_123',
                 'role' => 'ROLE_RECRUITER',
             ],
             [
                 'email' => 'virginia@stark-industries.com',
-                'password' => 'virvir123',
+                'password' => 'Virvir_123',
                 'role' => 'ROLE_RECRUITER',
             ],
             [
                 'email' => 'thomas.besson@mail.com',
-                'password' => 'thotho123',
+                'password' => 'Thotho_123',
                 'role' => 'ROLE_CANDIDATE',
             ],
             [
                 'email' => 'marcia.baila@mail.com',
-                'password' => 'marmar123',
+                'password' => 'Marmar_123',
                 'role' => 'ROLE_CANDIDATE',
             ],
             [
                 'email' => 'antoine.dupont@mail.com',
-                'password' => 'toitoi123',
+                'password' => 'Toitoi_123',
                 'role' => 'ROLE_CANDIDATE',
             ],
             [
                 'email' => 'chacha.da.rugna@mail.com',
-                'password' => 'chacha123',
+                'password' => 'Chacha_123',
                 'role' => 'ROLE_CANDIDATE',
             ],
             [
                 'email' => 'jeje01@mail.com',
-                'password' => 'jeje123',
+                'password' => 'Jeje_123',
                 'role' => 'ROLE_CANDIDATE',
             ]
         ];

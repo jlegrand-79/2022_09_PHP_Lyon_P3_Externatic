@@ -27,8 +27,8 @@ class CandidateFixtures extends Fixture implements DependentFixtureInterface
                 'postal_code' => '49000',
                 'city' => 'Angers',
                 'picture' => 'thomasphoto.jpeg',
-                'stacks' => 'PHP',
-                'contract_searched' => 'contract_CDI',
+                'stacks' => ['PHP'],
+                'contract_searched' => ['contract_CDI', 'contract_CDD'],
             ],
             [
                 'user' => 'user_6',
@@ -43,8 +43,8 @@ class CandidateFixtures extends Fixture implements DependentFixtureInterface
                 'city' => 'Tours',
                 'picture' => 'marciaphoto.jpeg',
                 'curriculum_vitae' => 'marciacv.pdf',
-                'stacks' => 'Javascript',
-                'contract_searched' => 'contract_CDD',
+                'stacks' => ['Javascript', 'PHP'],
+                'contract_searched' => ['contract_CDD', 'contract_Alternance']
             ],
             [
                 'user' => 'user_7',
@@ -58,8 +58,8 @@ class CandidateFixtures extends Fixture implements DependentFixtureInterface
                 'postal_code' => '59000',
                 'city' => 'Lyon',
                 'curriculum_vitae' => 'antoinecv.pdf',
-                'stacks' => 'mySQL',
-                'contract_searched' => 'contract_CDI',
+                'stacks' => ['mySQL', 'Python'],
+                'contract_searched' => ['contract_CDI'],
             ],
             [
                 'user' => 'user_8',
@@ -74,8 +74,8 @@ class CandidateFixtures extends Fixture implements DependentFixtureInterface
                 'city' => 'Chezpo',
                 'picture' => 'chachaphoto.jpeg',
                 'curriculum_vitae' => 'chachacv.pdf',
-                'stacks' => 'Java',
-                'contract_searched' => 'contract_CDD',
+                'stacks' => ['Java'],
+                'contract_searched' => ['contract_Alternance'],
             ],
         ];
 
@@ -97,8 +97,12 @@ class CandidateFixtures extends Fixture implements DependentFixtureInterface
                 $newCandidate->setCurriculumVitae($candidate['curriculum_vitae']);
             }
             $newCandidate->setUser($this->getReference($candidate['user']));
-            $newCandidate->addStack($this->getReference($candidate['stacks']));
-            $newCandidate->addContractSearched($this->getReference($candidate['contract_searched']));
+            foreach ($candidate['stacks'] as $stack) {
+                $newCandidate->addStack($this->getReference($stack));
+            }
+            foreach ($candidate['contract_searched'] as $contractSearched) {
+                $newCandidate->addContractSearched($this->getReference($contractSearched));
+            }
             $manager->persist($newCandidate);
             $this->addReference('candidate_' . $key, $newCandidate);
         }

@@ -1,0 +1,27 @@
+.navbar-admin {
+    background-color: $mainPink;
+    font-weight: bold;
+    font-size: 18px;
+
+    a {
+        color: white;
+        margin-left: 25px;
+        margin-right: 25px;
+    }
+}
+
+.selectAdmin {
+    width: 100%;
+    color: white;
+
+    button:focus {
+        border: none;
+    }
+
+    ul {
+        background-color: $mainPink;
+        width: 100%;
+        border-radius: 0%;
+        border: none;
+    }
+}

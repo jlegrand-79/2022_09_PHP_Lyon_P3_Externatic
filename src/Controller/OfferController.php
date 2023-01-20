@@ -4,7 +4,10 @@ namespace App\Controller;
 
 use App\Entity\Offer;
 use App\Form\OfferType;
+use App\Service\SearchBar;
+use App\Controller\SearchOfferType;
 use App\Repository\OfferRepository;
+use App\Repository\CandidacyRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -14,20 +17,36 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 #[Route('/offer')]
 class OfferController extends AbstractController
 {
-    #[Route('/', name: 'app_offer_index', methods: ['GET'])]
+    #[Route('/', name: 'app_offer_index', methods: ['GET', 'POST'])]
     #[IsGranted('ROLE_ADMIN')]
-    public function index(OfferRepository $offerRepository): Response
+    public function index(Request $request, OfferRepository $offerRepository, SearchBar $searchBar): Response
     {
+        if ($request->isMethod('POST')) {
+            $search = $request->get('search');
+            $select = $request->get('city');
+            $offers = $searchBar->searchOffer($search, $select);
+        } else {
+            $offers = $offerRepository->findBy(array(), array('id' => 'DESC'));
+        }
+
         return $this->render('offer/index.html.twig', [
-            'offers' => $offerRepository->findBy(array(), array('id' => 'DESC')),
+            'offers' => $offers,
         ]);
     }
 
-    #[Route('/list', name: 'app_offer_list', methods: ['GET'])]
-    public function list(OfferRepository $offerRepository): Response
+    #[Route('/list', name: 'app_offer_list', methods: ['GET', 'POST'])]
+    public function list(Request $request, OfferRepository $offerRepository, SearchBar $searchBar): Response
     {
+        if ($request->isMethod('POST')) {
+            $search = $request->get('search');
+            $select = $request->get('city');
+            $offers = $searchBar->searchOffer($search, $select);
+        } else {
+            $offers = $offerRepository->findBy(array(), array('id' => 'DESC'));
+        }
+
         return $this->render('offer/list.html.twig', [
-            'offers' => $offerRepository->findBy(array(), array('id' => 'DESC')),
+            'offers' => $offers,
         ]);
     }
 
@@ -60,10 +79,25 @@ class OfferController extends AbstractController
     }
 
     #[Route('/{id}', name: 'app_offer_show', methods: ['GET'])]
-    public function show(Offer $offer): Response
+    public function show(int $id, OfferRepository $offerRepository, CandidacyRepository $candidacyRepository): Response
     {
+        $offer = $offerRepository->findOneById($id);
+
+        if ($this->container->get('security.token_storage')->getToken()) {
+            $user = $this->container->get('security.token_storage')->getToken()->getUser();
+            if ($user->getInformation()) {
+                $candidate = $user->getInformation();
+                $candidacy = $candidacyRepository->findOneBy(['candidate' => $candidate, 'offer' => $offer]);
+                if ($candidacy != false) {
+                    return $this->render('offer/show.html.twig', [
+                        'offer' => $offer,
+                        'candidacy' => $candidacy
+                    ]);
+                }
+            }
+        }
         return $this->render('offer/show.html.twig', [
-            'offer' => $offer,
+            'offer' => $offer
         ]);
     }
 
@@ -91,7 +125,15 @@ class OfferController extends AbstractController
     public function delete(Request $request, Offer $offer, OfferRepository $offerRepository): Response
     {
         if ($this->isCsrfTokenValid('delete' . $offer->getId(), $request->request->get('_token'))) {
-            $offerRepository->remove($offer, true);
+            if ($offer->getCandidacies()->isEmpty()) {
+                $offerRepository->remove($offer, true);
+                $this->addFlash('success', "L'offre sélectionnée a bien été supprimée.");
+            } else {
+                $this->addFlash(
+                    'danger',
+                    "Des candidatures sont en cours sur cette offre, elle ne peut pas être supprimée."
+                );
+            }
         }
 
         return $this->redirectToRoute('app_offer_index', [], Response::HTTP_SEE_OTHER);

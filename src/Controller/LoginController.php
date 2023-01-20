@@ -23,7 +23,7 @@ class LoginController extends AbstractController
 
     #[Route('/login/redirect', name: 'app_login_redirect')]
     #[IsGranted('ROLE_USER')]
-    public function redirectAfterLogin(AuthenticationUtils $authenticationUtils): Response
+    public function redirectAfterLogin(): Response
     {
         if (in_array('ROLE_ADMIN', $this->getUser()->getRoles())) {
             return $this->redirectToRoute('app_offer_index', [], Response::HTTP_SEE_OTHER);

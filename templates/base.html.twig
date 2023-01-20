@@ -17,8 +17,18 @@
 			{{ encore_entry_script_tags('app') }}
 		{% endblock %}
 	</head>
-	<body>
+	<body {% block styleBody %} {% endblock %}>
 		{% include '_navbar.html.twig' %}
+		{% if is_granted("ROLE_ADMIN")%}
+			{% include '_navbarAdmin.html.twig' %}
+		{% endif %}
+		{% for label, messages in app.flashes %}
+			{% for message in messages %}
+				<div class="alert alert-{{ label }} text-center">
+					{{ message }}
+				</div>
+			{% endfor %}
+		{% endfor %}
 		{% block body %}{% endblock %}
 		{% include '_footer.html.twig' %}
 	</body>

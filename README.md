@@ -143,3 +143,43 @@ SOFTWARE.
 
 ## Acknowledgments
 
+
+## Login
+
+-- Admin
+
+'email' => 'admin@externatic.com',
+'password' => 'Admin_123',
+
+
+-- Recruiter
+
+'email' => 'bruce@wayne-entreprises.com',
+'password' => 'Brubru_123',
+
+'email' => 'lucius@wayne-entreprises.com',
+'password' => 'Lucluc_123',
+
+'email' => 'tony@stark-industries.com',
+'password' => 'Tonton_123',
+
+'email' => 'virginia@stark-industries.com',
+'password' => 'Virvir_123',
+
+
+-- Candidate
+
+'email' => 'thomas.besson@mail.com',
+'password' => 'Thotho_123',
+
+'email' => 'marcia.baila@mail.com',
+'password' => 'Marmar_123',
+
+'email' => 'antoine.dupont@mail.com',
+'password' => 'Toitoi_123',
+
+'email' => 'chacha.da.rugna@mail.com',
+'password' => 'Chacha_123',
+
+'email' => 'jeje01@mail.com',
+'password' => 'Jeje_123',

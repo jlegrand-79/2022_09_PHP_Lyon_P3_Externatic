@@ -16,6 +16,7 @@ class OfferFixtures extends Fixture implements DependentFixtureInterface
                 'contract' => 'contract_CDI',
                 'recruiter' => 'recruiter_1',
                 'workfield' => 'Développement',
+                'stack' => ['PHP'],
                 'title' => 'Développeur mobile iOS H/F',
                 'description' => "<p><strong>Laboratoire d&#39;innovation mobile</strong>&nbsp;reconnue sur la place nantaise pour la qualit&eacute; de son d&eacute;veloppement recherche un&nbsp;<strong>d&eacute;veloppeur iOS</strong>.</p>
 
@@ -65,11 +66,13 @@ class OfferFixtures extends Fixture implements DependentFixtureInterface
                 'address_complement' => '1er étage',
                 'postal_code' => '01000',
                 'city' => 'Bourg-en-Bresse',
+                'department' => 01,
             ],
             [
                 'contract' => 'contract_CDD',
                 'recruiter' => 'recruiter_2',
                 'workfield' => 'Data',
+                'stack' => ['Python'],
                 'title' => 'Senior Product Analyst H/F (éditeur economie durable)',
                 'description' => "<p>Depuis ses d&eacute;buts il y a pr&egrave;s de 10 ans, cette soci&eacute;t&eacute; nantaise de 80 personnes d&eacute;veloppe une solution &agrave; impact environnemental et recrute son/sa futur(e)&nbsp;<strong>Senior Product Analyst H/F</strong></p>
 
@@ -171,11 +174,13 @@ class OfferFixtures extends Fixture implements DependentFixtureInterface
                 'address_complement' => '2ème étage',
                 'postal_code' => '69000',
                 'city' => 'Lyon',
+                'department' => 69,
             ],
             [
                 'contract' => 'contract_CDD',
                 'recruiter' => 'recruiter_1',
                 'workfield' => 'Développement',
+                'stack' => ['Python'],
                 'title' => 'Développeur Python Django H/F (impact environnemental)',
                 'description' => "<p><strong>L&rsquo;entreprise</strong></p>
 
@@ -238,11 +243,13 @@ class OfferFixtures extends Fixture implements DependentFixtureInterface
                 'address_complement' => '3ème étage',
                 'postal_code' => '44000',
                 'city' => 'Nantes',
+                'department' => 44,
             ],
             [
                 'contract' => 'contract_CDI',
                 'recruiter' => 'recruiter_2',
                 'workfield' => 'Développement',
+                'stack' => ['mySQL', 'Python'],
                 'title' => 'Head of Data H/F (Secteur economie solidaire)',
                 'description' => "<p>Je suis Nicolas, Consultant recrutement chez Externatic, je vous propose aujourd&rsquo;hui de d&eacute;couvrir l&rsquo;offre ci-dessous et d&rsquo;&eacute;changer ensemble : plut&ocirc;t en visio ? Ou autour d&rsquo;un verre ? Je serai ravi de vous accompagner et de vous pr&eacute;senter ce job plus en d&eacute;tail !</p>
 
@@ -351,11 +358,13 @@ class OfferFixtures extends Fixture implements DependentFixtureInterface
                 'address_complement' => '4ème étage',
                 'postal_code' => '63000',
                 'city' => 'Clermont-Ferrand',
+                'department' => 63,
             ],
             [
                 'contract' => 'contract_CDI',
                 'recruiter' => 'recruiter_1',
                 'workfield' => 'Développement',
+                'stack' => ['PHP'],
                 'title' => 'Développeur Back end GO H/F (impact environnemental)',
                 'description' => "<p>Je suis Mathieu, Consultant recrutement chez Externatic, je vous propose aujourd&rsquo;hui de d&eacute;couvrir l&rsquo;offre ci-dessous et d&rsquo;&eacute;changer ensemble : plut&ocirc;t en visio ? Ou autour d&rsquo;un verre ? Je serai ravi de vous accompagner et de vous pr&eacute;senter ce job plus en d&eacute;tail !</p>
 
@@ -495,13 +504,15 @@ class OfferFixtures extends Fixture implements DependentFixtureInterface
                 ",
                 'address' => '1 rue des rivières',
                 'address_complement' => '5ème étage',
-                'postal_code' => '59000',
-                'city' => 'Lille',
+                'postal_code' => '44000',
+                'city' => 'Nantes',
+                'department' => 44,
             ],
             [
                 'contract' => 'contract_CDI',
                 'recruiter' => 'recruiter_0',
                 'workfield' => 'Développement',
+                'stack' => ['Python', 'Javascript'],
                 'title' => 'Développeur fullstack React/ Python (H-F)',
                 'description' => "<p><strong>L&#39;entreprise et l&#39;&eacute;quipe</strong></p>
 
@@ -590,11 +601,13 @@ class OfferFixtures extends Fixture implements DependentFixtureInterface
                 'address_complement' => '5ème étage',
                 'postal_code' => '59000',
                 'city' => 'Lille',
+                'department' => 59,
             ],
             [
                 'contract' => 'contract_CDI',
                 'recruiter' => 'recruiter_0',
                 'workfield' => 'Développement',
+                'stack' => ['Javascript'],
                 'title' => 'Front end developer React H/F streaming video',
                 'description' => "<p>Je suis Benjamin Casseron, consultant associ&eacute; chez Externatic, je vous propose aujourd&rsquo;hui de d&eacute;couvrir l&rsquo;offre ci-dessous et d&rsquo;&eacute;changer ensemble : plut&ocirc;t en visio ? Ou autour d&rsquo;un caf&eacute; ? Je serai ravi de vous accompagner et de vous pr&eacute;senter ce job plus en d&eacute;tail !</p>
 
@@ -690,11 +703,13 @@ class OfferFixtures extends Fixture implements DependentFixtureInterface
                 'address_complement' => '5ème étage',
                 'postal_code' => '59000',
                 'city' => 'Lille',
+                'department' => 59,
             ],
             [
                 'contract' => 'contract_CDI',
                 'recruiter' => 'recruiter_0',
                 'workfield' => 'Développement',
+                'stack' => ['Javascript'],
                 'title' => 'Développeur Ruby On Rails H/F (energies renouvelables)',
                 'description' => "<p>Je suis Mathieu, Consultant recrutement chez Externatic, je vous propose aujourd&rsquo;hui de d&eacute;couvrir l&rsquo;offre ci-dessous et d&rsquo;&eacute;changer ensemble : plut&ocirc;t en visio ? Ou autour d&rsquo;un verre ? Je serai ravi de vous accompagner et de vous pr&eacute;senter ce job plus en d&eacute;tail !</p>
 
@@ -736,7 +751,8 @@ class OfferFixtures extends Fixture implements DependentFixtureInterface
                 'address' => '1 rue des rivières',
                 'address_complement' => '5ème étage',
                 'postal_code' => '59000',
-                'city' => 'Lille',
+                'city' => 'Dunkerque',
+                'department' => '59',
             ],
         ];
 
@@ -751,6 +767,10 @@ class OfferFixtures extends Fixture implements DependentFixtureInterface
             $newOffer->setRecruiter($this->getReference($offer['recruiter']));
             $newOffer->setContract($this->getReference($offer['contract']));
             $newOffer->setWorkField($this->getReference($offer['workfield']));
+            $newOffer->setDepartment($offer['department']);
+            foreach ($offer['stack'] as $stack) {
+                $newOffer->addStack($this->getReference($stack));
+            }
             $manager->persist($newOffer);
             $this->addReference('offer_' . $key, $newOffer);
         }
