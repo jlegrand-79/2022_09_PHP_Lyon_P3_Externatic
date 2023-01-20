@@ -55,9 +55,12 @@ class RegistrationController extends AbstractController
 
             $this->addFlash('success', "Votre compte a bien été créé. Vous pouvez maintenant vous connecter.");
 
-            return $this->redirectToRoute('app_login');
+            if ($this->isGranted('ROLE_ADMIN')) {
+                return $this->redirectToRoute('app_candidate_index');
+            } else {
+                return $this->redirectToRoute('app_login');
+            }
         }
-
         return $this->render('registration/register.html.twig', [
             'registrationForm' => $form->createView(),
         ]);
