@@ -29,13 +29,12 @@ class CandidateController extends AbstractController
             $users = [];
             $usersbyEmail = $userRepository->findLikeEmail($search);
             foreach ($usersbyEmail as $user) {
-                if(in_array("ROLE_CANDIDATE", $user->getRoles())){
-                $users[] = $user;
+                if (in_array("ROLE_CANDIDATE", $user->getRoles())) {
+                    $users[] = $user;
                 }
-                
             };
         } else {
-            $users = $userRepository->findLikeRole(array(), array('id' => 'DESC'));
+            $users = $userRepository->findLikeRole();
         }
 
         return $this->render('candidate/index.html.twig', [
@@ -67,11 +66,11 @@ class CandidateController extends AbstractController
             $stacks = $candidate->getStacks();
             if (count($stacks) <= 0) {
                 $noStacks = 'Veuillez renseigner au moins une stack.';
-                return $this->renderForm('candidate/new.html.twig', [
+                    return $this->renderForm('candidate/new.html.twig', [
                     'candidate' => $candidate,
                     'form' => $form,
                     'noStacks' => $noStacks,
-                ]);
+                         ]);
             }
             $contractSearched = $candidate->getContractSearched();
             if (count($contractSearched) <= 0) {
@@ -135,8 +134,13 @@ class CandidateController extends AbstractController
     }
 
     #[Route('/{id}/new', name: 'app_candidate_admin_new', methods: ['GET', 'POST'])]
-    public function newCandidateAdmin(Request $request, CandidateRepository $candidateRepository, int $id, UserRepository $userRepository): Response
-    {
+    public function newCandidateAdmin(
+        Request $request,
+        CandidateRepository $candidateRepository,
+        int $id,
+        UserRepository $userRepository
+    ): Response {
+
         $candidate = new Candidate();
         $candidate->setUser($userRepository->findOneById($id));
         $form = $this->createForm(CandidateType::class, $candidate);

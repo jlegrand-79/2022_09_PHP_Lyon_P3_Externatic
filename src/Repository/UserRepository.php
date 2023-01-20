@@ -65,7 +65,6 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
             ->getQuery();
         return $queryBuilder->getResult();
     }
-    
 
     public function findLikeEmail(string $email): array
     {
