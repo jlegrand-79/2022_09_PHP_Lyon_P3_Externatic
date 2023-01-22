@@ -36,6 +36,15 @@ class Partner
     #[ORM\OneToMany(mappedBy: 'partner', targetEntity: Recruiter::class)]
     private Collection $recruiters;
 
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $addressComplement = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $postalCode = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $city = null;
+
     public function __construct()
     {
         $this->recruiters = new ArrayCollection();
@@ -144,6 +153,42 @@ class Partner
     public function setUrl(string $url): self
     {
         $this->url = $url;
+
+        return $this;
+    }
+
+    public function getAddressComplement(): ?string
+    {
+        return $this->addressComplement;
+    }
+
+    public function setAddressComplement(?string $addressComplement): self
+    {
+        $this->addressComplement = $addressComplement;
+
+        return $this;
+    }
+
+    public function getPostalCode(): ?string
+    {
+        return $this->postalCode;
+    }
+
+    public function setPostalCode(string $postalCode): self
+    {
+        $this->postalCode = $postalCode;
+
+        return $this;
+    }
+
+    public function getCity(): ?string
+    {
+        return $this->city;
+    }
+
+    public function setCity(string $city): self
+    {
+        $this->city = $city;
 
         return $this;
     }
