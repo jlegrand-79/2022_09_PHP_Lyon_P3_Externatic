@@ -58,42 +58,54 @@
 
 			{% if candidate.curriculumVitae %}
 				{{ form_label(form.cvFile) }}
-				<div id="storedCv" class="table-responsive-sm" style="display: block;">
-					<table class="table m-0">
-						<tr>
-							<td class="align-middle">
-								<a class="m-0" target="_blank" title="mon cv" href="{{ asset('uploads/candidate/curriculumVitae/' ~ candidate.curriculumVitae) }}">{{ candidate.curriculumVitae }}</a>
-							</td>
-							<td>
-								<a title="Remplacer" class="replace-file-link" href="javascript:void(0);"><img src="{{ asset('build/images/edit.png') }}" alt="Remplacer"></a>
-							</td>
-							<td>
-								<a title="Supprimer" href="{{ path('app_candidate_cv_delete') }}"><img src="{{ asset('build/images/delete.png') }}" alt="Supprimer"><a></td>
-								</tr>
-							</td>
-						</tr>
+				<div id="storedCv" class="container-fluid" style="display: block;">
+					<div class="row align-items-center">
+						<div class="col-10">
+							<a class="m-0" target="_blank" title="mon cv" href="{{ asset('uploads/candidate/curriculumVitae/' ~ candidate.curriculumVitae) }}">{{ candidate.curriculumVitae }}</a>
+						</div>
+						<div class="col-2 d-flex">
+							<div class="pe-1">
+								<a title="Remplacer" class="replace-file-link" href="javascript:void(0);">
+									<img src="{{ asset('build/images/edit.png') }}" width="40px" alt="Remplacer">
+								</a>
+							</div>
+							<div class="ps-1">
+								<a title="Supprimer" href="{{ path('app_candidate_cv_delete') }}">
+									<img src="{{ asset('build/images/delete.png') }}" width="40px" alt="Supprimer">
+								</a>
+							</div>
+						</div>
 					</div>
-				</td>
-			</tr>
-		</table>
-	</div>
-	<label for="candidate_cvFile_file" class="drop-container" style="display: none;" id="cvUploader">
-		<img src="{{ asset('build/images/upload.png') }}" id='uploadLogo'>
-		<div class="text-black">Téléverser votre CV</div>
-		{{ form_widget(form.cvFile) }}
-		<div>
-			<a title="annuler" class="keep-file-link mainSection" href="javascript:void(0)">Conserver mon CV actuel</a>
+				</div>
+				<label for="candidate_cvFile_file" class="drop-container" style="display: none;" id="cvUploader">
+					<img src="{{ asset('build/images/upload.png') }}" id='uploadLogo'>
+					<div class="text-black">Téléverser votre CV</div>
+					{{ form_widget(form.cvFile) }}
+					<div>
+						<a title="annuler" class="keep-file-link mainSection" href="javascript:void(0)">Conserver mon CV actuel</a>
+					</div>
+				</label>
+
+			{% else %}
+
+				{{ form_label(form.cvFile) }}
+
+				<label for="candidate_cvFile_file" class="drop-container">
+					<img src="{{ asset('build/images/upload.png') }}" id='uploadLogo'>
+					<div class="text-black">Téléverser votre CV</div>
+					{{ form_widget(form.cvFile) }}
+				</label>
+
+			{% endif %}
+
+
+			<button>
+				{{ button_label | default('Mettre à jour') }}
+			</button>
+
+			{{ form_end(form) }}
+
 		</div>
-	</label>
-{% else %}
-	{{ form_label(form.cvFile) }}
-	<label for="candidate_cvFile_file" class="drop-container">
-		<img src="{{ asset('build/images/upload.png') }}" id='uploadLogo'>
-		<div class="text-black">Téléverser votre CV</div>
-		{{ form_widget(form.cvFile) }}
-	</label>
-{% endif %}
-<button>
-	{{ button_label | default('Mettre à jour') }}
-</button>
-{{ form_end(form) }}</div></main>{% endblock %}
+
+	</main>
+{% endblock %}
