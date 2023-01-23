@@ -13,8 +13,14 @@ class PartnerFixtures extends Fixture
         $partners = [
             [
                 'name' => 'Stark Industries',
-                'description' => "Stark Industries (NYSE : SIA, NASDAQ : STRK, fictionnels), plus tard également connue sous les noms de Stark International, Stark Innovations, Stark/Fujikawa, Stark Enterprises, Stark Solutions et Stark Resilient, est une entreprise multinationale américaine de fiction présente dans l'univers Marvel de la maison d'édition Marvel Comics. Créée par Robert Bernstein (en), Stan Lee et Jack Kirby, la société fait sa première apparition dans le comic book Tales of Suspense #40 en avril 1963.",
-                'picture' => 'https://static.wikia.nocookie.net/marvelcinematicuniverse/images/7/7d/Stark_Industries.png',
+                'description' => "Stark Industries (NYSE : SIA, NASDAQ : STRK, fictionnels),"
+                    . " plus tard également connue sous les noms de Stark International, Stark Innovations,"
+                    . " Stark/Fujikawa, Stark Enterprises, Stark Solutions et Stark Resilient, est une entreprise"
+                    . " multinationale américaine de fiction présente dans l'univers Marvel de la maison d'édition"
+                    . " Marvel Comics. Créée par Robert Bernstein (en), Stan Lee et Jack Kirby, la société fait sa"
+                    . " première apparition dans le comic book Tales of Suspense #40 en avril 1963.",
+                'picture' => "https://static.wikia.nocookie.net/marvelcinematicuniverse/images/7/7d/"
+                    . "Stark_Industries.png",
                 'address' => 'Stark Enterprises Building',
                 'address_complement' => 'Beverly Hills',
                 'postal_code' => '90210',
@@ -24,7 +30,10 @@ class PartnerFixtures extends Fixture
             ],
             [
                 'name' => 'Wayne Enterprises',
-                'description' => "Wayne Enterprises (anciennement WayneCorp, après Wayne-Powers, parfois Wayne Incorporated) est un conglomérat fictif de l'Univers DC, possédé par le richissime Bruce Wayne et dirigé par Lucius Fox dans la série de comics Batman créé par Bob Kane et Bill Finger en 1939.",
+                'description' => "Wayne Enterprises (anciennement WayneCorp, après Wayne-Powers, parfois Wayne"
+                    . " Incorporated) est un conglomérat fictif de l'Univers DC, possédé par le richissime Bruce"
+                    . " Wayne et dirigé par Lucius Fox dans la série de comics Batman créé par Bob Kane et Bill"
+                    . " Finger en 1939.",
                 'picture' => 'https://upload.wikimedia.org/wikipedia/commons/f/f4/Board_of_Trade.JPG',
                 'address' => 'Wayne Tower',
                 'address_complement' => '1939 Kane Street',
