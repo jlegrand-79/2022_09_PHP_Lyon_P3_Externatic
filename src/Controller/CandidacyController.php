@@ -55,11 +55,12 @@ class CandidacyController extends AbstractController
         CandidacyRepository $candidacyRepository,
         OfferRepository $offerRepository,
         StatusRepository $statusRepository,
+        Request $request,
         int $id
     ): Response {
         if ($this->container->get('security.token_storage')->getToken()) {
             $user = $this->container->get('security.token_storage')->getToken()->getUser();
-            if ($user->getInformation()) {
+            if ($user->getInformation()->getCurriculumVitae()) {
                 $candidate = $this->container->get('security.token_storage')->getToken()->getUser()->getInformation();
                 $offer = $offerRepository->findOneById($id);
                 if ($candidacyRepository->findBy(['candidate' => $candidate, 'offer' => $offer]) == false) {
@@ -75,6 +76,14 @@ class CandidacyController extends AbstractController
                         'Votre candidature a bien été envoyée et sera étudiée dans les plus brefs délais.'
                     );
                 }
+            } else {
+                $this->addFlash(
+                    'danger',
+                    'Veuillez vérifier vos informations et renseigner un CV avant de postuler à une offre.'
+                );
+                $session = $request->getSession();
+                $session->set('apply', $request->headers->get('referer'));
+                return $this->redirectToRoute('app_candidate_update', [], Response::HTTP_SEE_OTHER);
             }
         }
         return $this->redirectToRoute('app_offer_show', ['id' => $id], Response::HTTP_SEE_OTHER);
