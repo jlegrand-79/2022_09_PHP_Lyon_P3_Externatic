@@ -17,12 +17,12 @@
 
 
 		<div class="row justify-content-center mb-4">
-			<div class="col-11 col-md-10 col-lg-9 col-xxl-8 row justify-content-center pe-0">
+			<div class="col-11 col-md-10 col-lg-9 col-xxl-8 row justify-content-center p-0">
 
 				<form action="{{ path('app_offer_index') }}" method="post" id="form">
-					<div class="form-row formSearchMobile">
+					<div class="form-row formSearchMobile align-items-center">
 						<div class="row">
-							<div class="form-group col-md-5 p-0">
+							<div class="form-group col-md-5 mb-2 mb-md-0 p-0">
 								<label for="inputSearch">Mots-clés</label>
 								<input type="text" name="search" class="form-control" placeholder="Ex : Développeur">
 							</div>
@@ -31,7 +31,7 @@
 								<input type="text" id="city" name="city" list="cities" class="form-control" placeholder="Ex : Rennes (35)">
 								<datalist id="cities"></datalist>
 							</div>
-							<div class="form-group col-md-2 p-0">
+							<div class="form-group col-md-2 p-0 d-flex justify-content-center">
 								<button type="submit" id="submit-button" value="Search" class="btn text-white rounded-0 buttonSearchOffer">Rechercher</button>
 							</div>
 						</div>
@@ -67,7 +67,7 @@
 					</a>
 				</div>
 
-				<div class="col-2 col-md-1 d-flex flex-row align-items-center p-0">
+				<div class="col-2 col-md-1 d-flex flex-column flex-md-row justify-content-center align-items-center p-0">
 					<div class="pink-circle">
 						<a href="{{ path('app_offer_edit', {'id': offer.id}) }}">
 							<svg xmlns="http://www.w3.org/2000/svg" class="logo-admin bi bi-vector-pen" viewbox="0 0 16 16">

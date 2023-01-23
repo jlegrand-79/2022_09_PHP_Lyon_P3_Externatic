@@ -9,17 +9,17 @@
 		<h1 class="text-center">Espace Admin</h1>
 		<h2 class="text-center">Les candidatures</h2>
 
-		<form action="{{ path('app_candidacy_index') }}" method="post" class="d-none d-lg-block mt-3 mb-4">
-			<div class="form-row formSearchOffer">
-				<div class="form-group col-md-6 searchOffer">
+		<form action="{{ path('app_candidacy_index') }}" method="post" class="mt-3 mb-4">
+			<div class="form-row formSearchOffer d-flex flex-column flex-md-row align-items-center">
+				<div class="form-group col-12 col-md-6 mb-2 mb-md-0 searchCandidacies">
 					<label for="inputSearch">Titre de l'offre</label>
 					<input type="text" name="searchTitle" class="form-control" placeholder="Développeur">
 				</div>
-				<div class="form-group col-md-6 searchOffer">
+				<div class="form-group col-12 col-md-6 mb-2 mb-md-0 searchCandidacies">
 					<label for="inputLocation">Nom du candidat</label>
 					<input type="text" name='searchName' class="form-control" placeholder="Doe">
 				</div>
-				<div class="form-group col-md-6 searchOffer">
+				<div class="form-group col-12 col-md-6 searchCandidacies">
 					<label for="inputLocationRadius">Date de candidature</label>
 					<input type="date" name='searchDate' class="form-control" placeholder="16/01/2023">
 				</div>
@@ -33,7 +33,7 @@
 			</div>
 		{% endif %}
 
-		<table class="table candidacyTable mt-2">
+		<table class="table candidacyTable mt-2 d-none d-md-block">
 			<colgroup>
 				<col span="1" style="width: 40%;">
 				<col span="1" style="width: 25%;">
@@ -62,11 +62,42 @@
 						<td>{{candidacy.status.status}}</td>
 					</tr>
 				{% else %}
-					<tr>
-						<td colspan="4">Pas de candidatures trouvées</td>
-					</tr>
+					<h3 class="NoOffer d-none d-md-block">Pas de candidature trouvée pour cette recherche</h3>
 				{% endfor %}
 			</tbody>
 		</table>
+
+		<div class="d-md-none justify-content-center">
+			{% for candidacy in candidacies %}
+				<div class="card offer d-flex flex-row justify-content-between textCandidacies">
+					<div class="col-11">
+						<div class="offer-body card-body text-black fw-bold">
+							<div class="mb-2">
+								<a href="{{ path('app_offer_show', {'id': candidacy.offer.id}) }}">
+									{{ candidacy.offer.title }}
+								</a>
+							</div>
+							<div>
+								<a href="#">
+									{{ candidacy.candidate.fullname}}
+								</a>
+							</div>
+							<div>{{ candidacy.candidacyDate ? candidacy.candidacyDate|date('d/m/Y') : '' }}</div>
+							<div>{{candidacy.status.status}}</div>
+						</div>
+					</div>
+					<div class="offer-more col-1 d-flex justify-content-center align-items-center">
+						<div>
+
+							<svg xmlns="http://www.w3.org/2000/svg" class="logo-offer-more bi bi-plus" viewbox="0 0 16 16">
+								<path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"></path>
+							</svg>
+						</div>
+					</div>
+				</div>
+			{% else %}
+				<h3 class="NoOffer d-md-none">Pas de candidature trouvée pour cette recherche</h3>
+			{% endfor %}
+		</div>
 	</main>
 {% endblock %}
