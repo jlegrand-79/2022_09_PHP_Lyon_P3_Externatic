@@ -56,7 +56,7 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
         $this->save($user, true);
     }
 
-    public function findLikeRole(): array
+    public function findByRoleCandidate(): array
     {
         $queryBuilder = $this->createQueryBuilder('u')
             ->orderBy('u.id', 'DESC')
@@ -66,14 +66,27 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
         return $queryBuilder->getResult();
     }
 
-    public function findLikeEmail(string $email): array
+    public function findLikeLastnameOrEmail(string $lastname, string $email): array
     {
-        $queryBuilder = $this->createQueryBuilder('u')
-            ->where('u.email LIKE :email')
-            ->setParameter('email', '%' . $email . '%')
-            ->orderBy('u.id', 'DESC')
-            ->getQuery();
-        return $queryBuilder->getResult();
+        $queryBuilder = $this->createQueryBuilder('u');
+        if (!empty($lastname)) {
+            $queryBuilder
+            ->innerJoin('u.information', 'ca')
+            ->select('u', 'ca')
+            ->andWhere('ca.lastname LIKE :lastname')
+            ->setParameter('lastname', '%' . $lastname . '%');
+        }
+
+        if (!empty($email)) {
+            $queryBuilder
+            ->andWhere('u.email LIKE :email')
+            ->setParameter('email', '%' . $email . '%');
+        }
+
+        $queryBuilder
+        ->orderBy('u.id', 'DESC');
+
+        return $queryBuilder->getQuery()->getResult();
     }
 
 //    /**

@@ -94,7 +94,7 @@
 					{% for candidacy in offer.candidacies %}
 						<tr>
 							<td>
-								<a href="#">{{ candidacy.candidate.fullname}}</a>
+								<a href="{{ path('app_candidate_admin_show', {'id': candidacy.candidate.id }) }}">{{ candidacy.candidate.fullname}}</a>
 							</td>
 							<td>{{ candidacy.candidacyDate ? candidacy.candidacyDate|date('Y/m/d') : '' }}</td>
 							<td>{{candidacy.status.status}}</td>

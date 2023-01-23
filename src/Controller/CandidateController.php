@@ -23,26 +23,25 @@ class CandidateController extends AbstractController
         CandidateRepository $candidateRepository,
         UserRepository $userRepository
     ): Response {
-
         if ($request->isMethod('POST')) {
-            $search = $request->get('search');
+            $lastname = $request->get('lastname');
+            $email = $request->get('email');
             $users = [];
-            $usersbyEmail = $userRepository->findLikeEmail($search);
-            foreach ($usersbyEmail as $user) {
+
+            $candidateByFilters = $userRepository->findLikeLastnameOrEmail($lastname, $email);
+            foreach ($candidateByFilters as $user) {
                 if (in_array("ROLE_CANDIDATE", $user->getRoles())) {
                     $users[] = $user;
                 }
             };
         } else {
-            $users = $userRepository->findLikeRole();
+            $users = $userRepository->findByRoleCandidate();
         }
 
         return $this->render('candidate/index.html.twig', [
             'users' => $users,
-
-        ]);
+         ]);
     }
-
 
     #[Route('/new', name: 'app_candidate_new', methods: ['GET', 'POST'])]
     #[IsGranted('ROLE_CANDIDATE')]
@@ -112,7 +111,7 @@ class CandidateController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}/edit', name: 'app_candidate_edit', methods: ['GET', 'POST'])]
+    #[Route('/{id}/edit', name: 'app_candidate_admin_edit', methods: ['GET', 'POST'])]
     #[IsGranted('ROLE_ADMIN')]
     public function edit(Request $request, Candidate $candidate, CandidateRepository $candidateRepository): Response
     {
@@ -125,13 +124,14 @@ class CandidateController extends AbstractController
             return $this->redirectToRoute('app_candidate_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('candidate/edit.html.twig', [
+        return $this->renderForm('candidate/update.html.twig', [
             'candidate' => $candidate,
             'form' => $form,
         ]);
     }
 
     #[Route('/{id}/new', name: 'app_candidate_admin_new', methods: ['GET', 'POST'])]
+    #[IsGranted('ROLE_ADMIN')]
     public function newCandidateAdmin(
         Request $request,
         CandidateRepository $candidateRepository,
