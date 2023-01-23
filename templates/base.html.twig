@@ -30,7 +30,14 @@
 			{% endfor %}
 		{% endfor %}
 		{% block body %}{% endblock %}
-		{% include '_footer.html.twig' %}
-	</body>
 
+		{% include '_footer.html.twig' %}
+
+		{% block clearSession %}
+
+			{% if app.session.get('apply') is not null %}
+				{{ app.session.remove('apply') }}
+			{% endif %}
+		{% endblock %}
+	</body>
 </html>
