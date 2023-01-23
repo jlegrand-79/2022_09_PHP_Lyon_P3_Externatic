@@ -10,6 +10,8 @@ security:
             entity:
                 class: App\Entity\User
                 property: email
+    role_hierarchy:
+        ROLE_ADMIN: ['ROLE_RECRUITER', 'ROLE_CANDIDATE']
     
     firewalls:
         dev:

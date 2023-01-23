@@ -55,6 +55,7 @@ class RecruiterController extends AbstractController
         ]);
     }
 
+
     #[Route('/{id}/edit', name: 'app_recruiter_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Recruiter $recruiter, RecruiterRepository $recruiterRepository): Response
     {
@@ -68,6 +69,30 @@ class RecruiterController extends AbstractController
         }
 
         return $this->renderForm('recruiter/edit.html.twig', [
+            'recruiter' => $recruiter,
+            'form' => $form,
+        ]);
+    }
+
+    #[Route('/{id}/new', name: 'app_recruiter_admin_new', methods: ['GET', 'POST'])]
+    public function newRecruiterAdmin(
+        Request $request,
+        RecruiterRepository $recruiterRepository,
+        int $id,
+        UserRepository $userRepository
+    ): Response {
+
+        $recruiter = new Recruiter();
+        $recruiter->setUser($userRepository->findOneById($id));
+        $form = $this->createForm(RecruiterType::class, $recruiter);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $recruiterRepository->save($recruiter, true);
+
+            return $this->redirectToRoute('app_recruiter_index', [], Response::HTTP_SEE_OTHER);
+        }
+        return $this->renderForm('recruiter/new.html.twig', [
             'recruiter' => $recruiter,
             'form' => $form,
         ]);
