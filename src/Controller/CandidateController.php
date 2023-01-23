@@ -167,6 +167,8 @@ class CandidateController extends AbstractController
         $candidate->setUser($user);
         $form = $this->createForm(CandidateType::class, $candidate);
         $form->handleRequest($request);
+        $session = $request->getSession();
+
 
         if ($form->isSubmitted() && $form->isValid()) {
             $stacks = $candidate->getStacks();
@@ -190,9 +192,22 @@ class CandidateController extends AbstractController
             }
             $candidate->setUpdatedAt(new DateTime());
             $candidateRepository->save($candidate, true);
-            $this->addFlash('success', "Votre profil a bien été mis à jour.");
-
-            return $this->redirectToRoute('app_candidate_show', [], Response::HTTP_SEE_OTHER);
+            $session = $request->getSession();
+            if ($session->get('apply') != null) {
+                if ($candidate->getCurriculumVitae()) {
+                    $this->addFlash(
+                        'success',
+                        "Votre profil est maintenant complet, vous pouvez postuler à cette offre."
+                    );
+                    return $this->redirect($session->get('apply'));
+                } else {
+                    $this->addFlash('danger', "Veuillez renseigner un CV pour postuler à une offre.");
+                    return $this->redirectToRoute('app_candidate_update', [], Response::HTTP_SEE_OTHER);
+                }
+            } else {
+                $this->addFlash('success', "Votre profil a bien été mis à jour.");
+                return $this->redirectToRoute('app_candidate_show', [], Response::HTTP_SEE_OTHER);
+            }
         }
 
         return $this->renderForm('candidate/update.html.twig', [
