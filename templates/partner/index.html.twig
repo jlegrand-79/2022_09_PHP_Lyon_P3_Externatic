@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Partner index{% endblock %}
+
+{% block body %}
+    <h1>Partner index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Logo</th>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Url</th>
+                <th>Picture</th>
+                <th>Address</th>
+                <th>Address_complement</th>
+                <th>Postal_code</th>
+                <th>City</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for partner in partners %}
+            <tr>
+                <td>{{ partner.id }}</td>
+                <td>{{ partner.logo }}</td>
+                <td>{{ partner.name }}</td>
+                <td>{{ partner.description }}</td>
+                <td>{{ partner.url }}</td>
+                <td>{{ partner.picture }}</td>
+                <td>{{ partner.address }}</td>
+                <td>{{ partner.addressComplement }}</td>
+                <td>{{ partner.postalCode }}</td>
+                <td>{{ partner.city }}</td>
+                <td>
+                    <a href="{{ path('app_partner_show', {'id': partner.id}) }}">show</a>
+                    <a href="{{ path('app_partner_edit', {'id': partner.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="11">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_partner_new') }}">Create new</a>
+{% endblock %}
