@@ -16,7 +16,7 @@
 			<p class="offer-text-details mb-1">{{offer.recruiter.partner.name}}
 				/ offre gérée par
 				{{offer.recruiter.fullname}}</p>
-			{% if is_granted("ROLE_ADMIN") or app.user.recruiter == offer.recruiter %}
+			{% if is_granted("ROLE_ADMIN") or (app.user and app.user.recruiter == offer.recruiter) %}
 				<div class="m-auto">
 					<div class="d-flex flex-row">
 						<div class="pink-circle">

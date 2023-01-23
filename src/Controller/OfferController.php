@@ -180,6 +180,10 @@ class OfferController extends AbstractController
     #[IsGranted('ROLE_RECRUITER')]
     public function editRecruiterOffer(Request $request, Offer $offer, OfferRepository $offerRepository): Response
     {
+        $user = $this->container->get('security.token_storage')->getToken()->getUser();
+        if ($user->getRecruiter() != $offer->getRecruiter()) {
+            return $this->redirectToRoute('app_offer_list', [], Response::HTTP_SEE_OTHER);
+        }
         $form = $this->createForm(OfferRecruiterType::class, $offer);
         $form->handleRequest($request);
 
