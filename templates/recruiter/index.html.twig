@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Tous les recruteurs
+{% endblock %}
+
+{% block body %}
+	<h1 class="text-center">Espace Admin</h1>
+
+	<div class="all-links">
+		<a href="{{ path('app_admin_register') }}" class="link-admin" role="button" aria-pressed="true">Ajouter un utilisateur
+		</a>
+	</div>
+
+	<h2 class="text-center">Les recruteurs</h2>
+
+	<table class="table">
+		<thead>
+			<tr>
+				<th>Mail</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for recruiter in recruiters %}
+				<tr>
+					<td>{{ recruiter.email }}</td>
+					<td>
+						<a href="{{ path('app_recruiter_show', {'id': recruiter.id}) }}">show</a>
+						<a href="{{ path('app_recruiter_edit', {'id': recruiter.id}) }}">edit</a>
+					</td>
+				</tr>
+			{% else %}
+				<tr>
+					<td colspan="7">no records found</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</tbody>
+</table>
+
+<a href="{{ path('app_recruiter_new') }}">Create new</a>{% endblock %}

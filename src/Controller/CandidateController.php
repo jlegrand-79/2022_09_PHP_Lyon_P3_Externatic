@@ -43,7 +43,6 @@ class CandidateController extends AbstractController
         ]);
     }
 
-
     #[Route('/new', name: 'app_candidate_new', methods: ['GET', 'POST'])]
     #[IsGranted('ROLE_CANDIDATE')]
     public function new(
@@ -65,11 +64,11 @@ class CandidateController extends AbstractController
             $stacks = $candidate->getStacks();
             if (count($stacks) <= 0) {
                 $noStacks = 'Veuillez renseigner au moins une stack.';
-                    return $this->renderForm('candidate/new.html.twig', [
+                return $this->renderForm('candidate/new.html.twig', [
                     'candidate' => $candidate,
                     'form' => $form,
                     'noStacks' => $noStacks,
-                         ]);
+                ]);
             }
             $contractSearched = $candidate->getContractSearched();
             if (count($contractSearched) <= 0) {
