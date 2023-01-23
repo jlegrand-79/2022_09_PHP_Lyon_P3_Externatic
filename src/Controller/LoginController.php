@@ -32,7 +32,7 @@ class LoginController extends AbstractController
             return $this->redirectToRoute('app_candidate_new', [], Response::HTTP_SEE_OTHER);
         }
         if (in_array('ROLE_RECRUITER', $this->getUser()->getRoles())) {
-            return $this->redirectToRoute('app_home', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_offer_index_recruiter', [], Response::HTTP_SEE_OTHER);
         }
         return $this->redirectToRoute('app_home', [], Response::HTTP_SEE_OTHER);
     }

@@ -2,15 +2,25 @@
 	<div class="container-fluid d-none d-sm-block">
 		<div class="justify-content-center" id="navbarNav">
 			<ul class="navbar-nav d-flex flex-row justify-content-center">
-				<li class="nav-item">
-					<a class="nav-link" aria-current="page" href="{{ path('app_offer_index') }}">Les offres</a>
-				</li>
-				<li class="nav-item">
-					<a class="nav-link" href="{{ path('app_candidate_index') }}">Les candidats</a>
-				</li>
-				<li class="nav-item">
-					<a class="nav-link" href="{{ path('app_candidacy_index') }}">Les candidatures</a>
-				</li>
+				{% if is_granted("ROLE_ADMIN") %}
+					<li class="nav-item">
+						<a class="nav-link" aria-current="page" href="{{ path('app_offer_index') }}">Les offres</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="{{ path('app_candidate_index') }}">Les candidats</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="{{ path('app_candidacy_index') }}">Les candidatures</a>
+					</li>
+				{% elseif is_granted('ROLE_RECRUITER') %}
+					<li class="nav-item">
+						<a class="nav-link" aria-current="page" href="{{ path('app_offer_index_recruiter') }}">Mes offres</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="#">Les candidatures</a>
+					</li>
+				{% endif %}
 			</ul>
 		</div>
 	</div>
@@ -21,16 +31,25 @@
 			Voir les catégories
 		</button>
 		<ul class="dropdown-menu">
-			<li class="nav-item">
-				<a class="nav-link" aria-current="page" href="{{ path('app_offer_index') }}">Les offres</a>
-			</li>
-			<li class="nav-item">
-				<a class="nav-link" href="{{ path('app_candidate_index') }}">Les candidats</a>
-			</li>
-			<li class="nav-item">
-				<a class="nav-link" href="{{ path('app_candidacy_index') }}">Les candidatures</a>
-			</li>
+			{% if is_granted("ROLE_ADMIN") %}
+				<li class="nav-item">
+					<a class="nav-link" aria-current="page" href="{{ path('app_offer_index') }}">Les offres</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="{{ path('app_candidate_index') }}">Les candidats</a>
+				</li>
+
+				<li class="nav-item">
+					<a class="nav-link" href="{{ path('app_candidacy_index') }}">Les candidatures</a>
+				</li>
+			{% elseif is_granted('ROLE_RECRUITER') %}
+				<li class="nav-item">
+					<a class="nav-link" aria-current="page" href="{{ path('app_offer_index_recruiter') }}">Mes offres</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="#">Les candidatures</a>
+				</li>
+			{% endif %}
 		</ul>
 	</div>
-
 </nav>

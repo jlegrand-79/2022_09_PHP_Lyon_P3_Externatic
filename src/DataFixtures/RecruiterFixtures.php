@@ -17,7 +17,10 @@ class RecruiterFixtures extends Fixture implements DependentFixtureInterface
                 'firstname' => 'Bruce',
                 'lastname' => 'Wayne',
                 'phone' => '0470948372',
-                'address' => 'Gotham City',
+                'address' => "1 rue du Manoir",
+                'addressComplement' => "BatCave",
+                'postalCode' => 69039,
+                'city' => 'Gotham City',
                 'partner' => 'partner_1',
                 'position' => 'Batman'
             ],
@@ -26,7 +29,9 @@ class RecruiterFixtures extends Fixture implements DependentFixtureInterface
                 'firstname' => 'Lucius',
                 'lastname' => 'Fox',
                 'phone' => '0470384958',
-                'address' => 'Gotham City',
+                'address' => "1 rue du Manoir",
+                'postalCode' => 69039,
+                'city' => 'Gotham City',
                 'partner' => 'partner_1',
                 'position' => 'CEO'
             ],
@@ -35,7 +40,10 @@ class RecruiterFixtures extends Fixture implements DependentFixtureInterface
                 'firstname' => 'Tony',
                 'lastname' => 'Stark',
                 'phone' => '0378392038',
-                'address' => 'New York City, New York',
+                'address' => "1 rue du batiment Stark",
+                'addressComplement' => "Bureau principal",
+                'postalCode' => 76004,
+                'city' => 'New York',
                 'partner' => 'partner_0',
                 'position' => 'Iron Man'
             ],
@@ -44,7 +52,9 @@ class RecruiterFixtures extends Fixture implements DependentFixtureInterface
                 'firstname' => 'Virginia',
                 'lastname' => 'Potts',
                 'phone' => '0326473859',
-                'address' => 'Los Angeles, California',
+                'address' => "1 rue du batiment Stark",
+                'postalCode' => 76004,
+                'city' => 'New York',
                 'partner' => 'partner_0',
                 'position' => 'CEO'
             ],
@@ -56,6 +66,11 @@ class RecruiterFixtures extends Fixture implements DependentFixtureInterface
             $newRecruiter->setLastname($recruiter['lastname']);
             $newRecruiter->setPhone($recruiter['phone']);
             $newRecruiter->setAddress($recruiter['address']);
+            if (isset($recruiter['addressComplement'])) {
+                $newRecruiter->setAddressComplement($recruiter['addressComplement']);
+            }
+            $newRecruiter->setCity($recruiter['city']);
+            $newRecruiter->setPostalCode($recruiter['postalCode']);
             $newRecruiter->setPartner($this->getReference($recruiter['partner']));
             $newRecruiter->setUser($this->getReference($recruiter['user']));
             $newRecruiter->setPosition($recruiter['position']);
