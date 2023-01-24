@@ -10,10 +10,8 @@ use Symfony\Component\ErrorHandler\Exception\FlattenException;
 class ErrorController extends AbstractController
 {
     #[Route('/error', name: 'app_error')]
-    public function show(FlattenException $exception)
+    public function show(FlattenException $exception): Response
     {
-        //return new Response($exception->getMessage());
-
         $message = $exception->getMessage();
 
         return $this->render(
