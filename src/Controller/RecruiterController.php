@@ -13,16 +13,31 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Component\Routing\Annotation\Route;
 
 #[Route('/recruiter')]
+#[IsGranted('ROLE_ADMIN')]
 class RecruiterController extends AbstractController
 {
-    #[Route('/', name: 'app_recruiter_index', methods: ['GET'])]
-    #[IsGranted('ROLE_ADMIN')]
-    public function index(RecruiterRepository $recruiterRepository, UserRepository $userRepository): Response
-    {
-        $recruiters = $userRepository->findByRoleRecruiter();
+    #[Route('/', name: 'app_recruiter_index', methods: ['GET', 'POST'])]
+    public function index(
+        Request $request,
+        UserRepository $userRepository
+    ): Response {
+        if ($request->isMethod('POST')) {
+            $lastname = $request->get('lastname');
+            $email = $request->get('email');
+            $partner = $request->get('partner');
+            $users = [];
+            $returnedUsers = $userRepository->findRecruiterBy($lastname, $email, $partner);
+            foreach ($returnedUsers as $user) {
+                if (in_array("ROLE_RECRUITER", $user->getRoles())) {
+                    $users[] = $user;
+                }
+            };
+        } else {
+            $users = $userRepository->findByRoleRecruiter();
+        }
 
         return $this->render('recruiter/index.html.twig', [
-            'recruiters' => $recruiters,
+            'users' => $users,
         ]);
     }
 
