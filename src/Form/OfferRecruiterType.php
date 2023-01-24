@@ -8,13 +8,14 @@ use App\Entity\Partner;
 use App\Entity\Contract;
 use App\Entity\Recruiter;
 use App\Entity\WorkField;
+use Symfony\Component\Form\Form;
 use Symfony\Component\Form\AbstractType;
+use FOS\CKEditorBundle\Form\Type\CKEditorType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
-use FOS\CKEditorBundle\Form\Type\CKEditorType;
-use Symfony\Component\Form\Form;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 
 class OfferRecruiterType extends AbstractType
 {
@@ -155,6 +156,25 @@ class OfferRecruiterType extends AbstractType
             ]);
     }
 
+    private function addStatusSelection(FormBuilderInterface $builder): void
+    {
+        $builder
+            ->add('open', ChoiceType::class, [
+                'choices' => [
+                    "En cours" => true,
+                    "Inactive" => false
+                ],
+                'required' => true,
+                'attr' => [
+                    'class' => 'form-control',
+                ],
+                'label' => 'Statut de l\'offre',
+                'label_attr' => [
+                    'class' => 'form-label'
+                ],
+            ]);
+    }
+
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $this->addTitleField($builder);
@@ -166,6 +186,7 @@ class OfferRecruiterType extends AbstractType
         $this->addWorkFieldField($builder);
         $this->addStackField($builder);
         $this->addDescriptionField($builder);
+        $this->addStatusSelection($builder);
     }
 
     public function configureOptions(OptionsResolver $resolver): void
