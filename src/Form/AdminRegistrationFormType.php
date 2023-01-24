@@ -16,7 +16,6 @@ class AdminRegistrationFormType extends RegistrationFormType
             ->add('roles', ChoiceType::class, [
                 'mapped' => false,
                 'choices' => array(
-                    'Administrateur' => 'ROLE_ADMIN',
                     'Candidat' => 'ROLE_CANDIDATE',
                     'Recruteur' => 'ROLE_RECRUITER',
                 ),
