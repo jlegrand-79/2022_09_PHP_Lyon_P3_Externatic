@@ -38,17 +38,9 @@ class SearchBar
     public function searchOfferByRecruiter(string $search, string $select, Recruiter $recruiter): ?array
     {
         $trimSelect = substr_replace($select, "", -5);
-        $trimCode = substr($select, -3, 2);
 
         $offers = [];
-        $offersbyCity = $this->offerRepository->findLikeNameAndCity($search, $trimSelect, null, $recruiter);
-        $offersbyDepartment = $this->offerRepository->findLikeDepartment($search, $trimSelect, $trimCode, $recruiter);
-        foreach ($offersbyCity as $offer) {
-            $offers[] = $offer;
-        };
-        foreach ($offersbyDepartment as $offer) {
-            $offers[] = $offer;
-        };
+        $offers = $this->offerRepository->findLikeNameAndCity($search, $trimSelect, null, $recruiter);
         return $offers;
     }
 }

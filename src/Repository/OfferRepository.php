@@ -67,7 +67,8 @@ class OfferRepository extends ServiceEntityRepository
         $queryBuilder
             ->setParameter('name', '%' . $name . '%')
             ->setParameter('city', '%' . $city . '%')
-            ->orderBy('o.title', 'ASC')
+            ->orderBy('o.id', 'DESC')
+            ->orderBy('o.open', 'DESC')
             ->getQuery();
 
             return $queryBuilder->getQuery()->getResult();
@@ -90,7 +91,8 @@ class OfferRepository extends ServiceEntityRepository
             ->setParameter('name', '%' . $name . '%')
             ->setParameter('city', $city)
             ->setParameter('code', $code . '%')
-            ->orderBy('o.title', 'ASC')
+            ->orderBy('o.id', 'DESC')
+            ->orderBy('o.open', 'DESC')
             ->getQuery();
 
             return $queryBuilder->getQuery()->getResult();

@@ -30,7 +30,7 @@ class OfferController extends AbstractController
             $offers = $searchBar->searchOffer($search, $select, $partner);
             $search = true;
         } else {
-            $offers = $offerRepository->findBy([], array('id' => 'DESC'));
+            $offers = $offerRepository->findBy([], ['open' => 'DESC', 'id' => 'DESC', ]);
         }
 
         return $this->render('offer/index.html.twig', [
@@ -52,7 +52,7 @@ class OfferController extends AbstractController
             $offers = $searchBar->searchOfferByRecruiter($search, $select, $recruiter);
             $search = true;
         } else {
-            $offers = $offerRepository->findBy(['recruiter' => $recruiter], ['id' => 'DESC']);
+            $offers = $offerRepository->findBy(['recruiter' => $recruiter], ['open' => 'DESC', 'id' => 'DESC', ]);
         }
 
         return $this->render('offer/index_recruiter.html.twig', [
@@ -67,7 +67,13 @@ class OfferController extends AbstractController
         if ($request->isMethod('POST')) {
             $search = $request->get('search');
             $select = $request->get('city');
-            $offers = $searchBar->searchOffer($search, $select);
+            $allOffers = $searchBar->searchOffer($search, $select);
+            $offers = [];
+            foreach ($allOffers as $offer) {
+                if ($offer->isOpen() == true) {
+                    $offers[] = $offer;
+                }
+            }
         } else {
             $offers = $offerRepository->findBy(['open' => true], ['id' => 'DESC']);
         }
