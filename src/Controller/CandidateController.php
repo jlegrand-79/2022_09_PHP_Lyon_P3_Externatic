@@ -139,7 +139,6 @@ class CandidateController extends AbstractController
         int $id,
         UserRepository $userRepository,
     ): Response {
-
         $candidate = new Candidate();
         $candidate->setUser($userRepository->findOneById($id));
         $form = $this->createForm(CandidateType::class, $candidate);
@@ -169,7 +168,6 @@ class CandidateController extends AbstractController
         $form = $this->createForm(CandidateType::class, $candidate);
         $form->handleRequest($request);
         $session = $request->getSession();
-
 
         if ($form->isSubmitted() && $form->isValid()) {
             $stacks = $candidate->getStacks();
