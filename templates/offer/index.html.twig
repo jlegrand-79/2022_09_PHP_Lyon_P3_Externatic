@@ -23,15 +23,15 @@
 					<div class="form-row formSearchMobile align-items-center">
 						<div class="row">
 							<div class="form-group col-md-5 mb-2 mb-md-0 p-0">
-								<label for="inputSearch">Mots-clés</label>
+								<label for="inputSearch">Titre de l'offre</label>
 								<input type="text" name="search" class="form-control" placeholder="Ex : Développeur">
 							</div>
 							<div class="form-group col-md-5 p-0">
-								<label for="city">Votre ville :</label>
+								<label for="city">Ville :</label>
 								<input type="text" id="city" name="city" list="cities" class="form-control" placeholder="Ex : Rennes (35)">
 								<datalist id="cities"></datalist>
 							</div>
-							<div class="form-group col-md-2 p-0 d-flex justify-content-center">
+							<div class="form-group col-md-2 p-0 d-flex justify-content-start">
 								<button type="submit" id="submit-button" value="Search" class="btn text-white rounded-0 buttonSearchOffer">Rechercher</button>
 							</div>
 						</div>
@@ -52,7 +52,7 @@
 					<a href="{{ path('app_offer_show', {'id': offer.id}) }}" class="offer-link">
 						<div class="card offer d-flex flex-row justify-content-between">
 							<div class="col-11">
-								<div class="offer-body card-body">
+								<div class="offer-body card-body {% if offer.open == false %}bg-darkGrey {% endif %}">
 									<p class="offer-text">
 										{{ offer.title }}
 										-

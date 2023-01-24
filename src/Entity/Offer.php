@@ -98,6 +98,9 @@ class Offer
     #[ORM\Column(nullable: true)]
     private ?int $department = null;
 
+    #[ORM\Column]
+    private ?bool $open = null;
+
     public function __construct()
     {
         $this->stack = new ArrayCollection();
@@ -280,6 +283,18 @@ class Offer
     public function setDepartment(?int $department): self
     {
         $this->department = $department;
+
+        return $this;
+    }
+
+    public function isOpen(): ?bool
+    {
+        return $this->open;
+    }
+
+    public function setOpen(bool $open): self
+    {
+        $this->open = $open;
 
         return $this;
     }

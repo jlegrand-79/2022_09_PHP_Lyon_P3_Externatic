@@ -68,7 +68,7 @@ class OfferController extends AbstractController
             $select = $request->get('city');
             $offers = $searchBar->searchOffer($search, $select);
         } else {
-            $offers = $offerRepository->findBy(array(), array('id' => 'DESC'));
+            $offers = $offerRepository->findBy(['open' => true], ['id' => 'DESC']);
         }
 
         return $this->render('offer/list.html.twig', [
@@ -138,6 +138,11 @@ class OfferController extends AbstractController
     public function show(int $id, OfferRepository $offerRepository, CandidacyRepository $candidacyRepository): Response
     {
         $offer = $offerRepository->findOneById($id);
+
+        if (!$this->isGranted('ROLE_EDITOR') && $offer->isOpen() == false) {
+            $this->addFlash('danger', 'L\'offre recherchée n\'est plus disponible.');
+            return $this->redirectToRoute('app_offer_list', [], Response::HTTP_SEE_OTHER);
+        }
 
         if ($this->container->get('security.token_storage')->getToken()) {
             $user = $this->container->get('security.token_storage')->getToken()->getUser();
