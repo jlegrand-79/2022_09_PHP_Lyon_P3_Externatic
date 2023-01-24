@@ -71,20 +71,20 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
         $queryBuilder = $this->createQueryBuilder('u');
         if (!empty($lastname)) {
             $queryBuilder
-            ->innerJoin('u.information', 'ca')
-            ->select('u', 'ca')
-            ->andWhere('ca.lastname LIKE :lastname')
-            ->setParameter('lastname', '%' . $lastname . '%');
+                ->innerJoin('u.information', 'ca')
+                ->select('u', 'ca')
+                ->andWhere('ca.lastname LIKE :lastname')
+                ->setParameter('lastname', '%' . $lastname . '%');
         }
 
         if (!empty($email)) {
             $queryBuilder
-            ->andWhere('u.email LIKE :email')
-            ->setParameter('email', '%' . $email . '%');
+                ->andWhere('u.email LIKE :email')
+                ->setParameter('email', '%' . $email . '%');
         }
 
         $queryBuilder
-        ->orderBy('u.id', 'DESC');
+            ->orderBy('u.id', 'DESC');
 
         return $queryBuilder->getQuery()->getResult();
     }
@@ -98,6 +98,49 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
             ->getQuery();
         return $queryBuilder->getResult();
     }
+
+
+    public function findRecruiterBy(?string $lastname, ?string $email, ?string $partner): array
+    {
+        $queryBuilder = $this->createQueryBuilder('u');
+
+        if (!empty($lastname) && !empty($partner)) {
+            $queryBuilder
+                ->innerJoin('u.recruiter', 'r')
+                ->innerJoin('r.partner', 'p')
+                ->select('u', 'r', 'p')
+                ->where('r.lastname LIKE :lastname')
+                ->setParameter('lastname', '%' . $lastname . '%')
+                ->andWhere('p.name LIKE :partner')
+                ->setParameter('partner', '%' . $partner . '%');
+        } elseif (!empty($lastname)) {
+            $queryBuilder
+                ->innerJoin('u.recruiter', 'r')
+                ->select('u', 'r')
+                ->andWhere('r.lastname LIKE :lastname')
+                ->setParameter('lastname', '%' . $lastname . '%');
+        } elseif (!empty($partner)) {
+            $queryBuilder
+                ->innerJoin('u.recruiter', 'r')
+                ->innerJoin('r.partner', 'p')
+                ->select('u', 'r', 'p')
+                ->andWhere('p.name LIKE :partner')
+                ->setParameter('partner', '%' . $partner . '%');
+        }
+
+        if (!empty($email)) {
+            $queryBuilder
+                ->andWhere('u.email LIKE :email')
+                ->setParameter('email', '%' . $email . '%');
+        }
+
+        $queryBuilder
+            ->orderBy('u.id', 'DESC');
+
+        return $queryBuilder->getQuery()->getResult();
+    }
+
+
 
     //    /**
     //     * @return User[] Returns an array of User objects

@@ -8,7 +8,12 @@
 
 		<div class="mainForm">
 			<h1>Editer l'offre</h1>
-			{{ include('offer/_form.html.twig', {'button_label': 'Editer mon offre'}) }}
+			{% if is_granted('ROLE_ADMIN') %}
+				{{ include('offer/_form.html.twig', {'button_label': 'Editer l\'offre'}) }}
+			{% elseif is_granted('ROLE_RECRUITER') %}
+				{{ include('offer/_form_recruiter.html.twig', {'button_label': 'Editer l\'offre'}) }}
+			{% endif %}
+
 
 			<div class="d-flex flex-row">
 				<div class="pink-circle">
