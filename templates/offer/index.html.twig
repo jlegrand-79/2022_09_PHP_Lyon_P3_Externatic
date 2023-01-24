@@ -20,21 +20,21 @@
 			<div class="col-11 col-md-10 col-lg-9 col-xxl-8 row justify-content-center p-0">
 
 				<form action="{{ path('app_offer_index') }}" method="post" id="form">
-					<div class="form-row formSearchMobile align-items-center">
-						<div class="row">
-							<div class="form-group col-md-5 mb-2 mb-md-0 p-0">
-								<label for="inputSearch">Titre de l'offre</label>
-								<input type="text" name="search" class="form-control" placeholder="Ex : Développeur">
-							</div>
-							<div class="form-group col-md-5 p-0">
-								<label for="city">Ville :</label>
-								<input type="text" id="city" name="city" list="cities" class="form-control" placeholder="Ex : Rennes (35)">
-								<datalist id="cities"></datalist>
-							</div>
-							<div class="form-group col-md-2 p-0 d-flex justify-content-start">
-								<button type="submit" id="submit-button" value="Search" class="btn text-white rounded-0 buttonSearchOffer">Rechercher</button>
-							</div>
+					<div class="form-row d-flex flex-row formSearchMobile align-items-center justify-content-center">
+						<div class="form-group col-md-4 mb-2 mb-md-0 p-0">
+							<label for="inputSearch">Titre de l'offre</label>
+							<input type="text" name="search" class="form-control" placeholder="Ex : Développeur">
 						</div>
+						<div class="form-group col-md-4 p-0">
+							<label for="city">Ville :</label>
+							<input type="text" id="city" name="city" list="cities" class="form-control" placeholder="Ex : Rennes (35)">
+							<datalist id="cities"></datalist>
+						</div>
+						<div class="form-group col-md-4 mb-2 mb-md-0 p-0">
+							<label for="inputSearch">Entreprise</label>
+							<input type="text" name="partner" class="form-control" placeholder="Ex : Externatic">
+						</div>
+						<button type="submit" id="submit-button" value="Search" class="btn text-white rounded-0 buttonSearchOffer">Rechercher</button>
 					</div>
 				</form>
 			</div>
@@ -92,5 +92,4 @@
 		{% endfor %}
 
 	</main>
-
 {% endblock %}

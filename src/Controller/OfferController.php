@@ -26,7 +26,8 @@ class OfferController extends AbstractController
         if ($request->isMethod('POST')) {
             $search = $request->get('search');
             $select = $request->get('city');
-            $offers = $searchBar->searchOffer($search, $select);
+            $partner = $request->get('partner');
+            $offers = $searchBar->searchOffer($search, $select, $partner);
             $search = true;
         } else {
             $offers = $offerRepository->findBy([], array('id' => 'DESC'));
