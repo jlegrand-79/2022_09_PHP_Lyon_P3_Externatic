@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\User;
 use App\Form\AdminRegistrationFormType;
 use App\Form\RegistrationFormType;
+use App\Form\AdminRegistrationFormType;
 use App\Service\PasswordChecker;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -58,11 +59,11 @@ class RegistrationController extends AbstractController
 
             return $this->redirectToRoute('app_login');
         }
-
         return $this->render('registration/register.html.twig', [
             'registrationForm' => $form->createView(),
         ]);
     }
+
 
     #[Route('/admin/register', name: 'app_admin_register')]
     public function adminRegister(
@@ -82,7 +83,7 @@ class RegistrationController extends AbstractController
             $errors = $passwordChecker->checkPassword($enteredPassword, $enteredPassword2);
 
             if ($errors != []) {
-                return $this->render('registration/admin_register.html.twig', [
+                return $this->render('registration/register_admin.html.twig', [
                     'registrationForm' => $form->createView(),
                     'errors' => $errors,
                 ]);
@@ -103,11 +104,11 @@ class RegistrationController extends AbstractController
             $entityManager->flush();
             // do anything else you need here, like send an email
 
-            $this->addFlash('success', "Le compte a bien été créé.");
+            $this->addFlash('success', "Le compte utilisateur a bien été créé.");
 
             return $this->redirectToRoute('app_admin_register');
         }
-        return $this->render('registration/admin_register.html.twig', [
+        return $this->render('registration/register_admin.html.twig', [
             'registrationForm' => $form->createView(),
         ]);
     }

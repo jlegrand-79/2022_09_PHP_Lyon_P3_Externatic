@@ -6,7 +6,11 @@
 {% block body %}
 	<main class="mainSection mb-5">
 		<div class="mainForm">
-			<h1 class="text-center">Mes informations</h1>
+			{% if is_granted("ROLE_ADMIN")%}
+				<h1 class="text-center">Informations du candidat</h1>
+			{% else %}
+				<h1 class="text-center">Mes informations</h1>
+			{% endif %}
 			{{ form_start(form, {'attr': {'class': 'd-flex flex-column'}})}}
 			{% if candidate.picture %}
 				{{ form_label(form.pictureFile)}}
@@ -109,3 +113,5 @@
 
 	</main>
 {% endblock %}
+
+{% block clearSession %}{% endblock %}

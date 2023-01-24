@@ -56,13 +56,13 @@
 							<a href="{{ path('app_offer_show', {'id': candidacy.offer.id}) }}">{{ candidacy.offer.title }}</a>
 						</td>
 						<td>
-							<a href="#">{{ candidacy.candidate.fullname}}</a>
+							<a href="{{ path('app_candidate_admin_show', {'id': candidacy.candidate.id }) }}">{{ candidacy.candidate.fullname}}</a>
 						</td>
 						<td>{{ candidacy.candidacyDate ? candidacy.candidacyDate|date('d/m/Y') : '' }}</td>
 						<td>{{candidacy.status.status}}</td>
 					</tr>
 				{% else %}
-					<h3 class="NoOffer d-none d-md-block">Pas de candidature trouvée pour cette recherche</h3>
+					<h3 class="NoOffer d-none d-md-block">Pas de candidature trouvée</h3>
 				{% endfor %}
 			</tbody>
 		</table>
@@ -96,7 +96,7 @@
 					</div>
 				</div>
 			{% else %}
-				<h3 class="NoOffer d-md-none">Pas de candidature trouvée pour cette recherche</h3>
+				<h3 class="NoOffer d-md-none">Pas de candidature trouvée</h3>
 			{% endfor %}
 		</div>
 	</main>

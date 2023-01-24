@@ -16,7 +16,7 @@
 			<p class="offer-text-details mb-1">{{offer.recruiter.partner.name}}
 				/ offre gérée par
 				{{offer.recruiter.fullname}}</p>
-			{% if is_granted("ROLE_ADMIN")%}
+			{% if is_granted("ROLE_ADMIN") or (app.user and app.user.recruiter == offer.recruiter) %}
 				<div class="m-auto">
 					<div class="d-flex flex-row">
 						<div class="pink-circle">
@@ -27,88 +27,94 @@
 							</a>
 						</div>
 						<div class="pink-circle">
-							<a href="{{ path('app_offer_edit', {'id': offer.id}) }}">
-								<svg xmlns="http://www.w3.org/2000/svg" class="logo-admin bi bi-vector-pen" viewbox="0 0 16 16">
-									<path fill-rule="evenodd" d="M10.646.646a.5.5 0 0 1 .708 0l4 4a.5.5 0 0 1 0 .708l-1.902 1.902-.829 3.313a1.5 1.5 0 0 1-1.024 1.073L1.254 14.746 4.358 4.4A1.5 1.5 0 0 1 5.43 3.377l3.313-.828L10.646.646zm-1.8 2.908-3.173.793a.5.5 0 0 0-.358.342l-2.57 8.565 8.567-2.57a.5.5 0 0 0 .34-.357l.794-3.174-3.6-3.6z"></path>
-									<path fill-rule="evenodd" d="M2.832 13.228 8 9a1 1 0 1 0-1-1l-4.228 5.168-.026.086.086-.026z"></path>
-								</svg>
-							</a>
-						</div>
-						<div>
-							{{ include('offer/_delete_form.html.twig') }}
+							{% if is_granted("ROLE_ADMIN") %}
+								<a href="{{ path('app_offer_edit', {'id': offer.id}) }}">
+								{% else %}
+									<a href="{{ path('app_offer_edit_recruiter', {'id': offer.id}) }}">
+									{% endif %}
+									<svg xmlns="http://www.w3.org/2000/svg" class="logo-admin bi bi-vector-pen" viewbox="0 0 16 16">
+										<path fill-rule="evenodd" d="M10.646.646a.5.5 0 0 1 .708 0l4 4a.5.5 0 0 1 0 .708l-1.902 1.902-.829 3.313a1.5 1.5 0 0 1-1.024 1.073L1.254 14.746 4.358 4.4A1.5 1.5 0 0 1 5.43 3.377l3.313-.828L10.646.646zm-1.8 2.908-3.173.793a.5.5 0 0 0-.358.342l-2.57 8.565 8.567-2.57a.5.5 0 0 0 .34-.357l.794-3.174-3.6-3.6z"></path>
+										<path fill-rule="evenodd" d="M2.832 13.228 8 9a1 1 0 1 0-1-1l-4.228 5.168-.026.086.086-.026z"></path>
+									</svg>
+								</a>
+							</div>
+							{% if is_granted('ROLE_ADMIN') %}
+								<div>
+									{{ include('offer/_delete_form.html.twig') }}
+								</div>
+							{% endif %}
 						</div>
 					</div>
-				</div>
-			{% else %}
-				{% if candidacy is defined %}
-					<p class="mt-3 fw-bold text-decoration-underline text-mainPink">Vous avez postulé à cette offre le
-						{{candidacy.candidacyDate|date('d/m/Y') }}
-					</p>
-				{% else %}
-					<div class="d-none d-sm-flex flex-column align-items-center">
-						<a href="{{ path('app_candidacy_new', {'id': offer.id}) }}" class="link-admin" role="button" aria-pressed="true">Postuler</a>
-					</div>
-				{% endif %}
-
-			{% endif %}
-		</div>
-
-		<h2 class="mt-4 text-black">L'offre</h2>
-
-		<div>
-			{{ offer.description|raw }}
-		</div>
-
-		<h2 class="text-black mt-3 ">
-			{% if is_granted("ROLE_ADMIN")%}Le{% else %}Votre
-			{% endif %}
-			contact pour ce job</h2>
-		<div class="mb-4 d-flex flex-column">
-			<img id="recruiterLogo" src="{{ asset('build/images/recruteurLoop.png') }}">
-			<h5 class="fw-bold mt-2">{{ offer.recruiter.fullname }}</h5>
-			<div class="fw-bold">{{ offer.recruiter.position }}</div>
-			<div>Tel :
-				{{ offer.recruiter.phone }}</div>
-			<div>Mail :
-				{{ offer.recruiter.user.email }}</div>
-		</div>
-
-		{% if is_granted("ROLE_ADMIN")%}
-			<h2 class="mt-4 text-black">Les candidatures</h2>
-
-			<table class="table candidacyTable mt-3">
-				<colgroup>
-					<col span="1" style="width: 33%;">
-					<col span="1" style="width: 33%;">
-					<col span="1" style="width: 33%;">
-
-				</colgroup>
-				<thead>
-					<tr>
-						<th>Nom du candidat</th>
-						<th>Date de candidature</th>
-						<th>Statut</th>
-					</tr>
-				</thead>
-				<tbody>
-					{% for candidacy in offer.candidacies %}
-						<tr>
-							<td>
-								<a href="#">{{ candidacy.candidate.fullname}}</a>
-							</td>
-							<td>{{ candidacy.candidacyDate ? candidacy.candidacyDate|date('Y/m/d') : '' }}</td>
-							<td>{{candidacy.status.status}}</td>
-						</tr>
+				{% elseif is_granted('ROLE_RECRUITER') == false %}
+					{% if candidacy is defined %}
+						<p class="mt-3 fw-bold text-decoration-underline text-mainPink">Vous avez postulé à cette offre le
+							{{candidacy.candidacyDate|date('d/m/Y') }}
+						</p>
 					{% else %}
+						<div class="d-none d-sm-flex flex-column align-items-center">
+							<a href="{{ path('app_candidacy_new', {'id': offer.id}) }}" class="link-admin" role="button" aria-pressed="true">Postuler</a>
+						</div>
+					{% endif %}
+
+				{% endif %}
+			</div>
+
+			<h2 class="mt-4 text-black">L'offre</h2>
+
+			<div>
+				{{ offer.description|raw }}
+			</div>
+
+			<h2 class="text-black mt-3 ">
+				{% if is_granted("ROLE_ADMIN")%}Le{% else %}Votre
+				{% endif %}
+				contact pour ce job</h2>
+			<div class="mb-4 d-flex flex-column">
+				<img id="recruiterLogo" src="{{ asset('build/images/recruteurLoop.png') }}">
+				<h5 class="fw-bold mt-2">{{ offer.recruiter.fullname }}</h5>
+				<div class="fw-bold">{{ offer.recruiter.position }}</div>
+				<div>Tel :
+					{{ offer.recruiter.phone }}</div>
+				<div>Mail :
+					{{ offer.recruiter.user.email }}</div>
+			</div>
+
+			{% if is_granted("ROLE_ADMIN")%}
+				<h2 class="mt-4 text-black">Les candidatures</h2>
+
+				<table class="table candidacyTable mt-3">
+					<colgroup>
+						<col span="1" style="width: 33%;">
+						<col span="1" style="width: 33%;">
+						<col span="1" style="width: 33%;">
+
+					</colgroup>
+					<thead>
 						<tr>
-							<td colspan="4">Pas de candidature trouvée</td>
+							<th>Nom du candidat</th>
+							<th>Date de candidature</th>
+							<th>Statut</th>
 						</tr>
-					{% endfor %}
-				</tbody>
-			</table>
-		{% endif %}
-	</main>
-	<div class="d-flex d-sm-none flex-column align-items-center fixed-bottom mb-5 applyMobile">
-		<a href="{{ path('app_candidacy_new', {'id': offer.id}) }}" class="link-admin w-50" role="button" aria-pressed="true">Postuler</a>
-	</div>
-{% endblock %}
+					</thead>
+					<tbody>
+						{% for candidacy in offer.candidacies %}
+							<tr>
+								<td>
+									<a href="{{ path('app_candidate_admin_show', {'id': candidacy.candidate.id }) }}">{{ candidacy.candidate.fullname}}</a>
+								</td>
+								<td>{{ candidacy.candidacyDate ? candidacy.candidacyDate|date('Y/m/d') : '' }}</td>
+								<td>{{candidacy.status.status}}</td>
+							</tr>
+						{% else %}
+							<tr>
+								<td colspan="4">Pas de candidature trouvée</td>
+							</tr>
+						{% endfor %}
+					</tbody>
+				</table>
+			{% endif %}
+		</main>
+		<div class="d-flex d-sm-none flex-column align-items-center fixed-bottom mb-5 applyMobile">
+			<a href="{{ path('app_candidacy_new', {'id': offer.id}) }}" class="link-admin w-50" role="button" aria-pressed="true">Postuler</a>
+		</div>
+	{% endblock %}

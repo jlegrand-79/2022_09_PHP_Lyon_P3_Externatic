@@ -23,26 +23,25 @@ class CandidateController extends AbstractController
         CandidateRepository $candidateRepository,
         UserRepository $userRepository
     ): Response {
-
         if ($request->isMethod('POST')) {
-            $search = $request->get('search');
+            $lastname = $request->get('lastname');
+            $email = $request->get('email');
             $users = [];
-            $usersbyEmail = $userRepository->findLikeEmail($search);
-            foreach ($usersbyEmail as $user) {
+
+            $candidateByFilters = $userRepository->findLikeLastnameOrEmail($lastname, $email);
+            foreach ($candidateByFilters as $user) {
                 if (in_array("ROLE_CANDIDATE", $user->getRoles())) {
                     $users[] = $user;
                 }
             };
         } else {
-            $users = $userRepository->findLikeRole();
+            $users = $userRepository->findByRoleCandidate();
         }
 
         return $this->render('candidate/index.html.twig', [
             'users' => $users,
-
-        ]);
+         ]);
     }
-
 
     #[Route('/new', name: 'app_candidate_new', methods: ['GET', 'POST'])]
     #[IsGranted('ROLE_CANDIDATE')]
@@ -65,11 +64,11 @@ class CandidateController extends AbstractController
             $stacks = $candidate->getStacks();
             if (count($stacks) <= 0) {
                 $noStacks = 'Veuillez renseigner au moins une stack.';
-                    return $this->renderForm('candidate/new.html.twig', [
+                return $this->renderForm('candidate/new.html.twig', [
                     'candidate' => $candidate,
                     'form' => $form,
                     'noStacks' => $noStacks,
-                         ]);
+                ]);
             }
             $contractSearched = $candidate->getContractSearched();
             if (count($contractSearched) <= 0) {
@@ -112,7 +111,7 @@ class CandidateController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}/edit', name: 'app_candidate_edit', methods: ['GET', 'POST'])]
+    #[Route('/{id}/edit', name: 'app_candidate_admin_edit', methods: ['GET', 'POST'])]
     #[IsGranted('ROLE_ADMIN')]
     public function edit(Request $request, Candidate $candidate, CandidateRepository $candidateRepository): Response
     {
@@ -125,13 +124,14 @@ class CandidateController extends AbstractController
             return $this->redirectToRoute('app_candidate_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('candidate/edit.html.twig', [
+        return $this->renderForm('candidate/update.html.twig', [
             'candidate' => $candidate,
             'form' => $form,
         ]);
     }
 
     #[Route('/{id}/new', name: 'app_candidate_admin_new', methods: ['GET', 'POST'])]
+    #[IsGranted('ROLE_ADMIN')]
     public function newCandidateAdmin(
         Request $request,
         CandidateRepository $candidateRepository,
@@ -167,6 +167,8 @@ class CandidateController extends AbstractController
         $candidate->setUser($user);
         $form = $this->createForm(CandidateType::class, $candidate);
         $form->handleRequest($request);
+        $session = $request->getSession();
+
 
         if ($form->isSubmitted() && $form->isValid()) {
             $stacks = $candidate->getStacks();
@@ -190,9 +192,22 @@ class CandidateController extends AbstractController
             }
             $candidate->setUpdatedAt(new DateTime());
             $candidateRepository->save($candidate, true);
-            $this->addFlash('success', "Votre profil a bien été mis à jour.");
-
-            return $this->redirectToRoute('app_candidate_show', [], Response::HTTP_SEE_OTHER);
+            $session = $request->getSession();
+            if ($session->get('apply') != null) {
+                if ($candidate->getCurriculumVitae()) {
+                    $this->addFlash(
+                        'success',
+                        "Votre profil est maintenant complet, vous pouvez postuler à cette offre."
+                    );
+                    return $this->redirect($session->get('apply'));
+                } else {
+                    $this->addFlash('danger', "Veuillez renseigner un CV pour postuler à une offre.");
+                    return $this->redirectToRoute('app_candidate_update', [], Response::HTTP_SEE_OTHER);
+                }
+            } else {
+                $this->addFlash('success', "Votre profil a bien été mis à jour.");
+                return $this->redirectToRoute('app_candidate_show', [], Response::HTTP_SEE_OTHER);
+            }
         }
 
         return $this->renderForm('candidate/update.html.twig', [

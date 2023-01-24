@@ -41,6 +41,15 @@ class Recruiter
     #[ORM\Column(length: 255)]
     private ?string $position = null;
 
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $addressComplement = null;
+
+    #[ORM\Column]
+    private ?int $postalCode = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $city = null;
+
     public function __construct()
     {
         $this->offers = new ArrayCollection();
@@ -166,6 +175,42 @@ class Recruiter
     public function setPosition(string $position): self
     {
         $this->position = $position;
+
+        return $this;
+    }
+
+    public function getAddressComplement(): ?string
+    {
+        return $this->addressComplement;
+    }
+
+    public function setAddressComplement(?string $addressComplement): self
+    {
+        $this->addressComplement = $addressComplement;
+
+        return $this;
+    }
+
+    public function getPostalCode(): ?int
+    {
+        return $this->postalCode;
+    }
+
+    public function setPostalCode(int $postalCode): self
+    {
+        $this->postalCode = $postalCode;
+
+        return $this;
+    }
+
+    public function getCity(): ?string
+    {
+        return $this->city;
+    }
+
+    public function setCity(string $city): self
+    {
+        $this->city = $city;
 
         return $this;
     }
