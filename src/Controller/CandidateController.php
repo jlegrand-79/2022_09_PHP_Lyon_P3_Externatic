@@ -20,7 +20,6 @@ class CandidateController extends AbstractController
     #[IsGranted('ROLE_ADMIN')]
     public function index(
         Request $request,
-        CandidateRepository $candidateRepository,
         UserRepository $userRepository
     ): Response {
         if ($request->isMethod('POST')) {
@@ -40,7 +39,7 @@ class CandidateController extends AbstractController
 
         return $this->render('candidate/index.html.twig', [
             'users' => $users,
-         ]);
+        ]);
     }
 
     #[Route('/new', name: 'app_candidate_new', methods: ['GET', 'POST'])]
@@ -48,7 +47,6 @@ class CandidateController extends AbstractController
     public function new(
         Request $request,
         CandidateRepository $candidateRepository,
-        UserRepository $userRepository
     ): Response {
         $userConnected = $this->container->get('security.token_storage')->getToken()->getUser();
         if ($userConnected->getInformation() != null) {
@@ -113,8 +111,11 @@ class CandidateController extends AbstractController
 
     #[Route('/{id}/edit', name: 'app_candidate_admin_edit', methods: ['GET', 'POST'])]
     #[IsGranted('ROLE_ADMIN')]
-    public function edit(Request $request, Candidate $candidate, CandidateRepository $candidateRepository): Response
-    {
+    public function edit(
+        Request $request,
+        Candidate $candidate,
+        CandidateRepository $candidateRepository
+    ): Response {
         $form = $this->createForm(CandidateType::class, $candidate);
         $form->handleRequest($request);
 
@@ -136,7 +137,7 @@ class CandidateController extends AbstractController
         Request $request,
         CandidateRepository $candidateRepository,
         int $id,
-        UserRepository $userRepository
+        UserRepository $userRepository,
     ): Response {
 
         $candidate = new Candidate();

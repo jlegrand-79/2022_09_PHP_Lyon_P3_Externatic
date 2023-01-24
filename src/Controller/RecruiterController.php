@@ -41,10 +41,16 @@ class RecruiterController extends AbstractController
         ]);
     }
 
-    #[Route('/new', name: 'app_recruiter_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, RecruiterRepository $recruiterRepository): Response
-    {
+    #[Route('/{id}/new', name: 'app_recruiter_new', methods: ['GET', 'POST'])]
+    public function new(
+        Request $request,
+        RecruiterRepository $recruiterRepository,
+        int $id,
+        UserRepository $userRepository
+    ): Response {
         $recruiter = new Recruiter();
+        $recruiter->setUser($userRepository->findOneById($id));
+        // dd($recruiter);
         $form = $this->createForm(RecruiterType::class, $recruiter);
         $form->handleRequest($request);
 
@@ -59,6 +65,32 @@ class RecruiterController extends AbstractController
             'form' => $form,
         ]);
     }
+
+    // #[Route('/{id}/new', name: 'app_candidate_admin_new', methods: ['GET', 'POST'])]
+    // #[IsGranted('ROLE_ADMIN')]
+    // public function newCandidateAdmin(
+    //     Request $request,
+    //     CandidateRepository $candidateRepository,
+    //     int $id,
+    //     UserRepository $userRepository
+    // ): Response {
+
+    //     $candidate = new Candidate();
+    //     $candidate->setUser($userRepository->findOneById($id));
+    //     $form = $this->createForm(CandidateType::class, $candidate);
+    //     $form->handleRequest($request);
+
+    //     if ($form->isSubmitted() && $form->isValid()) {
+    //         $candidateRepository->save($candidate, true);
+
+    //         return $this->redirectToRoute('app_candidate_index', [], Response::HTTP_SEE_OTHER);
+    //     }
+    //     return $this->renderForm('candidate/new.html.twig', [
+    //         'candidate' => $candidate,
+    //         'form' => $form,
+    //     ]);
+    // }
+
 
     #[Route('/{id}', name: 'app_recruiter_show', methods: ['GET'])]
     public function show(int $id, RecruiterRepository $recruiterRepository): Response
