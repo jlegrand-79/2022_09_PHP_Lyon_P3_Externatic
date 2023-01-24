@@ -3,8 +3,9 @@
 namespace App\Repository;
 
 use App\Entity\Offer;
-use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use App\Entity\Recruiter;
 use Doctrine\Persistence\ManagerRegistry;
+use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 
 /**
  * @extends ServiceEntityRepository<Offer>
@@ -39,30 +40,48 @@ class OfferRepository extends ServiceEntityRepository
         }
     }
 
-    public function findLikeNameAndCity(string $name, string $city): array
+    public function findLikeNameAndCity(string $name, string $city, ?Recruiter $recruiter = null): array
     {
         $queryBuilder = $this->createQueryBuilder('o')
             ->where('o.title LIKE :name')
-            ->andWhere('o.city LIKE :city')
+            ->andWhere('o.city LIKE :city');
+
+        if (isset($recruiter)) {
+            $queryBuilder
+            ->andWhere('o.recruiter = :recruiter')
+            ->setParameter('recruiter', $recruiter);
+        }
+
+        $queryBuilder
             ->setParameter('name', '%' . $name . '%')
             ->setParameter('city', '%' . $city . '%')
             ->orderBy('o.title', 'ASC')
             ->getQuery();
-        return $queryBuilder->getResult();
+
+            return $queryBuilder->getQuery()->getResult();
     }
 
-    public function findLikeDepartment(string $name, string $city, string $code): array
+    public function findLikeDepartment(string $name, string $city, string $code, ?Recruiter $recruiter = null): array
     {
         $queryBuilder = $this->createQueryBuilder('o')
             ->where('o.title LIKE :name')
-            ->andwhere('o.department = :code')
-            ->andWhere('o.city != :city')
+            ->andwhere('o.postalCode LIKE :code')
+            ->andWhere('o.city != :city');
+
+        if (isset($recruiter)) {
+            $queryBuilder
+            ->andWhere('o.recruiter = :recruiter')
+            ->setParameter('recruiter', $recruiter);
+        }
+
+        $queryBuilder
             ->setParameter('name', '%' . $name . '%')
             ->setParameter('city', $city)
-            ->setParameter('code', $code)
+            ->setParameter('code', $code . '%')
             ->orderBy('o.title', 'ASC')
             ->getQuery();
-        return $queryBuilder->getResult();
+
+            return $queryBuilder->getQuery()->getResult();
     }
 
     public function randomOffer(): array

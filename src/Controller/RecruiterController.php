@@ -16,7 +16,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class RecruiterController extends AbstractController
 {
     #[Route('/', name: 'app_recruiter_index', methods: ['GET'])]
-    #[IsGranted('ROLE_RECRUITER')]
+    #[IsGranted('ROLE_ADMIN')]
     public function index(RecruiterRepository $recruiterRepository, UserRepository $userRepository): Response
     {
         $recruiters = $userRepository->findByRoleRecruiter();
