@@ -5,7 +5,7 @@
 
 {% block body %}
 
-	<main class="container mb-4">
+	<main class="container mb-5">
 
 		<h1 class="text-center">Espace Admin</h1>
 
@@ -17,15 +17,15 @@
 
 		<form action="{{ path('app_offer_index') }}" method="post" class="d-none d-lg-block mt-3 mb-4">
 			<div class="form-row formSearchOffer">
-				<div class="form-group col-md-6 searchOffer">
+				<div class="form-group col-md-6 searchOffer cleanSearchInput">
 					<label for="inputSearch">Titre de l'offre</label>
 					<input type="text" name="search" class="form-control" placeholder="Développeur">
 				</div>
-				<div class="form-group col-md-6 searchOffer">
+				<div class="form-group col-md-6 searchOffer cleanSearchInput">
 					<label for="inputLocation">Nom du candidat</label>
 					<input type="text" class="form-control" placeholder="Besson">
 				</div>
-				<div class="form-group col-md-6 searchOffer">
+				<div class="form-group col-md-6 searchOffer cleanSearchInput">
 					<label for="inputLocationRadius">Date de candidature</label>
 					<input type="date" class="form-control" placeholder="2023-01-05">
 				</div>

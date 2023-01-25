@@ -225,9 +225,10 @@ button {
 
 .buttonSearchOffer {
     margin-top: 29px;
-    height: 40px;
+    height: 39px;
     font: 600 18px Jost;
     background-color: $black;
+    border-width: 0px;
 
     &:hover {
         background-color: $mainPink;
@@ -266,7 +267,7 @@ button {
 
 .searchCandidacies {
     width: 95%;
-    max-width: 330px;
+    max-width: 260px;
 }
 
 .searchCandidate {
@@ -294,4 +295,12 @@ button {
     background-position: 50% 50%;
     background-repeat: no-repeat;
     background-size: cover;
+}
+
+.cleanSize {
+    width: 99%;
+}
+
+.cleanSearchInput {
+    margin-left: -2px;
 }

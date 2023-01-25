@@ -4,77 +4,81 @@
 {% endblock %}
 
 {% block body %}
-	<h1 class="text-center">Espace Admin</h1>
 
-	<div class="all-links">
-		<a href="{{ path('app_partner_new') }}" class="link-admin" role="button" aria-pressed="true">Ajouter un partenaire
-		</a>
-	</div>
+	<main class="mb-5">
 
-	<h2 class="text-center">Les partenaires</h2>
+		<h1 class="text-center">Espace Admin</h1>
 
-	<div class="row justify-content-center mb-4">
-		<div class="col-11 col-md-10 col-lg-9 col-xxl-8 row justify-content-center p-0">
-
-			<form action="{{ path('app_partner_index') }}" method="post">
-				<div class="form-row formSearchMobile align-items-center">
-					<div class="row">
-						<div class="form-group col-md-9 mb-2 mb-md-0 p-0 ms-2">
-							<label for="inputSearch">Nom de l'entreprise</label>
-							<input type="text" name="partners" class="form-control" placeholder="Ex : Stark Industries">
-						</div>
-						<div class="form-group col-md-2 p-0 d-flex">
-							<button type="submit" id="submit-button" class="btn text-white rounded-0 buttonSearchOffer">Rechercher</button>
-						</div>
-					</div>
-				</div>
-			</form>
+		<div class="all-links">
+			<a href="{{ path('app_partner_new') }}" class="link-admin" role="button" aria-pressed="true">Ajouter un partenaire
+			</a>
 		</div>
-	</div>
 
-	{% for partner in partners %}
-		<div class="row justify-content-center partnerLine">
-			<div class="col-9 col-lg-8 col-xxl-7">
-				<a href="{{ path('app_partner_show', {'id': partner.id}) }}" class="offer-link">
-					<div class="card offer d-flex flex-row justify-content-between">
-						<div class="col-11">
-							<div class="offer-body card-body">
-								<p class="offer-text">
-									{{ partner.name }}
+		<h2 class="text-center">Les partenaires</h2>
 
-									({{partner.city}})
-								</p>
+		<div class="row justify-content-center mb-4 cleanSize">
+			<div class="col-11 col-md-10 col-lg-9 col-xxl-8 row justify-content-center p-0">
+
+				<form action="{{ path('app_partner_index') }}" method="post">
+					<div class="form-row formSearchMobile align-items-center">
+						<div class="row">
+							<div class="form-group col-md-9 mb-2 mb-md-0 p-0 ms-2">
+								<label for="inputSearch">Nom de l'entreprise</label>
+								<input type="text" name="partners" class="form-control" placeholder="Ex : Stark Industries">
+							</div>
+							<div class="form-group col-md-2 p-0 d-flex">
+								<button type="submit" id="submit-button" class="btn text-white rounded-0 buttonSearchOffer">Rechercher</button>
 							</div>
 						</div>
-						<div class="offer-more col-1 d-flex justify-content-center align-items-center">
-							<div>
+					</div>
+				</form>
+			</div>
+		</div>
 
-								<svg xmlns="http://www.w3.org/2000/svg" class="logo-offer-more bi bi-plus" viewbox="0 0 16 16">
-									<path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"></path>
+		{% for partner in partners %}
+			<div class="row justify-content-center partnerLine">
+				<div class="col-9 col-lg-8 col-xxl-7">
+					<a href="{{ path('app_partner_show', {'id': partner.id}) }}" class="offer-link">
+						<div class="card offer d-flex flex-row justify-content-between">
+							<div class="col-11">
+								<div class="offer-body card-body">
+									<p class="offer-text">
+										{{ partner.name }}
+
+										({{partner.city}})
+									</p>
+								</div>
+							</div>
+							<div class="offer-more col-1 d-flex justify-content-center align-items-center">
+								<div>
+
+									<svg xmlns="http://www.w3.org/2000/svg" class="logo-offer-more bi bi-plus" viewbox="0 0 16 16">
+										<path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"></path>
+									</svg>
+								</div>
+							</div>
+						</div>
+					</a>
+				</div>
+				<div class="col-1 col-md-1 d-flex flex-column flex-md-row justify-content-center align-items-center p-0">
+					<div>
+						<div class="pink-circle">
+							<a href="{{ path('app_partner_edit', {'id': partner.id}) }}">
+								<svg xmlns="http://www.w3.org/2000/svg" class="logo-admin bi bi-vector-pen" viewbox="0 0 16 16">
+									<path fill-rule="evenodd" d="M10.646.646a.5.5 0 0 1 .708 0l4 4a.5.5 0 0 1 0 .708l-1.902 1.902-.829 3.313a1.5 1.5 0 0 1-1.024 1.073L1.254 14.746 4.358 4.4A1.5 1.5 0 0 1 5.43 3.377l3.313-.828L10.646.646zm-1.8 2.908-3.173.793a.5.5 0 0 0-.358.342l-2.57 8.565 8.567-2.57a.5.5 0 0 0 .34-.357l.794-3.174-3.6-3.6z"></path>
+									<path fill-rule="evenodd" d="M2.832 13.228 8 9a1 1 0 1 0-1-1l-4.228 5.168-.026.086.086-.026z"></path>
 								</svg>
-							</div>
+							</a>
 						</div>
-					</div>
-				</a>
-			</div>
-			<div class="col-1 col-md-1 d-flex flex-column flex-md-row justify-content-center align-items-center p-0">
-				<div>
-					<div class="pink-circle">
-						<a href="{{ path('app_partner_edit', {'id': partner.id}) }}">
-							<svg xmlns="http://www.w3.org/2000/svg" class="logo-admin bi bi-vector-pen" viewbox="0 0 16 16">
-								<path fill-rule="evenodd" d="M10.646.646a.5.5 0 0 1 .708 0l4 4a.5.5 0 0 1 0 .708l-1.902 1.902-.829 3.313a1.5 1.5 0 0 1-1.024 1.073L1.254 14.746 4.358 4.4A1.5 1.5 0 0 1 5.43 3.377l3.313-.828L10.646.646zm-1.8 2.908-3.173.793a.5.5 0 0 0-.358.342l-2.57 8.565 8.567-2.57a.5.5 0 0 0 .34-.357l.794-3.174-3.6-3.6z"></path>
-								<path fill-rule="evenodd" d="M2.832 13.228 8 9a1 1 0 1 0-1-1l-4.228 5.168-.026.086.086-.026z"></path>
-							</svg>
-						</a>
 					</div>
 				</div>
 			</div>
 		</div>
-	</div>
-{% else %}
-	<div>
+	{% else %}
+
 		<div colspan="11">
 			<h3 class="NoPartner jost">Pas de partenaires trouvés</h3>
 		</div>
-	</div>
-{% endfor %}{% endblock %}
+
+	{% endfor %}
+</main>{% endblock %}
