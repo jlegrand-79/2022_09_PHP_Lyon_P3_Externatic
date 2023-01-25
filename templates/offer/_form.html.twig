@@ -1,5 +1,6 @@
 {{ form_start(form, {'attr': {'class': 'd-flex flex-column'}}) }}
 {{ form_errors(form) }}
+{{ form_row(form.open) }}
 {% if offer.recruiter is not null %}
 	{{ form_row(form.partner, { value : offer.recruiter.partner.id }) }}
 {% else %}

@@ -5,6 +5,7 @@ $light: #fff;
 $grey: #EFEDED;
 $danger: #DC3545;
 $success: #198754;
+$darkGrey: #bbbbbb;
 
 $theme-colors: (
     "black": $black,
@@ -12,7 +13,8 @@ $theme-colors: (
     "mainPink" : $mainPink,
     "grey" : $grey,
     "danger": $danger,
-    "success": $success
+    "success": $success,
+    "darkGrey": $darkGrey
 );
 
 @import "~bootstrap/scss/bootstrap";
@@ -31,6 +33,21 @@ $theme-colors: (
 
 body {
     color: black;
+    min-height: 100%;
+    margin: 0;
+    padding: 0;
+    margin: auto;
+}
+
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+.footer {
+    position: absolute;
+    margin-bottom: 0px;
+    width: 100%;
 }
 
 label {

@@ -13,6 +13,7 @@ class OfferFixtures extends Fixture implements DependentFixtureInterface
     {
         $offers = [
             [
+                'open' => true,
                 'contract' => 'contract_CDI',
                 'recruiter' => 'recruiter_1',
                 'workfield' => 'Développement',
@@ -69,6 +70,7 @@ class OfferFixtures extends Fixture implements DependentFixtureInterface
                 'department' => 01,
             ],
             [
+                'open' => true,
                 'contract' => 'contract_CDD',
                 'recruiter' => 'recruiter_2',
                 'workfield' => 'Data',
@@ -177,6 +179,7 @@ class OfferFixtures extends Fixture implements DependentFixtureInterface
                 'department' => 69,
             ],
             [
+                'open' => true,
                 'contract' => 'contract_CDD',
                 'recruiter' => 'recruiter_1',
                 'workfield' => 'Développement',
@@ -246,6 +249,7 @@ class OfferFixtures extends Fixture implements DependentFixtureInterface
                 'department' => 44,
             ],
             [
+                'open' => true,
                 'contract' => 'contract_CDI',
                 'recruiter' => 'recruiter_2',
                 'workfield' => 'Développement',
@@ -361,6 +365,7 @@ class OfferFixtures extends Fixture implements DependentFixtureInterface
                 'department' => 63,
             ],
             [
+                'open' => true,
                 'contract' => 'contract_CDI',
                 'recruiter' => 'recruiter_1',
                 'workfield' => 'Développement',
@@ -509,6 +514,7 @@ class OfferFixtures extends Fixture implements DependentFixtureInterface
                 'department' => 44,
             ],
             [
+                'open' => false,
                 'contract' => 'contract_CDI',
                 'recruiter' => 'recruiter_0',
                 'workfield' => 'Développement',
@@ -604,6 +610,7 @@ class OfferFixtures extends Fixture implements DependentFixtureInterface
                 'department' => 59,
             ],
             [
+                'open' => false,
                 'contract' => 'contract_CDI',
                 'recruiter' => 'recruiter_0',
                 'workfield' => 'Développement',
@@ -706,6 +713,7 @@ class OfferFixtures extends Fixture implements DependentFixtureInterface
                 'department' => 59,
             ],
             [
+                'open' => true,
                 'contract' => 'contract_CDI',
                 'recruiter' => 'recruiter_0',
                 'workfield' => 'Développement',
@@ -758,6 +766,7 @@ class OfferFixtures extends Fixture implements DependentFixtureInterface
 
         foreach ($offers as $key => $offer) {
             $newOffer = new Offer();
+            $newOffer->setOpen($offer['open']);
             $newOffer->setTitle($offer['title']);
             $newOffer->setDescription($offer['description']);
             $newOffer->setAddress($offer['address']);
