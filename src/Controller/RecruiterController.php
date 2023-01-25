@@ -41,10 +41,15 @@ class RecruiterController extends AbstractController
         ]);
     }
 
-    #[Route('/new', name: 'app_recruiter_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, RecruiterRepository $recruiterRepository): Response
-    {
+    #[Route('/{id}/new', name: 'app_recruiter_new', methods: ['GET', 'POST'])]
+    public function new(
+        Request $request,
+        RecruiterRepository $recruiterRepository,
+        int $id,
+        UserRepository $userRepository
+    ): Response {
         $recruiter = new Recruiter();
+        $recruiter->setUser($userRepository->findOneById($id));
         $form = $this->createForm(RecruiterType::class, $recruiter);
         $form->handleRequest($request);
 
@@ -69,7 +74,6 @@ class RecruiterController extends AbstractController
             'recruiter' => $recruiter
         ]);
     }
-
 
     #[Route('/{id}/edit', name: 'app_recruiter_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Recruiter $recruiter, RecruiterRepository $recruiterRepository): Response
@@ -96,7 +100,6 @@ class RecruiterController extends AbstractController
         int $id,
         UserRepository $userRepository
     ): Response {
-
         $recruiter = new Recruiter();
         $recruiter->setUser($userRepository->findOneById($id));
         $form = $this->createForm(RecruiterType::class, $recruiter);

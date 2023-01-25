@@ -1,11 +1,16 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}New Recruiter{% endblock %}
+{% block title %}Informations du recruteur
+{% endblock %}
 
 {% block body %}
-    <h1>Create new Recruiter</h1>
+	<main class="mainSection mb-5">
+		<div class="mainForm">
 
-    {{ include('recruiter/_form.html.twig') }}
+				<h1 class="text-center">Informations du recruteur</h1>
 
-    <a href="{{ path('app_recruiter_index') }}">back to list</a>
+			{{ include('recruiter/_form.html.twig') }}
+		</div>
+	</main>
+
 {% endblock %}
