@@ -10,16 +10,25 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use App\Controller\SearchOfferType;
 
 #[Route('/partner')]
 #[IsGranted('ROLE_ADMIN')]
 class PartnerController extends AbstractController
 {
-    #[Route('/', name: 'app_partner_index', methods: ['GET'])]
-    public function index(PartnerRepository $partnerRepository): Response
+    #[Route('/', name: 'app_partner_index', methods: ['GET', 'POST'])]
+    #[IsGranted('ROLE_ADMIN')]
+    public function index(Request $request, PartnerRepository $partnerRepository): Response
     {
+        if ($request->isMethod('POST')) {
+            $partners = $request->get('partners');
+            $partners = $partnerRepository->findByPartnerName($partners);
+        } else {
+            $partners = $partnerRepository->findBy([], array('id' => 'DESC'));
+        }
+
         return $this->render('partner/index.html.twig', [
-            'partners' => $partnerRepository->findAll(),
+            'partners' => $partners,
         ]);
     }
 
