@@ -6,6 +6,7 @@ use App\Repository\RecruiterRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: RecruiterRepository::class)]
 class Recruiter
@@ -16,38 +17,82 @@ class Recruiter
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank(message: 'Le prénom ne peut pas être vide.')]
+    #[Assert\Length(
+        max: 50,
+        maxMessage: 'Le prénom saisi {{ value }} est trop long, 
+        il ne devrait pas dépasser {{ limit }} caractères',
+    )]
     private ?string $firstname = null;
 
+    #[Assert\NotBlank(message: 'Le nom ne peut pas être vide.')]
+    #[Assert\Length(
+        max: 50,
+        maxMessage: 'Le nom saisi {{ value }} est trop long, 
+        il ne devrait pas dépasser {{ limit }} caractères',
+    )]
     #[ORM\Column(length: 255)]
     private ?string $lastname = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank(message: 'Le numéro de téléphone ne peut pas être vide.')]
+    #[Assert\Regex(
+        pattern: '/\d{10,15}/',
+        match: true,
+        message: 'Le numéro de téléphone saisi {{ value }} est incorrect, 
+        il devrait contenir entre 10 à 15 chiffres',
+    )]
     private ?string $phone = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank(message: 'L\'adresse ne peut pas être vide.')]
+    #[Assert\Length(
+        max: 38,
+        maxMessage: 'L\'adresse saisie est trop longue, 
+        elle ne devrait pas dépasser {{ limit }} caractères',
+    )]
     private ?string $address = null;
 
     #[ORM\ManyToOne(inversedBy: 'recruiters')]
     #[ORM\JoinColumn(nullable: false)]
+    #[Assert\Type(Partner::class)]
     private ?Partner $partner = null;
 
     #[ORM\OneToOne(inversedBy: 'recruiter', cascade: ['persist', 'remove'])]
     #[ORM\JoinColumn(nullable: false)]
+    #[Assert\Type(User::class)]
     private ?User $user = null;
 
     #[ORM\OneToMany(mappedBy: 'recruiter', targetEntity: Offer::class)]
+    #[Assert\Type(Collection::class)]
     private Collection $offers;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank(message: 'La fonction ne peut pas être vide.')]
+    #[Assert\Length(
+        max: 50,
+        maxMessage: 'La fontion saisie est trop longue, 
+        elle ne devrait pas dépasser {{ limit }} caractères',
+    )]
     private ?string $position = null;
 
     #[ORM\Column(length: 255, nullable: true)]
+    #[Assert\Length(
+        max: 38,
+        maxMessage: 'L\'adresse saisie est trop longue, 
+        elle ne devrait pas dépasser {{ limit }} caractères',
+    )]
     private ?string $addressComplement = null;
 
     #[ORM\Column]
     private ?int $postalCode = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\Length(
+        max: 38,
+        maxMessage: 'La ville saisie est trop longue, 
+        elle ne devrait pas dépasser {{ limit }} caractères',
+    )]
     private ?string $city = null;
 
     public function __construct()
