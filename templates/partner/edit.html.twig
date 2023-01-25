@@ -1,13 +1,24 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Edit Partner{% endblock %}
+{% block title %}Editer le partenaire
+{% endblock %}
 
 {% block body %}
-    <h1>Edit Partner</h1>
+	<main class="mainSection mb-4">
+		<div class="mainForm">
+			<h1>Editer le partenaire</h1>
 
-    {{ include('partner/_form.html.twig', {'button_label': 'Update'}) }}
+			{{ include('partner/_form.html.twig', {'button_label': 'Editer le partenaire'}) }}
 
-    <a href="{{ path('app_partner_index') }}">back to list</a>
+			<div class="d-flex flex-row">
+				<div class="pink-circle">
+					<a href="{{ path('app_partner_index') }}">
+						<svg xmlns="http://www.w3.org/2000/svg" class="logo-admin bi bi-arrow-return-left" viewbox="0 0 16 16">
+							<path fill-rule="evenodd" d="M14.5 1.5a.5.5 0 0 1 .5.5v4.8a2.5 2.5 0 0 1-2.5 2.5H2.707l3.347 3.346a.5.5 0 0 1-.708.708l-4.2-4.2a.5.5 0 0 1 0-.708l4-4a.5.5 0 1 1 .708.708L2.707 8.3H12.5A1.5 1.5 0 0 0 14 6.8V2a.5.5 0 0 1 .5-.5z"></path>
+						</svg>
+					</a>
+				</div>
 
-    {{ include('partner/_delete_form.html.twig') }}
-{% endblock %}
+			</div>
+		</main>
+	{% endblock %}
