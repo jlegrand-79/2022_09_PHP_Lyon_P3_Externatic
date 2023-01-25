@@ -14,37 +14,33 @@ class SearchBar
         $this->offerRepository = $offerRepository;
     }
 
-    public function searchOffer(string $search, string $select): ?array
+    public function searchOffer(string $search, string $select, ?string $partner = null): ?array
     {
         $trimSelect = substr_replace($select, "", -5);
         $trimCode = substr($select, -3, 2);
 
         $offers = [];
-        $offersbyCity = $this->offerRepository->findLikeNameAndCity($search, $trimSelect);
-        $offersbyDepartment = $this->offerRepository->findLikeDepartment($search, $trimSelect, $trimCode);
+        $offersbyCity = $this->offerRepository->findLikeNameAndCity($search, $trimSelect, $partner);
         foreach ($offersbyCity as $offer) {
             $offers[] = $offer;
-        };
-        foreach ($offersbyDepartment as $offer) {
-            $offers[] = $offer;
-        };
+        }
+
+        if (empty($partner)) {
+            $offersbyDepartment = $this->offerRepository->findLikeDepartment($search, $trimSelect, $trimCode);
+
+            foreach ($offersbyDepartment as $offer) {
+                $offers[] = $offer;
+            };
+        }
         return $offers;
     }
 
     public function searchOfferByRecruiter(string $search, string $select, Recruiter $recruiter): ?array
     {
         $trimSelect = substr_replace($select, "", -5);
-        $trimCode = substr($select, -3, 2);
 
         $offers = [];
-        $offersbyCity = $this->offerRepository->findLikeNameAndCity($search, $trimSelect, $recruiter);
-        $offersbyDepartment = $this->offerRepository->findLikeDepartment($search, $trimSelect, $trimCode, $recruiter);
-        foreach ($offersbyCity as $offer) {
-            $offers[] = $offer;
-        };
-        foreach ($offersbyDepartment as $offer) {
-            $offers[] = $offer;
-        };
+        $offers = $this->offerRepository->findLikeNameAndCity($search, $trimSelect, null, $recruiter);
         return $offers;
     }
 }

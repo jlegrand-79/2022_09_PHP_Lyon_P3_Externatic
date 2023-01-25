@@ -26,10 +26,11 @@ class OfferController extends AbstractController
         if ($request->isMethod('POST')) {
             $search = $request->get('search');
             $select = $request->get('city');
-            $offers = $searchBar->searchOffer($search, $select);
+            $partner = $request->get('partner');
+            $offers = $searchBar->searchOffer($search, $select, $partner);
             $search = true;
         } else {
-            $offers = $offerRepository->findBy([], array('id' => 'DESC'));
+            $offers = $offerRepository->findBy([], ['open' => 'DESC', 'id' => 'DESC', ]);
         }
 
         return $this->render('offer/index.html.twig', [
@@ -51,7 +52,7 @@ class OfferController extends AbstractController
             $offers = $searchBar->searchOfferByRecruiter($search, $select, $recruiter);
             $search = true;
         } else {
-            $offers = $offerRepository->findBy(['recruiter' => $recruiter], ['id' => 'DESC']);
+            $offers = $offerRepository->findBy(['recruiter' => $recruiter], ['open' => 'DESC', 'id' => 'DESC', ]);
         }
 
         return $this->render('offer/index_recruiter.html.twig', [
@@ -66,9 +67,15 @@ class OfferController extends AbstractController
         if ($request->isMethod('POST')) {
             $search = $request->get('search');
             $select = $request->get('city');
-            $offers = $searchBar->searchOffer($search, $select);
+            $allOffers = $searchBar->searchOffer($search, $select);
+            $offers = [];
+            foreach ($allOffers as $offer) {
+                if ($offer->isOpen() == true) {
+                    $offers[] = $offer;
+                }
+            }
         } else {
-            $offers = $offerRepository->findBy(array(), array('id' => 'DESC'));
+            $offers = $offerRepository->findBy(['open' => true], ['id' => 'DESC']);
         }
 
         return $this->render('offer/list.html.twig', [
@@ -138,6 +145,11 @@ class OfferController extends AbstractController
     public function show(int $id, OfferRepository $offerRepository, CandidacyRepository $candidacyRepository): Response
     {
         $offer = $offerRepository->findOneById($id);
+
+        if (!$this->isGranted('ROLE_EDITOR') && $offer->isOpen() == false) {
+            $this->addFlash('danger', 'L\'offre recherchée n\'est plus disponible.');
+            return $this->redirectToRoute('app_offer_list', [], Response::HTTP_SEE_OTHER);
+        }
 
         if ($this->container->get('security.token_storage')->getToken()) {
             $user = $this->container->get('security.token_storage')->getToken()->getUser();
