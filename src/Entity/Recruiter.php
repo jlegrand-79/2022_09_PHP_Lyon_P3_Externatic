@@ -84,8 +84,14 @@ class Recruiter
     )]
     private ?string $addressComplement = null;
 
-    #[ORM\Column]
-    private ?int $postalCode = null;
+    #[ORM\Column(length: 255)]
+    #[Assert\Regex(
+        pattern: '/\d{5}/',
+        match: true,
+        message: 'Le code postal saisi {{ value }} est incorrect, 
+        il devrait contenir 5 chiffres',
+    )]
+    private ?string $postalCode = null;
 
     #[ORM\Column(length: 255)]
     #[Assert\Length(
@@ -236,12 +242,12 @@ class Recruiter
         return $this;
     }
 
-    public function getPostalCode(): ?int
+    public function getPostalCode(): ?string
     {
         return $this->postalCode;
     }
 
-    public function setPostalCode(int $postalCode): self
+    public function setPostalCode(string $postalCode): self
     {
         $this->postalCode = $postalCode;
 

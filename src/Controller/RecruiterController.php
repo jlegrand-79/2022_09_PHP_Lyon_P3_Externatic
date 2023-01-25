@@ -54,6 +54,7 @@ class RecruiterController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            // dd($recruiter);
             $recruiterRepository->save($recruiter, true);
 
             return $this->redirectToRoute('app_recruiter_index', [], Response::HTTP_SEE_OTHER);
