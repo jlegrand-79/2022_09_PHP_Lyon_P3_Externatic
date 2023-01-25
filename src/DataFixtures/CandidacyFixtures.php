@@ -23,13 +23,13 @@ class CandidacyFixtures extends Fixture implements DependentFixtureInterface
                 'candidate' => 'candidate_1',
                 'offer' => 'offer_0',
                 'date' => new DateTime('2023/01/13'),
-                'status' => 'Transmise'
+                'status' => 'Refusée'
             ],
             [
                 'candidate' => 'candidate_2',
                 'offer' => 'offer_1',
                 'date' => new DateTime('2023/01/04'),
-                'status' => 'Traitée'
+                'status' => 'Acceptée'
             ]
         ];
 

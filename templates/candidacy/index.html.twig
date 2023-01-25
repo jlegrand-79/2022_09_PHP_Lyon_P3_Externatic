@@ -62,7 +62,11 @@
 						<td>{{candidacy.status.status}}</td>
 					</tr>
 				{% else %}
-					<h3 class="NoOffer d-none d-md-block">Pas de candidature trouvée</h3>
+					<tr>
+						<td colspan="3">
+							<h3 class="NoOffer d-none d-md-block">Pas de candidature trouvée</h3>
+						</td>
+					</tr>
 				{% endfor %}
 			</tbody>
 		</table>

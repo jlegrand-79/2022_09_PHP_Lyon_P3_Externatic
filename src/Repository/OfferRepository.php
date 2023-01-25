@@ -40,11 +40,23 @@ class OfferRepository extends ServiceEntityRepository
         }
     }
 
-    public function findLikeNameAndCity(string $name, string $city, ?Recruiter $recruiter = null): array
-    {
+    public function findLikeNameAndCity(
+        string $name,
+        string $city,
+        ?string $partner = null,
+        ?Recruiter $recruiter = null
+    ): array {
         $queryBuilder = $this->createQueryBuilder('o')
             ->where('o.title LIKE :name')
             ->andWhere('o.city LIKE :city');
+
+        if (isset($partner)) {
+            $queryBuilder
+            ->join('o.recruiter', 'r')
+            ->join('r.partner', 'p')
+            ->andWhere('p.name LIKE :partner')
+            ->setParameter('partner', '%' . $partner . '%');
+        }
 
         if (isset($recruiter)) {
             $queryBuilder
@@ -55,7 +67,8 @@ class OfferRepository extends ServiceEntityRepository
         $queryBuilder
             ->setParameter('name', '%' . $name . '%')
             ->setParameter('city', '%' . $city . '%')
-            ->orderBy('o.title', 'ASC')
+            ->orderBy('o.id', 'DESC')
+            ->orderBy('o.open', 'DESC')
             ->getQuery();
 
             return $queryBuilder->getQuery()->getResult();
@@ -78,7 +91,8 @@ class OfferRepository extends ServiceEntityRepository
             ->setParameter('name', '%' . $name . '%')
             ->setParameter('city', $city)
             ->setParameter('code', $code . '%')
-            ->orderBy('o.title', 'ASC')
+            ->orderBy('o.id', 'DESC')
+            ->orderBy('o.open', 'DESC')
             ->getQuery();
 
             return $queryBuilder->getQuery()->getResult();

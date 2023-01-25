@@ -5,6 +5,7 @@ $light: #fff;
 $grey: #EFEDED;
 $danger: #DC3545;
 $success: #198754;
+$darkGrey: #bbbbbb;
 
 $theme-colors: (
     "black": $black,
@@ -12,7 +13,8 @@ $theme-colors: (
     "mainPink" : $mainPink,
     "grey" : $grey,
     "danger": $danger,
-    "success": $success
+    "success": $success,
+    "darkGrey": $darkGrey
 );
 
 @import "~bootstrap/scss/bootstrap";
