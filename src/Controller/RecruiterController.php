@@ -76,8 +76,11 @@ class RecruiterController extends AbstractController
     }
 
     #[Route('/{id}/edit', name: 'app_recruiter_edit', methods: ['GET', 'POST'])]
-    public function edit(Request $request, Recruiter $recruiter, RecruiterRepository $recruiterRepository): Response
-    {
+    public function edit(
+        Request $request,
+        Recruiter $recruiter,
+        RecruiterRepository $recruiterRepository
+    ): Response {
         $form = $this->createForm(RecruiterType::class, $recruiter);
         $form->handleRequest($request);
 

@@ -1,6 +1,9 @@
 {{ form_start(form, {'attr': {'class': 'd-flex flex-column'}}) }}
-
-{{ form_row(form.partner)}}
+{% if recruiter.partner is not null %}
+	{{ form_row(form.partner, { value : recruiter.partner.id }) }}
+{% else %}
+	{{ form_row(form.partner) }}
+{% endif %}
 {{ form_row(form.firstname)}}
 {{ form_row(form.lastname)}}
 {{ form_row(form.position)}}
