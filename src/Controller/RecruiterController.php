@@ -4,8 +4,10 @@ namespace App\Controller;
 
 use App\Entity\Recruiter;
 use App\Form\RecruiterType;
+use App\Repository\OfferRepository;
 use App\Repository\RecruiterRepository;
 use App\Repository\UserRepository;
+use App\Service\SearchBar;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -66,13 +68,28 @@ class RecruiterController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'app_recruiter_show', methods: ['GET'])]
-    public function show(int $id, RecruiterRepository $recruiterRepository): Response
-    {
+    #[Route('/{id}', name: 'app_recruiter_show', methods: ['GET', 'POST'])]
+    public function show(
+        Request $request,
+        int $id,
+        RecruiterRepository $recruiterRepository,
+        OfferRepository $offerRepository,
+        SearchBar $searchBar,
+    ): Response {
         $recruiter = $recruiterRepository->findOneById($id);
-
+        $search = false;
+        if ($request->isMethod('POST')) {
+            $search = $request->get('search');
+            $select = $request->get('city');
+            $offers = $searchBar->searchOfferByRecruiter($search, $select, $recruiter);
+            $search = true;
+        } else {
+            $offers = $offerRepository->findBy(['recruiter' => $recruiter], ['open' => 'DESC', 'id' => 'DESC',]);
+        }
         return $this->render('recruiter/show.html.twig', [
-            'recruiter' => $recruiter
+            'recruiter' => $recruiter,
+            'offers' => $offers,
+            'search' => $search,
         ]);
     }
 
