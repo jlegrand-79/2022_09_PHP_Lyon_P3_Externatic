@@ -1,0 +1,36 @@
+.partnerImage {
+    width: 250px;
+    margin: 20px;
+}
+
+.partnerTitle {
+    text-decoration: none;
+}
+
+.mainPartner {
+    max-width: 1200px;
+    justify-content: center;
+    display: flex;
+}
+
+.jost {
+    font-family: 'Jost', sans-serif;
+}
+
+.partnerLink {
+    color: $mainPink;
+    padding-bottom: 20px;
+
+    &:hover {
+        color: $black;
+    }
+}
+
+.partnerLine {
+    width: 100%;
+}
+
+.NoPartner {
+    text-align: center;
+    color: $mainPink;
+}
