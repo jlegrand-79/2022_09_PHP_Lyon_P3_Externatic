@@ -10,20 +10,6 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 
 class PartnerType extends AbstractType
 {
-    // public function buildForm(FormBuilderInterface $builder, array $options): void
-    // {
-    //     $builder
-    //         ->add('logo')
-    //         ->add('name')
-    //         ->add('description')
-    //         ->add('url')
-    //         ->add('picture')
-    //         ->add('address')
-    //         ->add('address_complement')
-    //         ->add('postal_code')
-    //         ->add('city');
-    // }
-
     private function addPartnerLogo(FormBuilderInterface $builder): void
     {
         $builder
