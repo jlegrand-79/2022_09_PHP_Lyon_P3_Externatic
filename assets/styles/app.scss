@@ -30,6 +30,21 @@ $theme-colors: (
 
 body {
     color: black;
+    min-height: 100%;
+    margin: 0;
+    padding: 0;
+    margin: auto;
+}
+
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+.footer {
+    position: absolute;
+    margin-bottom: 0px;
+    width: 100%;
 }
 
 label {
