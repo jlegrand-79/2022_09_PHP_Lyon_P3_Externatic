@@ -43,23 +43,23 @@
 			</colgroup>
 			<thead>
 				<tr>
-					<th>Titre de l'offre</th>
-					<th>Nom du candidat</th>
-					<th>Date de candidature</th>
-					<th>Statut</th>
+					<th class="jost">Titre de l'offre</th>
+					<th class="jost">Nom du candidat</th>
+					<th class="jost">Date de candidature</th>
+					<th class="jost">Statut</th>
 				</tr>
 			</thead>
 			<tbody>
 				{% for candidacy in candidacies %}
 					<tr>
 						<td>
-							<a href="{{ path('app_offer_show', {'id': candidacy.offer.id}) }}">{{ candidacy.offer.title }}</a>
+							<a class="jost" href="{{ path('app_offer_show', {'id': candidacy.offer.id}) }}">{{ candidacy.offer.title }}</a>
 						</td>
 						<td>
-							<a href="{{ path('app_candidate_admin_show', {'id': candidacy.candidate.id }) }}">{{ candidacy.candidate.fullname}}</a>
+							<a class="jost" href="{{ path('app_candidate_admin_show', {'id': candidacy.candidate.id }) }}">{{ candidacy.candidate.fullname}}</a>
 						</td>
-						<td>{{ candidacy.candidacyDate ? candidacy.candidacyDate|date('d/m/Y') : '' }}</td>
-						<td>{{candidacy.status.status}}</td>
+						<td class="jost">{{ candidacy.candidacyDate ? candidacy.candidacyDate|date('d/m/Y') : '' }}</td>
+						<td class="jost">{{candidacy.status.status}}</td>
 					</tr>
 				{% else %}
 					<tr>
@@ -77,17 +77,17 @@
 					<div class="col-11">
 						<div class="offer-body card-body text-black fw-bold">
 							<div class="mb-2">
-								<a href="{{ path('app_offer_show', {'id': candidacy.offer.id}) }}">
+								<a class="jost" href="{{ path('app_offer_show', {'id': candidacy.offer.id}) }}">
 									{{ candidacy.offer.title }}
 								</a>
 							</div>
 							<div>
-								<a href="#">
+								<a class="jost" href="#">
 									{{ candidacy.candidate.fullname}}
 								</a>
 							</div>
-							<div>{{ candidacy.candidacyDate ? candidacy.candidacyDate|date('d/m/Y') : '' }}</div>
-							<div>{{candidacy.status.status}}</div>
+							<div class="jost">{{ candidacy.candidacyDate ? candidacy.candidacyDate|date('d/m/Y') : '' }}</div>
+							<div class="jost">{{candidacy.status.status}}</div>
 						</div>
 					</div>
 					<div class="offer-more col-1 d-flex justify-content-center align-items-center">
