@@ -3,6 +3,7 @@
     width: 80%;
     margin: auto;
     font-weight: bold;
+    font: 700 16px Jost;
 
     thead {
         vertical-align: middle;
@@ -26,10 +27,6 @@
             cursor: pointer;
         }
     }
-
-    tbody tr:nth-child(even) {
-        background-color: lighten($mainPink, 50%);
-    }
 }
 
 .deleteSearch {
@@ -41,4 +38,22 @@
         cursor: pointer;
     }
 
+}
+
+#selectStatus,
+#selectStatusMobile {
+    border: none;
+    background-color: inherit;
+
+    * {
+        background-color: white;
+
+        &:focus {
+            background-color: $mainPink;
+        }
+    }
+}
+
+#selectStatusMobile {
+    font: 600 20px Jost;
 }
