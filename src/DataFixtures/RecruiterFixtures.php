@@ -58,6 +58,50 @@ class RecruiterFixtures extends Fixture implements DependentFixtureInterface
                 'partner' => 'partner_0',
                 'position' => 'CEO'
             ],
+            [
+                'user' => 'user_5',
+                'firstname' => 'Anna',
+                'lastname' => 'Stépanoff',
+                'phone' => '0689564578',
+                'address' => "1 rue de la wild",
+                'postalCode' => '75000',
+                'city' => 'Paris',
+                'partner' => 'partner_2',
+                'position' => 'CEO'
+            ],
+            [
+                'user' => 'user_6',
+                'firstname' => 'Romain',
+                'lastname' => 'Coeur',
+                'phone' => '0648571537',
+                'address' => "18 rue du PHP",
+                'postalCode' => '75000',
+                'city' => 'Paris',
+                'partner' => 'partner_2',
+                'position' => 'CEO Bis'
+            ],
+            [
+                'user' => 'user_7',
+                'firstname' => 'Gérard',
+                'lastname' => 'Dupont',
+                'phone' => '0479076309',
+                'address' => "Immeuble Identity – 7",
+                'postalCode' => '35000',
+                'city' => 'Rennes',
+                'partner' => 'partner_3',
+                'position' => 'CEO'
+            ],
+            [
+                'user' => 'user_8',
+                'firstname' => 'Julie',
+                'lastname' => 'Brouillard',
+                'phone' => '0723458912',
+                'address' => "6 Quai de Paludate",
+                'postalCode' => '33800',
+                'city' => 'Bordeaux',
+                'partner' => 'partner_3',
+                'position' => 'CEO'
+            ],
         ];
 
         foreach ($recruiters as $key => $recruiter) {
