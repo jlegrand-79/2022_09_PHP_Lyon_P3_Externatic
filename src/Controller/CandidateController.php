@@ -215,17 +215,15 @@ class CandidateController extends AbstractController
         ]);
     }
 
-    #[Route('/cv/delete', name: 'app_candidate_cv_delete', methods: ['GET', 'POST'])]
-    #[IsGranted('ROLE_CANDIDATE')]
+    #[Route('/cv/delete/{candidateId}', name: 'app_candidate_cv_delete', methods: ['GET', 'POST'])]
+    #[IsGranted('ROLE_READER')]
     public function deleteCV(
         Request $request,
         CandidateRepository $candidateRepository,
+        int $candidateId
     ): Response {
-        $user = $this->container->get('security.token_storage')->getToken()->getUser();
-        $candidateId = $user->getInformation()->getId();
 
         $candidate = $candidateRepository->findOneBy(['id' => $candidateId]);
-        $candidate->setUser($user);
 
         $path = __DIR__ . '/../../public/uploads/candidate/curriculumVitae/';
         unlink($path . $candidate->getCurriculumVitae());
