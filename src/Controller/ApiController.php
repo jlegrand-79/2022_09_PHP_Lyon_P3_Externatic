@@ -15,6 +15,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Serializer\SerializerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Entity;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 #[Route('/api', name: 'api_')]
@@ -47,6 +48,7 @@ class ApiController extends AbstractController
     #[Route('/edit_candidacy_status/{id}/{newStatus}', name: 'edit_candidacy_status', methods: ['GET', 'POST'])]
     #[Entity('candidacy', options: ['mapping' => ['id' => 'id']])]
     #[Entity('status', options: ['mapping' => ['newStatus' => 'status']])]
+    #[IsGranted('ROLE_EDITOR')]
     public function editCandidacyStatus(
         string $newStatus,
         Request $request,
@@ -55,12 +57,16 @@ class ApiController extends AbstractController
         StatusRepository $statusRepository,
         CandidacyRepository $candidacyRepository
     ): Response {
+        $user = $this->container->get('security.token_storage')->getToken()->getUser();
+        $offer = $candidacy->getOffer();
+        if ($user->getRecruiter() != $offer->getRecruiter()) {
+            return $this->redirectToRoute('app_candidacy_recruiter_index', [], Response::HTTP_SEE_OTHER);
+        }
         $status = $statusRepository->findOneBy(['status' => $newStatus]);
         $candidacy->setStatus($status);
         $candidacyRepository->save($candidacy, true);
 
         if ($newStatus == "Acceptée") {
-            $offer = $candidacy->getOffer();
             $offer->setOpen(false);
             $offerRepository->save($offer, true);
 

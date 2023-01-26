@@ -128,7 +128,7 @@
 				</table>
 
 				<div class="d-md-none justify-content-center">
-					{% for candidacy in offer.candidacies %}
+					{% for candidacy in offer.candidacies|sort((a, b) => a.status <=> b.status)  %}
 						<div class="card offer d-flex flex-row justify-content-between textCandidacies">
 							<div class="col-11">
 								<div id="candidacyMobile{{candidacy.id}}" class="offer-body card-body text-black fw-bold {% if candidacy.status.status == 'Refusée' %} bg-darkGrey {% elseif candidacy.status.status == 'Acceptée' %} bg-lightPink {% endif %}">

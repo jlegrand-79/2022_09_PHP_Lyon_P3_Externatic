@@ -25,7 +25,7 @@ if (selectStatus) {
                                 rowCandidacy.classList.add("bg-lightPink")
                                 rowCandidacyMobile.classList.remove("bg-darkGrey")
                                 rowCandidacyMobile.classList.add("bg-lightPink")
-                                if (window.location.pathname == '/candidacy/') {
+                                if (window.location.pathname == '/candidacy/' || window.location.pathname == '/candidacy/recruiter') {
                                     let offerLink = rowCandidacy.querySelector('a').href
                                     document.location.href = offerLink;
                                 }
