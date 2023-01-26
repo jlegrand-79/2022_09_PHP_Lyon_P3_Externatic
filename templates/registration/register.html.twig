@@ -9,7 +9,7 @@
 
 {% block body %}
 	<main class="mainSection">
-		<div class="w-100 my-5">
+		<div class="w-100 mt-5 mb-5">
 			<div class="loginForm m-auto">
 				{% if is_granted("ROLE_ADMIN")%}
 					<h2 class="text-black mt-0 mb-4 text-center">Ajouter un candidat</h2>
@@ -38,8 +38,8 @@
 				{{ form_end(registrationForm) }}
 				{% if app.user %}
 					{% else %}
-						<p class="mb-0 mt-5 fw-bold text-center">Vous avez déjà un compte ?</p>
-						<p class="text-center">
+						<p class="mb-0 mt-5 fw-bold text-center jost">Vous avez déjà un compte ?</p>
+						<p class="text-center jost">
 							<a href="{{ path('app_login') }}">Se connecter</a>
 						</p>
 				{% endif %}

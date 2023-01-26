@@ -3,22 +3,17 @@
 namespace App\Form;
 
 use App\Entity\Recruiter;
-use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class RecruiterType extends AbstractType
+class RecruiterType extends ProfileType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
-        $builder
-            ->add('firstname')
-            ->add('lastname')
-            ->add('phone')
-            ->add('address')
-            ->add('position')
-            ->add('partner', null, ['choice_label' => 'name'])
-            ->add('user', null, ['choice_label' => 'email']);
+        $this->addPartner($builder);
+        $this->addFullName($builder);
+        $this->addPosition($builder);
+        $this->addContactDetails($builder);
     }
 
     public function configureOptions(OptionsResolver $resolver): void

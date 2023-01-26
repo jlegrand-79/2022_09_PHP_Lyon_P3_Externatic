@@ -10,17 +10,17 @@
 		</h1>
 
 
-		<div class="row justify-content-center mb-4">
+		<div class="row justify-content-center mb-4 cleanSize">
 			<div class="col-11 col-md-10 col-lg-9 col-xxl-8 row justify-content-center pe-0">
 
 				<form action="{{ path('app_offer_list') }}" method="post" id="form">
 					<div class="form-row formSearchMobile ms-4 mb-sm-0">
 						<div class="row">
-							<div class="form-group col-md-5 p-0">
+							<div class="form-group col-md-5 p-0 cleanSearchInput">
 								<label for="inputSearch" class="text-white">Mots-clés</label>
 								<input type="text" name="search" class="form-control" placeholder="Ex : Développeur">
 							</div>
-							<div class="form-group col-md-5 p-0">
+							<div class="form-group col-md-5 p-0 cleanSearchInput">
 								<label for="city" class="text-white">Votre ville :</label>
 								<input type="text" id="city" name="city" list="cities" class="form-control" placeholder="Ex : Rennes (35)">
 								<datalist id="cities"></datalist>
@@ -72,9 +72,9 @@
 		<a href="{{ path('app_offer_list') }}" class="btn rounded-0">Voir toutes nos offres</a>
 	</div>
 
-	<div class="title">
+	<div class="title mb-5">
 		<div class="inscription d-flex justify-content-center mt-3 text-center">
-			<h2 class="homeH2 ">
+			<h2 class="homeH2">
 				Vous souhaitez postuler
 				<span class="offerTitle text-center-md">à une offre ?</span>
 			</h2>

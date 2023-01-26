@@ -30,10 +30,26 @@ $theme-colors: (
 @import "footer";
 @import "navbarAdmin";
 @import "candidaciesAdmin";
+@import "adminPartner";
 
 
 body {
     color: black;
+    min-height: 100%;
+    margin: 0;
+    padding: 0;
+    margin: auto;
+}
+
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+.footer {
+    position: absolute;
+    margin-bottom: 0px;
+    width: 100%;
 }
 
 label {
@@ -211,9 +227,10 @@ button {
 
 .buttonSearchOffer {
     margin-top: 29px;
-    height: 40px;
+    height: 39px;
     font: 600 18px Jost;
     background-color: $black;
+    border-width: 0px;
 
     &:hover {
         background-color: $mainPink;
@@ -252,7 +269,7 @@ button {
 
 .searchCandidacies {
     width: 95%;
-    max-width: 330px;
+    max-width: 260px;
 }
 
 .searchCandidate {
@@ -270,4 +287,22 @@ button {
 
 .cvUploaderPicto {
     width: 40px;
+}
+
+.jost {
+    font-family: 'Jost', sans-serif !important;
+}
+
+.background-error {
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.cleanSize {
+    width: 99%;
+}
+
+.cleanSearchInput {
+    margin-left: -2px;
 }

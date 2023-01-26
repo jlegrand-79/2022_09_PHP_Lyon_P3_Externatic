@@ -3,7 +3,7 @@
     width: 80%;
     margin: auto;
     font-weight: bold;
-    font: 700 16px Jost;
+    font: 700 18px Jost;
 
     thead {
         vertical-align: middle;
@@ -42,6 +42,7 @@
 
 #selectStatus,
 #selectStatusMobile {
+    font: 600 18px Jost;
     border: none;
     background-color: inherit;
 

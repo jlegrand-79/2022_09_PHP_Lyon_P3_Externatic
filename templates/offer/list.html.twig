@@ -5,7 +5,7 @@
 
 {% block body %}
 
-	<main class="container mb-4">
+	<main class="container mb-5">
 
 		<h1 class="text-center">Toutes nos offres</h1>
 
@@ -15,11 +15,11 @@
 				<form action="{{ path('app_offer_list') }}" method="post" id="form">
 					<div class="form-row formSearchMobile">
 						<div class="row">
-							<div class="form-group col-md-5 p-0">
+							<div class="form-group col-md-5 p-0 cleanSearchInput">
 								<label for="inputSearch">Mots-clés</label>
 								<input type="text" name="search" class="form-control" placeholder="Ex : Développeur">
 							</div>
-							<div class="form-group col-md-5 p-0">
+							<div class="form-group col-md-5 p-0 cleanSearchInput">
 								<label for="city">Votre ville :</label>
 								<input type="text" id="city" name="city" list="cities" class="form-control" placeholder="Ex : Rennes (35)">
 								<datalist id="cities"></datalist>

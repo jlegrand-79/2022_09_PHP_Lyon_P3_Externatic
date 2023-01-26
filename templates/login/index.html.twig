@@ -17,7 +17,7 @@
 				</div>
 			{% endfor %}
 		{% endfor %}
-		<div class="w-100 my-5">
+		<div class="w-100 mt-5 mb-5">
 			<div class="loginForm m-auto">
 				<h2 class="text-black mt-0 mb-4 text-center">Se connecter</h2>
 				{% if error %}
@@ -36,13 +36,13 @@
 					<button>{{ button_label|default('Je me connecte') }}</button>
 				</form>
 
-				<p class="mb-0 mt-5 fw-bold text-center">Vous n'avez pas encore de compte ?</p>
+				<p class="mb-0 mt-5 fw-bold text-center jost">Vous n'avez pas encore de compte ?</p>
 				<p class="text-center">
-					<a href="{{ path('app_register') }}">S'inscrire</a>
+					<a class="jost" href="{{ path('app_register') }}">S'inscrire</a>
 				</p>
-				<p class="mb-0 fw-bold text-center">Vous avez oublié votre mot de passe ?</p>
+				<p class="mb-0 fw-bold text-center jost">Vous avez oublié votre mot de passe ?</p>
 
-				<p class="mb-0 text-center">
+				<p class="mb-0 text-center jost">
 					<a href=" #">Mot de passe oublié</p>
 				</p>
 			</a>
