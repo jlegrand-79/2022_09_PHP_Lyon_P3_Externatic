@@ -6,6 +6,7 @@ $grey: #EFEDED;
 $danger: #DC3545;
 $success: #198754;
 $darkGrey: #bbbbbb;
+$lightPink: #ffeaf1;
 
 $theme-colors: (
     "black": $black,
@@ -14,7 +15,8 @@ $theme-colors: (
     "grey" : $grey,
     "danger": $danger,
     "success": $success,
-    "darkGrey": $darkGrey
+    "darkGrey": $darkGrey,
+    'lightPink': $lightPink
 );
 
 @import "~bootstrap/scss/bootstrap";
@@ -28,6 +30,7 @@ $theme-colors: (
 @import "footer";
 @import "navbarAdmin";
 @import "candidaciesAdmin";
+@import "adminPartner";
 
 
 body {
@@ -87,7 +90,7 @@ select {
     border-radius: 0px !important;
     border-color: #000 !important;
     border-width: 2px !important;
-    background-color: #EFEDED !important;
+    background-color: #EFEDED;
 
     &:focus {
         border-color: $mainPink !important;
@@ -224,9 +227,10 @@ button {
 
 .buttonSearchOffer {
     margin-top: 29px;
-    height: 40px;
+    height: 39px;
     font: 600 18px Jost;
     background-color: $black;
+    border-width: 0px;
 
     &:hover {
         background-color: $mainPink;
@@ -256,8 +260,8 @@ button {
 }
 
 .NoOffer {
-    color: $mainPink;
-    font: 900 40px Jost;
+    color: $black;
+    font: 900 30px Jost;
     margin-top: 50px;
     margin-bottom: 80px;
     text-align: center;
@@ -265,7 +269,7 @@ button {
 
 .searchCandidacies {
     width: 95%;
-    max-width: 330px;
+    max-width: 260px;
 }
 
 .searchCandidate {
@@ -283,4 +287,22 @@ button {
 
 .cvUploaderPicto {
     width: 40px;
+}
+
+.jost {
+    font-family: 'Jost', sans-serif !important;
+}
+
+.background-error {
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.cleanSize {
+    width: 99%;
+}
+
+.cleanSearchInput {
+    margin-left: -2px;
 }

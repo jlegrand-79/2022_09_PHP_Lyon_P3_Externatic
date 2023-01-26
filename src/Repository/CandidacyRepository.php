@@ -64,7 +64,7 @@ class CandidacyRepository extends ServiceEntityRepository
         }
 
         $queryBuilder
-        ->orderBy('c.id', 'DESC');
+        ->orderBy('c.status', 'ASC');
 
         return $queryBuilder->getQuery()->getResult();
     }

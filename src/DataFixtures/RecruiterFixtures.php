@@ -19,7 +19,7 @@ class RecruiterFixtures extends Fixture implements DependentFixtureInterface
                 'phone' => '0470948372',
                 'address' => "1 rue du Manoir",
                 'addressComplement' => "BatCave",
-                'postalCode' => 69039,
+                'postalCode' => '69039',
                 'city' => 'Gotham City',
                 'partner' => 'partner_1',
                 'position' => 'Batman'
@@ -30,7 +30,7 @@ class RecruiterFixtures extends Fixture implements DependentFixtureInterface
                 'lastname' => 'Fox',
                 'phone' => '0470384958',
                 'address' => "1 rue du Manoir",
-                'postalCode' => 69039,
+                'postalCode' => '69039',
                 'city' => 'Gotham City',
                 'partner' => 'partner_1',
                 'position' => 'CEO'
@@ -42,7 +42,7 @@ class RecruiterFixtures extends Fixture implements DependentFixtureInterface
                 'phone' => '0378392038',
                 'address' => "1 rue du batiment Stark",
                 'addressComplement' => "Bureau principal",
-                'postalCode' => 76004,
+                'postalCode' => '76004',
                 'city' => 'New York',
                 'partner' => 'partner_0',
                 'position' => 'Iron Man'
@@ -53,7 +53,7 @@ class RecruiterFixtures extends Fixture implements DependentFixtureInterface
                 'lastname' => 'Potts',
                 'phone' => '0326473859',
                 'address' => "1 rue du batiment Stark",
-                'postalCode' => 76004,
+                'postalCode' => '76004',
                 'city' => 'New York',
                 'partner' => 'partner_0',
                 'position' => 'CEO'

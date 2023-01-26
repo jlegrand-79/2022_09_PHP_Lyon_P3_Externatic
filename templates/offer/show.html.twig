@@ -7,7 +7,7 @@
 	{% if offer.open == false %}
 		<div class="bg-darkGrey text-center p-2 w-100" id="offerClosed">Cette offre n'est plus en ligne</div>
 	{% endif %}
-	<main class="container px-4">
+	<main class="container px-4 mb-5">
 		<div class="d-flex flex-column align-items-center">
 			<h1 class="text-center text-break">{{ offer.title }}</h1>
 			<p class="offer-text-details">
@@ -82,10 +82,10 @@
 					{{ offer.recruiter.user.email }}</div>
 			</div>
 
-			{% if is_granted("ROLE_ADMIN")%}
-				<h2 class="mt-4 text-black">Les candidatures</h2>
+			{% if is_granted("ROLE_ADMIN") or app.user.recruiter == offer.recruiter %}
+				<h2 id="candidacies" class="mt-4 text-black">Les candidatures</h2>
 
-				<table class="table candidacyTable mt-3">
+				<table class="table candidacyTable mt-3 d-none d-md-table">
 					<colgroup>
 						<col span="1" style="width: 33%;">
 						<col span="1" style="width: 33%;">
@@ -101,12 +101,21 @@
 					</thead>
 					<tbody>
 						{% for candidacy in offer.candidacies %}
-							<tr>
+							<tr id="candidacy{{candidacy.id}}" class="{% if candidacy.status.status == "Refusée" %} bg-darkGrey {% elseif candidacy.status.status == "Acceptée" %} bg-lightPink {% endif %}">
 								<td>
 									<a href="{{ path('app_candidate_admin_show', {'id': candidacy.candidate.id }) }}">{{ candidacy.candidate.fullname}}</a>
 								</td>
 								<td>{{ candidacy.candidacyDate ? candidacy.candidacyDate|date('Y/m/d') : '' }}</td>
-								<td>{{candidacy.status.status}}</td>
+								<td>
+									<form method="post">
+										<input type="hidden" name="_token" value="{{ csrf_token('update' ~ candidacy.id) }}">
+										<select name="{{candidacy.id}}" id="selectStatus" class="selectStatusCandidacy fw-bold px-0">
+											<option {% if candidacy.status.status == "Nouvelle" %} selected {% endif %} value="Nouvelle">Nouvelle</option>
+											<option {% if candidacy.status.status == "Acceptée" %} selected {% endif %} value="Acceptée">Acceptée</option>
+											<option {% if candidacy.status.status == "Refusée" %} selected {% endif %} value="Refusée">Refusée</option>
+										</select>
+									</form>
+								</td>
 							</tr>
 						{% else %}
 							<tr>
@@ -117,9 +126,54 @@
 						{% endfor %}
 					</tbody>
 				</table>
+
+				<div class="d-md-none justify-content-center">
+					{% for candidacy in offer.candidacies %}
+						<div class="card offer d-flex flex-row justify-content-between textCandidacies">
+							<div class="col-11">
+								<div id="candidacyMobile{{candidacy.id}}" class="offer-body card-body text-black fw-bold {% if candidacy.status.status == 'Refusée' %} bg-darkGrey {% elseif candidacy.status.status == 'Acceptée' %} bg-lightPink {% endif %}">
+									<div class="mb-2">
+										<a href="{{ path('app_offer_show', {'id': candidacy.offer.id}) }}">
+											{{ candidacy.offer.title }}
+										</a>
+									</div>
+									<div>
+										<a href="{{ path('app_candidate_admin_show', {'id': candidacy.candidate.id }) }}">
+											{{ candidacy.candidate.fullname}}
+										</a>
+									</div>
+									<div>{{ candidacy.candidacyDate ? candidacy.candidacyDate|date('d/m/Y') : '' }}</div>
+									<div class="align-content-end">
+										<form method="post">
+											<input type="hidden" name="_token" value="{{ csrf_token('update' ~ candidacy.id) }}">
+											<select name="{{candidacy.id}}" id="selectStatusMobile" class="selectStatusCandidacy fw-bold px-0">
+												<option {% if candidacy.status.status == "Nouvelle" %} selected {% endif %} value="Nouvelle">Nouvelle</option>
+												<option {% if candidacy.status.status == "Acceptée" %} selected {% endif %} value="Acceptée">Acceptée</option>
+												<option {% if candidacy.status.status == "Refusée" %} selected {% endif %} value="Refusée">Refusée</option>
+											</select>
+										</form>
+									</div>
+								</div>
+							</div>
+							<div class="offer-more col-1 d-flex justify-content-center align-items-center">
+								<div>
+									<a href="{{ path('app_offer_show', {'id': candidacy.offer.id}) }}">
+										<svg xmlns="http://www.w3.org/2000/svg" class="logo-offer-more bi bi-plus" viewbox="0 0 16 16">
+											<path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"></path>
+										</svg>
+									</a>
+								</div>
+							</div>
+						</div>
+					{% else %}
+						<h3 class="NoOffer d-md-none">Pas de candidature trouvée</h3>
+					{% endfor %}
+				</div>
 			{% endif %}
 		</main>
-		<div class="d-flex d-sm-none flex-column align-items-center fixed-bottom mb-5 applyMobile">
-			<a href="{{ path('app_candidacy_new', {'id': offer.id}) }}" class="link-admin w-50" role="button" aria-pressed="true">Postuler</a>
-		</div>
+		{% if is_granted("ROLE_EDITOR") == false %}
+			<div class="d-flex d-md-none flex-column align-items-center fixed-bottom mb-5 applyMobile">
+				<a href="{{ path('app_candidacy_new', {'id': offer.id}) }}" class="link-admin w-50" role="button" aria-pressed="true">Postuler</a>
+			</div>
+		{% endif %}
 	{% endblock %}

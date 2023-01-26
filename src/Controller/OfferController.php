@@ -30,7 +30,7 @@ class OfferController extends AbstractController
             $offers = $searchBar->searchOffer($search, $select, $partner);
             $search = true;
         } else {
-            $offers = $offerRepository->findBy([], ['open' => 'DESC', 'id' => 'DESC', ]);
+            $offers = $offerRepository->findBy([], ['open' => 'DESC', 'id' => 'DESC',]);
         }
 
         return $this->render('offer/index.html.twig', [
@@ -52,7 +52,7 @@ class OfferController extends AbstractController
             $offers = $searchBar->searchOfferByRecruiter($search, $select, $recruiter);
             $search = true;
         } else {
-            $offers = $offerRepository->findBy(['recruiter' => $recruiter], ['open' => 'DESC', 'id' => 'DESC', ]);
+            $offers = $offerRepository->findBy(['recruiter' => $recruiter], ['open' => 'DESC', 'id' => 'DESC',]);
         }
 
         return $this->render('offer/index_recruiter.html.twig', [
@@ -155,7 +155,10 @@ class OfferController extends AbstractController
             $user = $this->container->get('security.token_storage')->getToken()->getUser();
             if ($user->getInformation()) {
                 $candidate = $user->getInformation();
-                $candidacy = $candidacyRepository->findOneBy(['candidate' => $candidate, 'offer' => $offer]);
+                $candidacy = $candidacyRepository->findOneBy(
+                    ['candidate' => $candidate, 'offer' => $offer],
+                    ['status' => 'ASC']
+                );
                 if ($candidacy != false) {
                     return $this->render('offer/show.html.twig', [
                         'offer' => $offer,

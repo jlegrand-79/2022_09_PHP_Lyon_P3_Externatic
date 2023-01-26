@@ -4,8 +4,10 @@ namespace App\Controller;
 
 use App\Entity\Recruiter;
 use App\Form\RecruiterType;
+use App\Repository\OfferRepository;
 use App\Repository\RecruiterRepository;
 use App\Repository\UserRepository;
+use App\Service\SearchBar;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -55,6 +57,7 @@ class RecruiterController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $recruiterRepository->save($recruiter, true);
+            $this->addFlash('success', "Les informations du recruteur ont bien été mises à jour.");
 
             return $this->redirectToRoute('app_recruiter_index', [], Response::HTTP_SEE_OTHER);
         }
@@ -65,52 +68,48 @@ class RecruiterController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'app_recruiter_show', methods: ['GET'])]
-    public function show(int $id, RecruiterRepository $recruiterRepository): Response
-    {
+    #[Route('/{id}', name: 'app_recruiter_show', methods: ['GET', 'POST'])]
+    public function show(
+        Request $request,
+        int $id,
+        RecruiterRepository $recruiterRepository,
+        OfferRepository $offerRepository,
+        SearchBar $searchBar,
+    ): Response {
         $recruiter = $recruiterRepository->findOneById($id);
-
+        $search = false;
+        if ($request->isMethod('POST')) {
+            $search = $request->get('search');
+            $select = $request->get('city');
+            $offers = $searchBar->searchOfferByRecruiter($search, $select, $recruiter);
+            $search = true;
+        } else {
+            $offers = $offerRepository->findBy(['recruiter' => $recruiter], ['open' => 'DESC', 'id' => 'DESC',]);
+        }
         return $this->render('recruiter/show.html.twig', [
-            'recruiter' => $recruiter
+            'recruiter' => $recruiter,
+            'offers' => $offers,
+            'search' => $search,
         ]);
     }
 
     #[Route('/{id}/edit', name: 'app_recruiter_edit', methods: ['GET', 'POST'])]
-    public function edit(Request $request, Recruiter $recruiter, RecruiterRepository $recruiterRepository): Response
-    {
+    public function edit(
+        Request $request,
+        Recruiter $recruiter,
+        RecruiterRepository $recruiterRepository
+    ): Response {
         $form = $this->createForm(RecruiterType::class, $recruiter);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $recruiterRepository->save($recruiter, true);
+            $this->addFlash('success', "Les informations du recruteur ont bien été mises à jour.");
 
             return $this->redirectToRoute('app_recruiter_index', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->renderForm('recruiter/edit.html.twig', [
-            'recruiter' => $recruiter,
-            'form' => $form,
-        ]);
-    }
-
-    #[Route('/{id}/new', name: 'app_recruiter_admin_new', methods: ['GET', 'POST'])]
-    public function newRecruiterAdmin(
-        Request $request,
-        RecruiterRepository $recruiterRepository,
-        int $id,
-        UserRepository $userRepository
-    ): Response {
-        $recruiter = new Recruiter();
-        $recruiter->setUser($userRepository->findOneById($id));
-        $form = $this->createForm(RecruiterType::class, $recruiter);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $recruiterRepository->save($recruiter, true);
-
-            return $this->redirectToRoute('app_recruiter_index', [], Response::HTTP_SEE_OTHER);
-        }
-        return $this->renderForm('recruiter/new.html.twig', [
             'recruiter' => $recruiter,
             'form' => $form,
         ]);

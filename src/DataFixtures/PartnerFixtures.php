@@ -25,7 +25,7 @@ class PartnerFixtures extends Fixture
                 'address_complement' => 'Beverly Hills',
                 'postal_code' => '90210',
                 'city' => 'Los Angeles, California',
-                'logo' => 'https://seekpng.com/png/full/376-3768060_stark-industries-logo.png',
+                'logo' => 'https://i.pinimg.com/564x/72/5a/0d/725a0dd721d59db233c05b01963cd9ed.jpg',
                 'url' => 'https://marvelcinematicuniverse.fandom.com/wiki/Stark_Industries',
             ],
             [

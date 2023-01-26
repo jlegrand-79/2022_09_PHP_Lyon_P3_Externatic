@@ -7,7 +7,7 @@
 	<main class="mainSection mb-4">
 
 		<div class="mainForm">
-			<h1>Editer l'offre</h1>
+			<h1 class="text-center">Editer l'offre</h1>
 			{% if is_granted('ROLE_ADMIN') %}
 				{{ include('offer/_form.html.twig', {'button_label': 'Editer l\'offre'}) }}
 			{% elseif is_granted('ROLE_RECRUITER') %}

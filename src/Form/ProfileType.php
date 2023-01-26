@@ -204,7 +204,6 @@ class ProfileType extends AbstractType
         $builder
             ->add('partner', EntityType::class, [
                 'required' => false,
-                'mapped' => false,
                 'class' => Partner::class,
                 'choice_label' => 'name',
                 'choice_value' => 'id',

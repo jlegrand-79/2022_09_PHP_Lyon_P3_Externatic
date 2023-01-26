@@ -32,7 +32,7 @@ class CandidacyController extends AbstractController
             $candidacies = $candidacyRepository->searchCandidacies($title, $name, $date);
             $search = true;
         } else {
-            $candidacies = $candidacyRepository->findAll();
+            $candidacies = $candidacyRepository->findBy([], ['status' => 'ASC']);
         }
 
         return $this->render('candidacy/index.html.twig', [
