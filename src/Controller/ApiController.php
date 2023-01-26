@@ -3,7 +3,11 @@
 namespace App\Controller;
 
 use JsonSerializable;
+use App\Entity\Candidacy;
+use App\Repository\OfferRepository;
+use App\Repository\StatusRepository;
 use App\Repository\PartnerRepository;
+use App\Repository\CandidacyRepository;
 use App\Repository\WorkFieldRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -38,5 +42,38 @@ class ApiController extends AbstractController
             $stacks[] = ['id' => $stack->getId(), 'name' => $stack->getName()];
         }
         return new JsonResponse($stacks);
+    }
+
+    #[Route('/edit_candidacy_status/{id}/{newStatus}', name: 'edit_candidacy_status', methods: ['GET', 'POST'])]
+    #[Entity('candidacy', options: ['mapping' => ['id' => 'id']])]
+    #[Entity('status', options: ['mapping' => ['newStatus' => 'status']])]
+    public function editCandidacyStatus(
+        string $newStatus,
+        Request $request,
+        Candidacy $candidacy,
+        OfferRepository $offerRepository,
+        StatusRepository $statusRepository,
+        CandidacyRepository $candidacyRepository
+    ): Response {
+        $status = $statusRepository->findOneBy(['status' => $newStatus]);
+        $candidacy->setStatus($status);
+        $candidacyRepository->save($candidacy, true);
+
+        if ($newStatus == "Acceptée") {
+            $offer = $candidacy->getOffer();
+            $offer->setOpen(false);
+            $offerRepository->save($offer, true);
+
+            $statusDeclined = $statusRepository->findOneBy(['status' => "Refusée"]);
+            $otherCandidacies = $candidacyRepository->findByOffer($offer);
+            foreach ($otherCandidacies as $otherCandidacy) {
+                if ($otherCandidacy != $candidacy) {
+                    $otherCandidacy->setStatus($statusDeclined);
+                    $candidacyRepository->save($otherCandidacy, true);
+                }
+            }
+        }
+
+        return new JsonResponse(true);
     }
 }
