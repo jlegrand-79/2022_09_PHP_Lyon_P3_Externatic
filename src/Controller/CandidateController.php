@@ -101,9 +101,22 @@ class CandidateController extends AbstractController
     }
 
     #[Route('/{id}', name: 'app_candidate_admin_show', methods: ['GET'])]
-    #[IsGranted('ROLE_ADMIN')]
+    #[IsGranted('ROLE_EDITOR')]
     public function showCandidateAdmin(Candidate $candidate): Response
     {
+        $user = $this->container->get('security.token_storage')->getToken()->getUser();
+        if (in_array('ROLE_RECRUITER', $user->getRoles())) {
+            $candidateCandidacies = $candidate->getCandidacies();
+            $access = false;
+            foreach ($candidateCandidacies as $candidateCandidacy) {
+                if ($user->getRecruiter()->getOffers()->contains($candidateCandidacy->getOffer())) {
+                    $access = true;
+                }
+            }
+            if ($access == false) {
+                return $this->redirectToRoute('app_candidacy_recruiter_index', [], Response::HTTP_SEE_OTHER);
+            }
+        }
         return $this->render('candidate/show.html.twig', [
             'candidate' => $candidate,
         ]);
