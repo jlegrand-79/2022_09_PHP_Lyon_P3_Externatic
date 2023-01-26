@@ -26,7 +26,9 @@
 			</div>
 		</div>
 
-		<h2 class="text-center">Mes informations personnelles</h2>
+		<h2 class="text-center">
+			{% if is_granted('ROLE_EDITOR') %}S{% else %}M
+			{% endif %}es informations personnelles</h2>
 
 		<div class="row justify-content-center">
 			<div class="col-11 col-md-9 col-lg-7 col-xl-6 col-xxl-6">
@@ -82,7 +84,9 @@
 			</div>
 		</div>
 
-		<h2 class="text-center">Mon profil candidat</h2>
+		<h2 class="text-center">
+			{% if is_granted('ROLE_EDITOR') %}S{% else %}M
+			{% endif %}on profil candidat</h2>
 
 		<div class="row justify-content-center">
 			<div class="col-11 col-md-9 col-lg-7 col-xl-6 col-xxl-6">
@@ -98,7 +102,9 @@
 									{% if candidate.curriculumVitae is empty %}
 										Aucun CV uploadé
 									{% else %}
-										<a class="candidate-link" target="_blank" href="{{ asset('uploads/candidate/curriculumVitae/' ~ candidate.curriculumVitae) }}">Ouvrir mon CV</a>
+										<a class="candidate-link" target="_blank" href="{{ asset('uploads/candidate/curriculumVitae/' ~ candidate.curriculumVitae) }}">Ouvrir
+											{% if is_granted('ROLE_EDITOR') %}s{% else %}m
+											{% endif %}on CV</a>
 									{% endif %}
 								</p>
 							</div>

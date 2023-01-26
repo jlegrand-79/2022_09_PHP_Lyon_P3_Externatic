@@ -155,7 +155,10 @@ class OfferController extends AbstractController
             $user = $this->container->get('security.token_storage')->getToken()->getUser();
             if ($user->getInformation()) {
                 $candidate = $user->getInformation();
-                $candidacy = $candidacyRepository->findOneBy(['candidate' => $candidate, 'offer' => $offer]);
+                $candidacy = $candidacyRepository->findOneBy(
+                    ['candidate' => $candidate, 'offer' => $offer],
+                    ['status' => 'ASC']
+                );
                 if ($candidacy != false) {
                     return $this->render('offer/show.html.twig', [
                         'offer' => $offer,

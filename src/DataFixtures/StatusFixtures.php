@@ -10,7 +10,7 @@ class StatusFixtures extends Fixture
 {
     public function load(ObjectManager $manager): void
     {
-        $statuses = ['Nouvelle', 'Refusée', 'Acceptée'];
+        $statuses = ['Nouvelle', 'Acceptée', 'Refusée'];
 
         foreach ($statuses as $status) {
             $newStatus = new Status();
