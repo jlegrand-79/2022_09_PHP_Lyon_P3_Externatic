@@ -225,9 +225,10 @@ button {
 
 .buttonSearchOffer {
     margin-top: 29px;
-    height: 40px;
+    height: 39px;
     font: 600 18px Jost;
     background-color: $black;
+    border-width: 0px;
 
     &:hover {
         background-color: $mainPink;
@@ -257,8 +258,8 @@ button {
 }
 
 .NoOffer {
-    color: $mainPink;
-    font: 900 40px Jost;
+    color: $black;
+    font: 900 30px Jost;
     margin-top: 50px;
     margin-bottom: 80px;
     text-align: center;
@@ -266,7 +267,7 @@ button {
 
 .searchCandidacies {
     width: 95%;
-    max-width: 330px;
+    max-width: 260px;
 }
 
 .searchCandidate {
@@ -284,4 +285,22 @@ button {
 
 .cvUploaderPicto {
     width: 40px;
+}
+
+.jost {
+    font-family: 'Jost', sans-serif !important;
+}
+
+.background-error {
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.cleanSize {
+    width: 99%;
+}
+
+.cleanSearchInput {
+    margin-left: -2px;
 }

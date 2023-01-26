@@ -4,7 +4,7 @@
 {% endblock %}
 
 {% block body %}
-	<main class="container mb-4">
+	<main class="container mb-5">
 
 		<h1 class="text-center">Espace Admin</h1>
 
@@ -16,15 +16,15 @@
 
 		<form action="{{ path('app_recruiter_index') }}" method="post" class="mt-3 mb-4">
 			<div class="form-row formSearchOffer d-flex flex-column flex-md-row align-items-center">
-				<div class="searchCandidacies form-group col-12 col-md-4 mb-2 mb-md-0">
+				<div class="searchCandidacies form-group col-12 col-md-4 mb-2 mb-md-0 cleanSearchInput">
 					<label for="lastname">Nom</label>
 					<input type="text" name="lastname" class="form-control" placeholder="Dupont">
 				</div>
-				<div class="searchCandidacies form-group col-12 col-md-4 mb-2 mb-md-0">
+				<div class="searchCandidacies form-group col-12 col-md-4 mb-2 mb-md-0 cleanSearchInput">
 					<label for="email">Mail</label>
 					<input type="text" name="email" class="form-control" placeholder="jean.michel@mail.com">
 				</div>
-				<div class="searchCandidacies form-group col-12 col-md-4 mb-2 mb-md-0">
+				<div class="searchCandidacies form-group col-12 col-md-4 mb-2 mb-md-0 cleanSearchInput">
 					<label for="partner">Entreprise</label>
 					<input type="text" name="partner" class="form-control" placeholder="Stark Industries">
 				</div>

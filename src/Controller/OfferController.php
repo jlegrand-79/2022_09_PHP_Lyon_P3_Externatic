@@ -30,7 +30,7 @@ class OfferController extends AbstractController
             $offers = $searchBar->searchOffer($search, $select, $partner);
             $search = true;
         } else {
-            $offers = $offerRepository->findBy([], ['open' => 'DESC', 'id' => 'DESC', ]);
+            $offers = $offerRepository->findBy([], ['open' => 'DESC', 'id' => 'DESC',]);
         }
 
         return $this->render('offer/index.html.twig', [
@@ -52,7 +52,7 @@ class OfferController extends AbstractController
             $offers = $searchBar->searchOfferByRecruiter($search, $select, $recruiter);
             $search = true;
         } else {
-            $offers = $offerRepository->findBy(['recruiter' => $recruiter], ['open' => 'DESC', 'id' => 'DESC', ]);
+            $offers = $offerRepository->findBy(['recruiter' => $recruiter], ['open' => 'DESC', 'id' => 'DESC',]);
         }
 
         return $this->render('offer/index_recruiter.html.twig', [
