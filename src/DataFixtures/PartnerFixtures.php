@@ -42,6 +42,31 @@ class PartnerFixtures extends Fixture
                 'logo' => 'https://static.wikia.nocookie.net/batman/images/d/dd/Wayne_Enterprises_Logo.png',
                 'url' => 'https://dc.fandom.com/wiki/Wayne_Enterprises',
             ],
+            [
+                'name' => 'Wild Code School',
+                'description' => "La Wild Code School est une école innovante et un réseau européen de campus"
+                    . " qui forment aux métiers tech des spécialistes adaptables. C'est une marque de la société"
+                    . " Innov'Educ.",
+                'picture' => 'https://shorturl.at/aksX2',
+                'address' => '17 Rue Delandine',
+                'address_complement' => 'Vieille Prison',
+                'postal_code' => '69002',
+                'city' => 'Lyon',
+                'logo' => 'https://campusnumerique.auvergnerhonealpes.fr/app/uploads/2020/06/Logo-Wild-new.jpg',
+                'url' => 'https://www.wildcodeschool.com/fr-FR',
+            ],
+            [
+                'name' => 'Externatic',
+                'description' => "Externatic est un cabinet de recrutement informatique et de conseil RH"
+                    . " qui répond aux vrais besoins de vraies personnes. Nos offres d'emploi 100% client final.",
+                'picture' => 'https://shorturl.at/rzALY',
+                'address' => '1 Rue Racine',
+                'address_complement' => 'Bat. A',
+                'postal_code' => '44000',
+                'city' => 'Nantes',
+                'logo' => 'https://www.externatic.fr/wp-content/uploads/2022/10/Logo-Externatic.svg',
+                'url' => 'https://www.externatic.fr/',
+            ],
         ];
 
         foreach ($partners as $key => $partner) {
