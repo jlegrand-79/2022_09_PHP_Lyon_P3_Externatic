@@ -25,7 +25,7 @@ class SearchBar
             $offers[] = $offer;
         }
 
-        if (empty($partner)) {
+        if (empty($partner) && !empty($select)) {
             $offersbyDepartment = $this->offerRepository->findLikeDepartment($search, $trimSelect, $trimCode);
 
             foreach ($offersbyDepartment as $offer) {
