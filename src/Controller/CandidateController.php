@@ -226,6 +226,9 @@ class CandidateController extends AbstractController
 
         $candidate = $candidateRepository->findOneBy(['id' => $candidateId]);
         $candidate->setUser($user);
+
+        $path = __DIR__ . '/../../public/uploads/candidate/curriculumVitae/';
+        unlink($path . $candidate->getCurriculumVitae());
         $candidate->setCurriculumVitae('');
 
         $form = $this->createForm(CandidateType::class, $candidate);
@@ -255,6 +258,9 @@ class CandidateController extends AbstractController
 
         $candidate = $candidateRepository->findOneBy(['id' => $candidateId]);
         $candidate->setUser($user);
+
+        $path = __DIR__ . '/../../public/uploads/candidate/picture/';
+        unlink($path . $candidate->getPicture());
         $candidate->setPicture('');
 
         $form = $this->createForm(CandidateType::class, $candidate);

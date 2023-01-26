@@ -76,14 +76,4 @@ class PartnerController extends AbstractController
             'form' => $form,
         ]);
     }
-
-    #[Route('/{id}', name: 'app_partner_delete', methods: ['POST'])]
-    public function delete(Request $request, Partner $partner, PartnerRepository $partnerRepository): Response
-    {
-        if ($this->isCsrfTokenValid('delete' . $partner->getId(), $request->request->get('_token'))) {
-            $partnerRepository->remove($partner, true);
-        }
-
-        return $this->redirectToRoute('app_partner_index', [], Response::HTTP_SEE_OTHER);
-    }
 }

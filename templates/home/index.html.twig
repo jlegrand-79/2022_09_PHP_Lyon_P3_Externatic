@@ -72,16 +72,18 @@
 		<a href="{{ path('app_offer_list') }}" class="btn rounded-0">Voir toutes nos offres</a>
 	</div>
 
-	<div class="title mb-5">
-		<div class="inscription d-flex justify-content-center mt-3 text-center">
-			<h2 class="homeH2">
-				Vous souhaitez postuler
-				<span class="offerTitle text-center-md">à une offre ?</span>
-			</h2>
+	{% if not app.user %}
+		<div class="title">
+			<div class="inscription d-flex justify-content-center mt-3 text-center">
+				<h2 class="homeH2 ">
+					Vous souhaitez postuler
+					<span class="offerTitle text-center-md">à une offre ?</span>
+				</h2>
+			</div>
+			<div class="btn-inscription d-flex justify-content-center m-1 mb-5">
+				<a href="{{ path('app_register') }}" class="btn rounded-0">Inscrivez-vous</a>
+			</div>
 		</div>
-		<div class="btn-inscription d-flex justify-content-center m-1 mb-5">
-			<a href="{{ path('app_register') }}" class="btn rounded-0">Inscrivez-vous</a>
-		</div>
-	</div>
+	{% endif %}
 
 {% endblock %}
