@@ -157,7 +157,6 @@ class OfferController extends AbstractController
                 $candidate = $user->getInformation();
                 $candidacy = $candidacyRepository->findOneBy(
                     ['candidate' => $candidate, 'offer' => $offer],
-                    ['status' => 'ASC']
                 );
                 if ($candidacy != false) {
                     return $this->render('offer/show.html.twig', [
