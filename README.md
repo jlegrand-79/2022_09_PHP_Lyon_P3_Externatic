@@ -12,15 +12,35 @@
       <a href="#clone-and-run-externatic">Clone and run Externatic</a>
       <ul>
         <li><a href="#prerequisites">Prerequisites</a></li>
-        <li><a href="#installation">Installation</a></li>
+        <li><a href="#Install">Install</a></li>
+        <li><a href="#create-the-database">Create the database</a></li>
+        <li><a href="#launching">Launching</a></li>
       </ul>
     </li>
-    <li><a href="#architecture-of-Externatic">Architecture of Externatic</a></li>
-    <li><a href="#roadmap">Roadmap</a></li>
-    <li><a href="#contributing">Contributing</a></li>
-    <li><a href="#license">License</a></li>
-    <li><a href="#contact">Contact</a></li>
-    <li><a href="#acknowledgments">Acknowledgments</a></li>
+    <li>
+      <a href="#architecture-of-externatic">Architecture of Externatic</a>
+      <ul>
+        <li><a href="#organisation">Organisation</a></li>
+        <li><a href="#public-pages">Public pages</a></li>
+        <li><a href="#candidate-page">Candidate page</a></li>
+        <li><a href="#recruiter-page">Recruiter page</a></li>
+        <li><a href="#admin-pages"> Admin pages</a></li>
+      </ul>
+    </li>
+    <li>
+      <a href="#login-to-externatic">Login to Externatic</a>
+      <ul>
+        <li><a href="#admin">Admin</a></li>
+        <li><a href="#recruiter">Recruiter</a></li>
+        <li><a href="#candidate">Candidate</a></li>
+      </ul>
+    </li>
+    <li>
+      <a href="#info-about-Externatic">Info about Externatic</a>
+    </li>
+        <li>
+      <a href="#license">License</a>
+    </li>
   </ol>
 </details>
 
@@ -91,41 +111,31 @@ There is 3 access level to externatic :
 
 ### Admin
 
-* email : `admin@externatic.com`
-* password : `Admin_123`
+* email : `admin@externatic.com` // password : `Admin_123`
 
 
 ### Recruiter
 
-* email : `bruce@wayne-entreprises.com`
-* password : `Brubru_123`
+* email : `bruce@wayne-entreprises.com` // password : `Brubru_123`
 
-* email : `lucius@wayne-entreprises.com`
-* password : `Lucluc_123`
+* email : `lucius@wayne-entreprises.com` // password : `Lucluc_123`
 
-* email : `tony@stark-industries.com`
-* password : `Tonton_123`
+* email : `tony@stark-industries.com` // password : `Tonton_123`
 
-* email : `virginia@stark-industries.com`
-* password : `Virvir_123`
+* email : `virginia@stark-industries.com` // password : `Virvir_123`
 
 
 ### Candidate
 
-* email : `thomas.besson@mail.com`
-* password : `Thotho_123`
+* email : `thomas.besson@mail.com` // password : `Thotho_123`
 
-* email : `marcia.baila@mail.com`
-* password : `Marmar_123`
+* email : `marcia.baila@mail.com` // password : `Marmar_123`
 
-* email : `antoine.dupont@mail.com`
-* password : `Toitoi_123`
+* email : `antoine.dupont@mail.com` // password : `Toitoi_123`
 
-* email : `chacha.da.rugna@mail.com`
-* password : `Chacha_123`
+* email : `chacha.da.rugna@mail.com` // password : `Chacha_123`
 
-* email : `jeje01@mail.com`
-* password : `Jeje_123`
+* email : `jeje01@mail.com` // password : `Jeje_123`
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -154,3 +164,16 @@ Externatic is a [school](https://www.wildcodeschool.com/) project created by :
 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+
+## License
+
+MIT License
+
+Copyright (c) 2019 aurelien@wildcodeschool.fr
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
