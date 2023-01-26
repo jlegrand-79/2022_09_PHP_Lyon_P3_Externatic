@@ -5,7 +5,7 @@ includes:
 parameters:
     excludePaths:
     ignoreErrors:
-        - "#The method [a-zA-Z0-9\\_]+ Avoid really long methods."
+        - "#The method [a-zA-Z0-9\\_]+ Avoid really long methods.#"
     reportUnmatchedIgnoredErrors: false
     checkGenericClassInNonGenericObjectType: false
     checkMissingIterableValueType: false
