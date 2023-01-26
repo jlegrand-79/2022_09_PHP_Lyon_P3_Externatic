@@ -4,8 +4,8 @@ includes:
     - vendor/phpstan/phpstan-symfony/extension.neon
 parameters:
     excludePaths:
-        - src/DataFixtures/*
     ignoreErrors:
+        - "#The method [a-zA-Z0-9\\_]+ Avoid really long methods."
     reportUnmatchedIgnoredErrors: false
     checkGenericClassInNonGenericObjectType: false
     checkMissingIterableValueType: false
