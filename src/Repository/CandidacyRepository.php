@@ -69,6 +69,55 @@ class CandidacyRepository extends ServiceEntityRepository
         return $queryBuilder->getQuery()->getResult();
     }
 
+    public function searchCandidaciesRecruiter(string $title, string $name, string $date, int $id): array
+    {
+        $queryBuilder = $this->createQueryBuilder('c');
+
+        $queryBuilder
+        ->join('c.candidate', 'ca')
+        ->join('c.offer', 'o')
+        ->join('o.recruiter', 'r')
+        ->andWhere('r.id = :id')
+        ->setParameter('id', $id);
+
+        if (!empty($title)) {
+            $queryBuilder
+            ->andWhere('o.title LIKE :title')
+            ->setParameter('title', '%' . $title . '%');
+        }
+
+        if (!empty($name)) {
+            $queryBuilder
+            ->andWhere('ca.lastname LIKE :lastname')
+            ->setParameter('lastname', '%' . $name . '%');
+        }
+
+        if (!empty($date)) {
+            $queryBuilder
+            ->andWhere('c.candidacyDate = :date')
+            ->setParameter('date', $date);
+        }
+
+        $queryBuilder
+        ->orderBy('c.id', 'DESC');
+
+        return $queryBuilder->getQuery()->getResult();
+    }
+    public function findByRecruiterId(int $id): array
+    {
+        $queryBuilder = $this->createQueryBuilder('c');
+            $queryBuilder
+            ->join('c.offer', 'o')
+            ->join('o.recruiter', 'r')
+            ->select('c', 'o', 'r')
+            ->where('r.id = :id')
+            ->setParameter('id', $id)
+            ->orderBy('c.id', 'DESC')
+            ;
+
+        return $queryBuilder->getQuery()->getResult();
+    }
+
 //    /**
 //     * @return Candidacy[] Returns an array of Candidacy objects
 //     */
