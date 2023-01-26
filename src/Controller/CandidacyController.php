@@ -41,6 +41,32 @@ class CandidacyController extends AbstractController
         ]);
     }
 
+    #[Route('/recruiter', name: 'app_candidacy_recruiter_index', methods: ['GET', 'POST'])]
+    #[IsGranted('ROLE_RECRUITER')]
+    public function indexRecruiter(Request $request, CandidacyRepository $candidacyRepository): Response
+    {
+        $user = $this->container->get('security.token_storage')->getToken()->getUser();
+        $recruiter = $user->getRecruiter();
+        $recruiterId = $recruiter->getId();
+        $search = false;
+        if ($request->isMethod('POST')) {
+            $title = $request->get('searchTitle');
+            $name = $request->get('searchName');
+            $date = $request->get('searchDate');
+
+            $candidacies = $candidacyRepository->searchCandidaciesRecruiter($title, $name, $date, $recruiterId);
+            $search = true;
+        } else {
+            $candidacies = $candidacyRepository->findByRecruiterId($recruiterId);
+        }
+
+        return $this->render('candidacy/recruiter.html.twig', [
+            'recruiter' => $recruiter,
+            'candidacies' => $candidacies,
+            'search' => $search
+        ]);
+    }
+
     #[Route('/{id<\d+>}', name: 'app_candidacy_show', methods: ['GET'])]
     public function show(Candidacy $candidacy): Response
     {
