@@ -118,14 +118,4 @@ class RecruiterController extends AbstractController
             'form' => $form,
         ]);
     }
-
-    #[Route('/{id}', name: 'app_recruiter_delete', methods: ['POST'])]
-    public function delete(Request $request, Recruiter $recruiter, RecruiterRepository $recruiterRepository): Response
-    {
-        if ($this->isCsrfTokenValid('delete' . $recruiter->getId(), $request->request->get('_token'))) {
-            $recruiterRepository->remove($recruiter, true);
-        }
-
-        return $this->redirectToRoute('app_recruiter_index', [], Response::HTTP_SEE_OTHER);
-    }
 }
