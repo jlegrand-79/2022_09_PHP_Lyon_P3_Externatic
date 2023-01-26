@@ -4,8 +4,10 @@ includes:
     - vendor/phpstan/phpstan-symfony/extension.neon
 parameters:
     excludePaths:
-    - src/Security
-    - src/DataFixtures/*
+        - src/Security
+        - src/DataFixtures/CandidateFixtures.php
+        - src/DataFixtures/RecruiterFixtures.php
+        - src/DataFixtures/UserFixtures.php
     ignoreErrors:
     reportUnmatchedIgnoredErrors: false
     checkGenericClassInNonGenericObjectType: false
