@@ -23,7 +23,7 @@
 						</tr>
 						<tr>
 							<td>
-								<a title="Supprimer" class="m-0" onclick="window.location.href='{{ path('app_candidate_picture_delete') }}';">Supprimer</a>
+								<a title="Supprimer" class="m-0" onclick="window.location.href='{{ path('app_candidate_picture_delete', {'candidateId': candidate.id }) }}';">Supprimer</a>
 							</td>
 							<td>|</td>
 							<td>
@@ -74,7 +74,7 @@
 								</a>
 							</div>
 							<div class="ps-1">
-								<a title="Supprimer" href="{{ path('app_candidate_cv_delete') }}">
+								<a title="Supprimer" href="{{ path('app_candidate_cv_delete', {'candidateId': candidate.id }) }}">
 									<img src="{{ asset('build/images/delete.png') }}" class="cvUploaderPicto" alt="Supprimer">
 								</a>
 							</div>

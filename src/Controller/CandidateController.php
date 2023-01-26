@@ -133,6 +133,26 @@ class CandidateController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $stacks = $candidate->getStacks();
+            if (count($stacks) <= 0) {
+                $noStacks = 'Veuillez renseigner au moins une stack.';
+                return $this->renderForm('candidate/new.html.twig', [
+                    'candidate' => $candidate,
+                    'form' => $form,
+                    'noStacks' => $noStacks,
+                ]);
+            }
+
+            $contractSearched = $candidate->getContractSearched();
+            if (count($contractSearched) <= 0) {
+                $noContractSearched = 'Veuillez renseigner au moins une stack.';
+                return $this->renderForm('candidate/update.html.twig', [
+                    'candidate' => $candidate,
+                    'form' => $form,
+                    'noContractSearched' => $noContractSearched,
+                ]);
+            }
+            $candidate->setUpdatedAt(new DateTime());
             $candidateRepository->save($candidate, true);
 
             return $this->redirectToRoute('app_candidate_index', [], Response::HTTP_SEE_OTHER);
@@ -228,17 +248,15 @@ class CandidateController extends AbstractController
         ]);
     }
 
-    #[Route('/cv/delete', name: 'app_candidate_cv_delete', methods: ['GET', 'POST'])]
-    #[IsGranted('ROLE_CANDIDATE')]
+    #[Route('/cv/delete/{candidateId}', name: 'app_candidate_cv_delete', methods: ['GET', 'POST'])]
+    #[IsGranted('ROLE_READER')]
     public function deleteCV(
         Request $request,
         CandidateRepository $candidateRepository,
+        int $candidateId
     ): Response {
-        $user = $this->container->get('security.token_storage')->getToken()->getUser();
-        $candidateId = $user->getInformation()->getId();
 
         $candidate = $candidateRepository->findOneBy(['id' => $candidateId]);
-        $candidate->setUser($user);
 
         $path = __DIR__ . '/../../public/uploads/candidate/curriculumVitae/';
         unlink($path . $candidate->getCurriculumVitae());
@@ -250,27 +268,38 @@ class CandidateController extends AbstractController
         $candidateRepository->save($candidate, true);
         $this->addFlash('success', "Votre CV a bien été supprimé.");
 
-        return $this->redirectToRoute(
-            'app_candidate_update',
-            [
-                'candidate' => $candidate,
-                'form' => $form,
-            ],
-            Response::HTTP_SEE_OTHER
-        );
+        $user = $this->container->get('security.token_storage')->getToken()->getUser();
+        if (in_array('ROLE_ADMIN', $user->getRoles())) {
+            return $this->redirectToRoute(
+                'app_candidate_admin_edit',
+                [
+                    'candidate' => $candidate,
+                    'form' => $form,
+                    'id' => $candidateId
+                ],
+                Response::HTTP_SEE_OTHER
+            );
+        } else {
+            return $this->redirectToRoute(
+                'app_candidate_update',
+                [
+                    'candidate' => $candidate,
+                    'form' => $form,
+                ],
+                Response::HTTP_SEE_OTHER
+            );
+        }
     }
 
-    #[Route('/picture/delete', name: 'app_candidate_picture_delete', methods: ['GET', 'POST'])]
-    #[IsGranted('ROLE_CANDIDATE')]
+    #[Route('/picture/delete/{candidateId}', name: 'app_candidate_picture_delete', methods: ['GET', 'POST'])]
+    #[IsGranted('ROLE_READER')]
     public function deletePicture(
         Request $request,
         CandidateRepository $candidateRepository,
+        int $candidateId
     ): Response {
-        $user = $this->container->get('security.token_storage')->getToken()->getUser();
-        $candidateId = $user->getInformation()->getId();
 
         $candidate = $candidateRepository->findOneBy(['id' => $candidateId]);
-        $candidate->setUser($user);
 
         $path = __DIR__ . '/../../public/uploads/candidate/picture/';
         unlink($path . $candidate->getPicture());
@@ -282,13 +311,26 @@ class CandidateController extends AbstractController
         $candidateRepository->save($candidate, true);
         $this->addFlash('success', "Votre photo a bien été supprimée.");
 
-        return $this->redirectToRoute(
-            'app_candidate_update',
-            [
-                'candidate' => $candidate,
-                'form' => $form,
-            ],
-            Response::HTTP_SEE_OTHER
-        );
+        $user = $this->container->get('security.token_storage')->getToken()->getUser();
+        if (in_array('ROLE_ADMIN', $user->getRoles())) {
+            return $this->redirectToRoute(
+                'app_candidate_admin_edit',
+                [
+                    'candidate' => $candidate,
+                    'form' => $form,
+                    'id' => $candidateId
+                ],
+                Response::HTTP_SEE_OTHER
+            );
+        } else {
+            return $this->redirectToRoute(
+                'app_candidate_update',
+                [
+                    'candidate' => $candidate,
+                    'form' => $form,
+                ],
+                Response::HTTP_SEE_OTHER
+            );
+        }
     }
 }
