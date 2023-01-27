@@ -102,6 +102,7 @@ class OfferRepository extends ServiceEntityRepository
     {
         $queryBuilder = $this->createQueryBuilder('o')
             ->setMaxResults(6)
+            ->where('o.open = true')
             ->orderBy('RAND()')
             ->getQuery();
         return $queryBuilder->getResult();
