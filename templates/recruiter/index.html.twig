@@ -14,7 +14,7 @@
 
 		<h2 class="text-center">Les recruteurs</h2>
 
-		<form action="{{ path('app_recruiter_index') }}" method="post" class="mt-3 mb-4">
+		<form action="{{ path('app_recruiter_index') }}" method="post" class="mt-3 mb-4 animate__animated animate__fadeIn">
 			<div class="form-row formSearchOffer d-flex flex-column flex-md-row align-items-center">
 				<div class="searchCandidacies form-group col-12 col-md-4 mb-2 mb-md-0 cleanSearchInput">
 					<label for="lastname">Nom</label>
@@ -32,7 +32,7 @@
 			</div>
 		</form>
 
-		<div class="row justify-content-center">
+		<div class="row justify-content-center animate__animated animate__fadeIn animate__slow">
 			{% for user in users %}
 				<div class="col-9 col-lg-8 col-xxl-7">
 					{% if user.recruiter.firstname is defined %}

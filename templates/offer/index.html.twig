@@ -16,7 +16,7 @@
 		<h2 class="text-center">Les offres publiées</h2>
 
 
-		<div class="row justify-content-center mb-4">
+		<div class="row justify-content-center mb-4  animate__animated animate__fadeIn">
 			<div class="col-11 col-md-10 col-lg-9 col-xxl-8 row justify-content-center p-0">
 
 				<form action="{{ path('app_offer_index') }}" method="post" id="form">
@@ -47,7 +47,7 @@
 		{% endif %}
 
 		{% for offer in offers %}
-			<div class="row justify-content-center">
+			<div class="row justify-content-center animate__animated animate__fadeIn animate__slow">
 				<div class="col-9 col-lg-8 col-xxl-7">
 					<a href="{{ path('app_offer_show', {'id': offer.id}) }}" class="offer-link">
 						<div class="card offer d-flex flex-row justify-content-between">
