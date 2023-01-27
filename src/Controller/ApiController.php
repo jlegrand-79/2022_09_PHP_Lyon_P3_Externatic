@@ -59,7 +59,7 @@ class ApiController extends AbstractController
     ): Response {
         $user = $this->container->get('security.token_storage')->getToken()->getUser();
         $offer = $candidacy->getOffer();
-        if ($user->getRecruiter() != $offer->getRecruiter()) {
+        if ($user->getRecruiter() && $user->getRecruiter() != $offer->getRecruiter()) {
             return $this->redirectToRoute('app_candidacy_recruiter_index', [], Response::HTTP_SEE_OTHER);
         }
         $status = $statusRepository->findOneBy(['status' => $newStatus]);
