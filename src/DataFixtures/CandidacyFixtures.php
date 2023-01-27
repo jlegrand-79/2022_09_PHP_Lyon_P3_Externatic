@@ -47,7 +47,7 @@ class CandidacyFixtures extends Fixture implements DependentFixtureInterface
                 'candidate' => 'candidate_6',
                 'offer' => 'offer_5',
                 'date' => new DateTime('2023/01/25'),
-                'status' => 'Nouvelle'
+                'status' => 'Refusée'
             ]
         ];
 

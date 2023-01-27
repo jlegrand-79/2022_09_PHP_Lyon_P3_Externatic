@@ -64,7 +64,7 @@ class CandidateFixtures extends Fixture implements DependentFixtureInterface
             [
                 'user' => 'user_12',
                 'gender' => 'Femme',
-                'firstname' => 'Chacha',
+                'firstname' => 'Charlène',
                 'lastname' => 'Da Rugna',
                 'birthday' => new DateTime('1994-03-10'),
                 'phone' => '0687656589',
