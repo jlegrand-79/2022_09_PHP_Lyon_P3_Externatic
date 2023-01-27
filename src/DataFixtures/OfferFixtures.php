@@ -610,7 +610,7 @@ class OfferFixtures extends Fixture implements DependentFixtureInterface
                 'department' => 59,
             ],
             [
-                'open' => false,
+                'open' => true,
                 'contract' => 'contract_CDI',
                 'recruiter' => 'recruiter_0',
                 'workfield' => 'Développement',
