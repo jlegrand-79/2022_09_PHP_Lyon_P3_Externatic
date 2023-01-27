@@ -34,8 +34,8 @@
 		{% include '_footer.html.twig' %}
 
 		{# This block allows to clear the variable 'apply' add in session when a candidate apply to an offer
-		but have not yet upload a CV when going on an other page but the update form. See function new on 
-		CandidacyController and function update on CandidateController #}
+				but have not yet upload a CV when going on an other page but the update form. See function new on 
+				CandidacyController and function update on CandidateController #}
 		{% block clearSession %}
 			{% if app.session.get('apply') is not null %}
 				{{ app.session.remove('apply') }}

@@ -33,7 +33,7 @@ class PartnerType extends AbstractType
                 'required' => true,
                 'attr' => [
                     'class' => 'form-control',
-                    'placeholder' => 'URL de votre logo',
+                    'placeholder' => 'Nom de votre entreprise',
                 ],
                 'label' => "Nom de l'entreprise",
                 'label_attr' => [
@@ -49,7 +49,7 @@ class PartnerType extends AbstractType
                 'required' => true,
                 'attr' => [
                     'class' => 'form-control',
-                    'placeholder' => 'URL de votre logo',
+                    'placeholder' => 'Description de votre entreprise',
                 ],
                 'label' => "Description de l'entreprise",
                 'label_attr' => [

@@ -4,10 +4,10 @@
 {% endblock %}
 
 {% block body %}
-	{% if offer.open == false %}
-		<div class="bg-darkGrey text-center p-2 w-100" id="offerClosed">Cette offre n'est plus en ligne</div>
-	{% endif %}
 	<main class="container px-4 mb-5">
+		{% if offer.open == false %}
+			<div class="bg-darkGrey text-center p-2 w-100" id="offerClosed">Cette offre n'est plus en ligne</div>
+		{% endif %}
 		<div class="d-flex flex-column align-items-center">
 			<h1 class="text-center text-break">{{ offer.title }}</h1>
 			<p class="offer-text-details">
@@ -82,7 +82,7 @@
 					{{ offer.recruiter.user.email }}</div>
 			</div>
 
-			{% if is_granted("ROLE_ADMIN") or app.user.recruiter == offer.recruiter %}
+			{% if is_granted("ROLE_ADMIN") or (app.user and app.user.recruiter == offer.recruiter) %}
 				<h2 id="candidacies" class="mt-4 text-black">Les candidatures</h2>
 
 				<table class="table candidacyTable mt-3 d-none d-md-table">
