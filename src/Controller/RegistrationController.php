@@ -27,7 +27,6 @@ class RegistrationController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            // vérification de password via un service ici
             $enteredPassword = $form->get('plainPassword')->getData();
             $enteredPassword2 = $form->get('plainPassword2')->getData();
             $errors = $passwordChecker->checkPassword($enteredPassword, $enteredPassword2);
@@ -51,7 +50,6 @@ class RegistrationController extends AbstractController
 
             $entityManager->persist($user);
             $entityManager->flush();
-            // do anything else you need here, like send an email
 
             $this->addFlash('success', "Votre compte a bien été créé. Vous pouvez maintenant vous connecter.");
 
@@ -75,7 +73,6 @@ class RegistrationController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            // vérification de password via un service ici
             $enteredPassword = $form->get('plainPassword')->getData();
             $enteredPassword2 = $form->get('plainPassword2')->getData();
             $errors = $passwordChecker->checkPassword($enteredPassword, $enteredPassword2);
@@ -100,11 +97,13 @@ class RegistrationController extends AbstractController
 
             $entityManager->persist($user);
             $entityManager->flush();
-            // do anything else you need here, like send an email
-
-            $this->addFlash('success', "Le compte utilisateur a bien été créé.");
-
-            return $this->redirectToRoute('app_admin_register');
+            if ($role == "ROLE_RECRUITER") {
+                $this->addFlash('success', "Le compte recruteur a bien été créé.");
+                return $this->redirectToRoute('app_recruiter_index');
+            } else {
+                $this->addFlash('success', "Le compte candidat a bien été créé.");
+                return $this->redirectToRoute('app_candidate_index');
+            }
         }
         return $this->render('registration/register_admin.html.twig', [
             'registrationForm' => $form->createView(),
