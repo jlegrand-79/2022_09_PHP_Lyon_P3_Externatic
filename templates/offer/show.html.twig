@@ -82,7 +82,7 @@
 					{{ offer.recruiter.user.email }}</div>
 			</div>
 
-			{% if is_granted("ROLE_ADMIN") or app.user.recruiter == offer.recruiter %}
+			{% if is_granted("ROLE_ADMIN") or (app.user and app.user.recruiter == offer.recruiter) %}
 				<h2 id="candidacies" class="mt-4 text-black">Les candidatures</h2>
 
 				<table class="table candidacyTable mt-3 d-none d-md-table">
