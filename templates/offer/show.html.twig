@@ -85,47 +85,51 @@
 			{% if is_granted("ROLE_ADMIN") or (app.user and app.user.recruiter == offer.recruiter) %}
 				<h2 id="candidacies" class="mt-4 text-black">Les candidatures</h2>
 
-				<table class="table candidacyTable mt-3 d-none d-md-table">
-					<colgroup>
-						<col span="1" style="width: 33%;">
-						<col span="1" style="width: 33%;">
-						<col span="1" style="width: 33%;">
+				{% if offer.candidacies is not empty %}
+					<table class="table candidacyTable mt-3 d-none d-md-table">
+						<colgroup>
+							<col span="1" style="width: 33%;">
+							<col span="1" style="width: 33%;">
+							<col span="1" style="width: 33%;">
 
-					</colgroup>
-					<thead>
-						<tr>
-							<th>Nom du candidat</th>
-							<th>Date de candidature</th>
-							<th>Statut</th>
-						</tr>
-					</thead>
-					<tbody>
-						{% for candidacy in offer.candidacies %}
-							<tr id="candidacy{{candidacy.id}}" class="{% if candidacy.status.status == "Refusée" %} bg-darkGrey {% elseif candidacy.status.status == "Acceptée" %} bg-lightPink {% endif %}">
-								<td>
-									<a href="{{ path('app_candidate_admin_show', {'id': candidacy.candidate.id }) }}">{{ candidacy.candidate.fullname}}</a>
-								</td>
-								<td>{{ candidacy.candidacyDate ? candidacy.candidacyDate|date('Y/m/d') : '' }}</td>
-								<td>
-									<form method="post">
-										<input type="hidden" name="_token" value="{{ csrf_token('update' ~ candidacy.id) }}">
-										<select name="{{candidacy.id}}" id="selectStatus" class="selectStatusCandidacy fw-bold px-0">
-											<option {% if candidacy.status.status == "Nouvelle" %} selected {% endif %} value="Nouvelle">Nouvelle</option>
-											<option {% if candidacy.status.status == "Acceptée" %} selected {% endif %} value="Acceptée">Acceptée</option>
-											<option {% if candidacy.status.status == "Refusée" %} selected {% endif %} value="Refusée">Refusée</option>
-										</select>
-									</form>
-								</td>
-							</tr>
-						{% else %}
+						</colgroup>
+						<thead>
 							<tr>
-								<td colspan="3">
-									<h3 class="NoOffer d-none d-md-block">Pas de candidature trouvée</h3>
-								</td>
+								<th>Nom du candidat</th>
+								<th>Date de candidature</th>
+								<th>Statut</th>
 							</tr>
-						{% endfor %}
-					</tbody>
-				</table>
+						</thead>
+						<tbody>
+							{% for candidacy in offer.candidacies %}
+								<tr id="candidacy{{candidacy.id}}" class="{% if candidacy.status.status == "Refusée" %} bg-darkGrey {% elseif candidacy.status.status == "Acceptée" %} bg-lightPink {% endif %}">
+									<td>
+										<a href="{{ path('app_candidate_admin_show', {'id': candidacy.candidate.id }) }}">{{ candidacy.candidate.fullname}}</a>
+									</td>
+									<td>{{ candidacy.candidacyDate ? candidacy.candidacyDate|date('Y/m/d') : '' }}</td>
+									<td>
+										<form method="post">
+											<input type="hidden" name="_token" value="{{ csrf_token('update' ~ candidacy.id) }}">
+											<select name="{{candidacy.id}}" id="selectStatus" class="selectStatusCandidacy fw-bold px-0">
+												<option {% if candidacy.status.status == "Nouvelle" %} selected {% endif %} value="Nouvelle">Nouvelle</option>
+												<option {% if candidacy.status.status == "Acceptée" %} selected {% endif %} value="Acceptée">Acceptée</option>
+												<option {% if candidacy.status.status == "Refusée" %} selected {% endif %} value="Refusée">Refusée</option>
+											</select>
+										</form>
+									</td>
+								</tr>
+							{% endfor %}
+						</tbody>
+					</table>
+
+				{% else %}
+					<tr>
+						<td colspan="3">
+							<h3 class="NoOffer d-none d-md-block">Pas de candidature trouvée</h3>
+						</td>
+					</tr>
+				{% endif %}
+
 
 				<div class="d-md-none justify-content-center">
 					{% for candidacy in offer.candidacies|sort((a, b) => a.status <=> b.status)  %}
