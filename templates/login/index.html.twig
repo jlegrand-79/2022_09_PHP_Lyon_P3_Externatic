@@ -9,7 +9,7 @@
 {% endblock %}
 
 {% block body %}
-	<main class="mainSection d-flex flex-column">
+	<main class="mainSection d-flex flex-column mb-5">
 		{% for user, messages in app.flashes %}
 			{% for message in messages %}
 				<div class="alert alert-{{ user }} text-center rounded-0">
