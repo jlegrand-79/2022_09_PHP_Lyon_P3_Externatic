@@ -70,7 +70,7 @@ class CandidateController extends AbstractController
             }
             $contractSearched = $candidate->getContractSearched();
             if (count($contractSearched) <= 0) {
-                $noContractSearched = 'Veuillez renseigner au moins une stack.';
+                $noContractSearched = 'Veuillez renseigner au moins un type de contrat recherché.';
                 return $this->renderForm('candidate/new.html.twig', [
                     'candidate' => $candidate,
                     'form' => $form,
