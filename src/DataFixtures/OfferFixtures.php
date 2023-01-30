@@ -13,6 +13,7 @@ class OfferFixtures extends Fixture implements DependentFixtureInterface
     {
         $offers = [
             [
+                'open' => true,
                 'contract' => 'contract_CDI',
                 'recruiter' => 'recruiter_1',
                 'workfield' => 'Développement',
@@ -69,6 +70,7 @@ class OfferFixtures extends Fixture implements DependentFixtureInterface
                 'department' => 01,
             ],
             [
+                'open' => true,
                 'contract' => 'contract_CDD',
                 'recruiter' => 'recruiter_2',
                 'workfield' => 'Data',
@@ -177,6 +179,7 @@ class OfferFixtures extends Fixture implements DependentFixtureInterface
                 'department' => 69,
             ],
             [
+                'open' => true,
                 'contract' => 'contract_CDD',
                 'recruiter' => 'recruiter_1',
                 'workfield' => 'Développement',
@@ -246,6 +249,7 @@ class OfferFixtures extends Fixture implements DependentFixtureInterface
                 'department' => 44,
             ],
             [
+                'open' => true,
                 'contract' => 'contract_CDI',
                 'recruiter' => 'recruiter_2',
                 'workfield' => 'Développement',
@@ -361,6 +365,7 @@ class OfferFixtures extends Fixture implements DependentFixtureInterface
                 'department' => 63,
             ],
             [
+                'open' => true,
                 'contract' => 'contract_CDI',
                 'recruiter' => 'recruiter_1',
                 'workfield' => 'Développement',
@@ -509,6 +514,7 @@ class OfferFixtures extends Fixture implements DependentFixtureInterface
                 'department' => 44,
             ],
             [
+                'open' => false,
                 'contract' => 'contract_CDI',
                 'recruiter' => 'recruiter_0',
                 'workfield' => 'Développement',
@@ -604,6 +610,7 @@ class OfferFixtures extends Fixture implements DependentFixtureInterface
                 'department' => 59,
             ],
             [
+                'open' => true,
                 'contract' => 'contract_CDI',
                 'recruiter' => 'recruiter_0',
                 'workfield' => 'Développement',
@@ -706,6 +713,7 @@ class OfferFixtures extends Fixture implements DependentFixtureInterface
                 'department' => 59,
             ],
             [
+                'open' => true,
                 'contract' => 'contract_CDI',
                 'recruiter' => 'recruiter_0',
                 'workfield' => 'Développement',
@@ -754,10 +762,568 @@ class OfferFixtures extends Fixture implements DependentFixtureInterface
                 'city' => 'Dunkerque',
                 'department' => '59',
             ],
+            [
+                'open' => true,
+                'contract' => 'contract_CDI',
+                'recruiter' => 'recruiter_4',
+                'workfield' => 'Développement',
+                'stack' => ['PHP'],
+                'title' => 'DevOps (orienté infra) H/F',
+                'description' => "<p>Je suis No&eacute; Lambert, consultant en recrutement au sein d&#39;Externatic, je vous propose aujourd&rsquo;hui de d&eacute;couvrir l&rsquo;offre ci-dessous et d&rsquo;&eacute;changer ensemble : plut&ocirc;t en visio ? Ou autour d&rsquo;un verre ? Je serai ravi de vous accompagner et de vous pr&eacute;senter ce job plus en d&eacute;tail !</p>
+
+                <p>&nbsp;</p>
+
+                <p><strong><u>L&#39;entreprise et l&#39;&eacute;quipe</u></strong></p>
+
+                <p>L&#39;entreprise est un grand groupe nantais sp&eacute;cialis&eacute; dans l&rsquo;infog&eacute;rance et l&rsquo;&eacute;dition de logiciels de renomm&eacute;s.</p>
+
+                <ul>
+                    <li>Typologie de march&eacute;s : sant&eacute;, retail, transports, habitat, &hellip;</li>
+                    <li>Environ 700 collaborateurs&nbsp;</li>
+                    <li>Convention Syntec</li>
+                    <li>Environnement multi-techno (multi-cloud, cloud hybride, public &amp; priv&eacute;)&nbsp;<br />
+                    &nbsp;</li>
+                </ul>
+
+                <p><strong><u>Les missions</u></strong></p>
+
+                <p>Int&eacute;gr&eacute; une &eacute;quipe &agrave; taille humaine compos&eacute;e d&#39;int&eacute;grateurs DevOps, de concepteurs d&eacute;veloppeurs, d&#39;architectes infrastructures..., dans un environnement multi-client, vos missions :&nbsp;</p>
+
+                <ul>
+                    <li>Participer &agrave; la mise en &oelig;uvre de plateformes mutualis&eacute;es dans un environnement DevOps collaboratif</li>
+                    <li>Mettre en place de nouveaux services et produits en fonction des besoins,</li>
+                    <li>G&eacute;n&eacute;rer des gains de productivit&eacute; en automatisant les d&eacute;ploiements, les t&acirc;ches r&eacute;p&eacute;titives &agrave; faible valeur ajout&eacute;e...</li>
+                    <li>Maintenir les outils et scripts en conditions op&eacute;rationnelles</li>
+                    <li>Adopter une d&eacute;marche d&#39;am&eacute;lioration continue (processus, qualit&eacute;, existant...)</li>
+                    <li>Assurer la formation et le support aupr&egrave;s des &eacute;quipes op&eacute;rationnelles Projets et Services R&eacute;guliers</li>
+                    <li>Travailler en partenariat avec les chefs de projet, les avant-ventes et les &eacute;quipes de production.</li>
+                </ul>
+
+                <p>&nbsp;</p>
+
+                <p>L&#39;environnement technologique est &agrave; la pointe : (Puppet, Kubernetes, Ansible, Docker, Terraform, Linux, multiclouds, GCP, AWS...)&nbsp;</p>
+
+                <p>&nbsp;</p>
+
+                <p><strong><u>Conditions de travail</u></strong></p>
+
+                <ul>
+                    <li>Locaux : Nantes Nord Est</li>
+                    <li>Une flexibilit&eacute; horaire &amp; un t&eacute;l&eacute;travail ancr&eacute; dans la culture d&#39;entreprise (2j par semaine en moyenne).&nbsp;</li>
+                </ul>
+
+                <p><strong><u>Ce que vous allez y gagner</u></strong></p>
+
+                <ul>
+                    <li>Un beau package (autour de 45K + primes annuelles, int&eacute;ressement et prime vacance, tickets restaurants)&nbsp;</li>
+                    <li>De nombreux &eacute;v&egrave;nements organis&eacute;s par le CE de l&#39;entreprise. (voyages, challenges techs, soir&eacute;es ...)</li>
+                    <li>Des locaux &eacute;quip&eacute;s de douches pour les sportifs, et m&ecirc;me un potager avec des fruits &amp; l&eacute;gumes frais le midi pour les gourmands !&nbsp;</li>
+                    <li>Perspectives d&#39;&eacute;volution en interne via passage de certification ou mobilit&eacute; interne.</li>
+                    <li>Petit plus, l&#39;ann&eacute;e derni&egrave;re 20% des postes ont connu des &eacute;volutions en interne.&nbsp;</li>
+                </ul>
+
+                ",
+                'address' => '1 rue de la gare',
+                'address_complement' => 'Bat. C',
+                'postal_code' => '69000',
+                'city' => 'Lyon',
+                'department' => 69,
+            ],
+            [
+                'open' => true,
+                'contract' => 'contract_CDI',
+                'recruiter' => 'recruiter_5',
+                'workfield' => 'Data',
+                'stack' => ['Python'],
+                'title' => 'Data Analyst H/F',
+                'description' => "<p><strong><u>L&#39;entreprise et l&#39;&eacute;quipe</u></strong></p>
+
+                <p>&nbsp;</p>
+
+                <p>Cette ETI industrielle internationale, sp&eacute;cialis&eacute;e dans le domaine ferroviaire, souhaite renforcer ses &eacute;quipes dans le cadre de la mutualisation de ses ERP.</p>
+
+                <p><strong>La DSI</strong>&nbsp;comprend 4 personnes sur le site de Crespin avec des centres de comp&eacute;tences internes et externes &agrave; l&#39;international.&nbsp;</p>
+
+                <p>&nbsp;</p>
+
+                <p><strong><u>Les missions</u></strong></p>
+
+                <p>Vous aurez notamment en charge :</p>
+
+                <ul>
+                    <li>Challenger les directions m&eacute;tiers dans l&rsquo;expression de leurs besoins,</li>
+                    <li>Fournir un support analytique pour la r&eacute;alisation de data mining et d&#39;analyses de donn&eacute;es complexes et cr&eacute;er des algorithmes simples de data mining,</li>
+                    <li>Industrialiser le processus pour les donn&eacute;es les plus int&eacute;ressantes,</li>
+                    <li>Organiser, synth&eacute;tiser et traduire l&#39;information pour faciliter la prise de d&eacute;cision,</li>
+                    <li>Participer aux travaux en mati&egrave;re de Business Intelligence, et sur les donn&eacute;es et fonctionnalit&eacute;s requises,</li>
+                    <li>Partager les meilleures pratiques et r&eacute;diger les manuels utilisateurs,</li>
+                    <li>Valider les sp&eacute;cifications,</li>
+                    <li>Cr&eacute;er et g&eacute;rer des rapports en utilisant les logiciels disponibles tels que MyReport, PowerBI, Tableau, QlikView</li>
+                    <li>Vulgarisation des probl&eacute;matiques techniques</li>
+                </ul>
+
+                <p>&nbsp;</p>
+
+                <p><strong>Technos principales / environnement :&nbsp;&nbsp;</strong>SGBD SQL, ETL, BI : MyReport, PowerBI, Tableau, QlikView</p>
+
+                <p>&nbsp;</p>
+
+                <p>&nbsp;</p>
+
+                <p><strong><u>Conditions de travail</u></strong></p>
+
+                <ul>
+                    <li><strong>Salaire :</strong>&nbsp;45 000 &agrave; 55 000&euro; / an pour le profil attendu</li>
+                    <li><strong>Remote :</strong>&nbsp;2 jours / semaines&nbsp;</li>
+                    <li><strong>Localisation :</strong>&nbsp;Crespin (59)</li>
+                    <li><strong>&Eacute;change en anglais r&eacute;guliers</strong></li>
+                </ul>
+                ",
+                'address' => '1 rue de la gare',
+                'address_complement' => 'Bat. C',
+                'postal_code' => '35000',
+                'city' => 'Rennes',
+                'department' => 35,
+            ],
+            [
+                'open' => true,
+                'contract' => 'contract_CDD',
+                'recruiter' => 'recruiter_6',
+                'workfield' => 'Data',
+                'stack' => ['Java'],
+                'title' => 'Lead tech Java Data H/F',
+                'description' => "<p><strong>L&#39;entreprise</strong>&nbsp;:</p>
+
+                <p>Cette entreprise industrielle nantaise, intervenant &agrave; l&#39;international, cherche &agrave; se renforcer au sein de son centre R&amp;D.</p>
+
+                <p>Ils cherchent aujourd&#39;hui &agrave; impl&eacute;menter une plateforme de traitement de donn&eacute;es. Ce projet est strat&eacute;gique, il s&#39;agira d&#39;assurer un r&ocirc;le de lead tech, homologue technique du Product Owner en place.</p>
+
+                <p>&nbsp;</p>
+
+                <p><strong>Vos missions :</strong></p>
+
+                <p>Vos objectifs seront de :</p>
+
+                <ul>
+                    <li>Promouvoir la collaboration et l&rsquo;engagement au sein de l&rsquo;&eacute;quipe technique, aider l&rsquo;&eacute;quipe &agrave; d&eacute;velopper ses comp&eacute;tences techniques</li>
+                    <li>Impl&eacute;menter une solution correspondant aux besoins exprim&eacute;s par le Product Owner</li>
+                    <li>Animer les ateliers d&rsquo;affinage technique</li>
+                    <li>Porter la roadmap technique</li>
+                    <li>Garantir la qualit&eacute; et&nbsp;la coh&eacute;sion&nbsp;humaine et technique&nbsp;</li>
+                </ul>
+
+                <p>&nbsp;</p>
+
+                <p><strong>Stack technique :</strong></p>
+
+                <ul>
+                    <li>RHEL, Debian / Python, Java, SpringBoot &nbsp;/ Kubernetes, Docker / Airflow, Spark / Git, Gitlab, Gitlab-ci / Gherkin / Parquet, DeltaLake / Prometheus, openTelemetry, jaeger</li>
+                </ul>
+
+                <p>&nbsp;</p>
+
+                <p><strong>Ce que vous allez y gagner :</strong></p>
+
+                <ul>
+                    <li>Contribuer activement &agrave; un projet strat&eacute;gique d&#39;entreprise</li>
+                    <li>Contexte R&amp;D avec de nombreux projets notamment li&eacute;s &agrave; des syst&egrave;mes &eacute;lectronique (ce ne sont pas que des applications !!!)</li>
+                    <li>Niveau technique &eacute;lev&eacute;e (nombreux chercheurs, experts techniques, ...)</li>
+                    <li>Entreprise &agrave; dimension internationale</li>
+                    <li>R&eacute;mun&eacute;ration attractive et conditions sociales avantageuses</li>
+                    <li>Dispositif horaire permettant d&rsquo;allier vie professionnelle et personnelle</li>
+                </ul>
+
+                <p>Le profil que nous recherchons</p>
+
+                <p><strong>Ce que vous apportez&nbsp;</strong></p>
+
+                <p>&nbsp;</p>
+
+                <p>Dipl&ocirc;m&eacute; d&#39;une &eacute;cole d&#39;ing&eacute;nieur ou formation sup&eacute;rieure, vous avez une bonne maitrise de l&#39;anglais et vous justifiez d&#39;une exp&eacute;rience minimum de 5 ans en d&eacute;veloppement acquise sur des projets g&eacute;rant de gros volumes de donn&eacute;es, d&eacute;ploy&eacute;s sur des architectures conteneuris&eacute;es.</p>
+
+                <p>&nbsp;</p>
+
+                <p><strong>Hard skills :</strong></p>
+
+                <ul>
+                    <li>Comp&eacute;tences techniques : architecture micro service, Java, Python, gestionnaire de workflow, CI/CD, syst&egrave;me de gestion de stockage&nbsp;</li>
+                    <li>Etre en capacit&eacute; de d&eacute;finir une roadmap produit et r&eacute;aliser des choix techniques</li>
+                    <li>Accompagner l&#39;&#39;&eacute;quipe technique : d&eacute;finition et suivi des bonnes pratiques, formation et aide &agrave; la mont&eacute;e en comp&eacute;tences</li>
+                    <li>Connaissance des pratiques agiles</li>
+                </ul>
+
+                <p>&nbsp;</p>
+
+                <p><strong>Soft skills :</strong></p>
+
+                <ul>
+                    <li>Dot&eacute; d&#39;un leadership, vous savez cr&eacute;er le consensus et &ecirc;tes reconnu pour votre rigueur</li>
+                    <li>Vous avez le sens du service et le sens de l&#39;&eacute;coute&nbsp;</li>
+                    <li>Vous disposez de bonnes capacit&eacute;s de communication &eacute;crites et orales</li>
+                </ul>
+
+                <p>&nbsp;</p>
+
+                <p><strong><u>A propos d&#39;Externatic</u></strong></p>
+
+                <p>Cabinet de recrutement Tech, la mission d&rsquo;Externatic est de faciliter la rencontre entre candidats et entreprises. Nous mettons &agrave; votre disposition notre r&eacute;seau et notre connaissance du march&eacute; de la Tech (&eacute;tude des salaires, tendances).</p>
+
+                <p><strong>Notre moteur&nbsp;</strong>: vous accompagner sur du long terme pour trouver l&rsquo;opportunit&eacute;&nbsp;<strong>en CDI</strong>, qui correspond &agrave; votre&nbsp;<strong>projet professionnel</strong>, et&nbsp;surtout vous proposer un acc&egrave;s privil&eacute;gi&eacute; &agrave; des opportunit&eacute;s cach&eacute;es au sein de p&eacute;pites (startup / &eacute;diteur / DSI / PME).</p>
+
+                <p>Chez nous, le c&ocirc;t&eacute; humain prime et nous sommes transparents sur nos actions : ici, chaque offre d&rsquo;emploi correspond &agrave; un poste r&eacute;el !</p>
+
+                <p>Externatic en bref&nbsp;:</p>
+
+                <ul>
+                    <li>27 consultants (bas&eacute;s &agrave; Nantes, Lille, Bordeaux, Rennes, La Roche sur Yon, ...)</li>
+                    <li>+ de 800 postes ouverts HORS ESN</li>
+                    <li>+ de 94% de p&eacute;riodes d&rsquo;essais valid&eacute;es&nbsp;</li>
+                    <li>+de 400 entreprises qui nous font confiance</li>
+                    <li>Sponsoring de meetup tech</li>
+                    <li>330 candidats accompagn&eacute;s par an dans la recherche d&rsquo;un nouveau d&eacute;fi professionnel&nbsp;</li>
+                </ul>
+
+                ",
+                'address' => '1 rue de la victoire',
+                'address_complement' => '',
+                'postal_code' => '44000',
+                'city' => 'Nantes',
+                'department' => 44,
+            ],
+            [
+                'open' => false,
+                'contract' => 'contract_CDD',
+                'recruiter' => 'recruiter_7',
+                'workfield' => 'Développement',
+                'stack' => ['PHP'],
+                'title' => 'Développeur Symfony / H/F',
+                'description' => "<p>Je suis Nicolas, Consultant en recrutement chez Externatic, je vous propose aujourd&rsquo;hui de d&eacute;couvrir l&rsquo;offre ci-dessous et d&rsquo;&eacute;changer ensemble : plut&ocirc;t en visio ? Ou autour d&rsquo;un verre ? Je serai ravi de vous accompagner et de vous pr&eacute;senter ce job plus en d&eacute;tail !</p>
+
+                <p><strong>L&#39;entreprise et l&#39;&eacute;quipe :</strong></p>
+
+                <p>Agence digitale du centre-ville de Rennes et forte d&#39;une dizaine d&#39;ann&eacute;es d&#39;existence, elle accompagne ses clients dans la conception, le d&eacute;veloppement de dispositifs digitaux sur-mesures.</p>
+
+                <p>Reconnue pour sa maitrise des solutions open source, sa cr&eacute;a et son engagement, elle cherche actuellement &agrave; se renforcer et &agrave; compl&eacute;ter son &eacute;quipe de d&eacute;veloppement (5 personnes) avec&nbsp;un&nbsp;<strong>d&eacute;veloppeur Symfony / CMS</strong>.&nbsp;</p>
+
+                <p><strong>Les missions :</strong></p>
+
+                <ul>
+                    <li>D&eacute;veloppement application web et sites internets sur PHP / Symfony</li>
+                    <li>Am&eacute;liorer et optimiser les fonctionnalit&eacute;s existantes</li>
+                    <li>Conception - Maintenance - Documentation - Gestion des connaissances</li>
+                    <li>Respect des&nbsp;<strong>bonnes pratiques&nbsp;</strong></li>
+                    <li>Optimisation des BDD...</li>
+                </ul>
+
+                <p><strong>Environnement technique</strong>: PHP 7 / Symfony (3/4) / JS / CMS (Drupal surtout) / API REST / VM Lamp / Git / Gulp /...)</p>
+
+                <p>&nbsp;</p>
+
+                <p><strong>Conditions de travail :</strong></p>
+
+                <ul>
+                    <li>Localisation&nbsp;: hyper centre de Rennes</li>
+                    <li>Proximit&eacute; transports en commun&nbsp;</li>
+                    <li>Entreprise jeune et dynamique</li>
+                    <li>Un bureau atypique</li>
+                    <li>1 jour de t&eacute;l&eacute;travail possible</li>
+                </ul>
+
+                <p><strong>Ce que vous allez y gagner :</strong></p>
+
+                <ul>
+                    <li>Poste &agrave; &eacute;volution</li>
+                    <li>Salaire cible : 40K&euro;</li>
+                    <li>Avantages : prime vacances, int&eacute;ressement sur r&eacute;sultat ...</li>
+                </ul>
+
+                <p>&nbsp;</p>
+
+                <p><strong>Process de recrutement :</strong></p>
+
+                <ul>
+                    <li>Traitement de la candidature et RDV avec Nicolas</li>
+                    <li>Un &eacute;change avec le CTO de l&#39;entreprise et/ou les associ&eacute;s</li>
+                </ul>
+
+                <p>Le profil que nous recherchons</p>
+
+                <p><strong>Ce que vous apportez :</strong></p>
+
+                <p>Une exp&eacute;rience de 3/4 ans est attendue car une mont&eacute;e en comp&eacute;tence technique n&#39;est pas envisageable.</p>
+
+                <ul>
+                    <li>Vous maitrisez parfaitement les environnements&nbsp;<strong>PHP</strong>&nbsp;et le framework&nbsp;<strong>Symfony</strong>&nbsp;et es &agrave; l&#39;aise avec l&#39;utilisation et le dev autour de CMS&nbsp;</li>
+                    <li>Vous &ecirc;tes passionn&eacute; d&#39;informatique et effectues&nbsp;<strong>beaucoup de veille</strong>.</li>
+                    <li>Quand on vous parle de SEO et de ses probl&eacute;matiques tu t&#39;y retrouves</li>
+                    <li>Vous &ecirc;tes adepte des&nbsp;<strong>bonnes pratiques (code propre, craftsmanship...)&nbsp;</strong>et la&nbsp;<strong>qualit&eacute;</strong>&nbsp;est votre amie</li>
+                    <li>Les m&eacute;thodes agiles ne vous sont pas &eacute;trang&egrave;res.</li>
+                    <li>Team spirit vivement appr&eacute;ci&eacute;&nbsp;!</li>
+                </ul>
+
+                <p>&nbsp;</p>
+
+                <p><strong>A propos d&#39;Externatic :</strong></p>
+
+                <p>Cabinet de recrutement Tech, la mission d&rsquo;Externatic est de faciliter la rencontre entre candidats et entreprises. Nous mettons notre r&eacute;seau et notre connaissance du march&eacute; de la Tech (&eacute;tude des salaires, tendances) &agrave; votre disposition pour vous &eacute;pauler dans toutes les &eacute;tapes de votre recherche.</p>
+
+                <p>&nbsp;</p>
+
+                <p>Notre moteur : vous accompagner sur du long terme pour trouver l&rsquo;opportunit&eacute; en CDI, qui correspond &agrave; votre projet professionnel, et&nbsp; surtout vous proposer un acc&egrave;s privil&eacute;gi&eacute; &agrave; des opportunit&eacute;s cach&eacute;es au sein de p&eacute;pites (startup / &eacute;diteur / DSI / PME).</p>
+
+                <p>Chez nous, le c&ocirc;t&eacute; humain prime et nous sommes transparents sur nos actions : ici, chaque offre d&rsquo;emploi correspond &agrave; un poste r&eacute;el !</p>
+
+                <p>&nbsp;</p>
+
+                <p>Externatic en bref&nbsp; :</p>
+
+                <ul>
+                    <li>+750&nbsp;postes ouverts HORS ESN&nbsp;</li>
+                    <li>+94% de p&eacute;riodes d&rsquo;essais valid&eacute;es&nbsp;</li>
+                    <li>25 consultants pour vous accompagner</li>
+                    <li>+250 entreprises qui nous font confiance</li>
+                    <li>Sponsoring de meetup tech</li>
+                    <li>400 candidats accompagn&eacute;s par an dans la recherche d&rsquo;un nouveau d&eacute;fi professionnel&nbsp;</li>
+                </ul>
+                ",
+                'address' => '17 rue Marie Curie',
+                'address_complement' => 'Lab F',
+                'postal_code' => '59000',
+                'city' => 'Lille',
+                'department' => 59,
+            ],
+            [
+                'open' => true,
+                'contract' => 'contract_CDI',
+                'recruiter' => 'recruiter_7',
+                'workfield' => 'Développement',
+                'stack' => ['PHP'],
+                'title' => 'Développeur fullstack PHP Symfony / vue.js (H/F)',
+                'description' => "<p><strong><u>L&#39;entreprise et l&#39;&eacute;quipe</u></strong></p>
+
+                <p>Nous accompagnons un &eacute;diteur de logiciel SaaS bas&eacute; dans le centre de Nantes. L&#39;entreprise qui compte une quinzaine de collaborateurs et qui &eacute;volue dans le domaine de la legaltech, et d&eacute;veloppe depuis 2017 une solution SaaS pour faciliter le quotidien des juristes.&nbsp;</p>
+
+                <p>Dans ce contexte novateur et dynamique, vous prenez part &agrave; cette aventure unique au sein d&#39;une &eacute;quipe de d&eacute;veloppeurs web &agrave; taille humaine compos&eacute;e de 2 personnes &agrave; Nantes !</p>
+
+                <p>Le logiciel &eacute;dit&eacute; par l&rsquo;entreprise est divis&eacute; en deux parties distinctes.</p>
+
+                <ul>
+                    <li>D&rsquo;un c&ocirc;t&eacute; la partie traitement de donn&eacute;es, data science, NLP, etc. bas&eacute;e sur python</li>
+                    <li>De l&rsquo;autre la partie web (portail client, pr&eacute;sentation des donn&eacute;es, back office entreprise, etc.) bas&eacute;e sur PHP Symfony 4 &amp; 6 / JS</li>
+                </ul>
+
+                <p>Vous int&egrave;grerez en l&#39;occurrence l&#39;&eacute;quipe web.&nbsp;</p>
+
+                <p>&nbsp;</p>
+
+                <p><strong><u>Les missions</u></strong></p>
+
+                <p>Vous travaillez en lien avec le CTO, les &eacute;quipes de d&eacute;veloppement et les data scientists, vous aurez comme mission :&nbsp;</p>
+
+                <ul>
+                    <li>Gestion du backlog</li>
+                    <li>Conception puis d&eacute;veloppement des nouvelles features</li>
+                    <li>Test</li>
+                    <li>D&eacute;ploiement</li>
+                    <li>Maintenance / &eacute;volution</li>
+                    <li>Prendre le lead sur certains projets</li>
+                </ul>
+
+                <p>L&#39;environnement technologique est &agrave; la pointe : PHP Symfony 4 &amp; 6, Javascript, PostgreSQL Python, Git, IA, Typescript...</p>
+
+                <p><strong><u>Conditions de travail</u></strong></p>
+
+                <ul>
+                    <li>Locaux en plein centre de Nantes</li>
+                    <li>Remote : 2 jours par semaine en moyenne</li>
+                    <li>Prise de poste pr&eacute;vue autour de mars&nbsp;</li>
+                </ul>
+
+                <p><strong><u>Ce que vous allez y gagner</u></strong></p>
+
+                <ul>
+                    <li>Plein de belles choses &agrave; construire</li>
+                    <li>Mont&eacute;e en expertise sur des technologies recherch&eacute;es</li>
+                    <li>Travailler sur une solution SaaS qui a du sens</li>
+                    <li>C&ocirc;toyer des &eacute;quipes ax&eacute;es IA&nbsp;</li>
+                    <li>Un package int&eacute;ressant : Autour de 40K en fonction de l&#39;exp&eacute;rience</li>
+                </ul>
+
+                <p>Le profil que nous recherchons</p>
+
+                <p><strong><u>Ce que vous apportez</u></strong></p>
+
+                <p>D&eacute;veloppeur fullstack autonome sur l&#39;environnement PHP &amp; JS, vous :</p>
+
+                <ul>
+                    <li>Disposez d&rsquo;un background technique vous permettant de pouvoir travailler en autonomie sur Symfony, id&eacute;alement 2 &agrave; 3 ann&eacute;es ou plus.&nbsp;<br />
+                    &nbsp;</li>
+                    <li>T&eacute;moignez d&#39;une premi&egrave;re exp&eacute;rience sur du javascript c&ocirc;t&eacute; front (type vanilla.js ou frameworks classiques vue.js/react/angular ..)<br />
+                    &nbsp;</li>
+                    <li>Etes ouvert(e), compr&eacute;hensif(ve), p&eacute;dagogue.<br />
+                    &nbsp;</li>
+                    <li>Aimez partager avec les autres et savez adapter votre discours en fonction de votre interlocuteur.</li>
+                </ul>
+
+                <p>&nbsp;</p>
+
+                <p><strong><u>A propos d&#39;Externatic</u></strong></p>
+
+                <p>Cabinet de recrutement Tech, la mission d&rsquo;Externatic est de faciliter la rencontre entre candidats et entreprises. Nous mettons &agrave; votre disposition notre r&eacute;seau et notre connaissance du march&eacute; de la Tech (&eacute;tude des salaires, tendances).</p>
+
+                <p><strong>Notre moteur&nbsp;</strong>: vous accompagner sur du long terme pour trouver l&rsquo;opportunit&eacute;&nbsp;<strong>en CDI</strong>, qui correspond &agrave; votre&nbsp;<strong>projet professionnel</strong>, et&nbsp;surtout vous proposer un acc&egrave;s privil&eacute;gi&eacute; &agrave; des opportunit&eacute;s cach&eacute;es au sein de p&eacute;pites (startup / &eacute;diteur / DSI / PME).</p>
+
+                <p>Chez nous, le c&ocirc;t&eacute; humain prime et nous sommes transparents sur nos actions : ici, chaque offre d&rsquo;emploi correspond &agrave; un poste r&eacute;el !</p>
+
+                <p>Externatic en bref&nbsp;:</p>
+
+                <ul>
+                    <li>+600 postes ouverts HORS ESN&nbsp;</li>
+                    <li>+94% de p&eacute;riodes d&rsquo;essais valid&eacute;es&nbsp;</li>
+                    <li>24 consultants pour vous accompagner</li>
+                    <li>+310 entreprises qui nous font confiance</li>
+                    <li>Sponsoring de meetup tech</li>
+                    <li>330 candidats accompagn&eacute;s par an dans la recherche d&rsquo;un nouveau d&eacute;fi professionnel&nbsp;</li>
+                </ul>
+
+                <p>Rejoignez notre communaut&eacute; sur LinkedIn !</p>
+
+                <p>&nbsp;</p>
+
+                <p><strong><u>Le process</u></strong></p>
+
+                <ul>
+                    <li>Traitement candidature et RDV avec No&eacute; Lambert</li>
+                    <li>RDV avec le CTO pour une premi&egrave;re prise de contact</li>
+                    <li>Test technique rapide (15-30 mins)</li>
+                    <li>RDV avec le CEO et le CTO&nbsp;</li>
+                </ul>
+                ",
+                'address' => '52 rue Victor Hugo',
+                'address_complement' => '',
+                'postal_code' => '59140',
+                'city' => 'Dunkerque',
+                'department' => 59,
+            ],
+            [
+                'open' => false,
+                'contract' => 'contract_CDI',
+                'recruiter' => 'recruiter_7',
+                'workfield' => 'Développement',
+                'stack' => ['PHP'],
+                'title' => 'Lead tech PHP Symfony (H/F)',
+                'description' => "<p><strong><em><u>Pourquoi ce job&nbsp;?</u></em></strong></p>
+
+                <p>Au sein de cet &eacute;diteur rentable et p&eacute;renne situ&eacute;e dans le centre de Nantes, vous concevez / d&eacute;veloppez les nouveaux produits de l&rsquo;entreprise.</p>
+
+                <p>Vous intervenez dans un contexte de croissance, les solutions &eacute;tant adopt&eacute;es internationalement.</p>
+
+                <p>Le secteur implique des gros volumes de donn&eacute;es / des applications r&eacute;siliantes et scalable.&nbsp;</p>
+
+                <p>&nbsp;</p>
+
+                <p><strong><em><u>Missions</u></em></strong></p>
+
+                <p>Vous rejoignez une feature team&nbsp;:</p>
+
+                <ul>
+                    <li><strong>En contexte Agile</strong>, vous serez impliqu&eacute; dans l&rsquo;&eacute;tude et le d&eacute;veloppement&nbsp;<strong>PHP / Symfony et / ou JS (en fonction des sprints et de votre app&eacute;tence)&nbsp;</strong>de la solution et de ses diff&eacute;rents modules.&nbsp;</li>
+                    <li>Au sein de cette soci&eacute;t&eacute; innovante o&ugrave; le niveau technique reste tr&egrave;s relev&eacute;, vous serez amen&eacute; &agrave; faire progresser votre &eacute;quipe sur des bonnes pratiques de dev / design / architecture</li>
+                    <li>La qualit&eacute; est un ma&icirc;tre mot de cette soci&eacute;t&eacute; : tests fonctionnels / unitaires / etc.</li>
+                    <li>Vous participez au recrutement de votre team</li>
+                    <li>Vous participez &agrave; la communaut&eacute; open source</li>
+                    <li>Les sprints sont de 2 semaines avec temps off.</li>
+                </ul>
+
+                <p>En part time : contribution sur des projets open source.</p>
+
+                <p>&nbsp;</p>
+
+                <p><strong><em><u>Contexte technique</u></em></strong></p>
+
+                <p>symfony / docker / kubernetes / elasticsearch / MySQL / React / Git / Behat / GCP / etc.</p>
+
+                <p>&nbsp;</p>
+
+                <p><strong><em><u>Qu&rsquo;allez vous apprendre&nbsp;?</u></em></strong></p>
+
+                <p>Vous confronter avec des d&eacute;veloppeurs exp&eacute;riment&eacute;s (symfony et front end) tr&egrave;s connect&eacute; dans l&rsquo;&eacute;cosyst&egrave;me technique</p>
+
+                <p>&nbsp;</p>
+
+                <p><strong><em>Les plus :</em></strong></p>
+
+                <ul>
+                    <li>centre de Nantes</li>
+                    <li>contexte international&nbsp;</li>
+                    <li>possibilit&eacute;s d&#39;&eacute;volution&nbsp;</li>
+                    <li>p&eacute;rennit&eacute; et croissance de l&#39;entreprise</li>
+                </ul>
+
+                <p>&nbsp;</p>
+
+                <p><em><strong>Salaire :</strong></em>&nbsp;55 000 - 70 000 &euro; en fonction de l&#39;expertise</p>
+
+                <p>&nbsp;</p>
+
+                <p><em><strong>Le process&nbsp;</strong></em></p>
+
+                <ul>
+                    <li>RDV avec Benjamin Casseron ou Justine C&ocirc;te</li>
+                    <li>RDV avec RH</li>
+                    <li>RDV avec Engineering manager</li>
+                    <li>RDV avec CTO</li>
+                    <li>RDV avec &eacute;quipe</li>
+                </ul>
+
+                <p>Le profil que nous recherchons</p>
+
+                <p><em><strong>Profil</strong></em></p>
+
+                <ul>
+                    <li>Amoureux du code propre, vous maitrisez PHP ainsi qu&rsquo;un framework MVC moderne</li>
+                    <li>Vous souhaitez&nbsp;<strong>d&eacute;velopper votre expertise sur Symfony&nbsp;</strong></li>
+                    <li>Vous avez d&eacute;j&agrave; pris le lead sur une (petite) &eacute;quipe</li>
+                    <li>Maitrise imp&eacute;rative des technologies web</li>
+                    <li>Vous maitrisez SQL.</li>
+                    <li>Grosse sensibilit&eacute; qualit&eacute;</li>
+                </ul>
+
+                <p>&nbsp;</p>
+
+                <p><em><strong><u>A propos d&#39;Externatic</u></strong></em></p>
+
+                <p>Cabinet de recrutement Tech, la mission d&rsquo;Externatic est de faciliter la rencontre entre candidats et entreprises. Nous mettons &agrave; votre disposition notre r&eacute;seau et notre connaissance du march&eacute; de la Tech (&eacute;tude des salaires, tendances).</p>
+
+                <p><strong>Notre moteur&nbsp;</strong>: vous accompagner sur du long terme pour trouver l&rsquo;opportunit&eacute;&nbsp;<strong>en CDI</strong>, qui correspond &agrave; votre&nbsp;<strong>projet professionnel</strong>, et&nbsp;surtout vous proposer un acc&egrave;s privil&eacute;gi&eacute; &agrave; des opportunit&eacute;s cach&eacute;es au sein de p&eacute;pites (startup / &eacute;diteur / DSI / PME).</p>
+
+                <p>Chez nous, le c&ocirc;t&eacute; humain prime et nous sommes transparents sur nos actions : ici, chaque offre d&rsquo;emploi correspond &agrave; un poste r&eacute;el !</p>
+
+                <p>Externatic en bref&nbsp;:</p>
+
+                <ul>
+                    <li>27 consultants (bas&eacute;s &agrave; Nantes, Lille, Bordeaux, Rennes, La Roche sur Yon, ...)</li>
+                    <li>+ de 800 postes ouverts HORS ESN</li>
+                    <li>+ de 94% de p&eacute;riodes d&rsquo;essais valid&eacute;es&nbsp;</li>
+                    <li>+de 400 entreprises qui nous font confiance</li>
+                    <li>Sponsoring de meetup tech</li>
+                    <li>330 candidats accompagn&eacute;s par an dans la recherche d&rsquo;un nouveau d&eacute;fi professionnel&nbsp;</li>
+                </ul>
+
+                <p>Rejoins notre communaut&eacute; sur LinkedIn !&nbsp;</p>
+
+                ",
+                'address' => '17 rue John F Kennedy',
+                'address_complement' => 'Entrée de garage',
+                'postal_code' => '59000',
+                'city' => 'Lille',
+                'department' => 59,
+            ],
         ];
 
         foreach ($offers as $key => $offer) {
             $newOffer = new Offer();
+            $newOffer->setOpen($offer['open']);
             $newOffer->setTitle($offer['title']);
             $newOffer->setDescription($offer['description']);
             $newOffer->setAddress($offer['address']);

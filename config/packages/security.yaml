@@ -11,7 +11,9 @@ security:
                 class: App\Entity\User
                 property: email
     role_hierarchy:
-        ROLE_ADMIN: ['ROLE_RECRUITER', 'ROLE_CANDIDATE']
+        ROLE_ADMIN: [ROLE_EDITOR, ROLE_READER]
+        ROLE_RECRUITER: ROLE_EDITOR
+        ROLE_CANDIDATE: ROLE_READER
     
     firewalls:
         dev:
@@ -27,7 +29,6 @@ security:
             logout:
                 path: app_logout
             
-    access_denied_url: /
 
             # activate different ways to authenticate
             # https://symfony.com/doc/current/security.html#the-firewall

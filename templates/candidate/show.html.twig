@@ -2,7 +2,7 @@
 {% block title %}Profile
 {% endblock %}
 {% block body %}
-	<main class="container px-3">
+	<main class="container px-3 mb-5">
 		<div class="d-flex justify-content-center align-items-center ps-2">
 			<div>
 				{% if candidate.picture is empty %}
@@ -26,7 +26,13 @@
 			</div>
 		</div>
 
-		<h2 class="text-center">Mes informations personnelles</h2>
+		<h2 class="text-center">
+			{% if is_granted('ROLE_EDITOR') %}
+				Ses informations personnelles
+			{% else %}
+				Mes informations personnelles
+			{% endif %}
+		</h2>
 
 		<div class="row justify-content-center">
 			<div class="col-11 col-md-9 col-lg-7 col-xl-6 col-xxl-6">
@@ -51,9 +57,12 @@
 									<path d="M8 8a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm0 1a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"></path>
 								</svg>
 								<p class="d-flex align-items-center">
-									{{ candidate.address }}<br/>
-									{{ candidate.addressComplement }}
+									{{ candidate.address }}
 									<br/>
+									{% if candidate.addressComplement is defined %}
+										{{ candidate.addressComplement }}
+										<br/>
+									{% endif %}
 									{{ candidate.postalCode }}
 									{{ candidate.city }}
 								</p>
@@ -68,18 +77,32 @@
 					</div>
 					<div class="col-1 d-flex align-items-center">
 						<div>
-							<a href="{{ path('app_candidate_update') }}">
-								<svg xmlns="http://www.w3.org/2000/svg" class="logo-infos-more bi bi-chevron-compact-right" viewbox="0 0 16 16">
-									<path fill-rule="evenodd" d="M6.776 1.553a.5.5 0 0 1 .671.223l3 6a.5.5 0 0 1 0 .448l-3 6a.5.5 0 1 1-.894-.448L9.44 8 6.553 2.224a.5.5 0 0 1 .223-.671z"></path>
-								</svg>
-							</a>
+							{% if is_granted('ROLE_ADMIN') %}
+								<a href="{{ path('app_candidate_admin_edit', {'id': candidate.id }) }}">
+									<svg xmlns="http://www.w3.org/2000/svg" class="logo-infos-more bi bi-chevron-compact-right" viewbox="0 0 16 16">
+										<path fill-rule="evenodd" d="M6.776 1.553a.5.5 0 0 1 .671.223l3 6a.5.5 0 0 1 0 .448l-3 6a.5.5 0 1 1-.894-.448L9.44 8 6.553 2.224a.5.5 0 0 1 .223-.671z"></path>
+									</svg>
+								</a>
+							{% else %}
+								<a href="{{ path('app_candidate_update') }}">
+									<svg xmlns="http://www.w3.org/2000/svg" class="logo-infos-more bi bi-chevron-compact-right" viewbox="0 0 16 16">
+										<path fill-rule="evenodd" d="M6.776 1.553a.5.5 0 0 1 .671.223l3 6a.5.5 0 0 1 0 .448l-3 6a.5.5 0 1 1-.894-.448L9.44 8 6.553 2.224a.5.5 0 0 1 .223-.671z"></path>
+									</svg>
+								</a>
+							{% endif %}
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
 
-		<h2 class="text-center">Mon profil candidat</h2>
+		<h2 class="text-center">
+			{% if is_granted('ROLE_EDITOR') %}
+				Son profil candidat
+			{% else %}
+				Mon profil candidat
+			{% endif %}
+		</h2>
 
 		<div class="row justify-content-center">
 			<div class="col-11 col-md-9 col-lg-7 col-xl-6 col-xxl-6">
@@ -95,7 +118,13 @@
 									{% if candidate.curriculumVitae is empty %}
 										Aucun CV uploadé
 									{% else %}
-										<a class="candidate-link" target="_blank" href="{{ asset('uploads/candidate/curriculumVitae/' ~ candidate.curriculumVitae) }}">Ouvrir mon CV</a>
+										<a class="candidate-link" target="_blank" href="{{ asset('uploads/candidate/curriculumVitae/' ~ candidate.curriculumVitae) }}">Ouvrir
+											{% if is_granted('ROLE_EDITOR') %}
+												son CV
+											{% else %}
+												mon CV
+											{% endif %}
+										</a>
 									{% endif %}
 								</p>
 							</div>
@@ -136,18 +165,23 @@
 					</div>
 					<div class="col-1 d-flex align-items-center">
 						<div>
-							<a href="{{ path('app_candidate_update') }}">
-								<svg xmlns="http://www.w3.org/2000/svg" class="logo-infos-more bi bi-chevron-compact-right" viewbox="0 0 16 16">
-									<path fill-rule="evenodd" d="M6.776 1.553a.5.5 0 0 1 .671.223l3 6a.5.5 0 0 1 0 .448l-3 6a.5.5 0 1 1-.894-.448L9.44 8 6.553 2.224a.5.5 0 0 1 .223-.671z"></path>
-								</svg>
-							</a>
+							{% if is_granted('ROLE_ADMIN') %}
+								<a href="{{ path('app_candidate_admin_edit', {'id': candidate.id }) }}">
+									<svg xmlns="http://www.w3.org/2000/svg" class="logo-infos-more bi bi-chevron-compact-right" viewbox="0 0 16 16">
+										<path fill-rule="evenodd" d="M6.776 1.553a.5.5 0 0 1 .671.223l3 6a.5.5 0 0 1 0 .448l-3 6a.5.5 0 1 1-.894-.448L9.44 8 6.553 2.224a.5.5 0 0 1 .223-.671z"></path>
+									</svg>
+								</a>
+							{% else %}
+								<a href="{{ path('app_candidate_update') }}">
+									<svg xmlns="http://www.w3.org/2000/svg" class="logo-infos-more bi bi-chevron-compact-right" viewbox="0 0 16 16">
+										<path fill-rule="evenodd" d="M6.776 1.553a.5.5 0 0 1 .671.223l3 6a.5.5 0 0 1 0 .448l-3 6a.5.5 0 1 1-.894-.448L9.44 8 6.553 2.224a.5.5 0 0 1 .223-.671z"></path>
+									</svg>
+								</a>
+							{% endif %}
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-
-		<h2 class="text-center"></h2>
-
 	</main>
 {% endblock %}

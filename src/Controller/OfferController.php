@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Offer;
 use App\Form\OfferType;
 use App\Service\SearchBar;
+use App\Form\OfferRecruiterType;
 use App\Controller\SearchOfferType;
 use App\Repository\OfferRepository;
 use App\Repository\CandidacyRepository;
@@ -21,16 +22,42 @@ class OfferController extends AbstractController
     #[IsGranted('ROLE_ADMIN')]
     public function index(Request $request, OfferRepository $offerRepository, SearchBar $searchBar): Response
     {
+        $search = false;
         if ($request->isMethod('POST')) {
             $search = $request->get('search');
             $select = $request->get('city');
-            $offers = $searchBar->searchOffer($search, $select);
+            $partner = $request->get('partner');
+            $offers = $searchBar->searchOffer($search, $select, $partner);
+            $search = true;
         } else {
-            $offers = $offerRepository->findBy(array(), array('id' => 'DESC'));
+            $offers = $offerRepository->findBy([], ['open' => 'DESC', 'id' => 'DESC',]);
         }
 
         return $this->render('offer/index.html.twig', [
             'offers' => $offers,
+            'search' => $search
+        ]);
+    }
+
+    #[Route('/recruiter', name: 'app_offer_index_recruiter', methods: ['GET', 'POST'])]
+    #[IsGranted('ROLE_RECRUITER')]
+    public function recruiterOffers(Request $request, OfferRepository $offerRepository, SearchBar $searchBar): Response
+    {
+        $user = $this->container->get('security.token_storage')->getToken()->getUser();
+        $recruiter = $user->getRecruiter();
+        $search = false;
+        if ($request->isMethod('POST')) {
+            $search = $request->get('search');
+            $select = $request->get('city');
+            $offers = $searchBar->searchOfferByRecruiter($search, $select, $recruiter);
+            $search = true;
+        } else {
+            $offers = $offerRepository->findBy(['recruiter' => $recruiter], ['open' => 'DESC', 'id' => 'DESC',]);
+        }
+
+        return $this->render('offer/index_recruiter.html.twig', [
+            'offers' => $offers,
+            'search' => $search
         ]);
     }
 
@@ -40,9 +67,15 @@ class OfferController extends AbstractController
         if ($request->isMethod('POST')) {
             $search = $request->get('search');
             $select = $request->get('city');
-            $offers = $searchBar->searchOffer($search, $select);
+            $allOffers = $searchBar->searchOffer($search, $select);
+            $offers = [];
+            foreach ($allOffers as $offer) {
+                if ($offer->isOpen() == true) {
+                    $offers[] = $offer;
+                }
+            }
         } else {
-            $offers = $offerRepository->findBy(array(), array('id' => 'DESC'));
+            $offers = $offerRepository->findBy(['open' => true], ['id' => 'DESC']);
         }
 
         return $this->render('offer/list.html.twig', [
@@ -78,16 +111,53 @@ class OfferController extends AbstractController
         ]);
     }
 
+    #[Route('/new/recruiter', name: 'app_offer_new_recruiter', methods: ['GET', 'POST'])]
+    #[IsGranted('ROLE_RECRUITER')]
+    public function newRecruiterOffer(Request $request, OfferRepository $offerRepository): Response
+    {
+        $user = $this->container->get('security.token_storage')->getToken()->getUser();
+        $offer = new Offer();
+        $form = $this->createForm(OfferRecruiterType::class, $offer);
+        $offer->setRecruiter($user->getRecruiter());
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $stacks = $offer->getStack();
+            if (count($stacks) <= 0) {
+                $noStacks = 'Veuillez renseigner au moins une stack.';
+                return $this->renderForm('offer/new.html.twig', [
+                    'offer' => $offer,
+                    'form' => $form,
+                    'no_stacks' => $noStacks,
+                ]);
+            }
+            $offerRepository->save($offer, true);
+            return $this->redirectToRoute('app_offer_index_recruiter', [], Response::HTTP_SEE_OTHER);
+        }
+
+        return $this->renderForm('offer/new.html.twig', [
+            'offer' => $offer,
+            'form' => $form,
+        ]);
+    }
+
     #[Route('/{id}', name: 'app_offer_show', methods: ['GET'])]
     public function show(int $id, OfferRepository $offerRepository, CandidacyRepository $candidacyRepository): Response
     {
         $offer = $offerRepository->findOneById($id);
 
+        if (!$this->isGranted('ROLE_EDITOR') && $offer->isOpen() == false) {
+            $this->addFlash('danger', 'L\'offre recherchée n\'est plus disponible.');
+            return $this->redirectToRoute('app_offer_list', [], Response::HTTP_SEE_OTHER);
+        }
+
         if ($this->container->get('security.token_storage')->getToken()) {
             $user = $this->container->get('security.token_storage')->getToken()->getUser();
             if ($user->getInformation()) {
                 $candidate = $user->getInformation();
-                $candidacy = $candidacyRepository->findOneBy(['candidate' => $candidate, 'offer' => $offer]);
+                $candidacy = $candidacyRepository->findOneBy(
+                    ['candidate' => $candidate, 'offer' => $offer],
+                );
                 if ($candidacy != false) {
                     return $this->render('offer/show.html.twig', [
                         'offer' => $offer,
@@ -112,6 +182,29 @@ class OfferController extends AbstractController
             $offerRepository->save($offer, true);
 
             return $this->redirectToRoute('app_offer_index', [], Response::HTTP_SEE_OTHER);
+        }
+
+        return $this->renderForm('offer/edit.html.twig', [
+            'offer' => $offer,
+            'form' => $form,
+        ]);
+    }
+
+    #[Route('/{id}/edit/recruiter', name: 'app_offer_edit_recruiter', methods: ['GET', 'POST'])]
+    #[IsGranted('ROLE_RECRUITER')]
+    public function editRecruiterOffer(Request $request, Offer $offer, OfferRepository $offerRepository): Response
+    {
+        $user = $this->container->get('security.token_storage')->getToken()->getUser();
+        if ($user->getRecruiter() != $offer->getRecruiter()) {
+            return $this->redirectToRoute('app_offer_list', [], Response::HTTP_SEE_OTHER);
+        }
+        $form = $this->createForm(OfferRecruiterType::class, $offer);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $offerRepository->save($offer, true);
+
+            return $this->redirectToRoute('app_offer_index_recruiter', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->renderForm('offer/edit.html.twig', [

@@ -46,6 +46,26 @@ class UserFixtures extends Fixture
                 'role' => 'ROLE_RECRUITER',
             ],
             [
+                'email' => 'annastepanoff@wildcodeschool.com',
+                'password' => 'Anna_123',
+                'role' => 'ROLE_RECRUITER',
+            ],
+            [
+                'email' => 'romaincoeur@wildcodeschool.com',
+                'password' => 'coeur_123',
+                'role' => 'ROLE_RECRUITER',
+            ],
+            [
+                'email' => 'gerarddupont@externatic.com',
+                'password' => 'gege_123',
+                'role' => 'ROLE_RECRUITER',
+            ],
+            [
+                'email' => 'juliebrouillard@externatic.com',
+                'password' => 'juju_123',
+                'role' => 'ROLE_RECRUITER',
+            ],
+            [
                 'email' => 'thomas.besson@mail.com',
                 'password' => 'Thotho_123',
                 'role' => 'ROLE_CANDIDATE',
@@ -68,6 +88,26 @@ class UserFixtures extends Fixture
             [
                 'email' => 'jeje01@mail.com',
                 'password' => 'Jeje_123',
+                'role' => 'ROLE_CANDIDATE',
+            ],
+            [
+                'email' => 'leocolombo@mail.com',
+                'password' => 'lolo_123',
+                'role' => 'ROLE_CANDIDATE',
+            ],
+            [
+                'email' => 'stephaniedurand@mail.com',
+                'password' => 'steph_123',
+                'role' => 'ROLE_CANDIDATE',
+            ],
+            [
+                'email' => 'stephtrintignant@mail.com',
+                'password' => 'steph_123',
+                'role' => 'ROLE_CANDIDATE',
+            ],
+            [
+                'email' => 'aminasouscolline@mail.com',
+                'password' => 'colline_123',
                 'role' => 'ROLE_CANDIDATE',
             ]
         ];

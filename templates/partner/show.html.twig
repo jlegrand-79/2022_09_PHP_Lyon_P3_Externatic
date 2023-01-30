@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Partner
+{% endblock %}
+
+{% block body %}
+
+	<main class="mainPartner mb-5">
+		<div class="d-flex justify-content-center">
+			<div class="d-flex justify-content-center">
+				<div>
+					<div><img class="partnerImage d-none d-sm-block" src="{{ partner.logo }}"></div>
+				</div>
+				<div class="m-3">
+					<div>
+						<h1 class="partnerTitle jost">{{ partner.name }}</h2>
+
+					</div>
+					<div class="mb-3">
+						<a href="{{partner.url}}" target="_blank" class="me-3 jost partnerLink">Voir le site de l'entreprise</a>
+					</div>
+					<div>
+						<p class="partnerTitle jost">{{ partner.description }}</p>
+					</div>
+					<div class="jost">
+						<p class="jost">Adresse :
+							<br>
+							{{ partner.address }}
+							<br>
+							{{ partner.addressComplement }}
+							<br>
+							{{ partner.postalCode }}
+							<br>
+							{{ partner.city }}</p>
+					</div>
+
+					<div class="mt-4 mb-4">
+						<a href="{{ path('app_partner_index') }}" class="link-admin" role="button" aria-pressed="true">Retour à la liste
+						</a>
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</main>
+
+
+{% endblock %}

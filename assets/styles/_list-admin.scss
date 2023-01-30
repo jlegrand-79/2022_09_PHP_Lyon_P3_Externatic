@@ -95,6 +95,14 @@ $light: #fff;
 .offer-body {
     padding: 10px;
     background-color: white;
+
+    a {
+        color: $black;
+
+        &:hover {
+            color: black;
+        }
+    }
 }
 
 .offer-text {

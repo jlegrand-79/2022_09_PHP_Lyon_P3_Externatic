@@ -5,7 +5,7 @@
 
 {% block body %}
 
-	<main class="container mb-4">
+	<main class="container mb-5">
 
 		<h1 class="text-center">Espace Admin</h1>
 
@@ -17,28 +17,34 @@
 
 
 		<div class="row justify-content-center mb-4">
-			<div class="col-11 col-md-10 col-lg-9 col-xxl-8 row justify-content-center pe-0">
+			<div class="col-11 col-md-10 col-lg-9 col-xxl-8 row justify-content-center p-0">
 
 				<form action="{{ path('app_offer_index') }}" method="post" id="form">
-					<div class="form-row formSearchMobile">
-						<div class="row">
-							<div class="form-group col-md-5 p-0">
-								<label for="inputSearch">Mots-clés</label>
-								<input type="text" name="search" class="form-control" placeholder="Ex : Développeur">
-							</div>
-							<div class="form-group col-md-5 p-0">
-								<label for="city">Votre ville :</label>
-								<input type="text" id="city" name="city" list="cities" class="form-control" placeholder="Ex : Rennes (35)">
-								<datalist id="cities"></datalist>
-							</div>
-							<div class="form-group col-md-2 p-0">
-								<button type="submit" id="submit-button" value="Search" class="btn text-white rounded-0 buttonSearchOffer">Rechercher</button>
-							</div>
+					<div class="form-row d-flex flex-md-row flex-column formSearchMobile align-items-center justify-content-center">
+						<div class="form-group col-11 col-md-4 mb-2 mb-md-0 p-0 cleanSearchInput">
+							<label for="inputSearch">Titre de l'offre</label>
+							<input type="text" name="search" class="form-control" placeholder="Ex : Développeur">
 						</div>
+						<div class="form-group col-11 col-md-4 mb-2 mb-md-0 p-0 cleanSearchInput">
+							<label for="city">Ville</label>
+							<input type="text" id="city" name="city" list="cities" class="form-control" placeholder="Ex : Rennes (35)">
+							<datalist id="cities"></datalist>
+						</div>
+						<div class="form-group col-11 col-md-4 mb-2 mb-md-0 p-0 cleanSearchInput">
+							<label for="inputSearch">Entreprise</label>
+							<input type="text" name="partner" class="form-control" placeholder="Ex : Externatic">
+						</div>
+						<button type="submit" id="submit-button" value="Search" class="btn text-white rounded-0 buttonSearchOffer">Rechercher</button>
 					</div>
 				</form>
 			</div>
 		</div>
+
+		{% if search == true %}
+			<div class="text-center fw-bold">
+				<a class="deleteSearch" href="{{ path('app_offer_index') }}">Afficher toutes les offres</a>
+			</div>
+		{% endif %}
 
 		{% for offer in offers %}
 			<div class="row justify-content-center">
@@ -46,7 +52,7 @@
 					<a href="{{ path('app_offer_show', {'id': offer.id}) }}" class="offer-link">
 						<div class="card offer d-flex flex-row justify-content-between">
 							<div class="col-11">
-								<div class="offer-body card-body">
+								<div class="offer-body card-body {% if offer.open == false %}bg-darkGrey {% endif %}">
 									<p class="offer-text">
 										{{ offer.title }}
 										-
@@ -67,7 +73,7 @@
 					</a>
 				</div>
 
-				<div class="col-2 col-md-1 d-flex flex-row align-items-center p-0">
+				<div class="col-2 col-md-1 d-flex flex-column flex-md-row justify-content-center align-items-center p-0">
 					<div class="pink-circle">
 						<a href="{{ path('app_offer_edit', {'id': offer.id}) }}">
 							<svg xmlns="http://www.w3.org/2000/svg" class="logo-admin bi bi-vector-pen" viewbox="0 0 16 16">
@@ -80,11 +86,10 @@
 					{{ include('offer/_delete_form.html.twig') }}
 				</div>
 			</div>
-		{% else %}
 
-			<h3 class="NoOffer">Pas d'offres disponibles pour cette recherche</h3>
+		{% else %}
+			<h3 class="NoOffer">Pas d'offres disponibles</h3>
 		{% endfor %}
 
 	</main>
-
 {% endblock %}

@@ -6,7 +6,11 @@
 {% block body %}
 	<main class="mainSection mb-5">
 		<div class="mainForm">
-			<h1 class="text-center">Mes informations</h1>
+			{% if is_granted("ROLE_ADMIN")%}
+				<h1 class="text-center">Informations du candidat</h1>
+			{% else %}
+				<h1 class="text-center">Mes informations</h1>
+			{% endif %}
 			{{ form_start(form, {'attr': {'class': 'd-flex flex-column'}})}}
 			{% if candidate.picture %}
 				{{ form_label(form.pictureFile)}}
@@ -19,7 +23,7 @@
 						</tr>
 						<tr>
 							<td>
-								<a title="Supprimer" class="m-0" onclick="window.location.href='{{ path('app_candidate_picture_delete') }}';">Supprimer</a>
+								<a title="Supprimer" class="m-0" onclick="window.location.href='{{ path('app_candidate_picture_delete', {'candidateId': candidate.id }) }}';">Supprimer</a>
 							</td>
 							<td>|</td>
 							<td>
@@ -58,33 +62,24 @@
 
 			{% if candidate.curriculumVitae %}
 				{{ form_label(form.cvFile) }}
-				<div id="storedCv" class="table-responsive-sm" style="display: block;">
-					<table class="table">
-						<tr>
-							<td class="align-middle">
-								<a class="m-0" target="_blank" title="mon cv" href="{{ asset('uploads/candidate/curriculumVitae/' ~ candidate.curriculumVitae) }}">{{ candidate.curriculumVitae }}</a>
-							</td>
-							<td class="align-middle">
-								<button type="button" title="Supprimer" class="m-0" onclick="window.location.href='{{ path('app_candidate_cv_delete') }}';">
-									<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-circle m-0" viewbox="0 0 16 16">
-										<path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"></path>
-										<path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"></path>
-									</svg>
-									<span class="visually-hidden">Button</span>
-
-								</button>
-							</td>
-							<td class="align-middle">
-								<button type="button" title="Remplacer" class="replace-file-link m-0" onclick="javascript:void(0)">
-									<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-clockwise m-0" viewbox="0 0 16 16">
-										<path fill-rule="evenodd" d="M8 3a5 5 0 1 0 4.546 2.914.5.5 0 0 1 .908-.417A6 6 0 1 1 8 2v1z"></path>
-										<path d="M8 4.466V.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384L8.41 4.658A.25.25 0 0 1 8 4.466z"></path>
-									</svg>
-									<span class="visually-hidden">Button</span>
-								</button>
-							</td>
-						</tr>
-					</table>
+				<div id="storedCv" class="container-fluid" style="display: block;">
+					<div class="row align-items-center">
+						<div class="col-10">
+							<a class="m-0" target="_blank" title="mon cv" href="{{ asset('uploads/candidate/curriculumVitae/' ~ candidate.curriculumVitae) }}">{{ candidate.curriculumVitae }}</a>
+						</div>
+						<div class="col-2 d-flex">
+							<div class="pe-1">
+								<a title="Remplacer" class="replace-file-link" href="javascript:void(0);">
+									<img src="{{ asset('build/images/edit.png') }}" class="cvUploaderPicto" alt="Remplacer">
+								</a>
+							</div>
+							<div class="ps-1">
+								<a title="Supprimer" href="{{ path('app_candidate_cv_delete', {'candidateId': candidate.id }) }}">
+									<img src="{{ asset('build/images/delete.png') }}" class="cvUploaderPicto" alt="Supprimer">
+								</a>
+							</div>
+						</div>
+					</div>
 				</div>
 				<label for="candidate_cvFile_file" class="drop-container" style="display: none;" id="cvUploader">
 					<img src="{{ asset('build/images/upload.png') }}" id='uploadLogo'>
@@ -94,18 +89,29 @@
 						<a title="annuler" class="keep-file-link mainSection" href="javascript:void(0)">Conserver mon CV actuel</a>
 					</div>
 				</label>
+
 			{% else %}
+
 				{{ form_label(form.cvFile) }}
+
 				<label for="candidate_cvFile_file" class="drop-container">
 					<img src="{{ asset('build/images/upload.png') }}" id='uploadLogo'>
 					<div class="text-black">Téléverser votre CV</div>
 					{{ form_widget(form.cvFile) }}
 				</label>
+
 			{% endif %}
+
+
 			<button>
 				{{ button_label | default('Mettre à jour') }}
 			</button>
+
 			{{ form_end(form) }}
+
 		</div>
+
 	</main>
 {% endblock %}
+
+{% block clearSession %}{% endblock %}

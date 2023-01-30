@@ -6,8 +6,13 @@
 {% block body %}
 	<main class="mainSection mb-5">
 		<div class="mainForm">
-			<h1>Publier une offre</h1>
-			{{ include('offer/_form.html.twig') }}
+			<h1 class="text-center">Publier une offre</h1>
+			{% if is_granted('ROLE_ADMIN') %}
+				{{ include('offer/_form.html.twig') }}
+			{% elseif is_granted('ROLE_RECRUITER') %}
+				{{ include('offer/_form_recruiter.html.twig') }}
+
+			{% endif %}
 		</div>
 	</main>
 {% endblock %}
