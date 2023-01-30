@@ -4,7 +4,7 @@
 			<ul class="navbar-nav d-flex flex-row justify-content-center">
 				{% if is_granted("ROLE_ADMIN") %}
 					<li class="nav-item">
-						<a class="nav-link" href="{{ path('app_partner_index') }}">Les partenaires</a>
+						<a class="nav-link" href="{{ path('app_partner_index') }}">Les entreprises</a>
 					</li>
 					<li class="nav-item">
 						<a class="nav-link" href="{{ path('app_recruiter_index') }}">Les recruteurs</a>
@@ -38,7 +38,7 @@
 		<ul class="dropdown-menu">
 			{% if is_granted("ROLE_ADMIN") %}
 				<li class="nav-item">
-					<a class="nav-link" href="{{ path('app_partner_index') }}">Les partenaires</a>
+					<a class="nav-link" href="{{ path('app_partner_index') }}">Les entreprises</a>
 				</li>
 				<li class="nav-item">
 					<a class="nav-link" href="{{ path('app_recruiter_index') }}">Les recruteurs</a>
