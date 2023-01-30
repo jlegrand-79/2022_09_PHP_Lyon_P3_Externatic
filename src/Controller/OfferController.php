@@ -122,6 +122,8 @@ class OfferController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $offer->setOpen(true);
+
             $stacks = $offer->getStack();
             if (count($stacks) <= 0) {
                 $noStacks = 'Veuillez renseigner au moins une stack.';
@@ -195,13 +197,15 @@ class OfferController extends AbstractController
     public function editRecruiterOffer(Request $request, Offer $offer, OfferRepository $offerRepository): Response
     {
         $user = $this->container->get('security.token_storage')->getToken()->getUser();
-        if ($user->getRecruiter() != $offer->getRecruiter()) {
+        if ($user->getRecruiter() != $offer->getRecruiter() || $offer->isOpen() == false) {
             return $this->redirectToRoute('app_offer_list', [], Response::HTTP_SEE_OTHER);
         }
         $form = $this->createForm(OfferRecruiterType::class, $offer);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $offerStatus = $_POST['closedOffer'];
+            $offer->setOpen((filter_var($offerStatus, FILTER_VALIDATE_BOOLEAN)));
             $offerRepository->save($offer, true);
 
             return $this->redirectToRoute('app_offer_index_recruiter', [], Response::HTTP_SEE_OTHER);

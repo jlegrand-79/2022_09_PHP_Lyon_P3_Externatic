@@ -1,6 +1,16 @@
 {{ form_start(form, {'attr': {'class': 'd-flex flex-column'}}) }}
 {{ form_errors(form) }}
-{{ form_row(form.open) }}
+
+{% if offer.open != null and offer.open == true %}
+	<div class="mb-3">
+		<label for="closedOffer" class="form-label">Statut de l'offre</label>
+		<select name="closedOffer" id="closedOffer" class="form-control">
+			<option selected value="true">En cours</option>
+			<option value="false">Terminée</option>
+		</select>
+	</div>
+{% endif %}
+
 {{ form_row(form.title) }}
 {{ form_row(form.address) }}
 {{ form_row(form.addressComplement) }}
