@@ -39,7 +39,7 @@ class Candidate implements \Serializable
     #[ORM\Column(length: 255)]
     #[Assert\NotBlank(message: 'Le prénom ne peut pas être vide.')]
     #[Assert\Length(
-        max: 255,
+        max: 15,
         maxMessage: 'Le prénom saisi {{ value }} est trop long, 
         il ne devrait pas dépasser {{ limit }} caractères',
     )]
@@ -48,7 +48,7 @@ class Candidate implements \Serializable
     #[ORM\Column(length: 255)]
     #[Assert\NotBlank(message: 'Le nom ne peut pas être vide.')]
     #[Assert\Length(
-        max: 255,
+        max: 20,
         maxMessage: 'Le nom saisi {{ value }} est trop long, 
         il ne devrait pas dépasser {{ limit }} caractères',
     )]
