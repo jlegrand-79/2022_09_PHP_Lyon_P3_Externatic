@@ -7,6 +7,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 
 class PartnerType extends AbstractType
 {
@@ -45,7 +46,7 @@ class PartnerType extends AbstractType
     private function addPartnerDescription(FormBuilderInterface $builder): void
     {
         $builder
-            ->add('description', TextType::class, [
+            ->add('description', TextareaType::class, [
                 'required' => true,
                 'attr' => [
                     'class' => 'form-control',
