@@ -1,3 +1,9 @@
+<div class="mb-3">
+	<label class="form-label" for="recruiter_email">Email</label>
+	<p>
+		<a href="mailto:{{recruiter.user.email}}">{{recruiter.user.email}}</a>
+	</p>
+</div>
 {{ form_start(form, {'attr': {'class': 'd-flex flex-column'}}) }}
 {% if recruiter.partner is not null %}
 	{{ form_row(form.partner, { value : recruiter.partner.id }) }}
