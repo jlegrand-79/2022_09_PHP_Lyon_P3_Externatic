@@ -22,6 +22,9 @@ class Partner
         maxMessage: 'Le logo saisi {{ value }} est trop long, 
         il ne devrait pas dépasser {{ limit }} caractères',
     )]
+    #[Assert\Url(
+        message: "Le logo doit avoir un URL valide."
+    )]
     private ?string $logo = null;
 
     #[ORM\Column(length: 255)]
@@ -48,6 +51,9 @@ class Partner
         max: 255,
         maxMessage: "L'URL saisi {{ value }} est trop long, 
         il ne devrait pas dépasser {{ limit }} caractères",
+    )]
+    #[Assert\Url(
+        message: "Le logo doit avoir un URL valide."
     )]
     private ?string $url = null;
 
