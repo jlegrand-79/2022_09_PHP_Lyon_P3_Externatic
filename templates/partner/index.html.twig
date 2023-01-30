@@ -16,7 +16,7 @@
 
 		<h2 class="text-center">Les partenaires</h2>
 
-		<form action="{{ path('app_partner_index') }}" method="post" class="mt-3 mb-4">
+		<form action="{{ path('app_partner_index') }}" method="post" class="mt-3 mb-4 animate__animated animate__fadeIn">
 			<div class="form-row formSearchOffer d-flex flex-column flex-md-row align-items-center">
 				<div class="searchPartner form-group col-11 col-md-4 mb-2 mb-md-0 cleanSearchInput">
 					<label for="inputSearch">Nom de l'entreprise</label>
@@ -26,7 +26,7 @@
 			</div>
 		</form>
 
-		<div class="row justify-content-center partnerLine">
+		<div class="row justify-content-center partnerLine animate__animated animate__fadeIn animate__slow">
 			{% for partner in partners %}
 				<div class="col-9 col-lg-8 col-xxl-7">
 					<a href="{{ path('app_partner_show', {'id': partner.id}) }}" class="offer-link">

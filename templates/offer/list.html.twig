@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Offer index
+{% block title %}Chercher une offre
 {% endblock %}
 
 {% block body %}
@@ -9,7 +9,7 @@
 
 		<h1 class="text-center">Toutes nos offres</h1>
 
-		<div class="row justify-content-center mb-4">
+		<div class="row justify-content-center mb-4 animate__animated animate__fadeIn">
 			<div class="col-11 col-md-10 col-lg-9 col-xxl-8 row justify-content-center pe-0">
 
 				<form action="{{ path('app_offer_list') }}" method="post" id="form">
@@ -34,7 +34,7 @@
 		</div>
 
 		{% for offer in offers %}
-			<div class="row justify-content-center" id="display">
+			<div class="row justify-content-center animate__animated animate__fadeIn animate__slow" id="display">
 				<div class="col-11 col-md-10 col-lg-9 col-xxl-8">
 					<a href="{{ path('app_offer_show', {'id': offer.id}) }}" class="offer-link">
 						<div class="offer card d-flex flex-row justify-content-between">
