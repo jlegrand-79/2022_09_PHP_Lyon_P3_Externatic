@@ -12,14 +12,20 @@ if (cityInput) {
             .then((response) => response.json())
             .then((data) => {
                 const datalist = document.getElementById("cities");
-                datalist.innerHTML = "";
-
-                for (const commune of data) {
-                    datalist.innerHTML += '<option value="' + commune.nom + ' (' + commune.departement.code + ')">';
-                    cityCheck.push(commune.nom + ' (' + commune.departement.code + ')');
+                const selection = datalist.getElementsByTagName("option")
+                const cityArray = []
+                for (const option of selection) {
+                    cityArray.push(option.value);
                 }
-
-            })
+                if (!cityArray.includes(city)) {
+                    datalist.innerHTML = "";
+                    for (const commune of data) {
+                        datalist.innerHTML += '<option value="' + commune.nom + ' (' + commune.departement.code + ')">';
+                        cityCheck.push(commune.nom + ' (' + commune.departement.code + ')');
+                    }
+                }
+            }
+            )
     });
 }
 
