@@ -156,25 +156,6 @@ class OfferRecruiterType extends AbstractType
             ]);
     }
 
-    private function addStatusSelection(FormBuilderInterface $builder): void
-    {
-        $builder
-            ->add('open', ChoiceType::class, [
-                'choices' => [
-                    "En cours" => true,
-                    "Inactive" => false
-                ],
-                'required' => true,
-                'attr' => [
-                    'class' => 'form-control',
-                ],
-                'label' => 'Statut de l\'offre',
-                'label_attr' => [
-                    'class' => 'form-label'
-                ],
-            ]);
-    }
-
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $this->addTitleField($builder);
@@ -186,7 +167,6 @@ class OfferRecruiterType extends AbstractType
         $this->addWorkFieldField($builder);
         $this->addStackField($builder);
         $this->addDescriptionField($builder);
-        $this->addStatusSelection($builder);
     }
 
     public function configureOptions(OptionsResolver $resolver): void

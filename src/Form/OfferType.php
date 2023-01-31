@@ -16,6 +16,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 
 class OfferType extends OfferRecruiterType
 {
@@ -49,8 +50,28 @@ class OfferType extends OfferRecruiterType
             ]);
     }
 
+    private function addStatusSelection(FormBuilderInterface $builder): void
+    {
+        $builder
+            ->add('open', ChoiceType::class, [
+                'choices' => [
+                    "En cours" => true,
+                    "Inactive" => false
+                ],
+                'required' => true,
+                'attr' => [
+                    'class' => 'form-control',
+                ],
+                'label' => 'Statut de l\'offre',
+                'label_attr' => [
+                    'class' => 'form-label'
+                ],
+            ]);
+    }
+
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
+        $this->addStatusSelection($builder);
         $this->addPartnerField($builder);
         $this->addRecruiterField($builder);
         parent::buildForm($builder, $options);
