@@ -16,3 +16,4 @@ import './js/form.js';
 import './js/candidacy.js';
 import './js/search.js';
 import './js/file-updater.js';
+import './js/recruiter-address.js';

@@ -82,4 +82,18 @@ class ApiController extends AbstractController
 
         return new JsonResponse(true);
     }
+
+    #[Route('/partner/{id}/address/', methods: ['GET'], name: 'partner_address')]
+    public function partnerAddress(PartnerRepository $partnerRepository, int $id): Response
+    {
+        $partner = $partnerRepository->findOneBy(['id' => $id]);
+
+        $address = [
+            'address' => $partner->getAddress(),
+            'addressComplement' => $partner->getAddressComplement(),
+            'postalCode' => $partner->getPostalCode(),
+            'city' => $partner->getCity(),
+        ];
+        return new JsonResponse($address);
+    }
 }

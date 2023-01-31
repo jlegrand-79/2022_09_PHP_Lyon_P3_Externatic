@@ -4,19 +4,19 @@
 			<ul class="navbar-nav d-flex flex-row justify-content-center">
 				{% if is_granted("ROLE_ADMIN") %}
 					<li class="nav-item">
-						<a class="nav-link" href="{{ path('app_partner_index') }}">Les entreprises</a>
+						<a class="nav-link me-0" href="{{ path('app_partner_index') }}">Entreprises</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" href="{{ path('app_recruiter_index') }}">Les recruteurs</a>
+						<a class="nav-link me-0" href="{{ path('app_recruiter_index') }}">Recruteurs</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" aria-current="page" href="{{ path('app_offer_index') }}">Les offres</a>
+						<a class="nav-link me-0" aria-current="page" href="{{ path('app_offer_index') }}">Offres</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" href="{{ path('app_candidate_index') }}">Les candidats</a>
+						<a class="nav-link me-0" href="{{ path('app_candidate_index') }}">Candidats</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" href="{{ path('app_candidacy_index') }}">Les candidatures</a>
+						<a class="nav-link" href="{{ path('app_candidacy_index') }}">Candidatures</a>
 					</li>
 				{% elseif is_granted('ROLE_RECRUITER') %}
 					<li class="nav-item">
@@ -38,19 +38,19 @@
 		<ul class="dropdown-menu">
 			{% if is_granted("ROLE_ADMIN") %}
 				<li class="nav-item">
-					<a class="nav-link" href="{{ path('app_partner_index') }}">Les entreprises</a>
+					<a class="nav-link" href="{{ path('app_partner_index') }}">Entreprises</a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link" href="{{ path('app_recruiter_index') }}">Les recruteurs</a>
+					<a class="nav-link" href="{{ path('app_recruiter_index') }}">Recruteurs</a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link" aria-current="page" href="{{ path('app_offer_index') }}">Les offres</a>
+					<a class="nav-link" aria-current="page" href="{{ path('app_offer_index') }}">Offres</a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link" href="{{ path('app_candidate_index') }}">Les candidats</a>
+					<a class="nav-link" href="{{ path('app_candidate_index') }}">Candidats</a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link" href="{{ path('app_candidacy_index') }}">Les candidatures</a>
+					<a class="nav-link" href="{{ path('app_candidacy_index') }}">Candidatures</a>
 				</li>
 			{% elseif is_granted('ROLE_RECRUITER') %}
 				<li class="nav-item">
