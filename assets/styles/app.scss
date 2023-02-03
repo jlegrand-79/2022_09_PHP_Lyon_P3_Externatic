@@ -306,3 +306,10 @@ button {
 .cleanSearchInput {
     margin-left: -2px;
 }
+
+.recruiter {
+    p {
+        max-width: 80%;
+        word-wrap: anywhere;
+    }
+}

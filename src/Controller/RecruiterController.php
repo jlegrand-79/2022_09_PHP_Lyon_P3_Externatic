@@ -68,7 +68,7 @@ class RecruiterController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'app_recruiter_show', methods: ['GET', 'POST'])]
+    #[Route('/show/{id}', name: 'app_recruiter_show', methods: ['GET', 'POST'])]
     public function show(
         Request $request,
         int $id,
