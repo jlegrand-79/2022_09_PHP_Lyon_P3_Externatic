@@ -70,7 +70,7 @@ class CandidateController extends AbstractController
             }
             $contractSearched = $candidate->getContractSearched();
             if (count($contractSearched) <= 0) {
-                $noContractSearched = 'Veuillez renseigner au moins une stack.';
+                $noContractSearched = 'Veuillez renseigner au moins un type de contrat recherché.';
                 return $this->renderForm('candidate/new.html.twig', [
                     'candidate' => $candidate,
                     'form' => $form,
@@ -79,7 +79,22 @@ class CandidateController extends AbstractController
             }
             $candidateRepository->save($candidate, true);
 
-            return $this->redirectToRoute('app_candidate_show', [], Response::HTTP_SEE_OTHER);
+            $session = $request->getSession();
+            if ($session->get('apply') != null) {
+                if ($candidate->getCurriculumVitae()) {
+                    $this->addFlash(
+                        'success',
+                        "Votre profil est maintenant complet, vous pouvez postuler à cette offre."
+                    );
+                    return $this->redirect($session->get('apply'));
+                } else {
+                    $this->addFlash('danger', "Veuillez renseigner un CV pour postuler à une offre.");
+                    return $this->redirectToRoute('app_candidate_update', [], Response::HTTP_SEE_OTHER);
+                }
+            } else {
+                $this->addFlash('success', "Votre profil a bien été créé.");
+                return $this->redirectToRoute('app_candidate_show', [], Response::HTTP_SEE_OTHER);
+            }
         }
 
         return $this->renderForm('candidate/new.html.twig', [

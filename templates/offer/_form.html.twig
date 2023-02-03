@@ -1,17 +1,31 @@
 {{ form_start(form, {'attr': {'class': 'd-flex flex-column'}}) }}
 {{ form_errors(form) }}
 {{ form_row(form.open) }}
-{% if offer.recruiter is not null %}
+
+{% if recruiter is defined %}
+	{{ form_row(form.partner, { value : recruiter.partner.id }) }}
+	{{ form_row(form.recruiter, { value : recruiter.id }) }}
+{% elseif offer.recruiter is not null %}
 	{{ form_row(form.partner, { value : offer.recruiter.partner.id }) }}
+	{{ form_row(form.recruiter, { value : offer.recruiter.id }) }}
 {% else %}
 	{{ form_row(form.partner) }}
+	{{ form_row(form.recruiter) }}
 {% endif %}
-{{ form_row(form.recruiter) }}
+
 {{ form_row(form.title) }}
-{{ form_row(form.address) }}
-{{ form_row(form.addressComplement) }}
-{{ form_row(form.postalCode) }}
-{{ form_row(form.city) }}
+
+{% if recruiter is defined %}
+	{{ form_row(form.address, { value : recruiter.address }) }}
+	{{ form_row(form.addressComplement, { value : recruiter.addressComplement }) }}
+	{{ form_row(form.postalCode, { value : recruiter.postalCode }) }}
+	{{ form_row(form.city, { value : recruiter.city }) }}
+{% else %}
+	{{ form_row(form.address) }}
+	{{ form_row(form.addressComplement) }}
+	{{ form_row(form.postalCode) }}
+	{{ form_row(form.city) }}
+{% endif %}
 {{ form_row(form.contract) }}
 {{ form_row(form.workField) }}
 {{ form_row(form.stack) }}

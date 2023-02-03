@@ -9,6 +9,7 @@ use App\Form\OfferRecruiterType;
 use App\Controller\SearchOfferType;
 use App\Repository\OfferRepository;
 use App\Repository\CandidacyRepository;
+use App\Repository\RecruiterRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -83,6 +84,40 @@ class OfferController extends AbstractController
         ]);
     }
 
+    #[Route('/recruiter/{id}/new', name: 'app_offer_recruiter_new', methods: ['GET', 'POST'])]
+    #[IsGranted('ROLE_ADMIN')]
+    public function newAdminRecruiterOffer(
+        int $id,
+        Request $request,
+        RecruiterRepository $recruiterRepository,
+        OfferRepository $offerRepository
+    ): Response {
+        $offer = new Offer();
+        $form = $this->createForm(OfferType::class, $offer);
+        $form->handleRequest($request);
+        $recruiter = $recruiterRepository->findOneById($id);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $stacks = $offer->getStack();
+            if (count($stacks) <= 0) {
+                $noStacks = 'Veuillez renseigner au moins une stack.';
+                return $this->renderForm('offer/new.html.twig', [
+                    'offer' => $offer,
+                    'form' => $form,
+                    'no_stacks' => $noStacks,
+                ]);
+            }
+            $offerRepository->save($offer, true);
+            return $this->redirectToRoute('app_offer_index', [], Response::HTTP_SEE_OTHER);
+        }
+
+        return $this->renderForm('offer/new.html.twig', [
+            'offer' => $offer,
+            'form' => $form,
+            'recruiter' => $recruiter,
+        ]);
+    }
+
     #[Route('/new', name: 'app_offer_new', methods: ['GET', 'POST'])]
     #[IsGranted('ROLE_ADMIN')]
     public function new(Request $request, OfferRepository $offerRepository): Response
@@ -118,10 +153,13 @@ class OfferController extends AbstractController
         $user = $this->container->get('security.token_storage')->getToken()->getUser();
         $offer = new Offer();
         $form = $this->createForm(OfferRecruiterType::class, $offer);
-        $offer->setRecruiter($user->getRecruiter());
+        $recruiter = $user->getRecruiter();
+        $offer->setRecruiter($recruiter);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $offer->setOpen(true);
+
             $stacks = $offer->getStack();
             if (count($stacks) <= 0) {
                 $noStacks = 'Veuillez renseigner au moins une stack.';
@@ -138,6 +176,7 @@ class OfferController extends AbstractController
         return $this->renderForm('offer/new.html.twig', [
             'offer' => $offer,
             'form' => $form,
+            'recruiter' => $recruiter,
         ]);
     }
 
@@ -195,13 +234,15 @@ class OfferController extends AbstractController
     public function editRecruiterOffer(Request $request, Offer $offer, OfferRepository $offerRepository): Response
     {
         $user = $this->container->get('security.token_storage')->getToken()->getUser();
-        if ($user->getRecruiter() != $offer->getRecruiter()) {
+        if ($user->getRecruiter() != $offer->getRecruiter() || $offer->isOpen() == false) {
             return $this->redirectToRoute('app_offer_list', [], Response::HTTP_SEE_OTHER);
         }
         $form = $this->createForm(OfferRecruiterType::class, $offer);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $offerStatus = $_POST['closedOffer'];
+            $offer->setOpen((filter_var($offerStatus, FILTER_VALIDATE_BOOLEAN)));
             $offerRepository->save($offer, true);
 
             return $this->redirectToRoute('app_offer_index_recruiter', [], Response::HTTP_SEE_OTHER);
