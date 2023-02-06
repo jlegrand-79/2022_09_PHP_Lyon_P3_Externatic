@@ -15,7 +15,7 @@
 
 			{% if app.user %}
 				<div class="d-flex flex-row align-items-center navDiv">
-					<div class="avatar d-none d-sm-block">
+					<div class="avatar d-none d-md-block">
 						{% if is_granted("ROLE_CANDIDATE")%}
 							<a title="Mon espace" href="{{ path('app_candidate_new') }}">
 								<img src="{{ asset('build/images/noun-profile.png') }}" class="avatar d-flex w-50 h-50 me-2" alt="">
@@ -31,26 +31,26 @@
 						{% endif %}
 					</div>
 
-					<div class="avatar d-none d-sm-block">
+					<div class="avatar d-none d-md-block">
 						<a title="Déconnexion" href="{{ path('app_logout') }}">
 							<img src="{{ asset('build/images/logout1.png') }}" class="avatar d-flex w-50 h-50 me-2" alt="">
 						</a>
 					</div>
 				</div>
 			{% else %}
-				<div class="d-none d-sm-flex flex-direction-row align-items-center navDiv">
+				<div class="d-none d-md-flex flex-direction-row align-items-center navDiv">
 					<a title="Connexion" href="{{ path('app_login') }}">Se connecter</a>
 					<a class="nav-link" href="{{ path('app_register') }}">S'inscrire</a>
 				</div>
 
 
 			{% endif %}
-			<button class="navbar-toggler d-sm-none mb-3 ms-2" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+			<button class="navbar-toggler d-md-none mb-3 ms-2" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
 				<span class="navbar-toggler-icon"></span>
 			</button>
 		</div>
 		<div class="navbar-collapse collapse" id="navbarNav">
-			<ul class="navbar-nav d-sm-none">
+			<ul class="navbar-nav d-md-none">
 				<li class="nav-item textMenu ps-4">
 					<a class="nav-link active" aria-current="page" href="{{ path('app_home') }}">Accueil</a>
 				</li>
