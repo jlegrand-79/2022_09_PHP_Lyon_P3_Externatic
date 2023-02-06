@@ -20,9 +20,7 @@
 								<input type="text" name="search" class="form-control" placeholder="Ex : Développeur">
 							</div>
 							<div class="form-group col-md-5 p-0 cleanSearchInput">
-								<label for="city">Votre ville :</label>
-								<input type="text" id="city" name="city" list="cities" class="form-control" placeholder="Ex : Rennes (35)" autocomplete="off">
-								<datalist id="cities"></datalist>
+								{% include '_city_search.html.twig' with { 'label_class': '' } %}
 							</div>
 							<div class="form-group col-md-2 p-0">
 								<button type="submit" id="submit-button" value="Search" class="btn text-white rounded-0 buttonSearchOffer">Rechercher</button>

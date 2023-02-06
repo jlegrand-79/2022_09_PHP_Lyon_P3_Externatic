@@ -88,10 +88,8 @@
 									<label for="inputSearch">Mots-clés</label>
 									<input type="text" name="search" class="form-control" placeholder="Ex : Développeur">
 								</div>
-								<div class="form-group col-md-5 p-0">
-									<label for="city">Ville</label>
-									<input type="text" id="city" name="city" list="cities" class="form-control" placeholder="Ex : Rennes (35)" autocomplete="off">
-									<datalist id="cities"></datalist>
+								<div class="form-group col-md-5 p-0 cleanSearchInput">
+									{% include '_city_search.html.twig' with { 'label_class': '' } %}
 								</div>
 								<div class="form-group col-md-2 p-0 d-flex justify-content-center">
 									<button type="submit" id="submit-button" value="Search" class="btn text-white rounded-0 buttonSearchOffer">Rechercher</button>
