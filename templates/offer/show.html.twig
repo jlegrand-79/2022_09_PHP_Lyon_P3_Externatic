@@ -60,7 +60,7 @@
 			</div>
 		{% elseif is_granted('ROLE_RECRUITER') == false %}
 			{% if candidacy is defined %}
-				<p class="mt-3 fw-bold text-decoration-underline text-mainPink">Vous avez postulé à cette offre le
+				<p class="mt-3 fw-bold text-decoration-underline text-mainPink text-center">Vous avez postulé à cette offre le
 					{{candidacy.candidacyDate|date('d/m/Y') }}
 				</p>
 			{% else %}
@@ -186,7 +186,7 @@
 	{% endif %}
 </main>
 {% if is_granted("ROLE_EDITOR") == false %}
-	<div class="d-flex d-md-none flex-column align-items-center fixed-bottom mb-5 applyMobile">
+	<div class="{% if is_granted('ROLE_EDITOR') or candidacy is defined %}d-none{% endif %} d-flex d-md-none flex-column align-items-center fixed-bottom mb-5 applyMobile">
 		<a href="{{ path('app_candidacy_new', {'id': offer.id}) }}" class="link-admin w-50" role="button" aria-pressed="true">Postuler</a>
 	</div>
 {% endif %}{% endblock %}
