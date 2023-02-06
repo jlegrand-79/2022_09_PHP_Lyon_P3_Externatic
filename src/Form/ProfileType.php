@@ -194,7 +194,7 @@ class ProfileType extends AbstractType
                 ],
                 'attr' => [
                     'id' => 'cv',
-                    'class' => 'text-center',
+                    'class' => 'text-start',
                 ],
             ]);
     }
