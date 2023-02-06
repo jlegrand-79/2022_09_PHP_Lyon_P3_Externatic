@@ -23,7 +23,7 @@
 				<div class="m-auto">
 					<div class="d-flex flex-row">
 						<div class="pink-circle">
-							<a href="{{ path('app_offer_index') }}">
+							<a href="{{ path('app_offer_index_recruiter') }}">
 								<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="logo-admin bi bi-arrow-return-left" viewbox="0 0 16 16">
 									<path fill-rule="evenodd" d="M14.5 1.5a.5.5 0 0 1 .5.5v4.8a2.5 2.5 0 0 1-2.5 2.5H2.707l3.347 3.346a.5.5 0 0 1-.708.708l-4.2-4.2a.5.5 0 0 1 0-.708l4-4a.5.5 0 1 1 .708.708L2.707 8.3H12.5A1.5 1.5 0 0 0 14 6.8V2a.5.5 0 0 1 .5-.5z"></path>
 								</svg>
@@ -31,7 +31,6 @@
 						</div>
 						{% if is_granted("ROLE_ADMIN") %}
 							<div class="pink-circle">
-
 								<a href="{{ path('app_offer_edit', {'id': offer.id}) }}">
 									<svg xmlns="http://www.w3.org/2000/svg" class="logo-admin bi bi-vector-pen" viewbox="0 0 16 16">
 										<path fill-rule="evenodd" d="M10.646.646a.5.5 0 0 1 .708 0l4 4a.5.5 0 0 1 0 .708l-1.902 1.902-.829 3.313a1.5 1.5 0 0 1-1.024 1.073L1.254 14.746 4.358 4.4A1.5 1.5 0 0 1 5.43 3.377l3.313-.828L10.646.646zm-1.8 2.908-3.173.793a.5.5 0 0 0-.358.342l-2.57 8.565 8.567-2.57a.5.5 0 0 0 .34-.357l.794-3.174-3.6-3.6z"></path>
@@ -49,18 +48,17 @@
 								</a>
 							</div>
 						{% endif %}
-
+						{% if is_granted('ROLE_ADMIN') %}
+							<div>
+								{{ include('offer/_delete_form.html.twig') }}
+							</div>
+						{% endif %}
 					</div>
-					{% if is_granted('ROLE_ADMIN') %}
-						<div>
-							{{ include('offer/_delete_form.html.twig') }}
-						</div>
-					{% endif %}
 				</div>
 			</div>
 		{% elseif is_granted('ROLE_RECRUITER') == false %}
 			{% if candidacy is defined %}
-				<p class="mt-3 fw-bold text-decoration-underline text-mainPink">Vous avez postulé à cette offre le
+				<p class="mt-3 fw-bold text-decoration-underline text-mainPink text-center">Vous avez postulé à cette offre le
 					{{candidacy.candidacyDate|date('d/m/Y') }}
 				</p>
 			{% else %}
@@ -186,7 +184,7 @@
 	{% endif %}
 </main>
 {% if is_granted("ROLE_EDITOR") == false %}
-	<div class="d-flex d-md-none flex-column align-items-center fixed-bottom mb-5 applyMobile">
+	<div class="{% if is_granted('ROLE_EDITOR') or candidacy is defined %}d-none{% endif %} d-flex d-md-none flex-column align-items-center fixed-bottom mb-5 applyMobile">
 		<a href="{{ path('app_candidacy_new', {'id': offer.id}) }}" class="link-admin w-50" role="button" aria-pressed="true">Postuler</a>
 	</div>
 {% endif %}{% endblock %}

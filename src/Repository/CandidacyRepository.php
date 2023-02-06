@@ -59,8 +59,8 @@ class CandidacyRepository extends ServiceEntityRepository
 
         if (!empty($date)) {
             $queryBuilder
-            ->andWhere('c.candidacyDate = :date')
-            ->setParameter('date', $date);
+            ->andWhere('c.candidacyDate LIKE :date')
+            ->setParameter('date', $date . '%');
         }
 
         $queryBuilder
@@ -94,8 +94,8 @@ class CandidacyRepository extends ServiceEntityRepository
 
         if (!empty($date)) {
             $queryBuilder
-            ->andWhere('c.candidacyDate = :date')
-            ->setParameter('date', $date);
+            ->andWhere('c.candidacyDate LIKE :date')
+            ->setParameter('date', $date . '%');
         }
 
         $queryBuilder
