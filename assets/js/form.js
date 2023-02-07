@@ -53,6 +53,47 @@ if (selectedPartner && recruitersOfPartner) {
     }
 }
 
+// Form Address Prefill with Partner or Recruiter Details
+
+let offerAddress = document.querySelector('#offer_address')
+let offerAddressComplement = document.querySelector('#offer_addressComplement')
+let offerPostalCode = document.querySelector('#offer_postalCode')
+let offerCity = document.querySelector('#offer_city')
+
+if (selectedPartner && recruitersOfPartner && offerAddress && offerAddressComplement && offerPostalCode && offerCity) {
+    // on change
+    selectedPartner.addEventListener('change', (event) => {
+        offerAddress.value = ''
+        offerAddressComplement.value = ''
+        offerPostalCode.value = ''
+        offerCity.value = ''
+        fetch(window.location.protocol + "//" + window.location.host + '/api/partner/' + event.target.value + '/address/')
+            .then(response => response.json())
+            .then(partnerAddress => {
+                offerAddress.value = partnerAddress.address
+                offerAddressComplement.value = partnerAddress.addressComplement
+                offerPostalCode.value = partnerAddress.postalCode
+                offerCity.value = partnerAddress.city
+            }
+            )
+    })
+    recruitersOfPartner.addEventListener('change', (event) => {
+        offerAddress.value = ''
+        offerAddressComplement.value = ''
+        offerPostalCode.value = ''
+        offerCity.value = ''
+        fetch(window.location.protocol + "//" + window.location.host + '/api/recruiter/' + event.target.value + '/address/')
+            .then(response => response.json())
+            .then(recruiterAddress => {
+                offerAddress.value = recruiterAddress.address
+                offerAddressComplement.value = recruiterAddress.addressComplement
+                offerPostalCode.value = recruiterAddress.postalCode
+                offerCity.value = recruiterAddress.city
+            }
+            )
+    })
+}
+
 // Contract field
 let contractType = document.querySelector('#offer_contract')
 if (contractType) {
