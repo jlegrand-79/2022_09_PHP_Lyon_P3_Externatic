@@ -13,7 +13,6 @@ use Symfony\Component\Form\Extension\Core\Type\TelType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
-use Symfony\Component\Validator\Constraints\File;
 
 class ProfileType extends AbstractType
 {
@@ -21,16 +20,7 @@ class ProfileType extends AbstractType
     {
         $builder
             ->add('pictureFile', VichFileType::class, [
-                'constraints' => [
-                    new File([
-                        'mimeTypes' => [
-                            'image/jpeg',
-                            'image/png',
-                            'image/webp',
-                        ],
-                        'mimeTypesMessage' => 'Veuillez sélectionner un fichier image valide !',
-                    ])
-                ],
+                'mapped' => true,
                 'required'      => false,
                 'allow_delete'  => false,
                 'download_uri' => false,
@@ -196,15 +186,7 @@ class ProfileType extends AbstractType
     {
         $builder
             ->add('cvFile', VichFileType::class, [
-                'constraints' => [
-                    new File([
-                        'mimeTypes' => [
-                            'application/pdf',
-                            'application/x-pdf',
-                        ],
-                        'mimeTypesMessage' => 'Veuillez sélectionner un fichier PDF valide !',
-                    ])
-                ],
+                'mapped' => true,
                 'required' => false,
                 'allow_delete'  => false,
                 'download_uri' => false,
