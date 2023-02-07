@@ -8,6 +8,7 @@ use App\Repository\OfferRepository;
 use App\Repository\StatusRepository;
 use App\Repository\PartnerRepository;
 use App\Repository\CandidacyRepository;
+use App\Repository\RecruiterRepository;
 use App\Repository\WorkFieldRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -93,6 +94,20 @@ class ApiController extends AbstractController
             'addressComplement' => $partner->getAddressComplement(),
             'postalCode' => $partner->getPostalCode(),
             'city' => $partner->getCity(),
+        ];
+        return new JsonResponse($address);
+    }
+
+    #[Route('/recruiter/{id}/address/', methods: ['GET'], name: 'recruiter_address')]
+    public function recruiterAddress(RecruiterRepository $recruiterRepository, int $id): Response
+    {
+        $recruiter = $recruiterRepository->findOneBy(['id' => $id]);
+
+        $address = [
+            'address' => $recruiter->getAddress(),
+            'addressComplement' => $recruiter->getAddressComplement(),
+            'postalCode' => $recruiter->getPostalCode(),
+            'city' => $recruiter->getCity(),
         ];
         return new JsonResponse($address);
     }
