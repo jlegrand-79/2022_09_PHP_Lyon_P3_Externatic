@@ -25,6 +25,8 @@
 	<div class="text-black">Téléverser votre CV</div>
 	{{ form_widget(form.cvFile)}}
 </label>
-
+<div class="text-center">
+	{{ form_errors(form.cvFile) }}
+</div>
 <button>{{ button_label|default('Enregistrer') }}</button>
 {{ form_end(form) }}

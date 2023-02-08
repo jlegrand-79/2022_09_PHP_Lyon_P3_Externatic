@@ -20,6 +20,7 @@ class ProfileType extends AbstractType
     {
         $builder
             ->add('pictureFile', VichFileType::class, [
+                'mapped' => true,
                 'required'      => false,
                 'allow_delete'  => false,
                 'download_uri' => false,
@@ -185,6 +186,7 @@ class ProfileType extends AbstractType
     {
         $builder
             ->add('cvFile', VichFileType::class, [
+                'mapped' => true,
                 'required' => false,
                 'allow_delete'  => false,
                 'download_uri' => false,

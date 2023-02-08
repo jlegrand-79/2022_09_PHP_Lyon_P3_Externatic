@@ -71,6 +71,7 @@ class Candidate implements \Serializable
     #[Assert\File(
         maxSize: '1M',
         mimeTypes: ['image/jpeg', 'image/png', 'image/webp'],
+        mimeTypesMessage: 'Veuillez sélectionner un fichier image valide : {{ types }}.',
     )]
     private ?File $pictureFile = null;
 
@@ -80,7 +81,8 @@ class Candidate implements \Serializable
     #[Vich\UploadableField(mapping: 'candidate_cv', fileNameProperty: 'curriculumVitae')]
     #[Assert\File(
         maxSize: '1M',
-        mimeTypes: ['application/pdf'],
+        mimeTypes: ['application/pdf', 'application/x-pdf'],
+        mimeTypesMessage: 'Veuillez sélectionner un fichier PDF valide : {{ types }}.',
     )]
     private ?File $cvFile = null;
 
